@@ -1,0 +1,45 @@
+.testimonials {
+    background: var(--main-bg-color);
+    .card {
+        background: var(--main-bg-color);
+        &:hover {
+            background-image: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;
+            color: var(--main-title-color);
+            .post-text {
+                .meta-data {
+                    color: var(--main-title-color);
+                }
+            }
+        }
+    }
+    
+    .card-body {
+        &:hover {
+            background-image: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;   
+        }
+    }
+    
+}
+
+.circle-button {
+    background-color: var(--fourth-bg-color);
+    border-color: var(--fourth-bg-color);
+
+    color: #fdf7f2;
+    
+}
+
+.page-numbers {
+    font-family: "Montserrat", Sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 13px;
+    min-width: 48px;
+    padding: 15px 15px 15px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--third-bg-color);
+    }
+}
