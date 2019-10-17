@@ -1,23 +1,18 @@
-/**
- *
- * TestimonialList
- *
- */
-
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import TestimonialItem from 'containers/TestimonialItem';
 import TestimonialItemLoading from '../TestimonialItemLoading';
+import { isLoading } from 'configuration/config';
 
 function TestimonialList(props) {
 
   let content = [1, 2, 3].map(item => (
-    <TestimonialItemLoading />
+    <TestimonialItemLoading key={`testimonial-${item}`}/>
   ));
 
-  if (!props.loading) {
+  if (isLoading(props.loading)) {
     content = props.items.map(item => (
-      <TestimonialItem  key={`testimonial-${item.id}`} item={item} />
+      <TestimonialItem key={`testimonial-${item.id}`} item={item} />
     ));
   }
 

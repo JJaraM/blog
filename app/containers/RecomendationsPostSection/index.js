@@ -6,7 +6,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItems } from './selectors';
+import { makeItems, makeLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import RecomendationsPostList from 'components/RecomendationsPostList';
@@ -14,6 +14,7 @@ import { retrieve } from './actions';
 
 export function RecomendationsPostSection({
   items,
+  loading,
   onLoadPage,
 }) {
   useInjectReducer({ key: 'recomendationsPostSection', reducer });
@@ -25,7 +26,7 @@ export function RecomendationsPostSection({
 
   return (
     <div className="main-bg-color mt-30">
-      <RecomendationsPostList items={items} />
+      <RecomendationsPostList items={items} loading={loading} />
     </div>
   );
 }
@@ -36,6 +37,7 @@ RecomendationsPostSection.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   items: makeItems(),
+  loading: makeLoading(),
 });
 
 function mapDispatchToProps(dispatch) {

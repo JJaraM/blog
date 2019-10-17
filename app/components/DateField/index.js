@@ -1,14 +1,5 @@
-/**
- *
- * Date
- *
- */
-
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 
 function DateField(props) {
 
@@ -17,7 +8,7 @@ function DateField(props) {
   ];
 
   const { value } = props;
-  let Component = () => (<div>Hi</div>);
+  let Component = () => (<div>N/A</div>);
 
   if (value) {
     const date = new Date(value);
@@ -31,8 +22,6 @@ function DateField(props) {
       </div>
     )
   }
-
-  //const date = new Date(props.value);
 
   return (
     <>

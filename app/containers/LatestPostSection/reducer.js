@@ -3,25 +3,36 @@
  * LatestPostSection reducer
  *
  */
-import produce, { isDraft } from 'immer';
-import { RETRIEVE, ITEMS_LOADED} from './constants';
+import produce from 'immer';
+import { ITEMS_LOADED, RETRIEVE_MORE, CHANGE_TAG } from './constants';
 
 export const initialState = {
   page: 0,
   countItems: 3,
   items: [],
+  loading: true,
+  isFirstLoading: false,
+  tagId: 0,
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const latestPostSectionReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-
-      case RETRIEVE:
+      case ITEMS_LOADED:
+        draft.items = [...state.items , ...action.items];
+        draft.loading = false;
+        draft.isFirstLoading = true;
         break;
 
-      case ITEMS_LOADED:
-        draft.items = action.items;
+      case RETRIEVE_MORE:
+        draft.page = draft.page + 1;
+        break;
+
+      case CHANGE_TAG:
+        draft.items = [];
+        draft.tagId = action.tagId;
+        draft.page = 0;
         break;
     }
   });

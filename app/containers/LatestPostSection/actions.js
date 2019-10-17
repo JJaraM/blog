@@ -1,10 +1,4 @@
-/*
- *
- * LatestPostSection actions
- *
- */
-
-import { RETRIEVE, ITEMS_LOADED } from './constants';
+import { RETRIEVE, ITEMS_LOADED, RETRIEVE_MORE, CHANGE_TAG } from './constants';
 
 export function retrieve() {
   return {
@@ -12,9 +6,27 @@ export function retrieve() {
   };
 }
 
+export function retrieveMore() {
+  return {
+    type: RETRIEVE_MORE,
+  };
+}
+
+
 export function itemsLoaded(items) {
   return {
     type: ITEMS_LOADED,
     items,
   }
 }
+
+export function changeTag(tagId) {
+  return {
+    type: CHANGE_TAG,
+    tagId,
+  }
+}
+
+
+
+

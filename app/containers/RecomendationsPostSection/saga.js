@@ -14,7 +14,7 @@ export function* getItems() {
   const latestPostItems = yield select(makeRecomendationsPostCountItems());
   const tag = 0;
   const requestURL = `https://blog-microservice-post.herokuapp.com/post/mostPopular/${latestPostPage}/${latestPostItems}/${tag}`;
-  console.log(requestURL);
+  
   try {
     const items = yield call(request, requestURL);
     

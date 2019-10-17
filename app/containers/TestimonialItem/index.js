@@ -1,9 +1,3 @@
-/**
- *
- * TestimonialItem
- *
- */
-
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,28 +10,29 @@ import makeSelectTestimonialItem from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function TestimonialItem(props) {
+export function TestimonialItem({
+  item,
+  onError,
+}) {
   useInjectReducer({ key: 'testimonialItem', reducer });
   useInjectSaga({ key: 'testimonialItem', saga });
-
-  const { item } = props;
 
   return (
     <div className="card">
       <div className="testimonials">
         <div className="d-flex justify-content-center mt-30">
-          <img src={item.img} class="img-circle " alt="..." />
+          <img src={item.img} className="img-circle " alt="..."  onError={onError} />
         </div>
         <div className="mb-30 mr-30 ml-30">
-          <div class="post-text">
-            <h3 class="main-title-color">
-              <a href="https://indieground.net/blog/weekly-inspiration-dose-078/">{item.name}</a>
+          <div className="post-text">
+            <h3 className="main-title-color">
+              <a href="#">{item.name}</a>
             </h3>
-            <div class="meta-data">
+            <div className="meta-data">
               <span>{item.title}</span>
               <span>October 8, 2019</span>
             </div>
-            <div class="description">
+            <div className="description">
                 <p>{item.text}</p>
             </div>
           </div>
@@ -49,6 +44,7 @@ export function TestimonialItem(props) {
 
 TestimonialItem.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  onError: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -57,6 +53,9 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    onError: (evt) => {
+      return "./avatar.png";
+    },
     dispatch,
   };
 }

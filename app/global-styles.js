@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
   --main-text-color: #777;
   --primary-loading-bg-color: #353535;
   --secondary-loading-bg-color: #4b4b4b;
+  --tb-bg-color: #272822;
 }
 
 img {
@@ -22,10 +23,11 @@ img {
 }
 
 body {
-  color: var(--main-text-color);
+  color: var(--main-title-color);
   font-family: "Montserrat", Sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
+  background: var(--secondary-bg-color);
 }
 
 .main-bg-color {
@@ -46,6 +48,9 @@ a, a:hover {
   text-decoration: none;
 }
 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  box-shadow: none !important;
+}
 
 .mt-30 {
   padding-top: 30px;
@@ -75,8 +80,6 @@ a, a:hover {
   line-height: 1.3em;
   margin-bottom: 13px;
   display: grid;
-
-  
 }
 
 .img-elementor {
@@ -96,7 +99,6 @@ a, a:hover {
       background: #75d69c !important;
       color: #000;
     }
-    
   }
 }
 
@@ -202,11 +204,15 @@ h3 {
   background: #FFFFFF;
 }
 
+.section_tags {
+  padding-top: 10px;
+}
+/*
 .section_tags ul li:not(:last-child) {
   margin-right: 4px;
   margin-bottom: 4px;
-}
 
+}*/
 
 .section_tags ul li {
   display: inline-block;
@@ -217,9 +223,15 @@ h3 {
   text-align: center;
   padding-left: 22px;
   padding-right: 22px;
+  cursor: pointer;
+  float:left;
+  margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 .tag-button {
+  border: none;
+    background: transparent;
   display: block;
   line-height: 28px;
   font-family: "Montserrat", Sans-serif;
@@ -228,6 +240,24 @@ h3 {
   color: rgba(0,0,0,0.4);
   text-transform: uppercase;
   letter-spacing: 0.025em;
+
+
+
+  &:active, &:focus {
+    box-shadow: none !important;
+    outline: none;
+  }
+}
+
+.latest-posts {
+
+  &:hover {
+    background: var(--main-bg-color) !important;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  
 }
 
 @media only screen and (max-width: 959px) {
@@ -248,12 +278,25 @@ h3 {
         display: inline !important;
       }
     }
+    
   }
+
+  .sublist {
+    .post-text {
+      padding: 1.25rem !important;
+    }
+  }
+
+ 
+
+
 
   .card {
     max-width: 100% !important;
 
     .card-body {
+      
+     
       .post-text {
         background: var(--main-bg-color);
       }
@@ -261,10 +304,11 @@ h3 {
   }
 
   
-  .main_container {
+  .container {
     height: auto !important;
     display: inline-block;
-
+    width: 100%;
+    
     .card {
       width: 100%;
       display: contents;

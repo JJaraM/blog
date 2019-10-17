@@ -24,8 +24,8 @@ function SectionTitle(props) {
 }
 
 SectionTitle.propTypes = {
-  topDescription : PropTypes.string,
-  title: PropTypes.string.isRequired,
+  topDescription : PropTypes.object,
+  title: PropTypes.object.isRequired,
 };
 
 export default memo(SectionTitle);

@@ -28,10 +28,31 @@ const makeItems = () =>
     substate => substate.items,
   );
 
+const makeLoading = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.loading,
+  );
+
+const makeIsFirstLoading = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.isFirstLoading,
+  );
+
+const makeSelectedTag = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.tagId,
+  );
+  
 //export default makeSelectLatestPostSection;
 export { 
   selectLatestPostSectionDomain,
   makeLatestPostPage, 
   makeLatestPostCountItems, 
   makeItems,
+  makeLoading,
+  makeIsFirstLoading,
+  makeSelectedTag,
 };

@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { RETRIEVE, NEXT, PREVIOUS } from './constants';
 import { itemsLoaded, previous } from './actions';
+import { api, httpCall } from 'configuration/config';
 
 import request from 'utils/request';
 import { makeLatestPostPage, makeRecomendationsTestimonialCountItems } from './selectors';
@@ -14,7 +15,7 @@ export default function* init() {
 export function* getItems() {
   const latestPostPage = yield select(makeLatestPostPage());
   const latestPostItems = yield select(makeRecomendationsTestimonialCountItems());
-  const requestURL = `https://blog-microservice-post.herokuapp.com/testimonial/${latestPostPage}/${latestPostItems}`;
+  const requestURL = httpCall(api.testimonials, latestPostPage, latestPostItems);
   
   try {
     const items = yield call(request, requestURL);

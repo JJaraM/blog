@@ -20,13 +20,13 @@ function TestimonialItemLoading() {
           <LoadingCircle width={110} height={100}/>
         </div>
         <div className="mb-30 mr-30 ml-30">
-          <div class="post-text">
-            <div class="meta-data">
+          <div className="post-text">
+            <div className="meta-data">
               <LoadingLine width={200} height={15}/>
               <LoadingLine width={100} height={15}/>
-              <LoadingLine randomWidthMax={150} randomWidthMin={50}  height={15}/>
+              <LoadingLine randomWidthMax={150} randomWidthMin={50} height={15}/>
             </div>
-            <div class="description">
+            <div className="description">
               <LoadingContainer>
                 <LoadingLine width={200} height={15}/>
                 <LoadingLine width={200} height={15}/>

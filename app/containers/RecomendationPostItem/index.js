@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import { Link } from 'react-router-dom';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectLatestPostItem from './selectors';
@@ -22,28 +22,29 @@ export function RecomendationPostItem(props) {
   const { item } = props;
 
   return (
-    <div class="row mb-30">
-      <div class="col-lg-6">
-        <div class="img-elementor" style={{backgroundImage: `url(${item.image})`}}>
+    <div className="row mb-30">
+      <div className="col-lg-6">
+        <div className="img-elementor" style={{backgroundImage: `url(${item.image})`}}>
           <div className="tags views">
-            <span><a href="#">{item.views}</a></span>
+            <span>
+              <a href="#">{item.views}</a></span>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <div class="post-text">
-          <h2 class="main-title-color">
-            <a href="#">
+      <div className="col-lg-6">
+        <div className="post-text">
+          <h2 className="main-title-color">
+            <Link to={`/post/${item.id}`}>
               {item.title}
-            </a>
+            </Link>
           </h2>
-          <div class="meta-data">
+          <div className="meta-data">
             <span>
               <DateField value={item.updateDate} />
             </span>
           </div>
-          <div class="description">
+          <div className="description">
             <p>{item.description}</p>
           </div>
         </div>

@@ -28,10 +28,18 @@ const makeItems = () =>
     substate => substate.items,
   );
 
+const makeLoading = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.loading,
+  );
+
+
 //export default makeSelectLatestPostSection;
 export { 
   selectLatestPostSectionDomain,
   makeLatestPostPage, 
   makeRecomendationsPostCountItems, 
   makeItems,
+  makeLoading,
 };

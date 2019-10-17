@@ -13,9 +13,6 @@ const testimonialSectionReducer = (state = initialState, action) =>
 produce(state, draft => {
   switch (action.type) {
 
-    case RETRIEVE:
-      break;
-
     case ITEMS_LOADED:
       draft.items = action.items;
       draft.loading = false;
