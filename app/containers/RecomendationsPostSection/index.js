@@ -25,7 +25,7 @@ export function RecomendationsPostSection({
   }, []);
 
   return (
-    <div className="main-bg-color mt-30">
+    <div className="main-bg-color pt-30">
       <RecomendationsPostList items={items} loading={loading} />
     </div>
   );

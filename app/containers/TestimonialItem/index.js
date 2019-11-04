@@ -20,10 +20,10 @@ export function TestimonialItem({
   return (
     <div className="card">
       <div className="testimonials">
-        <div className="d-flex justify-content-center mt-30">
+        <div className="d-flex justify-content-center pt-30 pb-30">
           <img src={item.img} className="img-circle " alt="..."  onError={onError} />
         </div>
-        <div className="mb-30 mr-30 ml-30">
+        <div className="pb-30 pr-30 pl-30">
           <div className="post-text">
             <h3 className="main-title-color">
               <a href="#">{item.name}</a>

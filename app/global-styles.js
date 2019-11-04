@@ -2,33 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
-:root {
-  --main-bg-color: #1F1F1F;
-  --secondary-bg-color: #141414;
-  --third-bg-color: #fd6d75;
-  --fourth-bg-color: #fe7570;
-  --main-title-color: #FDF7F2;
-  --meta-data-color: #adadad;
-  --main-text-color: #777;
-  --primary-loading-bg-color: #353535;
-  --secondary-loading-bg-color: #4b4b4b;
-  --tb-bg-color: #272822;
-}
 
-img {
-  cursor: pointer;
-  &:hover {
-      filter: brightness( 70% ) contrast( 100% ) saturate( 100% ) blur( 0px ) hue-rotate( 0deg );
-  }
-}
-
-body {
-  color: var(--main-title-color);
-  font-family: "Montserrat", Sans-serif;
-  font-weight: 400;
-  font-size: 0.85rem;
-  background: var(--secondary-bg-color);
-}
 
 .main-bg-color {
   background: var(--main-bg-color);
@@ -43,34 +17,12 @@ body {
   color: var(--main-title-color);
 }
 
-a, a:hover {
-  color: inherit;
-  text-decoration: none;
-}
 
-.btn:focus, .btn:active:focus, .btn.active:focus {
-  box-shadow: none !important;
-}
 
-.mt-30 {
-  padding-top: 30px;
-}
 
-.mb-30 {
-  padding-bottom: 30px;
-}
 
-.mr-30 {
-  padding-right: 30px;
-}
 
-.ml-30 {
-  padding-left: 30px;
-}
 
-.container {
-  display: flex;
-}
 
 .meta-data {
   color: var(--meta-data-color);
@@ -229,6 +181,12 @@ h3 {
   margin-bottom: 4px;
 }
 
+.section_tags_loading {
+  background: transparent !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
 .tag-button {
   border: none;
     background: transparent;
@@ -288,18 +246,19 @@ h3 {
   }
 
  
-
-
-
   .card {
     max-width: 100% !important;
 
-    .card-body {
-      
-     
+    .card-body {    
       .post-text {
         background: var(--main-bg-color);
       }
+
+      &:hover {
+        cursor: pointer;
+        background: var(--main-bg-color);
+      }
+
     }
   }
 

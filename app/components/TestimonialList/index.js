@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import TestimonialItem from 'containers/TestimonialItem';
 import TestimonialItemLoading from '../TestimonialItemLoading';
-import { isLoading } from 'configuration/config';
+import { isLoadingComplete } from 'configuration/config';
 
 function TestimonialList(props) {
 
@@ -10,7 +10,7 @@ function TestimonialList(props) {
     <TestimonialItemLoading key={`testimonial-${item}`}/>
   ));
 
-  if (isLoading(props.loading)) {
+  if (isLoadingComplete(props.loading)) {
     content = props.items.map(item => (
       <TestimonialItem key={`testimonial-${item.id}`} item={item} />
     ));

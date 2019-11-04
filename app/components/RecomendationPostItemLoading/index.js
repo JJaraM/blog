@@ -4,7 +4,7 @@ import LoadingContainer from '../LoadingContainer';
 
 function RecomendationPostItemLoading() {
   return (
-    <div className="row mb-30">
+    <div className="row pb-30">
       <div className="col-lg-6">
         <div className="img-elementor">
           <LoadingContainer>
@@ -15,7 +15,8 @@ function RecomendationPostItemLoading() {
       <div className="col-lg-6">
         <div className="post-text">
           <LoadingContainer>
-            <LoadingLine width={200} height={48}/>
+
+            <LoadingLine width={200} height={48} />
             <LoadingLine width={200} height={15}/>
             <LoadingLine randomWidthMax={150} randomWidthMin={50} height={15}/>
           </LoadingContainer>

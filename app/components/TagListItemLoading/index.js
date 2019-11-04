@@ -1,0 +1,14 @@
+import React, { memo } from 'react';
+
+import LoadingLine from '../LoadingLine';
+import './style.scss';
+
+function TagListItemLoading() {
+  return (
+    <li className="section_tags_loading">
+      <LoadingLine randomWidthMin={150} randomWidthMax={250} height={28} primaryBgColor="fifth-bg-color" secondaryBgColor="sixth-bg-color" />
+    </li>
+  );
+}
+
+export default memo(TagListItemLoading);

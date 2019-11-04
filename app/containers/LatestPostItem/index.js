@@ -39,7 +39,7 @@ export function LatestPostItem({
           <div className="description">
             <p>{item.description}</p>
           </div>
-          <PostTagList ids={item.tags} items={tags}/>
+          <PostTagList item={item} items={tags}/>
         </div>
       </div>
     </div>

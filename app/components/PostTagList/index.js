@@ -1,28 +1,33 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import PostTag from 'components/PostTag';
+import ContainerCenter from '../ContainerCenter';
 
 function PostTagList(props) {
 
-  const { items, ids } =  props;
+  const { items, item } =  props;
 
-
-  const content = items.map(item => {
-    if (ids && ids.includes(item.id)) {
-      return <PostTag key={`tag-item-${item.id}`} item={item} />;
+  if (!items || !item) {
+    return <div/>
+  }
+  const content = items.map(subItem => {
+    if (item.tags && item.tags.includes(subItem.id)) {
+      return <PostTag key={`tag-item-${subItem.id}`} item={subItem} />;
     }
   });
 
   return (
-    <div className="tags">
-      { content }
-    </div>
+    <ContainerCenter>
+      <div className="tags">
+        { content }
+      </div>
+    </ContainerCenter>
   );
 }
 
 PostTagList.propTypes = {
-  tags: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  ids: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  item: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default memo(PostTagList);

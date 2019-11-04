@@ -22,7 +22,7 @@ export function RecomendationPostItem(props) {
   const { item } = props;
 
   return (
-    <div className="row mb-30">
+    <div className="row pb-30">
       <div className="col-lg-6">
         <div className="img-elementor" style={{backgroundImage: `url(${item.image})`}}>
           <div className="tags views">

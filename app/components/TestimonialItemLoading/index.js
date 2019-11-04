@@ -16,10 +16,10 @@ function TestimonialItemLoading() {
   return (
     <div className="card">
       <div className="testimonials">
-        <div className="d-flex justify-content-center mt-30">
+        <div className="d-flex justify-content-center pt-30 pb-30">
           <LoadingCircle width={110} height={100}/>
         </div>
-        <div className="mb-30 mr-30 ml-30">
+        <div className="pb-30 pr-30 pl-30">
           <div className="post-text">
             <div className="meta-data">
               <LoadingLine width={200} height={15}/>

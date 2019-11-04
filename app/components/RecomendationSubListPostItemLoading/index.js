@@ -4,7 +4,7 @@ import LoadingContainer from '../LoadingContainer';
 
 function RecomendationSubListPostItemLoading() {
   return (
-    <div className="row mb-30">
+    <div className="row pb-30">
       <div className="col-lg-6">
         <div className="img-elementor">
           <LoadingContainer>

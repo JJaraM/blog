@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 function DateField(props) {
 
@@ -17,7 +18,7 @@ function DateField(props) {
     const year = date.getFullYear();
 
     Component = () => (
-      <div>
+      <div className="date-field">
         { month } {day}, {year}
       </div>
     )

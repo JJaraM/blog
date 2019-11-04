@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from 'components/Logo';
 import SocialItem from './SocialItem';
+import LocaleToggle from 'containers/LocaleToggle';
 
 import './style.scss';
 
@@ -31,7 +32,11 @@ function Footer() {
         <div className="bottom">
           © COPYRIGHT jjara { year } ALL RIGHTS RESERVED. 
           <br />Project Build using React Native
+          <section>
+            <LocaleToggle />
+          </section>
        </div>
+       
     </footer>
   );
 }

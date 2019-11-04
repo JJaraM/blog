@@ -1,0 +1,109 @@
+.token.bullet {
+    color: black;
+    display: inline-block;
+    background-color: #ffd152;
+    border-radius: 100px;
+    text-align: center;
+    font-size: .75em;
+    width: 1.67em;
+    height: 1.67em;
+    line-height: 1.67em;
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    font-style: normal;
+  }
+  
+  .token.cmd {
+    color: #9CDCDA;
+  }
+  
+  .token.sup {
+    vertical-align: super;
+    font-size: .83em;
+  }
+  
+  :not(pre) > code[class*="language-"], pre[class*="language-"] {
+      background: #343233;
+  }
+  
+  pre[class*="language-gitclone"]::before {
+    background-image: url('/images/GitHub-Mark-Light-64px.png') ;
+    content: '';
+    display: block;
+    height: 65px;
+    width: 65px;
+    background-repeat: no-repeat;
+  }
+  
+  pre[class*="language-gitclone"] {
+    display: flex;
+  }
+  
+  code[class*=" language-gitclone"] {
+    padding-left: 10px;
+  }
+  
+  :not(pre) > code[class*="language-comment"], pre[class*="language-comment"] {
+    background-color: #eaf5e9;
+    line-height: 1.875;
+  }
+  
+  code[class*="language-comment"], pre[class*="language-comment"] {
+    color: #343233;
+    white-space: pre-line;
+    margin-top: 1.25rem;
+    text-shadow: none;
+    font-family: 'Work Sans', sans-serif;
+  }
+  
+  .token.strong {
+    font-weight: bolder;
+  }
+  
+  /***********************************/
+  
+  :not(pre) > code[class*="language-cisco"], pre[class*="language-cisco"] {
+    background: #1E1E1E;
+    border: 1px solid #1E1E1E;
+  }
+  
+  /*******************************************************************/
+  
+  :not(pre) > code[class*="language-gitclone"], pre[class*="language-gitclone"] {
+    background: #282a36;
+    border: 1px solid #282a36;
+  }
+  
+  
+  
+  
+  code[class*="language-gitclone"], pre[class*="language-gitclone"] {
+    color: #343233;
+    white-space: pre-line;
+    text-shadow: none;
+    font-family: 'Work Sans', sans-serif;
+    color: #f1fa8c;
+  }
+  
+  code[class*="language-gitclone"] > .token.punctuation {
+    color: #f1fa8c;
+  }
+  
+  code[class*="language-gitclone"] > .token.strong {
+    color: #43fa71;
+    font-weight: 100;
+  }
+  
+  code[class*="language-gitclone"] > .token.prism-btn {
+    background: #3c3e49;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    color: #FFF;
+    margin-top: 10px;
+  }
+  
+  code[class*="language-gitclone"] > .token.prism-btn:hover {
+    background: #25262d;
+    cursor: pointer;
+  }
+  

@@ -27,4 +27,16 @@ const makeId = () =>
     substate => substate.id,
   );
 
-export { selectPostPageDomain, makeItem, makeId };
+const makeEditable = () =>
+  createSelector(
+    selectPostPageDomain,
+    substate => substate.editable,
+  );
+
+const makeTitle = () =>
+  createSelector(
+    selectPostPageDomain,
+    substate => substate.title,
+  );
+
+export { selectPostPageDomain, makeItem, makeId, makeEditable, makeTitle };

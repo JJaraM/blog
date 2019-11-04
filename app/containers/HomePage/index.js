@@ -18,6 +18,7 @@ import saga from './saga';
 import LatestPostSection from 'containers/LatestPostSection';
 import RecomendationsPostSection from 'containers/RecomendationsPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
+import Container from 'components/Container';
 
 import './style.scss';
 const key = 'home';
@@ -36,18 +37,15 @@ export function HomePage({
   return (
     <article>
       <Helmet>
-        <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React.js Boilerplate application homepage"
-        />
+        <title>Home</title>
+        <meta name="description" content="Personal Blog Site" />
       </Helmet>
       <div>
-        
-        <LatestPostSection />
-        <RecomendationsPostSection />
-        <TestimonialSection/>
-        
+      
+      <LatestPostSection />
+      <RecomendationsPostSection />
+      <TestimonialSection/>
+    
       </div>
     </article>
   );

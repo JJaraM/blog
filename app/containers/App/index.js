@@ -1,46 +1,49 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
-import React from 'react';
+import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-
 import HomePage from 'containers/HomePage';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import PostPage from 'containers/PostPage';
-
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
-
 import GlobalStyle from '../../global-styles';
+import { open, close } from './actions';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect'
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import reducer from './reducer';
+import { useInjectReducer } from 'utils/injectReducer';
+import { makeSearchable }  from './selectors';
+import SearchContainer from '../SearchContainer';
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
+import './styles/variables.scss';
+import './styles/scrollbar.scss';
+import './styles/base.scss';
+import './styles/sanitize.scss';
 
-export default function App() {
+const key = 'home';
+
+export function App({
+  onSearch,
+  onClose,
+  render
+}) {
+  useInjectReducer({ key, reducer });
+
   return (
     <>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
+        titleTemplate="%s - Jonathan Jara Morales"
         defaultTitle="React.js Boilerplate"
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <Header /> 
+      <Header onClick={onSearch} /> 
+      
+      <SearchContainer render={render} close={onClose} />
+    
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/post/:id" component={PostPage} />
@@ -52,4 +55,31 @@ export default function App() {
       <GlobalStyle />
     </>
   );
+};
+
+
+App.propTypes = {
+  onSearch: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  render: makeSearchable(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    onSearch: () => dispatch(open()),
+    onClose: () => dispatch(close()),
+    dispatch,
+  };
 }
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(App);

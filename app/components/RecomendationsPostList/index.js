@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import RecomendationPostItem from 'containers/RecomendationPostItem';
 import RecomendationPostItemLoading from '../RecomendationPostItemLoading';
 import RecomendationSubListPostItemLoading from '../RecomendationSubListPostItemLoading';
-import { isLoading } from 'configuration/config';
-
+import { isLoadingComplete } from 'configuration/config';
+import Container from '../Container';
+import BigLeftContent from '../BigLeftContent';
 import './style.scss';
 
 function RecomendationsPostList(props) {
   
   const { items } =  props;
-  
+  items.sort((a,b)=> b.views - a.views)
+
   const principalItems = items.splice(0, 2);
   const secondaryItems = items.splice(2);
 
@@ -22,9 +24,9 @@ function RecomendationsPostList(props) {
     <RecomendationSubListPostItemLoading key={`recommendation-item-${item}`} />
   ));
 
-  if (isLoading(props.loading)) {
+  if (isLoadingComplete(props.loading)) {
     content = principalItems.map(item => (
-      <RecomendationPostItem  key={`recommendation-item-${item.id}`} item={item} />
+      <RecomendationPostItem key={`recommendation-item-${item.id}`} item={item} />
     ));
 
     subList = secondaryItems.map(item => {
@@ -35,14 +37,14 @@ function RecomendationsPostList(props) {
   }
 
   return (
-    <div className="container left-text">
-      <div className="col-lg-8">
+    <Container>
+      <BigLeftContent>
         {content}
-      </div>
+      </BigLeftContent>
       <div className="col-lg-4 sublist">
         {subList}
-       </div>
-    </div>
+      </div>
+    </Container>
   );
 }
 

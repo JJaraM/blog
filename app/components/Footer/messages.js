@@ -5,7 +5,7 @@
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.components.Footer';
+export const scope = 'jjara.components.Footer';
 
 export default defineMessages({
   licenseMessage: {

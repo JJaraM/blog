@@ -3,15 +3,25 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { isLoadingComplete } from 'configuration/config';
+import { FormattedMessage } from 'react-intl';
+
 import { makeItems, makeLoading, makeIsFirstLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import LatestPostItemList from 'components/LatestPostItemList';
 import { retrieve, retrieveMore } from './actions';
+import messages from './messages';
+
 import TagContainer from 'containers/TagContainer';
+
+import LatestPostItemList from 'components/LatestPostItemList';
+import Button from 'components/Button';
+import PrincipalTitle from 'components/PrincipalTitle';
+import ContainerCenter from 'components/ContainerCenter';
+import Container from 'components/Container';
+import SecondarySection from 'components/SecondarySection';
 
 export function LatestPostSection({
   items,
@@ -29,36 +39,51 @@ export function LatestPostSection({
      }
   }, []);
 
-  return (
-    <div className="secondary-bg-color">
+  let ViewMore = () => (
+  
+    <ContainerCenter>
+      <Button>
+        Loading...
+      </Button>
+    </ContainerCenter>
 
-      <div className="principal-title mb-30 mt-30">
-        <div className="container  d-flex justify-content-center">
-          <h1>Lastest Posts</h1>
-        </div>
-        <div className="container d-flex justify-content-center">
-          <div className="elementor-divider">
-            <div className="elementor-divider-separator"></div>
-          </div>
-        </div>
-        <div className="container  d-flex justify-content-center">
-          <div className="brief-description">
-            In the below section you will find the most important post in the last month
-          </div>
-        </div>
-        <div className="container d-flex justify-content-center">
-          <TagContainer />
-        </div>
-      </div>
+  );
+
+  if (isLoadingComplete(loading)) {
+    ViewMore = () => (
+      <ContainerCenter>
+        <Button onClick={onViewMore}>
+          View More
+        </Button>
+      </ContainerCenter>
+    )
+  }
+
+  return (
+    <Container>
+
+    
+                   
+
+    <SecondarySection>
+      <PrincipalTitle 
+        center={ true } 
+        divider={ true }
+        title={
+          <FormattedMessage {...messages.header } />
+        }
+        bottomDescription="In the below section you will find the most important post in the last month"
+      />
+     
+      <ContainerCenter>
+        <TagContainer />
+      </ContainerCenter>
 
       <LatestPostItemList items={items} loading={loading}/>
 
-      <div className="container  d-flex justify-content-center mb-30">
-        <button className="btn " onClick={onViewMore}>
-          View More
-        </button>
-      </div>
-    </div>
+      <ViewMore />
+    </SecondarySection>
+    </Container>
   );
 }
 
@@ -76,6 +101,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: () => dispatch(retrieve()),
     onViewMore:() => dispatch(retrieveMore()),
+ 
     dispatch,
   };
 }

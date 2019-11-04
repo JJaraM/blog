@@ -1,10 +1,61 @@
-
 .grand-parent {
     height: 60vh;
     background: #1F1F1F;
     ~.main-bg-color {
         background-image: none;
     }   
+
+    .justify-content-center {
+      justify-content: left !important;
+    }
+
+    
+}
+
+textarea {
+  min-height: 454px;
+  background: transparent;
+  color: var(--main-title-color);
+  border: 1px solid #262626;
+  width: 100%;
+  background-color: #262626;
+  border-radius: 0px 0px 0px 0px;
+  outline: none;
+  box-shadow: none;
+  padding: 10px;
+  height: 100%;
+  font-size: 0.70rem;
+}
+
+.title {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100% !important;
+}
+
+.title-editable {
+  padding-bottom: 10px;
+}
+
+.parent {
+  &::before {
+    content: '';
+    position: absolute;
+    height: 70%;
+    width: 100%;
+    top:0;
+    left: 0;
+    filter: blur(25px);
+    z-index: 2;
+    transform:scale(1.05); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  } 
+
+  &:hover::before {
+    filter: blur(20px);
+  }
 }
 
 
@@ -35,44 +86,16 @@
 }
 
 .parent {
-    position: relative;
-    height: 60vh;
-    overflow: hidden; /* clip overflowing blur */
-    .container {
-      display: flex;
-    }
+  position: relative;
+  height: 60vh;
+  overflow: hidden; /* clip overflowing blur */
+  .container {
+    display: flex;
   }
+}
   
 .principal-title {
-    h1 {
-        font-size: 3.5rem;
-    }
-}
-
-  .parent::after {
-    background-image: linear-gradient(180deg, rgba(31,31,31,0) 50%, var(--main-bg-color) 90%);
+  h1 {
+      font-size: 3.5rem;
   }
-  
-  .child {
-    width: 200px;
-    height:148px ;
-    margin: auto;
-    
-    color:white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-
-  .img-background-overlay {
-    background-color: transparent;
-    opacity: 1;
-    filter: brightness( 74% ) contrast( 100% ) saturate( 100% ) blur( 10px ) hue-rotate( 0deg );
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
 }

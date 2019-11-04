@@ -29,7 +29,7 @@ export function TestimonialSection({
   }, []);
 
   return (
-    <div className="secondary-bg-color mt-30">
+    <div className="secondary-bg-color pt-30">
 
         
         <SectionTitle 
@@ -43,7 +43,7 @@ export function TestimonialSection({
         
         <TestimonialList items={items} loading={loading} />
       
-        <div className="d-flex justify-content-center mb-30">
+        <div className="d-flex justify-content-center pb-30">
             <div className="button-container">
               <span className="circle-button page-numbers" onClick={onPrevious}>
                 <svg className="slinder-arrow-svg slinder-left-arrow" 

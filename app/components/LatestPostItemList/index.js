@@ -3,7 +3,7 @@ import LatestPostItem from 'containers/LatestPostItem';
 import LatestPostItemLoading from '../LatestPostItemLoading';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
-import { isLoading } from 'configuration/config';
+import { isLoadingComplete } from 'configuration/config';
 
 import './style.scss';
 
@@ -18,7 +18,7 @@ function LatestPostItemList(props) {
     <LatestPostItemLoading key={`latest-post-item-${item}`}/>
   ));
 
-  if (isLoading(props.loading)) {
+  if (isLoadingComplete(props.loading)) {
     content = props.items.map(item => (
       <LatestPostItem  key={`latest-post-item-${item.id}`} item={item} />
     ));

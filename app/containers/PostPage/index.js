@@ -6,91 +6,118 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItem } from './selectors';
+import { makeItem, makeEditable } from './selectors';
 import reducer from './reducer';
 import messages from './messages';
 import saga from './saga';
-import { retrieve } from './actions';
-import * as Markdown from 'react-markdown';
-import Content from 'components/Content';
-import { createGlobalStyle } from 'styled-components';
+import { retrieve, editable, changeContent, changeTitle } from './actions';
+
 import './style.scss';
-import PostTagList from 'components/PostTagList';
-import { makeTagItems } from '../TagContainer/selectors';
+import PrincipalTitle from 'components/PrincipalTitle';
+import Field from 'components/Field';
+import PostHeader from 'components/PostHeader';
+import PostImage from 'components/PostImage';
+import PrimarySection from 'components/PrimarySection';
+import BigLeftContent from 'components/BigLeftContent';
+import Container from 'components/Container';
+import EditableText from 'components/EditableText';
+import TagContainer from '../TagContainer';
+
+const Content = (props) => {
+  if (props.editable) {
+    return (
+      <>
+        <div className="col-lg-6">
+          <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
+        </div>
+
+        <div className="col-lg-6">
+          <EditableText editable={false} content={props.content} onChangeContent={props.onChangeContent} />
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <BigLeftContent>
+      <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
+    </BigLeftContent>      
+  )
+};
+
+const Title = (props) => {
+  if (props.editable) {
+    return (
+      <>
+        <PrincipalTitle 
+          title={ props.title } 
+          center={ true } 
+          divider={ false }
+        />
+        <div className="title-editable">
+          <input className="search title" value={props.title} onChange={ props.onChangeTitle } />
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <PrincipalTitle 
+      title={ props.title } 
+      center={ true } 
+      divider={ false }
+    />
+  );
+};	
 
 export function PostPage({
   match,
   item,
-  tags,
-  onLoadPage
+  onLoadPage,
+  onEdit,
+  onChangeContent,
+  onChangeTitle,
+  editable
 }) {
   
   useInjectReducer({ key: 'postPage', reducer });
   useInjectSaga({ key: 'postPage', saga });
 
   const id = match.params.id;
+  window.addEventListener('keydown', onEdit);
+
+  if (item && item.id != id) {
+    onLoadPage(id);
+  }
 
   useEffect(() => {    
     onLoadPage(id);
   }, []);
 
-  if (!item) {
-    return (<div>Hi</div>);
-  }
+  let content = '';
+  let title = '';
 
-  const CustomStyle = createGlobalStyle`
-    .parent::before {
-      content: '';
-      position: absolute;
-      height: 70%;
-      width: 100%;
-      top:0;
-      left: 0;
-      background-image: url(${item.image});
-      filter: blur(25px);
-      z-index: 2;
-      transform:scale(1.05); 
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-    }
-  `;
+  if (item) {
+    content = item.content;
+    title = item.title;
+  }
 
   return (
     <>
-      
-      <div class="grand-parent">
-        
-        <div class="parent" >
-          <div className="container">
-            <div className="img-background-overlay"></div>
-            <div className="home_slider_content_container">
-              <div className="principal-title mb-30 mt-30">
-                <h1>
-                  {item.title}
-                </h1>
-              </div>
-              <PostTagList ids={item.tags} items={tags}/>
-            </div>
-           
-          </div>
-        </div>
-    
-      </div>
+      <PostImage>
+        <Field obj={item} property="image" />
+        <PostHeader>
+          <Title title={ title } editable={ editable } onChangeTitle={ onChangeTitle }/>
+          <TagContainer item={item} usePost={true} />
+        </PostHeader>
+      </PostImage>
 
-      <div className="main-bg-color">
-          <div className="container">
-            <div className="col-lg-8">
-              
-              <div className="container">
-                <Content>
-                  <Markdown source={item.content} escapeHtml={false}/>
-                </Content>
-              </div>
-            </div>
-          </div>
-      </div>
-      <CustomStyle />
+      <PrimarySection>
+          <Container>
+            <Content editable={editable} content={content} onChangeContent={onChangeContent} />
+          </Container>
+      </PrimarySection>
+       
     </>
   );
 }
@@ -102,14 +129,19 @@ PostPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   item: makeItem(),
-  tags: makeTagItems(),
+  editable: makeEditable(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoadPage: (id) => {
-      dispatch(retrieve(id));
+    onLoadPage: (id) => dispatch(retrieve(id)),
+    onEdit: (zEvent) => {
+      if (zEvent.ctrlKey  &&  zEvent.altKey  &&  zEvent.key === "e") {  // case sensitive
+        dispatch(editable())
+      }
     },
+    onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
+    onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
     dispatch,
   };
 }

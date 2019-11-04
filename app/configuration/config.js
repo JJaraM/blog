@@ -6,14 +6,18 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const api = {
-    testimonials : `${host}/testimonial/`
+    testimonials : `${host}/testimonial/`,
+    post: `${host}/post/`,
+    postMostPopular: `${host}/post/mostPopular/`,
+    byTitle: `${host}/post/byTitle/`
 };
+
 
 const httpCall = function httpCall(endPoint, ...args) {
     return endPoint + args.join('/');
 }
 
-const isLoading = function isLoading(loading) {
+const isLoadingComplete = function isLoadingComplete(loading) {
     return !loading && !infiniteLoading;
 }
 
@@ -21,5 +25,5 @@ export {
     infiniteLoading,
     api,
     httpCall,
-    isLoading
+    isLoadingComplete
 }

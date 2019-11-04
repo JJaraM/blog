@@ -11,9 +11,12 @@ import saga from './saga';
 import { retrieve } from './actions';
 import { makeTagItems, makeLoading, makeIsFirstLoading } from './selectors'
 import TagList from 'components/TagList';
+import PostTagList from 'components/PostTagList';
 
 export function TagContainer({
   items,
+  item,
+  usePost,
   loading,
   isFirstLoading,
   onLoadPage,
@@ -27,15 +30,22 @@ export function TagContainer({
     }
   }, []);
 
-  return (
-    <div id="tags-section" className="section_tags row justify-content-center align-self-center">
-      <TagList items={items} loading={loading}/>
-    </div>
+  let Component = () => (
+    <TagList items={items} loading={loading}/>
   );
+
+  if (usePost) {
+    Component = () => (
+      <PostTagList item={item} items={items} />
+    )
+  }
+
+  return <Component />;
 }
 
 TagContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  item: PropTypes.object,
+  usePost: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
