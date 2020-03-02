@@ -1,0 +1,30 @@
+
+.text-content {
+    h1 + ul {
+        background: #F5F5F5;
+        border: 1px solid #EEEEEE;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 1rem;
+    }
+
+    ul {
+        counter-reset: section;
+        list-style-type: none;
+        padding-left: 1rem;
+        
+        li {
+            &:before {
+                counter-increment: section;
+                content: counters(section, ".") ". ";
+                font-weight: bold;
+                color: black;
+            }
+
+            ul > li{
+                padding-left: 0.25rem;
+            }
+        } 
+        
+    } 
+}

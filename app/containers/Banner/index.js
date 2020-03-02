@@ -13,8 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
-import reducer from './reducer';
-import saga from './saga';
+
 import LatestPostSection from 'containers/LatestPostSection';
 import RecomendationsPostSection from 'containers/RecomendationsPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
@@ -23,7 +22,7 @@ import Container from 'components/Container';
 
 const key = 'home';
 
-export function HomePage({
+export function Banner({
 
 }) {
   useInjectReducer({ key, reducer });
@@ -71,4 +70,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(HomePage);
+)(Banner);

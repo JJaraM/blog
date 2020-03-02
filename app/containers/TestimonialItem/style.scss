@@ -1,5 +1,4 @@
-.testimonials {
-    background: var(--main-bg-color);
+.testimonial-section {
     .card {
         background: var(--main-bg-color);
         &:hover {
@@ -18,7 +17,6 @@
             background-image: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;   
         }
     }
-    
 }
 
 .circle-button {

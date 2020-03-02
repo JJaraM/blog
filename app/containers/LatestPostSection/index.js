@@ -62,9 +62,6 @@ export function LatestPostSection({
   return (
     <Container>
 
-    
-                   
-
     <SecondarySection>
       <PrincipalTitle 
         center={ true } 

@@ -1,3 +1,9 @@
+.language-java {
+  .token.annotation.punctuation {
+    color: #e6db74;
+  }
+}
+
 .token.bullet {
     color: black;
     display: inline-block;
@@ -23,6 +29,7 @@
   
   :not(pre) > code[class*="language-"], pre[class*="language-"] {
       background: #343233;
+      //background: var(--tb-bg-color);
   }
   
   pre[class*="language-gitclone"]::before {

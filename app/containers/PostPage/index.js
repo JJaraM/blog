@@ -1,25 +1,26 @@
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { makeItem, makeEditable } from './selectors';
 import reducer from './reducer';
-import messages from './messages';
 import saga from './saga';
 import { retrieve, editable, changeContent, changeTitle } from './actions';
 
 import './style.scss';
+import './tableOfContent.scss';
+
 import PrincipalTitle from 'components/PrincipalTitle';
 import Field from 'components/Field';
 import PostHeader from 'components/PostHeader';
 import PostImage from 'components/PostImage';
-import PrimarySection from 'components/PrimarySection';
-import BigLeftContent from 'components/BigLeftContent';
-import Container from 'components/Container';
+import ThirdSection from 'components/ThirdSection';
+import BigLeftContainerFluid from 'components/BigLeftContainerFluid';
+import SmallRightContainerFluid from 'components/SmallRightContainerFluid';
+import ContainerFluid from 'components/ContainerFluid';
 import EditableText from 'components/EditableText';
 import TagContainer from '../TagContainer';
 
@@ -39,9 +40,14 @@ const Content = (props) => {
   }
 
   return (
-    <BigLeftContent>
-      <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
-    </BigLeftContent>      
+    <>
+      <BigLeftContainerFluid className='big-left-container-fluid'>
+        <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
+      </BigLeftContainerFluid> 
+      <SmallRightContainerFluid className='small-right-container-fluid '>
+        <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
+      </SmallRightContainerFluid>
+    </>     
   )
 };
 
@@ -112,11 +118,13 @@ export function PostPage({
         </PostHeader>
       </PostImage>
 
-      <PrimarySection>
-          <Container>
-            <Content editable={editable} content={content} onChangeContent={onChangeContent} />
-          </Container>
-      </PrimarySection>
+      <ThirdSection>
+          <ContainerFluid>
+              <div className="row">
+                <Content editable={editable} content={content} onChangeContent={onChangeContent} />
+              </div>
+          </ContainerFluid>
+      </ThirdSection>
        
     </>
   );

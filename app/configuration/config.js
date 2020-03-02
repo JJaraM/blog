@@ -1,4 +1,6 @@
 let host = 'https://blog-microservice-post.herokuapp.com';
+//let host = 'http://localhost:5001';
+
 const infiniteLoading = false;
 
 if (process.env.NODE_ENV === 'production') {

@@ -9,6 +9,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectTestimonialItem from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import './style.scss';
 
 export function TestimonialItem({
   item,

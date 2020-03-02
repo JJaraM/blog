@@ -7,6 +7,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import PostPage from 'containers/PostPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Banner from 'containers/Banner';
 import GlobalStyle from '../../global-styles';
 import { open, close } from './actions';
 import PropTypes from 'prop-types';
@@ -49,6 +50,7 @@ export function App({
         <Route exact path="/post/:id" component={PostPage} />
         
         <Route path="/features" component={FeaturePage} />
+        <Route path="/banner" component={Banner} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
