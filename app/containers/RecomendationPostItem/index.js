@@ -21,6 +21,7 @@ export function RecomendationPostItem(props) {
 
   const { item } = props;
 
+  
   return (
     <div className="row pb-30">
       <div className="col-lg-6">
