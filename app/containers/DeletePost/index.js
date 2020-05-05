@@ -121,7 +121,8 @@ function mapDispatchToProps(dispatch) {
   return {
     onChange:(evt, title) => dispatch(disable(!(evt.target.value === title))),
     onCopy: (title) => {
-      if (title !== undefined) {
+      //Requires secure origin HTTPS
+      if (navigator.clipboard !== undefined) {
         navigator.clipboard.writeText(title);
       }
     },
