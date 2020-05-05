@@ -166,6 +166,7 @@
     "svg-url-loader": "2.3.2",
     "terser-webpack-plugin": "1.2.3",
     "url-loader": "1.1.2",
+    "webpack": "^4.30.0",
     "webpack-cli": "3.3.0",
     "webpack-dev-middleware": "3.6.2",
     "webpack-hot-middleware": "2.24.3",
@@ -176,7 +177,5 @@
     "react-markdown-tree": "^1.0.1",
     "react-markdown-tree-config-default": "^0.4.1"
   },
-  "devDependencies": {
-    "webpack": "^4.30.0"
-  }
+  "devDependencies": {}
 }
