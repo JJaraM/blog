@@ -120,7 +120,11 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onChange:(evt, title) => dispatch(disable(!(evt.target.value === title))),
-    onCopy: (title) => navigator.clipboard.writeText(title),
+    onCopy: (title) => {
+      if (title) {
+        navigator.clipboard.writeText(title);
+      }
+    },
     onDelete:() => {
       console.log('');
     },
