@@ -87,8 +87,10 @@ const Content = (props) => {
     </>
   );
 
+  // Here I need to return the value in this way, because if I used the component 
+  // the edit does not work.
   if (props.editable) {
-    Component = () => (
+    return (
       <Container>
         <Col6>
           <EditableText 

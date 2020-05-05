@@ -6,6 +6,10 @@
     position: fixed;
     z-index: 1031;
     transition: all .3s ease-in; 
+
+    .principal-title {
+        padding-top: 0px !important;
+    }
 }
 
 
