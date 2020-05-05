@@ -1,9 +1,11 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
+import './style.scss';
+
 function SmallRightContainerFluid(props) {
   return (
-    <div className={`offset-md-1 col-md-3 col-md-pull-2 ${props.className}`}>
+    <div className={`offset-md-1 col-md-3 col-md-pull-2 small-right-container-fluid`}>
       { props.children }
     </div>
   );

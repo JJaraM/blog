@@ -1,10 +1,13 @@
-/*
- *
- * PostPage actions
- *
- */
-
-import { ITEM_LOADED, RETRIEVE, EDITABLE, CHANGE_CONTENT, CHANGE_TITLE } from './constants';
+import { 
+  ITEM_LOADED, 
+  RETRIEVE, 
+  EDITABLE, 
+  CHANGE_CONTENT, 
+  CHANGE_TITLE,
+  EDIT_TITLE,
+  EDIT_CONTENT,
+  RENDER_DELETE_MODAL,
+} from './constants';
 
 export function itemLoaded(item) {
   return {
@@ -38,6 +41,27 @@ export function changeTitle(title) {
     type: CHANGE_TITLE,
     title,
   };
+}
+
+export function editTitle(editTitle) {
+  return {
+    type: EDIT_TITLE,
+    editTitle
+  };
+}
+
+export function editContent(editContent) {
+  return {
+    type: EDIT_CONTENT,
+    editContent
+  }
+}
+
+export function renderDeleteModal(renderDeleteModal) {
+  return {
+    type: RENDER_DELETE_MODAL,
+    renderDeleteModal
+  }
 }
 
 

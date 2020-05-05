@@ -1,3 +1,9 @@
+/**
+ * Page that displayed the post information.
+ * 
+ * @author Jonathan Jara Morales
+ * @since 20202-05-04 
+ */
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,92 +11,129 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItem, makeEditable } from './selectors';
+
+import { 
+  makeItem, 
+  makeEditable, 
+  makeEditTitle, 
+  makeEditContent, 
+  makeRenderDeleteModal 
+} from './selectors';
+
 import reducer from './reducer';
 import saga from './saga';
-import { retrieve, editable, changeContent, changeTitle } from './actions';
-import { createGlobalStyle } from 'styled-components';
+import { 
+  retrieve, 
+  editContent, 
+  changeContent, 
+  changeTitle, 
+  editTitle, 
+  renderDeleteModal
+} from './actions';
 
-import './style.scss';
-import './tableOfContent.scss';
+import { makeIsAuthenticated } from 'containers/SignIn/selectors';
 
+import PostImage from 'components/PostImage';
+import Img from 'components/Img';
 import PrincipalTitle from 'components/PrincipalTitle';
 import PostHeader from 'components/PostHeader';
+import Container from 'components/Container';
 import ThirdSection from 'components/ThirdSection';
 import BigLeftContainerFluid from 'components/BigLeftContainerFluid';
 import SmallRightContainerFluid from 'components/SmallRightContainerFluid';
 import ContainerFluid from 'components/ContainerFluid';
 import EditableText from 'components/EditableText';
-import TagContainer from '../TagContainer';
-import PostRelated from '../PostRelated';
+import Row from 'components/Row';
+import Col6 from 'components/Col6';
+import IconContainer from 'components/IconContainer';
+import IconEdit from 'components/IconEdit';
+import IconDelete from 'components/IconDelete';
+import TagContainer from 'containers/TagContainer';
+import PostRelated from 'containers/PostRelated';
+import DeletePost from 'containers/DeletePost';
+
+import './style.scss';
+import './tableOfContent.scss';
 
 const Content = (props) => {
-  if (props.editable) {
-    return (
-      <>
-        <div className="col-lg-6">
-          <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
-        </div>
 
-        <div className="col-lg-6">
-          <EditableText editable={false} content={props.content} onChangeContent={props.onChangeContent} />
-        </div>
-      </>
-    )
-  }
-
-  return (
+  let Component = () => (
     <>
-      <BigLeftContainerFluid className='big-left-container-fluid'>
-        <EditableText editable={props.editable} content={props.content} onChangeContent={props.onChangeContent} />
+      <BigLeftContainerFluid>
+       
+        <IconContainer>
+          <IconEdit 
+            render={ props.isAuthenticated } 
+            onClick={ () => props.canEditContent(true) } 
+          />
+          
+          <IconDelete
+            render={ props.isAuthenticated } 
+            onClick={ () => props.renderDeleteModal(true) } 
+          />
+        </IconContainer>
+
+        <EditableText 
+          editable={ props.editable } 
+          content={ props.content } 
+          onChangeContent={ props.onChangeContent } 
+        />
       </BigLeftContainerFluid> 
-      <SmallRightContainerFluid className='small-right-container-fluid '>
+
+      <SmallRightContainerFluid>
         <PostRelated tags={ props.tags } />
       </SmallRightContainerFluid>
-    </>     
-  )
-};
 
-const Title = (props) => {
+    </>
+  );
+
   if (props.editable) {
-    return (
-      <>
-        <PrincipalTitle 
-          title={ props.title } 
-          center={ true } 
-          divider={ false }
-        />
-        <div className="title-editable">
-          <input className="search title" value={props.title} onChange={ props.onChangeTitle } />
-        </div>
-      </>
+    Component = () => (
+      <Container>
+        <Col6>
+          <EditableText 
+            editable={ false } 
+            content={ props.content } 
+            onChangeContent={ props.onChangeContent } 
+          />
+        </Col6>
+
+        <Col6>
+          <EditableText 
+            editable={ props.editable } 
+            content={ props.content } 
+            onChangeContent={ props.onChangeContent } 
+            onSave = {() => {}}
+            onClose = {() => props.canEditContent(false)} 
+          />
+        </Col6>
+      </Container>
     );
   }
 
-  return (
-    <PrincipalTitle 
-      title={ props.title } 
-      center={ true } 
-      divider={ false }
-    />
-  );
-};	
+  return <Component />
+};
 
 export function PostPage({
   match,
   item,
   onLoadPage,
-  onEdit,
   onChangeContent,
   onChangeTitle,
-  editable
+  onRenderDeleteModal,
+  canEditTitle,
+  canEditContent,
+  canRenderDeleteModal,
+
+  editTitle,
+  editContent,
+  isAuthenticated,
 }) {
   
   useInjectReducer({ key: 'postPage', reducer });
   useInjectSaga({ key: 'postPage', saga });
-
+  
   const id = match.params.id;
-  window.addEventListener('keydown', onEdit);
 
   if (item && item.id != id) {
     onLoadPage(id);
@@ -111,105 +154,46 @@ export function PostPage({
     image = item.image;
     tags = item.tags;
   }
-
-  const CustomStyle = createGlobalStyle`
-
-    .bg-img {
-      height: 40vh;
-      overflow: hidden;
-      border-radius: 5px;
-      top: 10px;
-      bottom: 10px;
-    }
-
-   .bg-img::before {
-     content: '';
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      /* filter: blur(25px); */
-      z-index: 2;
-      transform: scale(1.05);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-      background-image: url(${image});
-   }
-
-   .home_slider_content_container {
-     width: 100%;
-     padding-top: 0% !important;
-   }
-
-   .parent {
-    height: 100% !important;
-    padding-bottom: 10px;
-   }
-
-   .big-left-container-fluid {
-    background: var(--main-bg-color) !important;
-    background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%) !important;
-    color: #FFF !important;
-   }
-
-   .big-left-container-fluid {
-     background: var(--secondary-bg-color) !important;
-   }
-
-   .small-right-container-fluid {
-    background: var(--main-bg-color) !important;
-    background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%) !important;
-    color: var(--main-title-color) !important;
-    height: 100%;
-   }
-
-   .third-section {
-    background: var(--secondary-bg-color) !important;
-   }
- 
-   .text-content h1+ul {
-    background: var(--main-bg-color) !important;
-    background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%)  !important;
-    border: transparent !important;
-   }
-
-   .text-content ul li:before {
-    color: #FFF !important;
-   }
-
- `;
-
+  
   return (
     <>
-      {/*<PostImage>
-        <Field obj={item} property="image" />
+      <DeletePost 
+        render={ canRenderDeleteModal }
+        onClose= { () => onRenderDeleteModal(false) } 
+        title = { title }
+      />
+
+      <PostImage>
+        <Img src={image}/>
         <PostHeader>
-          <Title title={ title } editable={ editable } onChangeTitle={ onChangeTitle }/>
+          <PrincipalTitle 
+            title={ title } 
+            center={ true } 
+            divider={ false }
+            onEdit={ () => canEditTitle(true) }
+            editable = { !editTitle }
+            editableMode = { isAuthenticated }
+            onChange = { onChangeTitle }
+            onClose = { () => canEditTitle(false) }
+          />
           <TagContainer item={item} usePost={true} />
         </PostHeader>
       </PostImage>
-
-      <img src={item.image}/>
- */}
-      
-        <ThirdSection>
-          <div className="bg-img col-md-10 offset-md-1 col-md-pull-1 "></div>
-          <PostHeader>
-              <Title title={ title } editable={ editable } onChangeTitle={ onChangeTitle }/>
-              <TagContainer item={item} usePost={true} />
-          </PostHeader>  
-        </ThirdSection>
-        <ThirdSection>
-          <ContainerFluid>
-              <div className="row">
-                <Content editable={editable} content={content} onChangeContent={onChangeContent} tags={tags} />
-              </div>
-          </ContainerFluid>
-        </ThirdSection>
-      <CustomStyle />
-       
+      <ThirdSection>
+        <ContainerFluid>
+            <Row>
+              <Content 
+                editable={ editContent } 
+                content={ content } 
+                onChangeContent={ onChangeContent } 
+                tags={ tags } 
+                isAuthenticated = { isAuthenticated }
+                canEditContent = { canEditContent }
+                renderDeleteModal = { onRenderDeleteModal }
+              />
+            </Row>
+        </ContainerFluid>
+      </ThirdSection>
     </>
   );
 }
@@ -222,18 +206,20 @@ PostPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   item: makeItem(),
   editable: makeEditable(),
+  editTitle: makeEditTitle(),
+  editContent: makeEditContent(),
+  isAuthenticated: makeIsAuthenticated(),
+  canRenderDeleteModal: makeRenderDeleteModal(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: (id) => dispatch(retrieve(id)),
-    onEdit: (zEvent) => {
-      if (zEvent.ctrlKey  &&  zEvent.altKey  &&  zEvent.key === "e") {  // case sensitive
-        dispatch(editable())
-      }
-    },
     onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
     onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
+    canEditTitle: (editable) => dispatch(editTitle(editable)),
+    canEditContent: (editable) => dispatch(editContent(editable)),
+    onRenderDeleteModal: (render) => dispatch(renderDeleteModal(render)),
     dispatch,
   };
 }

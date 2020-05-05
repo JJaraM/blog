@@ -1,0 +1,43 @@
+
+
+
+.principal-title-editable {
+    padding-bottom: 10px;
+
+    textarea {
+        font-family: "Steelfish",fantasy;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        padding-left: 10px;
+        font-size: 55px;
+        height: 20px !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        height: 100%;
+        min-height: 100px;
+    }
+}
+
+.principal-title {
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--main-title-color);
+  
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    i {
+        padding-left: 10px;
+    }
+}
+
+h1 {
+    .icon-button {
+        margin-left: 10px;
+    }
+}

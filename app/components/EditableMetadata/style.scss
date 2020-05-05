@@ -1,0 +1,14 @@
+.editable-metadata {
+    display: block;
+    float: right;
+    padding-top: 10px;
+  
+    i {
+        font-size: 22px;
+        padding-left: 10px;
+        
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

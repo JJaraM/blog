@@ -1,6 +1,6 @@
 .grand-parent {
     height: 60vh;
-    background: #1F1F1F;
+    background:var(--secondary-bg-color) !important;
     ~.main-bg-color {
         background-image: none;
     }   
@@ -8,14 +8,42 @@
     .justify-content-center {
       justify-content: left !important;
     }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      //z-index: -1;
+      background: #000;
+      //height: 200%;
+      position: absolute;
+      background: linear-gradient(0,transparent, rgba(0,0,0,.35));//rgba(0,0,0,.35)
+    }
+
+    
 }
 
-.big-left-container-fluid {
-  background: #FFF;
-  border-radius: 5px;
-  padding: 2.25em;
-  color: #000;
+.post-thumbnail {
+  &::before {
+    content: "";
+   display: block;
+   width: 100%;
+   //height: 100%;
+   position: absolute;
+   //z-index: -1;
+   background: #000;
+   //height: 200%;
+   position: absolute;
+   background: linear-gradient(0deg,#141414 0%,transparent 100%);
+   z-index: 3;
+   height: 51vh;
+ }
+
+
 }
+
 
 .small-right-container-fluid {
   background: #ededed;
@@ -48,7 +76,8 @@ textarea {
   box-shadow: none;
   padding: 10px;
   height: 100%;
-  font-size: 0.70rem;
+  font-size: 0.85rem;
+  text-align: justify;
 }
 
 .title {
@@ -57,12 +86,12 @@ textarea {
   width: 100% !important;
 }
 
-.title-editable {
-  padding-bottom: 10px;
-}
+
+
+
 
 .parent {
-  position: relative;
+  //position: relative;
   height: 60vh;
   overflow: hidden; /* clip overflowing blur */
 
@@ -70,31 +99,49 @@ textarea {
     display: flex;
   }
 
+  .container-fluid {
+    display: flex;
+  }
+
   &::before {
     content: '';
     position: absolute;
-    height: 70%;
+    //height: 100%;
+    height: 60vh;
     width: 100%;
     top:0;
     left: 0;
-    filter: blur(25px);
+    //filter: blur(25px);
     z-index: 2;
-    transform:scale(1.05); 
+    //transform:scale(1.05); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
   } 
 
   &:hover::before {
-    filter: blur(20px);
+    //filter: blur(20px);
   }
 }
 
 
 
 
-.principal-title {
-  h1 {
-      font-size: 3.5rem;
-  }
-}
+
+ .small-right-container-fluid {
+  background: var(--main-bg-color) !important;
+  background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%) !important;
+  color: var(--main-title-color) !important;
+  height: 100%;
+ }
+
+ .third-section {
+  background: var(--secondary-bg-color) !important;
+ }
+
+ .text-content h1+ul {
+  background: var(--main-bg-color) !important;
+  background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%)  !important;
+  border: transparent !important;
+ }
+

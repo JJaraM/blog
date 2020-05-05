@@ -29,6 +29,16 @@
     "boilerplate.containers.LocaleToggle.en": "",
     "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden.",
     "app.containers.TestimonialSection.header": "Testimonios",
-    "app.containers.TestimonialSection.subTitle": "¿Cuál es el rumor acerca de mí?"
+    "app.containers.TestimonialSection.subTitle": "¿Cuál es el rumor acerca de mí?",
+
+
+    "app.containers.SignIn.header": "Iniciar Sesión",
+    "app.containers.SignIn.description": "Ingrese los credenciales para ingresar",
+    "app.containers.SignIn.username": "Usuario",
+    "app.containers.SignIn.password": "Contraseña",
+    "app.containers.SignIn.signIn": "Iniciar Sesión",
+
+    "app.components.IconEdit.label" : "Editar",
+    "app.components.IconDelete.label" : "Eliminar"
   }
   

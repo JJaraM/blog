@@ -7,14 +7,21 @@ import { initialState } from './reducer';
 
 const selectGlobal = state => state.global || initialState;
 
-const makeSearchable = () =>
+const makeRenderSearch = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.open,
+    globalState => globalState.renderSearch,
+  );
+
+const makeRenderSignIn = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.renderSignIn,
   );
 
 
 export {
   selectGlobal,
-  makeSearchable,
+  makeRenderSearch,
+  makeRenderSignIn,
 };

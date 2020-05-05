@@ -1,0 +1,16 @@
+.post-name {
+    color: #FFF;
+    background: var(--fourth-bg-color);
+    padding: 5px;
+    border-radius: 5px;
+    text-transform: none;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.search {
+    &.delete {
+        padding-left: 15px !important;
+        width: 100vh;
+    }
+}

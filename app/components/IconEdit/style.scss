@@ -1,0 +1,7 @@
+.icon-button {
+   &.edit {
+        &:hover {
+            background: #03c1ae linear-gradient(135deg, #03c1ae 10%, rgb(3, 193, 94.833333333333) 90%) !important;
+        }
+    }
+}

@@ -4,6 +4,8 @@ import TestimonialItem from 'containers/TestimonialItem';
 import TestimonialItemLoading from '../TestimonialItemLoading';
 import { isLoadingComplete } from 'configuration/config';
 
+import './style.scss';
+
 function TestimonialList(props) {
 
   let content = [1, 2, 3].map(item => (

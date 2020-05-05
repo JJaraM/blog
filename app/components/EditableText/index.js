@@ -1,28 +1,27 @@
-/**
- *
- * EditableText
- *
- */
-
 import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import * as Markdown from 'react-markdown';
 import Content from 'components/Content';
+import EditableMetadata from 'components/EditableMetadata';
 
 const FinalText = (props) => (
-  <Content loading={false}>
-      <Markdown source={props.content} escapeHtml={false} editable={true}/>
+  <Content loading={ false }>
+      <Markdown source={ props.content } escapeHtml={ false } editable={ true }/>
   </Content>
 );
 
 const TextArea = (props) => (
-  <textarea value={props.content} onChange={props.onChangeContent} />
+  <textarea value={ props.content } onChange={ props.onChangeContent}  />
 );
 
 function EditableText(props) {
   if (props.editable) {
-    return <TextArea content={props.content} onChangeContent={props.onChangeContent}/>
+    return (
+      <>
+        <EditableMetadata onSave={ props.onSave } onClose={ props.onClose }/>
+        <TextArea content={ props.content } onChangeContent={ props.onChangeContent }/>
+      </>
+    )
   }
 
   return (
@@ -30,6 +29,10 @@ function EditableText(props) {
   );
 }
 
-EditableText.propTypes = {};
+EditableText.propTypes = {
+  editable: PropTypes.bool,
+  onSave: PropTypes.func,
+  onClose: PropTypes.func,
+};
 
 export default memo(EditableText);

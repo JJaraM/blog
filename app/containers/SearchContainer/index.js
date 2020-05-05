@@ -10,6 +10,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import { makeText, makeItems } from './selectors';
+
 import Container from 'components/Container';
 import ContainerCenter from 'components/ContainerCenter'
 import PrincipalTitle from 'components/PrincipalTitle';
@@ -18,15 +19,24 @@ import { search } from './actions';
 
 import './style.scss';
 
+let initialize = false;
+
 export function SearchContainer({
   render,
   close,
   items,
   onChangeSearch,
   searchText,
+  onClose,
+  onClear,
 }) {
   useInjectReducer({ key: 'searchContainer', reducer });
   useInjectSaga({ key: 'searchContainer', saga });
+
+  onClose = () => {
+    close();
+    onClear();
+  }
 
   if (render) {
     return (
@@ -34,7 +44,7 @@ export function SearchContainer({
         
         <Container>
           <div className="btn-close">
-            <button className="btn-search fa fa-close" onClick={close}></button>
+            <button className="btn-search fa fa-close" onClick={ onClose }></button>
           </div>
         </Container>
        
@@ -52,13 +62,13 @@ export function SearchContainer({
                   <input id="language" type="text" 
                     value={searchText} 
                     className="search" 
-                    onChange={onChangeSearch} />
+                    onChange={ onChangeSearch } />
                 </ContainerCenter>
               </Container>
             </div>
             <Container>
               <ContainerCenter>
-                <PostSearchItem items={items} />
+                <PostSearchItem items={items} onClick={ onClose } />
               </ContainerCenter>
             </Container>
 
@@ -75,19 +85,18 @@ export function SearchContainer({
               </div>
             </Container>
           </div>
-
         </div>
       </div>
     );
   } 
 
-  return (<div className="search-container-hide">
-
-  </div>)
+  return (
+    <div className="search-container-hide" />
+  )
 }
 
 SearchContainer.propTypes = {
- 
+  close: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -99,6 +108,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onChangeSearch: (evt) => {
       dispatch(search(evt.target.value))
+    },
+    onClear: () => {
+      dispatch(search(""))
     },
     dispatch,
   };

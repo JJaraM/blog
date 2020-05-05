@@ -18,7 +18,7 @@ function DateField(props) {
     const year = date.getFullYear();
 
     Component = () => (
-      <div className="date-field">
+      <div>
         { month } {day}, {year}
       </div>
     )

@@ -1,9 +1,3 @@
-/**
- *
- * PostRelated
- *
- */
-
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,7 +7,6 @@ import RecomendationPostItem from 'containers/RecomendationPostItem';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItems } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { retrieve } from './actions';
@@ -22,12 +15,10 @@ import { makeLoading, makeItemsTags } from './selectors';
 export function PostRelated({
   tags,
   items,
-  loaded,
   onLoadPage
 }) {
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
-
   onLoadPage(tags);
 
   if (items.length > 0 ) {
@@ -37,7 +28,7 @@ export function PostRelated({
         <div className="sublist">
           <div className="row pb-30">
             <div className="col-lg-12">
-            <RecomendationPostItem item={item} />
+              <RecomendationPostItem item={item} />
             </div>
           </div>
         </div>
@@ -63,9 +54,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoadPage: (tags) => {
-      dispatch(retrieve(tags));
-    },
+    onLoadPage: (tags) =>  dispatch(retrieve(tags)),
     dispatch,
   };
 }

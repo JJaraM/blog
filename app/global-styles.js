@@ -19,21 +19,6 @@ const GlobalStyle = createGlobalStyle`
 
 
 
-
-
-
-
-
-.meta-data {
-  color: var(--meta-data-color);
-  font-family: "Montserrat", Sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.3em;
-  margin-bottom: 13px;
-  display: grid;
-}
-
 .img-elementor {
   background-repeat: no-repeat;
   background-size: cover;
@@ -121,13 +106,9 @@ h3 {
   }
 }
 
-.principal-title {
-  font-size: 60px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--main-title-color);
-}
+
+
+
 
 .h1 {
   font-size: 60px;
@@ -281,7 +262,7 @@ h3 {
 
   .testimonials {
 
-    .car {
+    .card {
       width: 100%;
       display: flex;
     }

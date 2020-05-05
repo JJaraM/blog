@@ -29,5 +29,19 @@
   "boilerplate.containers.LocaleToggle.en": "en",
   "boilerplate.containers.NotFoundPage.header": "Page not found.",
   "app.containers.TestimonialSection.header": "Testimonials",
-  "app.containers.TestimonialSection.subTitle": "What's the rumor about me?"
+  "app.containers.TestimonialSection.subTitle": "What's the rumor about me?",
+
+
+  "app.containers.SignIn.header": "Sign In",
+  "app.containers.SignIn.description": "Enter your credentials to access",
+  "app.containers.SignIn.username": "User",
+  "app.containers.SignIn.password": "Password",
+  "app.containers.SignIn.signIn": "Sign In",
+
+  "app.components.IconEdit.label" : "Edit",
+  "app.components.IconDelete.label" : "Delete",
+
+  "app.containers.DeletePost.header": "Delete Post",
+  "app.containers.DeletePost.description": "Are you sure that you want to delete the post? Please type {name} to confirm",
+  "app.containers.DeletePost.delete": "Confirm"
 }

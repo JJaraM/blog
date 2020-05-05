@@ -15,16 +15,22 @@
  *    }
  */
 
-import { OPEN, CLOSE } from './constants';
+import { SEARCH, CLOSE, SIGN_IN } from './constants';
 
-export function open() {
+export function search() {
   return {
-    type: OPEN,
+    type: SEARCH,
   };
 }
 
 export function close() {
   return {
     type: CLOSE,
+  };
+}
+
+export function signIn() {
+  return {
+    type: SIGN_IN,
   };
 }

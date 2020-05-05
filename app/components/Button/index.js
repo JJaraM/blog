@@ -4,11 +4,23 @@ import './style.scss';
 
 function Button(props) {
 
-  return (
-    <div className="pb-30">
-      <button className="btn" onClick={props.onClick}>
+  let Component = () => (
+    <button className={`btn ${props.className}`} onClick={props.onClick} disable={true}>
         { props.children }
       </button>
+  );
+
+  if (props.disable) {
+    Component = () => (
+      <button className={`btn-disabled btn ${props.className}`} onClick={props.onClick} disable={true}>
+        { props.children }
+      </button>
+    );
+  }
+
+  return (
+    <div className={`pb-30 ${props.containerClassName}`}>
+      <Component />
       <div className="bnt-legend">
         { props.legend }
       </div>
@@ -18,12 +30,18 @@ function Button(props) {
 
 Button.propTypes = {
   centerOnDiv: PropTypes.bool,
+  disable: PropTypes.bool,
+  className: PropTypes.string,
+  containerClassName: PropTypes.string,
   legend: PropTypes.string,
   onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
   centerOnDiv: true,
+  disable: false,
+  className: '',
+  containerClassName: '',
 }
 
 export default memo(Button);

@@ -3,6 +3,7 @@ import { Nav } from './Nav';
 import Logo from 'components/Logo';
 import PropTypes from 'prop-types';
 import './style.scss';
+import RenderComponent from 'components/RenderComponent';
 
 function Header(props) {
 
@@ -43,11 +44,18 @@ function Header(props) {
               </li> */}
             </ul>
             
-            <button className="btn-search fa fa-search" onClick={props.onClick}></button>
-           
-          </div>
+            <button className="btn-search fa fa-search" onClick={props.onSearch}></button>
+            
+            <RenderComponent render={!props.isAuthenticated}>
+              <button className="btn-search fa fa-user" onClick={props.onSignIn}></button>
+            </RenderComponent>
 
-         
+            <RenderComponent render={props.isAuthenticated}>
+              <button className="btn-search fa fa-sign-out" onClick={props.onSignOut}></button>
+            </RenderComponent>
+           
+
+          </div>
         </div>
       </Nav>
     </header>
@@ -55,7 +63,10 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  onClick: PropTypes.func,
+  onSearch: PropTypes.func,
+  onSignIn: PropTypes.func,
+  onSignOut: PropTypes.func,
+  isAuthenticated: PropTypes.bool
 };
 
 export default Header;

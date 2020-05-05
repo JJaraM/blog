@@ -3,7 +3,6 @@ import Prism from 'prismjs';
 import PropTypes from 'prop-types';
 
 import LoadingLine from '../LoadingLine';
-import LoadingContainer from '../LoadingContainer';
 import { isLoadingComplete } from 'configuration/config';
 
 import 'prismjs/components/prism-java';

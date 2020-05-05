@@ -1,0 +1,7 @@
+.icon-button {
+    &.delete {
+         &:hover {
+            background-image: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;   
+        }
+     }
+ }

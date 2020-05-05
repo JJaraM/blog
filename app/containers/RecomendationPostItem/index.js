@@ -10,7 +10,9 @@ import makeSelectLatestPostItem from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
+
 import DateField from 'components/DateField';
+import Metadata from 'components/Metadata';
 
 export function RecomendationPostItem(props) {
 
@@ -20,7 +22,6 @@ export function RecomendationPostItem(props) {
   useInjectSaga({ key: key, saga });
 
   const { item } = props;
-
   
   return (
     <div className="row pb-30">
@@ -40,11 +41,11 @@ export function RecomendationPostItem(props) {
               {item.title}
             </Link>
           </h2>
-          <div className="meta-data">
+          <Metadata>
             <span>
               <DateField value={item.updateDate} />
             </span>
-          </div>
+          </Metadata>
           <div className="description">
             <p>{item.description}</p>
           </div>

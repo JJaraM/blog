@@ -8,8 +8,11 @@ function PostImage(props) {
 
   let img = PostImageNotFound;
 
-  if (!isLoadingComplete(props.children[0] && props.children[0].props && props.children[0].props.obj)) {
-    img = props.children[0].props.obj.image;
+
+  console.log(props.children[0].props.src );
+
+  if (!isLoadingComplete(props.children[0] && props.children[0].props && props.children[0].props.src)) {
+    img = props.children[0].props.src;
   }
   
   const CustomStyle = createGlobalStyle`
@@ -21,7 +24,9 @@ function PostImage(props) {
   return (
     <>
       <div className="grand-parent">
-        {props.children[1]}
+        <div class="post-thumbnail">
+          {props.children[1]}
+        </div>
       </div>
       <CustomStyle />
     </>
