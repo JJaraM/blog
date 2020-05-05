@@ -121,7 +121,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onChange:(evt, title) => dispatch(disable(!(evt.target.value === title))),
     onCopy: (title) => {
-      if (title) {
+      if (title !== undefined) {
         navigator.clipboard.writeText(title);
       }
     },
