@@ -7,3 +7,9 @@ export const CHANGE_TITLE = 'app/PostPage/CHANGE_TITLE';
 export const EDIT_TITLE = 'app/PostPage/EDIT_TITLE';
 export const EDIT_CONTENT = 'app/PostPage/EDIT_CONTENT';
 export const RENDER_DELETE_MODAL = 'app/PostPage/RENDER_DELETE_MODAL';
+
+export const UPDATE_TITLE = 'app/PostPage/UPDATE_TITLE';
+export const UPDATE_TITLE_DONE = 'app/PostPage/UPDATE_TITLE_DONE';
+
+export const UPDATE_CONTENT = 'app/PostPage/UPDATE_CONTENT';
+export const UPDATE_CONTENT_DONE = 'app/PostPage/UPDATE_CONTENT_DONE';

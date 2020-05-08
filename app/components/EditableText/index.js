@@ -16,9 +16,14 @@ const TextArea = (props) => (
 
 function EditableText(props) {
   if (props.editable) {
+   
     return (
       <>
-        <EditableMetadata onSave={ props.onSave } onClose={ props.onClose }/>
+        <EditableMetadata 
+          onSave={ props.onSave } 
+          onClose={ props.onClose } 
+          onSaveStatus={ props.onSaveStatus }
+        />
         <TextArea content={ props.content } onChangeContent={ props.onChangeContent }/>
       </>
     )
@@ -32,7 +37,12 @@ function EditableText(props) {
 EditableText.propTypes = {
   editable: PropTypes.bool,
   onSave: PropTypes.func,
+  onSaveStatus: PropTypes.number,
   onClose: PropTypes.func,
+};
+
+EditableText.defaultProps = {
+  onSaveStatus: 0,
 };
 
 export default memo(EditableText);

@@ -1,5 +1,5 @@
 .grand-parent {
-    height: 60vh;
+    //height: 60vh;
     background:var(--secondary-bg-color) !important;
     ~.main-bg-color {
         background-image: none;
@@ -92,7 +92,7 @@ textarea {
 
 .parent {
   //position: relative;
-  height: 60vh;
+  //height: 60vh;
   overflow: hidden; /* clip overflowing blur */
 
   .container {

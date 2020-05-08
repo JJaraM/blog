@@ -3,6 +3,9 @@
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
+  "boilerplate.components.Header.post": "Post",
+  "boilerplate.components.Header.post_create": "Create",
+  
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",
@@ -40,6 +43,13 @@
 
   "app.components.IconEdit.label" : "Edit",
   "app.components.IconDelete.label" : "Delete",
+
+  "app.components.IconClose.label": "Close",
+
+  "app.components.IconSave.label": "Save",
+  "app.components.IconSave.inProgress": "Saving",
+  "app.components.IconSave.done": "Done",
+  "app.components.IconSave.error": "Error",
 
   "app.containers.DeletePost.header": "Delete Post",
   "app.containers.DeletePost.description": "Are you sure that you want to delete the post? Please type {name} to confirm",

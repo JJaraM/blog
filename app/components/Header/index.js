@@ -2,8 +2,12 @@ import React from 'react';
 import { Nav } from './Nav';
 import Logo from 'components/Logo';
 import PropTypes from 'prop-types';
-import './style.scss';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+
 import RenderComponent from 'components/RenderComponent';
+
+import './style.scss';
 
 function Header(props) {
 
@@ -18,7 +22,6 @@ function Header(props) {
           
          
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                  {/*<li className="nav-item active">
                 <a className="nav-link" href="#">Home 
@@ -30,18 +33,22 @@ function Header(props) {
               </li>
               <li className="nav-item">
                 <a className="nav-link disabled" href="#">Disabled</a>
-              </li>
+              </li>*/}
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
+                  <FormattedMessage {...messages.post} />
                 </a>
+                
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="#">Action</a>
-                  <a className="dropdown-item" href="#">Another action</a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">Something else here</a>
+                  <a className="dropdown-item" href="#">
+                    <FormattedMessage {...messages.post_create} />
+                  </a>
+                  
+                  {/* <div className="dropdown-divider"></div>
+                  <a className="dropdown-item" href="#">Something else here</a>   */}
                 </div>
-              </li> */}
+              
+              </li> 
             </ul>
             
             <button className="btn-search fa fa-search" onClick={props.onSearch}></button>

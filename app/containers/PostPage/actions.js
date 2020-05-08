@@ -7,6 +7,12 @@ import {
   EDIT_TITLE,
   EDIT_CONTENT,
   RENDER_DELETE_MODAL,
+  
+  UPDATE_TITLE,
+  UPDATE_TITLE_DONE,
+
+  UPDATE_CONTENT,
+  UPDATE_CONTENT_DONE,
 } from './constants';
 
 export function itemLoaded(item) {
@@ -64,5 +70,28 @@ export function renderDeleteModal(renderDeleteModal) {
   }
 }
 
+export function updateTitle() {
+  return {
+    type: UPDATE_TITLE
+  }
+}
 
+export function updateTitleDone(updateTitleStatus) {
+  return {
+    type: UPDATE_TITLE_DONE,
+    updateTitleStatus
+  }
+}
 
+export function updateContent() {
+  return {
+    type: UPDATE_CONTENT
+  }
+}
+
+export function updateContentDone(updateContentStatus) {
+  return {
+    type: UPDATE_CONTENT_DONE,
+    updateContentStatus
+  }
+}

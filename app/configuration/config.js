@@ -11,7 +11,9 @@ const api = {
     testimonials : `${host}/testimonial/`,
     post: `${host}/post/`,
     postMostPopular: `${host}/post/mostPopular/`,
-    byTitle: `${host}/post/byTitle/`
+    byTitle: `${host}/post/byTitle/`,
+    updateTitle: `${host}/post/updateTitle/`,
+    updateContent: `${host}/post/updateContent/`,
 };
 
 
@@ -23,9 +25,14 @@ const isLoadingComplete = function isLoadingComplete(loading) {
     return !loading && !infiniteLoading;
 }
 
+const isInfitiveLoading = function isLoadingComplete() {
+    return infiniteLoading;
+}
+
 export {
     infiniteLoading,
     api,
     httpCall,
-    isLoadingComplete
+    isLoadingComplete,
+    isInfitiveLoading
 }

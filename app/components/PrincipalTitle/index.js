@@ -10,12 +10,17 @@ import ContainerCenter from 'components/ContainerCenter';
 import DividerLine from 'components/DividerLine';
 import PrincipalTitleBottom  from 'components/PrincipalTitleBottom';
 import IconEdit from 'components/IconEdit';
-import EditableMetadata from 'components/EditableMetadata';
+import IconContainer from 'components/IconContainer';
+import IconClose from 'components/IconClose';
+import IconSave from 'components/IconSave';
+import LoadingLine from 'components/LoadingLine';
+import LoadingContainer from 'components/LoadingContainer';
 
 import './style.scss';
 
 function PrincipalTitle(props) {
-  const { center, divider, bottomDescription, title, editable, editableMode, onChange, onEdit, onClose, onSave } = props;
+  const { center, divider, bottomDescription, title, editable, editableMode, onChange, 
+    onEdit, onClose, onSave, loading, onSaveStatus } = props;
 
   let CenterComponent  = (subProps) => (
     <>
@@ -48,6 +53,20 @@ function PrincipalTitle(props) {
       </PrincipalTitleBottom>
     )
   }
+  
+  if (loading) {
+    return (
+      <LoadingContainer>
+        <LoadingLine 
+          randomWidthMax={500} 
+          randomWidthMin={125} 
+          height={40}
+          primaryBgColor="fifth-bg-color" 
+          secondaryBgColor="sixth-bg-color" 
+        />
+      </LoadingContainer>
+    )
+  }
 
   if (editable === undefined || editable) {
     return (
@@ -68,7 +87,21 @@ function PrincipalTitle(props) {
   } else if (editableMode) {
     return (
       <div className="principal-title-editable">
-        <EditableMetadata onClose={ onClose } onSave = { onSave } />
+        <IconContainer>
+
+          <IconSave
+            status = { onSaveStatus }
+            render={ editableMode } 
+            onClick={ onSave } 
+          />
+
+          <IconClose 
+            render={ editableMode } 
+            onClick={ onClose } 
+          />
+
+        </IconContainer>
+        
         <textarea className="search" value={ props.title } onChange={ onChange } />
       </div>
     )
@@ -86,11 +119,15 @@ PrincipalTitle.propTypes = {
   onEdit: PropTypes.func,
   onClose: PropTypes.func,
   onSave: PropTypes.func,
+  onSaveStatus: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 PrincipalTitle.defaultProps = {
   center: false,
   divider: false,
+  loading: false,
+  onSaveStatus: 0,
 }
 
 export default memo(PrincipalTitle);

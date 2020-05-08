@@ -40,7 +40,6 @@ export function LatestPostSection({
   }, []);
 
   let ViewMore = () => (
-  
     <ContainerCenter>
       <Button>
         Loading...

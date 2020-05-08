@@ -7,12 +7,13 @@ import { isLoadingComplete } from 'configuration/config';
 function PostImage(props) {
 
   let img = PostImageNotFound;
-
-
-  console.log(props.children[0].props.src );
-
+  
   if (!isLoadingComplete(props.children[0] && props.children[0].props && props.children[0].props.src)) {
     img = props.children[0].props.src;
+  }
+
+  if (!img) {
+    img = PostImageNotFound;
   }
   
   const CustomStyle = createGlobalStyle`

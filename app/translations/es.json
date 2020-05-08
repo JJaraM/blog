@@ -3,6 +3,9 @@
     "boilerplate.components.Footer.license.message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht.",
     "boilerplate.components.Header.features": "",
     "boilerplate.components.Header.home": "",
+    "boilerplate.components.Header.post": "Artículos",
+    "boilerplate.components.Header.post_create": "Crear",
+
     "boilerplate.containers.FeaturePage.css.header": "",
     "boilerplate.containers.FeaturePage.css.message": "Die nächste Generation von CSS",
     "boilerplate.containers.FeaturePage.feedback.header": "Sofortiges Feedback",
@@ -39,6 +42,18 @@
     "app.containers.SignIn.signIn": "Iniciar Sesión",
 
     "app.components.IconEdit.label" : "Editar",
-    "app.components.IconDelete.label" : "Eliminar"
+    "app.components.IconDelete.label" : "Eliminar",
+
+    "app.components.IconClose.label": "Cerrar",
+
+    "app.components.IconSave.label": "Guardar",
+    "app.components.IconSave.inProgress": "Guardando",
+    "app.components.IconSave.done": "Listo",
+    "app.components.IconSave.error": "Error",
+    
+    "app.containers.DeletePost.header": "Eliminar Artículo",
+    "app.containers.DeletePost.description": "¿Está seguro que desea eliminar el artículo? Porfavor ingrese {name} para confirmar",
+    "app.containers.DeletePost.delete": "Confirmar"
+
   }
   

@@ -21,12 +21,6 @@ const makeEditable = () =>
     substate => substate.editable,
   );
 
-const makeTitle = () =>
-  createSelector(
-    selectPostPageDomain,
-    substate => substate.title,
-  );
-
 const makeEditTitle = () =>
   createSelector(
     selectPostPageDomain,
@@ -39,19 +33,32 @@ const makeEditContent = () =>
     substate => substate.editContent,
   );
 
-  const makeRenderDeleteModal = () =>
+const makeRenderDeleteModal = () =>
   createSelector(
     selectPostPageDomain,
     substate => substate.renderDeleteModal,
   );
+
+const makeUpdateTitleStatus = () =>
+  createSelector(
+    selectPostPageDomain,
+    substate => substate.updateTitleStatus,
+  );
+
+const makeUpdateContentStatus = () =>
+  createSelector(
+    selectPostPageDomain,
+    substate => substate.updateContentStatus,
+  );  
 
 export { 
   selectPostPageDomain, 
   makeItem, 
   makeId, 
   makeEditable, 
-  makeTitle,
   makeEditTitle,
   makeEditContent,
-  makeRenderDeleteModal
+  makeRenderDeleteModal,
+  makeUpdateTitleStatus,
+  makeUpdateContentStatus
 };

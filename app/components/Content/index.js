@@ -26,29 +26,23 @@ class Content extends React.Component {
 
     render() {
 
-        let Content = () => {
-            
-            let records = [];
-            for (let i = 0; i < 100; i++) {
-                records.push(<LoadingLine  randomWidthMin={70}  randomWidthMax={100} height={15}/>);
-            }
-
-            return (
-                <div className="post-text">
-                    { records }
-                </div>
-            );
+        let records = [];
+        for (let i = 0; i < 100; i++) {
+            records.push(<LoadingLine  randomWidthMin={70}  randomWidthMax={100} height={15}/>);
         }
 
-
         if (isLoadingComplete(this.props.loading)) {
-            Content = () => (
+            return (
                 <p className="text-content" contenteditable={this.props.contenteditable}>
                     { this.props.children }
                 </p>
             );
         }
-        return <Content />
+        return (
+            <div className="post-text">
+                { records }
+            </div>
+        )
     }
 }
 

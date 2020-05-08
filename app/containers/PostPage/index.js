@@ -17,7 +17,9 @@ import {
   makeEditable, 
   makeEditTitle, 
   makeEditContent, 
-  makeRenderDeleteModal 
+  makeRenderDeleteModal,
+  makeUpdateTitleStatus,
+  makeUpdateContentStatus
 } from './selectors';
 
 import reducer from './reducer';
@@ -28,7 +30,9 @@ import {
   changeContent, 
   changeTitle, 
   editTitle, 
-  renderDeleteModal
+  renderDeleteModal,
+  updateTitle,
+  updateContent
 } from './actions';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
@@ -73,11 +77,7 @@ const Content = (props) => {
           />
         </IconContainer>
 
-        <EditableText 
-          editable={ props.editable } 
-          content={ props.content } 
-          onChangeContent={ props.onChangeContent } 
-        />
+        <EditableText content={ props.content } />
       </BigLeftContainerFluid> 
 
       <SmallRightContainerFluid>
@@ -105,7 +105,8 @@ const Content = (props) => {
             editable={ props.editable } 
             content={ props.content } 
             onChangeContent={ props.onChangeContent } 
-            onSave = {() => {}}
+            onSave = { props.onSave } 
+            onSaveStatus = { props.onSaveStatus }
             onClose = {() => props.canEditContent(false)} 
           />
         </Col6>
@@ -123,6 +124,9 @@ export function PostPage({
   onChangeContent,
   onChangeTitle,
   onRenderDeleteModal,
+  onUpdateTitle,
+  onUpdateContent,
+
   canEditTitle,
   canEditContent,
   canRenderDeleteModal,
@@ -130,6 +134,9 @@ export function PostPage({
   editTitle,
   editContent,
   isAuthenticated,
+
+  updateTitleStatus,
+  updateContentStatus,
 }) {
   
   useInjectReducer({ key: 'postPage', reducer });
@@ -156,7 +163,7 @@ export function PostPage({
     image = item.image;
     tags = item.tags;
   }
-  
+
   return (
     <>
       <DeletePost 
@@ -172,11 +179,17 @@ export function PostPage({
             title={ title } 
             center={ true } 
             divider={ false }
-            onEdit={ () => canEditTitle(true) }
             editable = { !editTitle }
             editableMode = { isAuthenticated }
+
             onChange = { onChangeTitle }
+            onEdit={ () => canEditTitle(true) }
             onClose = { () => canEditTitle(false) }
+            
+            onSave = { onUpdateTitle }
+            onSaveStatus = { updateTitleStatus }
+
+            loading = { title === '' }
           />
           <TagContainer item={item} usePost={true} />
         </PostHeader>
@@ -191,6 +204,8 @@ export function PostPage({
                 tags={ tags } 
                 isAuthenticated = { isAuthenticated }
                 canEditContent = { canEditContent }
+                onSave = { onUpdateContent } 
+                onSaveStatus = { updateContentStatus }
                 renderDeleteModal = { onRenderDeleteModal }
               />
             </Row>
@@ -212,15 +227,22 @@ const mapStateToProps = createStructuredSelector({
   editContent: makeEditContent(),
   isAuthenticated: makeIsAuthenticated(),
   canRenderDeleteModal: makeRenderDeleteModal(),
+  updateTitleStatus: makeUpdateTitleStatus(),
+  updateContentStatus: makeUpdateContentStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: (id) => dispatch(retrieve(id)),
-    onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
+    
     onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
+    onUpdateTitle: () => dispatch(updateTitle()),
     canEditTitle: (editable) => dispatch(editTitle(editable)),
+    
+    onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
+    onUpdateContent: () => dispatch(updateContent()),
     canEditContent: (editable) => dispatch(editContent(editable)),
+
     onRenderDeleteModal: (render) => dispatch(renderDeleteModal(render)),
     dispatch,
   };
