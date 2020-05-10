@@ -1,26 +1,34 @@
 import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from 'containers/HomePage';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import PostPage from 'containers/PostPage';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import GlobalStyle from '../../global-styles';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import reducer from './reducer';
+
+import { default as reducer } from './reducer';
+import saga from './saga';
+
+
 import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+
+import HomePage from 'containers/HomePage';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import PostPage from 'containers/PostPage';
+import SignIn from 'containers/SignIn';
+import SearchContainer from 'containers/SearchContainer';
+
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
+import { makeRenderSearch, makeRenderSignIn }  from './selectors';
+
 import { signOut } from 'containers/SignIn/actions';
 
-import { search, close, signIn } from './actions';
-import { makeRenderSearch, makeRenderSignIn }  from './selectors';
-import SearchContainer from '../SearchContainer';
-import SignIn from 'containers/SignIn';
+import { search, close, signIn, createPost } from './actions';
 
 import './styles/variables.scss';
 import './styles/scrollbar.scss';
@@ -28,17 +36,21 @@ import './styles/base.scss';
 import './styles/sanitize.scss';
 
 const key = 'home';
+const key2 = 'home2';
 
 export function App({
   onSearch,
   onSignIn,
   onSignOut,
+  onPostCreate,
   onClose,
   renderSearch,
   renderSignIn,
   isAuthenticated,
 }) {
+
   useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   return (
     <>
@@ -47,10 +59,12 @@ export function App({
       </Helmet>
 
       <Header 
-        isAuthenticated={isAuthenticated} 
-        onSearch={onSearch} 
-        onSignIn={onSignIn} 
-        onSignOut={onSignOut}/> 
+        isAuthenticated={ isAuthenticated } 
+        onSearch={ onSearch } 
+        onSignIn={ onSignIn } 
+        onSignOut={ onSignOut }
+        onPostCreate = { onPostCreate }
+        /> 
       
       <SearchContainer render={renderSearch} close={onClose} />
       <SignIn render={renderSignIn} close={onClose} />
@@ -84,6 +98,7 @@ export function mapDispatchToProps(dispatch) {
     onSignIn: () => dispatch(signIn()),
     onSignOut: () => dispatch(signOut()),
     onClose: () => dispatch(close()),
+    onPostCreate: () => dispatch(createPost()),
     dispatch,
   };
 }

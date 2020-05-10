@@ -33,9 +33,9 @@ class Content extends React.Component {
 
         if (isLoadingComplete(this.props.loading)) {
             return (
-                <p className="text-content" contenteditable={this.props.contenteditable}>
+                <div className="text-content" contentEditable={this.props.contentEditable}>
                     { this.props.children }
-                </p>
+                </div>
             );
         }
         return (
@@ -47,8 +47,9 @@ class Content extends React.Component {
 }
 
 Content.propTypes = {
-    loading: PropTypes.boolean,
-    contenteditable: PropTypes.boolean,
+    loading: PropTypes.bool,
+    contentEditable: PropTypes.bool,
 };
+
 
 export default memo(Content);

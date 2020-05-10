@@ -142,6 +142,11 @@
     "react-dom": "16.8.6",
     "react-helmet": "6.0.0-beta",
     "react-intl": "2.8.0",
+    "react-markdown": "^4.0.2",
+    "react-markdown-editor-lite": "^1.1.2",
+    "react-markdown-syntax-highlight": "^1.0.0",
+    "react-markdown-tree": "^1.0.1",
+    "react-markdown-tree-config-default": "^0.4.1",
     "react-masonry-component": "^6.2.1",
     "react-notification-system": "^0.2.17",
     "react-notification-system-redux": "^2.0.0",
@@ -171,11 +176,7 @@
     "webpack-dev-middleware": "3.6.2",
     "webpack-hot-middleware": "2.24.3",
     "webpack-pwa-manifest": "4.0.0",
-    "whatwg-fetch": "3.0.0",
-    "react-markdown": "^4.0.2",
-    "react-markdown-syntax-highlight": "^1.0.0",
-    "react-markdown-tree": "^1.0.1",
-    "react-markdown-tree-config-default": "^0.4.1"
+    "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {}
 }

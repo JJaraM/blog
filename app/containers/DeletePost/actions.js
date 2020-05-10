@@ -1,4 +1,4 @@
-import { DISABLE } from './constants';
+import { DISABLE, DELETE } from './constants';
 
 export function disable(disable) {
   return {
@@ -7,3 +7,9 @@ export function disable(disable) {
   };
 }
 
+export function deletePost(id) {
+  return {
+    type: DELETE,
+    id
+  };
+}

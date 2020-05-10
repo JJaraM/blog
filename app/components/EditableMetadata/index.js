@@ -27,7 +27,6 @@ function EditableMetadata(props) {
             onClick={ onClose } 
           />
       </IconContainer>
-
     </div>
   );
 }

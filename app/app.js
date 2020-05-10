@@ -26,6 +26,8 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.png';
+import '!file-loader?name=[name].[ext]!./images/GitHub-Mark-Light-64px.png';
+import '!file-loader?name=[name].[ext]!./images/avatar.jpg';
 import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
 
 import configureStore from './configureStore';

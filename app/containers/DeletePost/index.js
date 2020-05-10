@@ -18,11 +18,12 @@ import { selectDisable } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { disable } from './actions';
+import { disable, deletePost } from './actions';
 import Container from 'components/Container';
 import ContainerCenter from 'components/ContainerCenter';
 import PrincipalTitle from 'components/PrincipalTitle';
 import Button from 'components/Button';
+
 
 import './style.scss';
 
@@ -30,7 +31,9 @@ export function DeletePost({
   render,
   onClose,
   title,
+  id,
   onChange,
+  onDelete,
   disable,
   onCopy
 }) {
@@ -85,7 +88,7 @@ export function DeletePost({
                       className="signIn-button" 
                       containerClassName="signIn-button-container" 
                       disable={ disable }
-                      onClick={() => console.log('Hi')}>
+                      onClick={() => onDelete(id, disable) }>
                       
                       <FormattedMessage {...messages.delete } />
                     </Button>
@@ -111,6 +114,7 @@ DeletePost.propTypes = {
   render: PropTypes.bool,
   onClose: PropTypes.func,
   title: PropTypes.string,
+  id: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -121,13 +125,14 @@ function mapDispatchToProps(dispatch) {
   return {
     onChange:(evt, title) => dispatch(disable(!(evt.target.value === title))),
     onCopy: (title) => {
-      //Requires secure origin HTTPS
       if (navigator.clipboard !== undefined) {
         navigator.clipboard.writeText(title);
       }
     },
-    onDelete:() => {
-      console.log('');
+    onDelete:(id, disable) => {
+      if (!disable) {
+        dispatch(deletePost(id));
+      }
     },
     dispatch,
   };

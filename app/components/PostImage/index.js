@@ -25,7 +25,7 @@ function PostImage(props) {
   return (
     <>
       <div className="grand-parent">
-        <div class="post-thumbnail">
+        <div className="post-thumbnail">
           {props.children[1]}
         </div>
       </div>

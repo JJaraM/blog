@@ -15,24 +15,41 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { 
   makeItem, 
   makeEditable, 
-  makeEditTitle, 
-  makeEditContent, 
   makeRenderDeleteModal,
+
+  // Title
+  makeEditTitle, 
   makeUpdateTitleStatus,
-  makeUpdateContentStatus
+
+  // Content
+  makeEditContent, 
+  makeUpdateContentStatus,
+
+  // Image
+  makeEditImage,
+  makeUpdateImageStatus,
 } from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
 import { 
   retrieve, 
+  renderDeleteModal,
+
+  //Content
   editContent, 
   changeContent, 
-  changeTitle, 
+  updateContent,
+
+  //Title
   editTitle, 
-  renderDeleteModal,
+  changeTitle, 
   updateTitle,
-  updateContent
+
+  //Image
+  editImage, 
+  changeImage, 
+  updateImage,
 } from './actions';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
@@ -48,7 +65,6 @@ import SmallRightContainerFluid from 'components/SmallRightContainerFluid';
 import ContainerFluid from 'components/ContainerFluid';
 import EditableText from 'components/EditableText';
 import Row from 'components/Row';
-import Col6 from 'components/Col6';
 import IconContainer from 'components/IconContainer';
 import IconEdit from 'components/IconEdit';
 import IconDelete from 'components/IconDelete';
@@ -92,16 +108,7 @@ const Content = (props) => {
   if (props.editable) {
     return (
       <Container>
-        <Col6>
-          <EditableText 
-            editable={ false } 
-            content={ props.content } 
-            onChangeContent={ props.onChangeContent } 
-          />
-        </Col6>
-
-        <Col6>
-          <EditableText 
+        <EditableText 
             editable={ props.editable } 
             content={ props.content } 
             onChangeContent={ props.onChangeContent } 
@@ -109,7 +116,6 @@ const Content = (props) => {
             onSaveStatus = { props.onSaveStatus }
             onClose = {() => props.canEditContent(false)} 
           />
-        </Col6>
       </Container>
     );
   }
@@ -120,30 +126,39 @@ const Content = (props) => {
 export function PostPage({
   match,
   item,
+  isAuthenticated,
   onLoadPage,
-  onChangeContent,
-  onChangeTitle,
+  canRenderDeleteModal,
   onRenderDeleteModal,
+  
+  //Title
+  onChangeTitle,
+  editTitle,
+  canEditTitle,
+  updateTitleStatus,
   onUpdateTitle,
+
+  //Content
+  onChangeContent,
+  editContent,
+  canEditContent,
+  updateContentStatus,
   onUpdateContent,
 
-  canEditTitle,
-  canEditContent,
-  canRenderDeleteModal,
-
-  editTitle,
-  editContent,
-  isAuthenticated,
-
-  updateTitleStatus,
-  updateContentStatus,
+  //Image
+  onChangeImage,
+  editImage,
+  canEditImage,
+  updateImageStatus,
+  onUpdateImage,
+  
 }) {
   
   useInjectReducer({ key: 'postPage', reducer });
   useInjectSaga({ key: 'postPage', saga });
   
   const id = match.params.id;
-
+  
   if (item && item.id != id) {
     onLoadPage(id);
   }
@@ -164,17 +179,45 @@ export function PostPage({
     tags = item.tags;
   }
 
+  let ImageInput = () => (<></>);
+
+  if (isAuthenticated) {
+    ImageInput = () => (
+      <PrincipalTitle 
+        title={ editImage ? image : '' } 
+        center={ true } 
+        divider={ false }
+        editable = { !editImage }
+        editableMode = { isAuthenticated }
+
+        onChange = { onChangeImage }
+        onEdit={ () => canEditImage(true) }
+        onClose = { () => canEditImage(false) }
+        
+        onSave = { onUpdateImage }
+        onSaveStatus = { updateImageStatus }
+
+        loading = { image === '' }
+      />
+    );
+  }
+
   return (
     <>
       <DeletePost 
         render={ canRenderDeleteModal }
         onClose= { () => onRenderDeleteModal(false) } 
         title = { title }
+        id = { id }
       />
 
       <PostImage>
         <Img src={image}/>
         <PostHeader>
+
+        
+          <ImageInput />
+          
           <PrincipalTitle 
             title={ title } 
             center={ true } 
@@ -223,12 +266,20 @@ PostPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   item: makeItem(),
   editable: makeEditable(),
-  editTitle: makeEditTitle(),
-  editContent: makeEditContent(),
   isAuthenticated: makeIsAuthenticated(),
   canRenderDeleteModal: makeRenderDeleteModal(),
+
+  // Title
+  editTitle: makeEditTitle(),
   updateTitleStatus: makeUpdateTitleStatus(),
+
+  // Content
+  editContent: makeEditContent(),
   updateContentStatus: makeUpdateContentStatus(),
+
+  // Image
+  editImage: makeEditImage(),
+  updateImageStatus: makeUpdateImageStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -242,6 +293,10 @@ function mapDispatchToProps(dispatch) {
     onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
     onUpdateContent: () => dispatch(updateContent()),
     canEditContent: (editable) => dispatch(editContent(editable)),
+
+    onChangeImage: (evt) => dispatch(changeImage(evt.target.value)),
+    onUpdateImage: () => dispatch(updateImage()),
+    canEditImage: (editable) => dispatch(editImage(editable)),
 
     onRenderDeleteModal: (render) => dispatch(renderDeleteModal(render)),
     dispatch,

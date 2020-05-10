@@ -53,5 +53,7 @@
 
   "app.containers.DeletePost.header": "Delete Post",
   "app.containers.DeletePost.description": "Are you sure that you want to delete the post? Please type {name} to confirm",
-  "app.containers.DeletePost.delete": "Confirm"
+  "app.containers.DeletePost.delete": "Confirm",
+
+  "app.components.EditableText.tableOfContents": "Table of Contents"
 }

@@ -5,7 +5,7 @@ import './style.scss';
 function Button(props) {
 
   let Component = () => (
-    <button className={`btn ${props.className}`} onClick={props.onClick} disable={true}>
+    <button className={`btn ${props.className}`} onClick={props.onClick}>
         { props.children }
       </button>
   );

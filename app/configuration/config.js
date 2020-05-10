@@ -14,6 +14,8 @@ const api = {
     byTitle: `${host}/post/byTitle/`,
     updateTitle: `${host}/post/updateTitle/`,
     updateContent: `${host}/post/updateContent/`,
+    updateImage: `${host}/post/updateImage/`,
+    increaseViews: `${host}/post/view/`,
 };
 
 

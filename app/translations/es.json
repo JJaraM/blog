@@ -53,7 +53,9 @@
     
     "app.containers.DeletePost.header": "Eliminar Artículo",
     "app.containers.DeletePost.description": "¿Está seguro que desea eliminar el artículo? Porfavor ingrese {name} para confirmar",
-    "app.containers.DeletePost.delete": "Confirmar"
+    "app.containers.DeletePost.delete": "Confirmar",
+
+    "app.components.EditableText.tableOfContents": "Tabla de Contenidos"
 
   }
   

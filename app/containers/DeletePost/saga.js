@@ -1,6 +1,29 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, select, takeLatest } from 'redux-saga/effects';
+import request from 'utils/request';
+import { api, httpCall } from 'configuration/config';
+import { DELETE } from './constants';
+import { selectId } from './selectors';
 
-// Individual exports for testing
-export default function* deletePostSaga() {
-  // See example in containers/HomePage/saga.js
+export default function* saga() {
+  yield takeLatest(DELETE, sagaDelete);
+}
+
+export function* sagaDelete() {    
+  try {
+    const id = yield select(selectId());
+    const requestURL = httpCall(api.post, id);
+    console.log(requestURL);
+
+    yield call(request, requestURL, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    window.location.href='/';
+  } catch (err) {
+    
+    console.log(err);
+  }
 }

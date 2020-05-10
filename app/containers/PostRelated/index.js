@@ -15,17 +15,21 @@ import { makeLoading, makeItemsTags } from './selectors';
 export function PostRelated({
   tags,
   items,
-  onLoadPage
+  onLoadPage,
+  loaded
 }) {
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
-  onLoadPage(tags);
+
+  if (!loaded) {
+    onLoadPage(tags);
+  }
 
   if (items.length > 0 ) {
     let subList = items.map(item => {
       item.description = '';
       return (
-        <div className="sublist">
+        <div className="sublist" key={`post-related-${item.id}`}>
           <div className="row pb-30">
             <div className="col-lg-12">
               <RecomendationPostItem item={item} />

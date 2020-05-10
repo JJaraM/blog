@@ -34,21 +34,26 @@ function Header(props) {
               <li className="nav-item">
                 <a className="nav-link disabled" href="#">Disabled</a>
               </li>*/}
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <FormattedMessage {...messages.post} />
-                </a>
-                
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="#">
-                    <FormattedMessage {...messages.post_create} />
+
+              <RenderComponent render={ props.isAuthenticated }>
+                <li className="nav-item active dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <FormattedMessage {...messages.post} />
                   </a>
                   
-                  {/* <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">Something else here</a>   */}
-                </div>
-              
-              </li> 
+                  <div className="dropdown-menu" 
+                    aria-labelledby="navbarDropdown" 
+                    onClick={ props.onPostCreate }>
+                    
+                    <a className="dropdown-item" href="#">
+                      <FormattedMessage {...messages.post_create} />
+                    </a>
+                    
+                    {/* <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="#">Something else here</a>   */}
+                  </div>
+                </li> 
+              </RenderComponent>
             </ul>
             
             <button className="btn-search fa fa-search" onClick={props.onSearch}></button>
@@ -73,6 +78,7 @@ Header.propTypes = {
   onSearch: PropTypes.func,
   onSignIn: PropTypes.func,
   onSignOut: PropTypes.func,
+  onPostCreate: PropTypes.func,
   isAuthenticated: PropTypes.bool
 };
 

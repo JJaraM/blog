@@ -11,6 +11,8 @@ import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
 
+import Avatar from 'images/avatar.jpg';
+
 export function TestimonialItem({
   item,
   onError,
@@ -22,7 +24,11 @@ export function TestimonialItem({
     <div className="card">
       <div className="testimonials">
         <div className="d-flex justify-content-center pt-30 pb-30">
-          <img src={item.img} className="img-circle " alt="..."  onError={onError} />
+          <img src={item.img} 
+            className="img-circle "
+            onError={onError}
+            onError={(e)=>{e.target.onerror = null; e.target.src="/avatar.jpg"}}
+          />
         </div>
         <div className="pb-30 pr-30 pl-30">
           <div className="post-text">
@@ -55,7 +61,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onError: (evt) => {
-      return "./avatar.png";
+      console.log('error');
+      return "/avatar.jpg";
     },
     dispatch,
   };

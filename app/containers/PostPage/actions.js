@@ -2,17 +2,26 @@ import {
   ITEM_LOADED, 
   RETRIEVE, 
   EDITABLE, 
-  CHANGE_CONTENT, 
-  CHANGE_TITLE,
-  EDIT_TITLE,
-  EDIT_CONTENT,
   RENDER_DELETE_MODAL,
-  
+
+  //Content
+  CHANGE_CONTENT,
+  EDIT_TITLE,
   UPDATE_TITLE,
   UPDATE_TITLE_DONE,
 
+  //Title
+  CHANGE_TITLE,
+  EDIT_CONTENT,
   UPDATE_CONTENT,
   UPDATE_CONTENT_DONE,
+
+   //Image
+   CHANGE_IMAGE,
+   EDIT_IMAGE,
+   UPDATE_IMAGE,
+   UPDATE_IMAGE_DONE,
+
 } from './constants';
 
 export function itemLoaded(item) {
@@ -35,13 +44,15 @@ export function editable() {
   };
 }
 
-export function changeContent(content) {
+export function renderDeleteModal(renderDeleteModal) {
   return {
-    type: CHANGE_CONTENT,
-    content,
-  };
+    type: RENDER_DELETE_MODAL,
+    renderDeleteModal
+  }
 }
 
+
+//Title
 export function changeTitle(title) {
   return {
     type: CHANGE_TITLE,
@@ -54,20 +65,6 @@ export function editTitle(editTitle) {
     type: EDIT_TITLE,
     editTitle
   };
-}
-
-export function editContent(editContent) {
-  return {
-    type: EDIT_CONTENT,
-    editContent
-  }
-}
-
-export function renderDeleteModal(renderDeleteModal) {
-  return {
-    type: RENDER_DELETE_MODAL,
-    renderDeleteModal
-  }
 }
 
 export function updateTitle() {
@@ -83,6 +80,22 @@ export function updateTitleDone(updateTitleStatus) {
   }
 }
 
+
+// Content
+export function changeContent(content) {
+  return {
+    type: CHANGE_CONTENT,
+    content,
+  };
+}
+
+export function editContent(editContent) {
+  return {
+    type: EDIT_CONTENT,
+    editContent
+  }
+}
+
 export function updateContent() {
   return {
     type: UPDATE_CONTENT
@@ -93,5 +106,33 @@ export function updateContentDone(updateContentStatus) {
   return {
     type: UPDATE_CONTENT_DONE,
     updateContentStatus
+  }
+}
+
+//Image
+export function changeImage(image) {
+  return {
+    type: CHANGE_IMAGE,
+    image,
+  };
+}
+
+export function editImage(editImage) {
+  return {
+    type: EDIT_IMAGE,
+    editImage
+  }
+}
+
+export function updateImage() {
+  return {
+    type: UPDATE_IMAGE
+  }
+}
+
+export function updateImageDone(updateImageStatus) {
+  return {
+    type: UPDATE_IMAGE_DONE,
+    updateImageStatus
   }
 }

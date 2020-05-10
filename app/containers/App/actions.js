@@ -15,7 +15,7 @@
  *    }
  */
 
-import { SEARCH, CLOSE, SIGN_IN } from './constants';
+import { SEARCH, CLOSE, SIGN_IN, CREATE_POST } from './constants';
 
 export function search() {
   return {
@@ -33,4 +33,10 @@ export function signIn() {
   return {
     type: SIGN_IN,
   };
+}
+
+export function createPost() {
+  return {
+    type: CREATE_POST,
+  }
 }

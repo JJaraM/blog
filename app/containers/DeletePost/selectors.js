@@ -9,8 +9,14 @@ const selectDisable = () =>
     substate => substate.disable,
   );
 
+const selectId = () =>
+  createSelector(
+    selectDeletePostDomain,
+    substate => substate.id,
+  );  
 
 export { 
   selectDeletePostDomain,
-  selectDisable 
+  selectDisable,
+  selectId
 };
