@@ -16,7 +16,7 @@ export class Nav extends React.Component {
         const pos = window.scrollY;
         const cssClass = "fixed-top";
         const element = document.getElementById("main-header");
-      
+
         if (pos > 85) {
             element.classList.add(cssClass);
          } else {

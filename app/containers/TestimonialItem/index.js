@@ -11,7 +11,6 @@ import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
 
-import Avatar from 'images/avatar.jpg';
 
 export function TestimonialItem({
   item,
@@ -61,7 +60,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onError: (evt) => {
-      console.log('error');
       return "/avatar.jpg";
     },
     dispatch,

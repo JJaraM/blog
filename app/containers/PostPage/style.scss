@@ -45,12 +45,6 @@
 }
 
 
-.small-right-container-fluid {
-  background: #ededed;
-  color: #000;
-  border-radius: 5px;
-  padding: 2.25em;
-}
 
 .container-fluid-padding {
   padding: 1.25em;
@@ -124,16 +118,6 @@ textarea {
   }
 }
 
-
-
-
-
- .small-right-container-fluid {
-  background: var(--main-bg-color) !important;
-  background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%) !important;
-  color: var(--main-title-color) !important;
-  height: 100%;
- }
 
  .third-section {
   background: var(--secondary-bg-color) !important;

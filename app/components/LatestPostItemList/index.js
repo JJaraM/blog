@@ -15,12 +15,12 @@ function LatestPostItemList(props) {
   }
 
   let content = [1, 2, 3].map(item => (
-    <LatestPostItemLoading key={`latest-post-item-${item}`}/>
+    <LatestPostItemLoading key={`latest-post-item-${item}`} />
   ));
 
   if (isLoadingComplete(props.loading)) {
     content = props.items.map(item => (
-      <LatestPostItem  key={`latest-post-item-${item.id}`} item={item} />
+      <LatestPostItem key={`latest-post-item-${item.id}`} item={item} />
     ));
   }
 

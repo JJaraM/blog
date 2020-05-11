@@ -26,12 +26,15 @@ export function RecomendationPostItem(props) {
   return (
     <div className="row pb-30">
       <div className="col-lg-6">
-        <div className="img-elementor" style={{backgroundImage: `url(${item.image})`}}>
-          <div className="tags views">
-            <span>
-              <a href="#">{item.views}</a></span>
+        <Link to={`/post/${item.id}`}>
+          <div className="img-elementor" style={{backgroundImage: `url(${item.image})`}}>
+            <div className="tags views">
+              <span>
+                  { item.views }
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       <div className="col-lg-6">

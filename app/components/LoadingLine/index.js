@@ -6,7 +6,7 @@ function LoadingLine(props) {
   const { 
     width, height, randomWidthMin, randomWidthMax, 
     randomHeightMin, randomHeightMax, unit,
-    primaryBgColor, secondaryBgColor
+    primaryBgColor, secondaryBgColor, widthUnit,
   } = props;
   
   const id = _.uniqueId("prefix-");
@@ -48,15 +48,48 @@ function LoadingLine(props) {
     }
   }
     
+  /*
     .${id} {
       .line {
-        width: ${loadingWidth}${unit};
+        width: ${loadingWidth}${widthUnit};
         height: ${loadingHeight}${unit};
         animation: loading-${id} 1.6s infinite linear;
         float: left;
         border-radius: 7px;
         background-image: linear-gradient(90deg, var(--${loadingPrimaryBgColor}) 0px, var(--${loadingSecondaryBgColor})40px, var(--${loadingPrimaryBgColor}) 80px);
         background-size: 600px;
+      }
+    }
+
+    @keyframes loading-${id} {
+      0% {
+        background-position: -100px;
+      }
+    
+      40%, 100% {
+        background-position: ${loadingWidth}${widthUnit};
+      }
+    }
+*/
+    .post-text {
+      .line {
+        margin-bottom: 5px;
+      }
+    }
+
+   
+
+
+    .${id} {
+      .line {
+        width: ${loadingWidth}${widthUnit};
+        height: ${loadingHeight}${unit};
+        animation: loading-${id} 1.6s infinite linear;
+        float: left;
+        border-radius: 7px;
+     
+        background: linear-gradient(270deg, var(--${loadingPrimaryBgColor}), var(--${loadingSecondaryBgColor}));
+        background-size: 400% 400%;       
       }
     }
 
@@ -67,14 +100,12 @@ function LoadingLine(props) {
     }
 
     @keyframes loading-${id} {
-      0% {
-        background-position: -100px;
-      }
-    
-      40%, 100% {
-        background-position: ${loadingWidth}${unit};
-      }
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
     }
+
+    
 
     @media only screen and (max-width: 959px) {
       .${id} {
@@ -118,7 +149,7 @@ function LoadingLine(props) {
 
   return (
     <>
-      <div className={`p-line ${id}`}>
+      <div id={id} className={`p-line ${id}`}>
         <div className="line" />
       </div>
       <CustomStyle/>
@@ -132,6 +163,7 @@ function getRandomSize(max, min) {
 
 LoadingLine.propTypes = {
   width: PropTypes.number,
+  widthUnit: PropTypes.string,
   randomWidthMin: PropTypes.number,
   randomWidthMax: PropTypes.number,
   height: PropTypes.number,
@@ -145,6 +177,7 @@ LoadingLine.propTypes = {
 LoadingLine.defaultProps = {
   randomWidthMin: 0,
   randomHeightMin: 0,
+  widthUnit: 'px',
   unit: 'px',
 };
 
