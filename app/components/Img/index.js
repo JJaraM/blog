@@ -7,9 +7,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import PostImageNotFound from 'images/PostImageNotFound.png';
 
 function Img(props) {
-  return <img className={props.className} src={props.src} alt={props.alt} />;
+
+  let img = PostImageNotFound;
+
+  if (props.src) {
+    console.log('src');
+    return <img className={props.className} src={props.src} alt={props.alt} />;
+  }
+
+  console.log('non src');
+  return <img className={props.className} src={img} alt={props.alt} />;
+
+  
 }
 
 // We require the use of src and alt, only enforced by react in dev mode

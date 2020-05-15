@@ -41,6 +41,7 @@ export function* sagaRetrieve() {
     }
 
   } catch (err) {
+    console.log(err);
     yield put(repoLoadingError(err));
   }
 }

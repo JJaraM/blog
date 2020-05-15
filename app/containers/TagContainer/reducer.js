@@ -1,5 +1,11 @@
 import produce from 'immer';
-import { ITEMS_LOADED } from './constants';
+import { 
+  ITEMS_LOADED,
+  CREATE,
+  ADD,
+  REMOVE,
+  CREATE_DONE
+} from './constants';
 
 export const initialState = {
   page: 0,
@@ -7,6 +13,8 @@ export const initialState = {
   items: [],
   loading: true,
   isFirstLoading: false,
+  text: '',
+  id: 0
 };
 
 
@@ -18,6 +26,24 @@ const tagContainerReducer = (state = initialState, action) =>
         draft.items = [...state.items , ...action.items];
         draft.loading = false;
         draft.isFirstLoading = true;
+        break;
+
+      case CREATE:
+        draft.text = action.text;
+        break;
+
+      case ADD:
+        draft.id = action.id;
+        break;
+
+      case REMOVE:
+        draft.id = action.id;
+        break;
+
+      case CREATE_DONE:
+        draft.items = [...state.items , ...action.items];
+        const half_length = Math.ceil(draft.items.length / 2);
+        draft.items = action.items.splice(0,half_length);
         break;
     }
   });

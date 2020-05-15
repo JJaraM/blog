@@ -20,6 +20,7 @@ export function* getItems() {
     const items = yield call(request, requestURL);
     yield put(itemsLoaded(items));
   } catch (err) {
+    console.log(err);
     yield put(repoLoadingError(err));
   }
 }

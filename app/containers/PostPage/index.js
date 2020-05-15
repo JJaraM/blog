@@ -234,7 +234,7 @@ export function PostPage({
 
             loading = { title === '' }
           />
-          <TagContainer item={item} usePost={true} />
+          <TagContainer item={item} usePost={true} isAuthenticated = { isAuthenticated } />
         </PostHeader>
       </PostImage>
       <ThirdSection>

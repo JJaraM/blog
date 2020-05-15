@@ -31,10 +31,23 @@ const makeIsFirstLoading = () =>
     substate => substate.isFirstLoading,
   );
 
+const makeText = () => 
+  createSelector(
+    selectTagContainerDomain,
+    substate => substate.text,
+  );
+
+const makeTagId = () => 
+  createSelector(
+    selectTagContainerDomain,
+    substate => substate.id,
+  );
 
 export { 
   selectTagContainerDomain,
   makeTagItems,
   makeLoading,
   makeIsFirstLoading,
- };
+  makeText,
+  makeTagId
+};

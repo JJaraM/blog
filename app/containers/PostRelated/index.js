@@ -21,9 +21,9 @@ export function PostRelated({
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
 
-  if (!loaded) {
+  useEffect(() => {    
     onLoadPage(tags);
-  }
+  }, []);
 
   if (items.length > 0 ) {
     let subList = items.map(item => {

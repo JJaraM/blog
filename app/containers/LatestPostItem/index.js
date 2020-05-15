@@ -13,6 +13,8 @@ import saga from './saga';
 import './style.scss';
 import PostTagList from 'components/PostTagList';
 import { makeTagItems } from '../TagContainer/selectors';
+import Img from 'components/Img';
+import Metadata from 'components/Metadata';
 
 export function LatestPostItem({
   item, 
@@ -23,25 +25,25 @@ export function LatestPostItem({
 
   return (
     <div className="card">
-      <img src={item.image} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <div className="post-text">
-          <h3 className="main-title-color">
-            <Link to={`/post/${item.id}`}>
-              {item.title}
-            </Link>
-          </h3>
-          <div className="meta-data">
-            <span>
-              <DateField value={item.updateDate} />
-            </span>
+      <Link to={`/post/${item.id}`}>
+        <Img src={item.image} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <div className="post-text">
+            <h3 className="main-title-color">
+                {item.title}
+            </h3>
+            <Metadata>
+              <span>
+                <DateField value={item.updateDate} />
+              </span>
+            </Metadata>
+            <div className="description">
+              <p>{item.description}</p>
+            </div>
+            <PostTagList item={item} items={tags}/>
           </div>
-          <div className="description">
-            <p>{item.description}</p>
-          </div>
-          <PostTagList item={item} items={tags}/>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
