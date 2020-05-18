@@ -4,6 +4,7 @@ import { itemsLoaded } from './actions';
 import { api, httpCall } from 'configuration/config';
 import request from 'utils/request';
 import { makeLatestPostPage, makeLatestPostCountItems, makeSelectedTag } from './selectors';
+import { makeIsAuthenticated } from 'containers/SignIn/selectors';
 
 export default function* init() {
   yield takeLatest(RETRIEVE, getItems);
@@ -17,7 +18,13 @@ export function* getItems() {
     const latestPostItems = yield select(makeLatestPostCountItems());
     const tag = yield select(makeSelectedTag());
     const requestURL = httpCall(api.post, latestPostPage, latestPostItems, tag);
-    const items = yield call(request, requestURL);
+    let items = yield call(request, requestURL);
+    const isAuthenticated = yield select(makeIsAuthenticated());
+
+    if (!isAuthenticated) {
+      items = items.filter(item => !item.tags.includes(182));
+    }
+    
     yield put(itemsLoaded(items));
   } catch (err) {
     console.log(err);

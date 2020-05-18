@@ -4,6 +4,7 @@ import request from 'utils/request';
 import { makeTags } from './selectors';
 import { api, httpCall } from 'configuration/config';
 import { loadItems } from './actions';
+import { makeId } from 'containers/PostPage/selectors';
 
 // Individual exports for testing
 export default function* latestPostItemSaga() {
@@ -29,8 +30,9 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
 
 export function* getItems() {    
     try {
+      const id = yield select(makeId());
       const tags = yield select(makeTags());
-      const items = [];
+      let items = [];
       const size = tags.length;
       let i = 0;
 
@@ -40,13 +42,13 @@ export function* getItems() {
         const item = yield call(request, requestURL);
         item.forEach(element => {
           items.pushIfNotExist(element, function(e) { 
-            return e.id === element.id; 
+            return e.id === element.id && element.id != id; 
           });
         });
         i++;
       }
 
- 
+      items = items.filter(item => item.id != id);
       yield put(loadItems(items));
     } catch (err) {
       

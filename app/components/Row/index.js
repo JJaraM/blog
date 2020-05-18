@@ -6,11 +6,12 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 
 function Row(props) {
+  const id = props.id ? props.id : _.uniqueId("row-");
+
   return (
-    <div className={`row ${props.className}`}>
+    <div className={`row ${props.className}`} id={id}>
       { props.children }
     </div>
   );
@@ -18,10 +19,12 @@ function Row(props) {
 
 Row.propTypes = {
   className: PropTypes.string,
+  id: PropTypes.string
 };
 
 Row.defaultProps = {
   className: '',
+  id: undefined,
 };
 
 export default memo(Row);

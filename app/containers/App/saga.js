@@ -12,17 +12,17 @@ export default function* latestPostItemSaga() {
 
 export function* sagaCreatePost() {    
   try {
-  const requestURL = httpCall(api.post);
-    const response = yield call(request, requestURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title: "TEST" }),
-    });
-    window.location.href='/post/' + response.id;
-  
-  } catch (err) {
-  
-  }
+    const requestURL = httpCall(api.post);
+      const response = yield call(request, requestURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title: "TEST" }),
+      });
+      window.location.href='/post/' + response.id;
+    
+    } catch (err) {
+    
+    }
 }

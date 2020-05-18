@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { Helmet } from 'react-helmet';
 
 import { 
   makeItem, 
@@ -204,6 +205,10 @@ export function PostPage({
 
   return (
     <>
+
+      <Helmet title={title} defaultTitle="Jonathan Jara Morales">
+      </Helmet>
+
       <DeletePost 
         render={ canRenderDeleteModal }
         onClose= { () => onRenderDeleteModal(false) } 
@@ -214,10 +219,7 @@ export function PostPage({
       <PostImage>
         <Img src={image}/>
         <PostHeader>
-
-        
           <ImageInput />
-          
           <PrincipalTitle 
             title={ title } 
             center={ true } 

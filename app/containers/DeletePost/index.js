@@ -50,8 +50,8 @@ export function DeletePost({
           </div>
         </Container>
   
-        <div class="row h-100">
-          <div class="col-sm-12 my-auto">
+        <div className="row h-100">
+          <div className="col-sm-12 my-auto">
             <Container>
               <ContainerCenter>
                 <PrincipalTitle center={true} 

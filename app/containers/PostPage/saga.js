@@ -51,7 +51,6 @@ export function* sagaUpdateTitle() {
     const id = yield select(makeId());
     const item = yield select(makeItem());
     const requestURL = httpCall(api.updateTitle, id);
-
     yield call(request, requestURL, {
       method: 'PUT',
       body: JSON.stringify({ title: item.title }),

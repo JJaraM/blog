@@ -22,12 +22,17 @@ export function RecomendationPostItem(props) {
   useInjectSaga({ key: key, saga });
 
   const { item } = props;
-  
+
+  let image = item.image;
+  if (item.image == null) {
+    image = '/PostImageNotFound.png';
+  }
+
   return (
     <div className="row pb-30">
       <div className="col-lg-6">
         <Link to={`/post/${item.id}`}>
-          <div className="img-elementor" style={{backgroundImage: `url(${item.image})`}}>
+          <div className="img-elementor" style={{backgroundImage: `url(${image})`}}>
             <div className="tags views">
               <span>
                   { item.views }

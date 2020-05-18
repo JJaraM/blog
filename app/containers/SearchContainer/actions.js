@@ -1,4 +1,9 @@
-import { SEARCH, ITEMS_LOADED } from './constants';
+import { 
+  SEARCH, 
+  ITEMS_LOADED,
+  NEXT,
+  PREVIOUS
+} from './constants';
 
 export function search(text) {
   return {
@@ -14,4 +19,15 @@ export function itemsLoaded(items) {
   };
 }
 
+export function next() {
+  return {
+    type: NEXT
+  } 
+}
 
+
+export function previous() {
+  return {
+    type: PREVIOUS
+  } 
+}

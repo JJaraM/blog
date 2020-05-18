@@ -18,8 +18,7 @@ import saga from './saga';
 import LatestPostSection from 'containers/LatestPostSection';
 import RecomendationsPostSection from 'containers/RecomendationsPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
-import Container from 'components/Container';
-
+import AboutMeSection from 'containers/AboutMeSection';
 
 const key = 'home';
 
@@ -45,7 +44,7 @@ export function HomePage({
       <LatestPostSection />
       <RecomendationsPostSection />
       <TestimonialSection/>
-    
+      <AboutMeSection />
       </div>
     </article>
   );

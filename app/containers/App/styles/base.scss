@@ -102,3 +102,32 @@ i {
 
 }
 
+#fullscreen:fullscreen {
+    //padding: 42px;
+    //background-color: pink;
+    //border:2px solid #f00;
+    //font-size: 200%;
+    overflow: auto;
+  }
+  
+  #fullscreen:fullscreen > h1 {
+    //color: red;
+  }
+  
+  #fullscreen:fullscreen > p {
+   // color: darkred;
+  }
+  
+  #fullscreen:fullscreen > button {
+    display: none;
+  }
+
+.text-content {
+    a {
+        color: #75d69c;
+        
+        &.hover {
+            text-decoration: underline; 
+        }
+    }
+}

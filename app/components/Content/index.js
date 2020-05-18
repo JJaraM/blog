@@ -8,10 +8,17 @@ import { isLoadingComplete } from 'configuration/config';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-yaml';
+import 'prismjs/components/prism-git';
+
 import './prism-okaida.scss';
 import './style.scss';
 import './prism.scss';
+
 import './prism-comment.js';
+import './prism-references.js';
+
 import './customPrism.js';
 
 class Content extends React.Component {

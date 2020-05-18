@@ -20,7 +20,7 @@ import './style.scss';
 
 function PrincipalTitle(props) {
   const { center, divider, bottomDescription, title, editable, editableMode, onChange, 
-    onEdit, onClose, onSave, loading, onSaveStatus } = props;
+    onEdit, onClose, onSave, loading, onSaveStatus, topDescription } = props;
 
   let CenterComponent  = (subProps) => (
     <>
@@ -29,8 +29,8 @@ function PrincipalTitle(props) {
   );
 
   let DividerComponent = () => (<></>);
-
   let BottomDescription = () => (<></>);
+  let TopDescription = () => (<></>);
 
   if (center) {
     CenterComponent = (subProps) => (
@@ -48,9 +48,20 @@ function PrincipalTitle(props) {
 
   if (bottomDescription) {
     BottomDescription = () => (
+      
       <PrincipalTitleBottom center={ center }>
         { bottomDescription }
       </PrincipalTitleBottom>
+    )
+  }
+
+  if (topDescription) { 
+    TopDescription = () => (
+      <ContainerCenter>
+        <div className="brief-description">
+          <span>{ topDescription }</span>
+        </div>
+      </ContainerCenter>
     )
   }
   
@@ -71,7 +82,9 @@ function PrincipalTitle(props) {
   if (editable === undefined || editable) {
     return (
       <div className="principal-title pb-30 pt-30">
+        <TopDescription />
         <CenterComponent>
+        
           <h1>
             { title }
             <IconEdit 

@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 function SmallRightContainerFluid(props) {
+  console.log(props.children);
   return (
     <div id="id-small-right-container-fluid" 
-    className={`offset-md-1 col-md-3 col-md-pull-2 small-right-container-fluid`}>
+      className={`offset-md-1 col-md-3 col-md-pull-2 small-right-container-fluid`}>
       { props.children }
     </div>
   );

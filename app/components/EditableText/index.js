@@ -5,61 +5,69 @@ import Content from 'components/Content';
 import EditableMetadata from 'components/EditableMetadata';
 import Col6 from 'components/Col6';
 import Row from 'components/Row';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import EditorItemTableOfContent from 'components/EditorItemTableOfContent';
+import EditorItemFileTree from 'components/EditorItemFileTree';
+import EditorOpenFullScreen from 'components/EditorOpenFullScreen';
+import EditorCloseFullScreen from 'components/EditorCloseFullScreen';
+import './tooltipHref.scss';
+
+const onHrefHover = (id, keepStatic) => {
+  const tooltip = document.getElementById("#tooltip-text-span-" + id); //tooltip
+  const text = document.getElementById("#text-" + id);//text
+  const tooltipContainer = document.getElementById("#tooltip-text-" + id);
+  if (tooltip) {
+    tooltip.innerHTML = text.innerText;
+  }
+  if (tooltipContainer && keepStatic) {
+    tooltipContainer.classList.add('tooltip-ref-static');
+  }
+}
+
+const closeTooltip = (id) => {
+  const tooltipContainer = document.getElementById("#tooltip-text-" + id);
+  if (tooltipContainer) {
+    tooltipContainer.classList.remove('tooltip-ref-static');
+  }
+}
+
+const renderImage = props => {
+
+  if (props.href && props.href.includes("ref")) {
+    return ( 
+      <div className="tooltip-href">
+        <span className="internal-nav" id={props.href} href={props.href} 
+          onMouseEnter={() => onHrefHover(props.href, false)}
+          onClick={() => onHrefHover(props.href, true)}
+        >
+          {props.children}
+        </span>
+        <div id={`#tooltip-text-${props.href}`} className="tooltip-href-text">
+          <div className="tooltip-text-i-container">
+            <i className="fa fa-times" aria-hidden="true" onClick={() => closeTooltip(props.href)}></i>
+          </div>
+          <span id={`#tooltip-text-span-${props.href}`}></span>
+        </div>
+      </div>
+    )
+  }
+
+  return <a href={props.href}>{props.children}</a>
+}
 
 const FinalText = (props) => (
   <Content loading={ false }>
-      <Markdown source={ props.content } escapeHtml={ false } editable={ true }/>
+      <Markdown 
+        source={ props.content } 
+        escapeHtml={ false } 
+        editable={ true }
+        renderers={{link: renderImage}} 
+      />
   </Content>
 );
 
 const TextArea = (props) => (
   <textarea id = {props.id} value={ props.content } onChange={ props.onChangeContent}  />
 );
-
-let TEXT_TABLE_OF_CONTENT = '# Table Of Contents' + '\n';
-    TEXT_TABLE_OF_CONTENT += '* [Title 1] (#1)' + '\n';
-    TEXT_TABLE_OF_CONTENT += '   * [Title 1.1] (#1.1)' + '\n';
-    TEXT_TABLE_OF_CONTENT += '   * [Title 1.2] (#1.2)' + '\n';
-    TEXT_TABLE_OF_CONTENT += '     * [Title 1.2.1] (#1.2.1)' + '\n';
-    TEXT_TABLE_OF_CONTENT += '     * [Title 1.2.2] (#1.2.2)' + '\n';
-    TEXT_TABLE_OF_CONTENT += '* [Title 2] (#2)' + '\n';
-
-const EVENT_TABLE_OF_CONTENT = 1;
-
-const onClickMenuOption = (txt, event, onChange) => {
-  const myField = document.getElementById('editable-text-id');
-  const myValue = txt;
-
-  //IE support
-  if (document.selection) {
-    myField.focus();
-    sel = document.selection.createRange();
-    sel.text = myValue;
-  }
-
-  //MOZILLA and others
-  else if (myField.selectionStart || myField.selectionStart == '0') {
-      var startPos = myField.selectionStart;
-      var endPos = myField.selectionEnd;
-      myField.value = myField.value.substring(0, startPos)
-          + myValue
-          + myField.value.substring(endPos, myField.value.length);
-      myField.selectionStart = startPos + myValue.length;
-      myField.selectionEnd = startPos + myValue.length;
-  } else {
-      myField.value += myValue;
-  }
-
-  const txtEvent = {
-    target : {
-      value : myField.value
-    }
-  };
-
-  onChange(txtEvent);
-}
 
 function EditableText(props) {
   if (props.editable) {
@@ -71,36 +79,19 @@ function EditableText(props) {
           onSaveStatus={ props.onSaveStatus }
         />
       
-        <Row className="text-editor">
+        <Row className="text-editor" id="fullscreen">
           <div className="col-lg-12">
-          
-            <div className="button-options-container">
-              
-              <div class="tooltip-editableText">
-                
-                <i className="fa fa-bars" 
-                  aria-hidden="true" 
-                  onClick = { () => 
-                    onClickMenuOption(
-                      TEXT_TABLE_OF_CONTENT, 
-                      EVENT_TABLE_OF_CONTENT,
-                      props.onChangeContent
-                    ) 
-                  }
-                />   
-                
-                <span class="tooltiptext">
-                  <FormattedMessage {...messages.tableOfContents} />
-                </span>
-              </div> 
-
-              <i className="fa fa-github" aria-hidden="true"></i>        
+            <div id="id-button-options-container" className="button-options-container">
+              <EditorItemTableOfContent onChange = { props.onChangeContent } />
+              <EditorItemFileTree onChange = { props.onChangeContent } />
+              <i className="fa fa-github" aria-hidden="true"></i>  
+              <EditorOpenFullScreen containerClassName="right" open="fullscreen" />
+              <EditorCloseFullScreen containerClassName="right" close="fullscreen" />
             </div>
           </div>
 
          
           <Col6>
-          
             <TextArea id='editable-text-id' content={ props.content } onChangeContent={ props.onChangeContent }/>
           </Col6>
 

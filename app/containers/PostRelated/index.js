@@ -16,7 +16,6 @@ export function PostRelated({
   tags,
   items,
   onLoadPage,
-  loaded
 }) {
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });

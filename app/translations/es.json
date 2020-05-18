@@ -55,7 +55,13 @@
     "app.containers.DeletePost.description": "¿Está seguro que desea eliminar el artículo? Porfavor ingrese {name} para confirmar",
     "app.containers.DeletePost.delete": "Confirmar",
 
-    "app.components.EditableText.tableOfContents": "Tabla de Contenidos"
+    "app.components.EditorItemTableOfContent.tableOfContents": "Tabla de Contenidos",
+    "app.components.EditorItemTableOfContent.label": "Árbol de archivos",
+    "app.components.EditorOpenFullScreen.label": "Pantalla Completa",
+    "app.components.EditorCloseFullScreen.label" : "Cerrar Pantalla Completa",
+
+    "app.containers.AboutMeSection.header" : "Acerca de mí",
+    "app.containers.AboutMeSection.subTitle": "¿Quién soy?"
 
   }
   

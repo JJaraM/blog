@@ -132,7 +132,16 @@ textarea {
  }
 
  .text-content h1+ul {
-  background: var(--main-bg-color) !important;
-  background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%)  !important;
-  border: transparent !important;
+    background: var(--main-bg-color) !important;
+    background-image: linear-gradient(200deg,#292929 0%,var(--main-bg-color) 100%)  !important;
+    border: transparent !important;
+  
+ }
+
+ .text-content {
+   ul {
+    a {
+      color: #FFF !important;
+    }
+   }
  }

@@ -61,6 +61,20 @@
     text-shadow: none;
     font-family: 'Work Sans', sans-serif;
   }
+
+  :not(pre) > code[class*="language-references"], pre[class*="language-references"] {
+    background-color: #eaf5e9;
+    line-height: 1.875;
+    display: none;
+  }
+  
+  code[class*="language-references"], pre[class*="language-references"] {
+    color: #343233;
+    white-space: pre-line;
+    margin-top: 1.25rem;
+    text-shadow: none;
+    font-family: 'Work Sans', sans-serif;
+  }
   
   .token.strong {
     font-weight: bolder;
@@ -113,4 +127,6 @@
     background: #25262d;
     cursor: pointer;
   }
+  
+
   

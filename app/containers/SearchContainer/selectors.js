@@ -15,4 +15,11 @@ const makeItems = () =>
     selectSearchContainerDomain,
     substate => substate.items,
   );
-export { makeText, selectSearchContainerDomain, makeItems };
+
+const makePage = () =>
+  createSelector(
+    selectSearchContainerDomain,
+    substate => substate.page,
+  );
+
+export { makeText, selectSearchContainerDomain, makeItems, makePage};

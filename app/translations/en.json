@@ -55,5 +55,11 @@
   "app.containers.DeletePost.description": "Are you sure that you want to delete the post? Please type {name} to confirm",
   "app.containers.DeletePost.delete": "Confirm",
 
-  "app.components.EditableText.tableOfContents": "Table of Contents"
+  "app.components.EditorItemTableOfContent.tableOfContents": "Table of Contents",
+  "app.components.EditorItemTableOfContent.label": "File Tree",
+  "app.components.EditorOpenFullScreen.label" : "Full Screen",
+  "app.components.EditorCloseFullScreen.label" : "Close Full Screen",
+
+  "app.containers.AboutMeSection.header" : "About Me",
+  "app.containers.AboutMeSection.subTitle": "How I am?"
 }
