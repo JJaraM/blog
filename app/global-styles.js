@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
 .secondary-bg-color {
   background: var(--secondary-bg-color);
+  width: 100%;
 }
 
 .main-title-color {

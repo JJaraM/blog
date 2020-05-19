@@ -50,9 +50,6 @@ export function* sagaAdd() {
     const id = yield select(makeTagId());
     const postId = yield select(makeId());
     const requestURL = httpCall(api.post_api.tag.add, postId);
-
-    console.log(id);
-
     yield call(request, requestURL, {
       method: 'PUT',
       body: JSON.stringify({ tags: [ id ] }),

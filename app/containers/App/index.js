@@ -17,6 +17,8 @@ import { useInjectSaga } from 'utils/injectSaga';
 import HomePage from 'containers/HomePage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import PostPage from 'containers/PostPage';
+import CategoryPage from 'containers/CategoryPage';
+
 import SignIn from 'containers/SignIn';
 import SearchContainer from 'containers/SearchContainer';
 
@@ -72,6 +74,7 @@ export function App({
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/post/:id" component={PostPage} />
+        <Route exact path="/category/:id" component={CategoryPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
 

@@ -34,19 +34,19 @@ export function HomePage({
 
 
   return (
-    <article>
+    <>
       <Helmet>
         <title>Home</title>
         <meta name="description" content="Personal Blog Site" />
       </Helmet>
-      <div>
+     
       
       <LatestPostSection />
       <RecomendationsPostSection />
       <TestimonialSection/>
       <AboutMeSection />
-      </div>
-    </article>
+   
+    </>
   );
 
 

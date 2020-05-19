@@ -61,24 +61,24 @@ export function LatestPostSection({
   return (
     <Container>
 
-    <SecondarySection>
-      <PrincipalTitle 
-        center={ true } 
-        divider={ true }
-        title={
-          <FormattedMessage {...messages.header } />
-        }
-        bottomDescription="In the below section you will find the most important post in the last month"
-      />
-     
-      <ContainerCenter>
-        <TagContainer />
-      </ContainerCenter>
+      <SecondarySection>
+        <PrincipalTitle 
+          center={ true } 
+          divider={ true }
+          title={
+            <FormattedMessage {...messages.header } />
+          }
+          bottomDescription="In the below section you will find the most important post in the last month"
+        />
+      
+        <ContainerCenter>
+          <TagContainer />
+        </ContainerCenter>
 
-      <LatestPostItemList items={items} loading={loading}/>
+        <LatestPostItemList items={items} loading={loading}/>
 
-      <ViewMore />
-    </SecondarySection>
+        <ViewMore />
+      </SecondarySection>
     </Container>
   );
 }
