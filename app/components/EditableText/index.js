@@ -30,6 +30,33 @@ const closeTooltip = (id) => {
   }
 }
 
+const renderPCode = props => {
+  const content = props.children.map(children => {
+    let value = children.props.value;
+    if (value.includes("<<") && (value.includes(">>"))) {
+      value = value.replace("<<", "");
+      value = value.replace(">>", "");
+
+      return (
+        <span className="token bullet bullet-fix">
+          { value }
+        </span>
+      )
+    }
+    return children ;
+  });
+
+  /*return (
+    <pre className={`language-${props.language}`}>
+      <code className={`language-${props.language}`}>
+        { props.value }
+      </code>
+    </pre>
+  );
+  */
+  return (<p>{ content } </p>);
+}
+
 const renderImage = props => {
 
   if (props.href && props.href.includes("ref")) {
@@ -60,7 +87,10 @@ const FinalText = (props) => (
         source={ props.content } 
         escapeHtml={ false } 
         editable={ true }
-        renderers={{link: renderImage}} 
+        renderers={
+          {link: renderImage}
+          ,{paragraph: renderPCode}
+        } 
       />
   </Content>
 );

@@ -135,3 +135,10 @@ i {
 .hide {
     display: none;
 }
+
+.bullet-fix {
+    display: inline !important;
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
