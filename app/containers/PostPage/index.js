@@ -29,6 +29,9 @@ import {
   // Image
   makeEditImage,
   makeUpdateImageStatus,
+
+
+  makeEvents,
 } from './selectors';
 
 import reducer from './reducer';
@@ -36,6 +39,8 @@ import saga from './saga';
 import { 
   retrieve, 
   renderDeleteModal,
+
+  event,
 
   //Content
   editContent, 
@@ -76,6 +81,9 @@ import DeletePost from 'containers/DeletePost';
 import './style.scss';
 import './tableOfContent.scss';
 
+
+import { EVENT_CHANGE_TITLE, EVENT_CHANGE_IMAGE, EVENT_CHANGE_CONTENT, EVENT_CHANGE_TITLE_STATUS, EVENT_CHANGE_IMAGE_STATUS, EVENT_CHANGE_CONTENT_STATUS } from './constants';
+
 const Content = (props) => {
 
   let Component = () => (
@@ -108,7 +116,7 @@ const Content = (props) => {
   // the edit does not work.
   if (props.editable) {
     return (
-      <Container>
+      <Container className="offset-md-1">
         <EditableText 
             editable={ props.editable } 
             content={ props.content } 
@@ -124,6 +132,28 @@ const Content = (props) => {
   return <Component />
 };
 
+function renderEditableComponent(eventValue, eventV) {
+  let value = false;
+  if (Array.isArray(eventValue)) {
+    const array = eventValue.filter(event => event.event === eventV);
+    if (array && array[0]) {
+      value = array[0].value;
+    }
+  }
+  return value;
+}
+
+function renderStatusComponent(eventValue, eventV) {
+  let status = 0;
+  if (Array.isArray(eventValue)) {
+    const array = eventValue.filter(event => event.event === eventV);
+    if (array && array[0]) {
+      status = array[0].value === '' ? 0 : array[0].value;
+    }
+  }
+  return status;
+}
+
 export function PostPage({
   match,
   item,
@@ -134,24 +164,20 @@ export function PostPage({
   
   //Title
   onChangeTitle,
-  editTitle,
   canEditTitle,
-  updateTitleStatus,
   onUpdateTitle,
 
   //Content
   onChangeContent,
-  editContent,
   canEditContent,
-  updateContentStatus,
   onUpdateContent,
 
   //Image
   onChangeImage,
-  editImage,
   canEditImage,
-  updateImageStatus,
   onUpdateImage,
+
+  eventValue,
   
 }) {
   
@@ -181,14 +207,25 @@ export function PostPage({
   }
 
   let ImageInput = () => (<></>);
+ 
+  const titleStatus = renderStatusComponent(eventValue, EVENT_CHANGE_TITLE_STATUS);
+  const titleEditable = renderEditableComponent(eventValue, EVENT_CHANGE_TITLE);
+
+  const imageEditable = renderEditableComponent(eventValue, EVENT_CHANGE_IMAGE);
+  const imageStatus = renderStatusComponent(eventValue, EVENT_CHANGE_IMAGE_STATUS);
+ 
+  const contentEditable = renderEditableComponent(eventValue, EVENT_CHANGE_CONTENT);
+  const contentStatus = renderStatusComponent(eventValue, EVENT_CHANGE_CONTENT_STATUS);
+ 
 
   if (isAuthenticated) {
+
     ImageInput = () => (
       <PrincipalTitle 
-        title={ editImage ? image : '' } 
+        title={ imageEditable ? image : '' } 
         center={ true } 
         divider={ false }
-        editable = { !editImage }
+        editable = { !imageEditable }
         editableMode = { isAuthenticated }
 
         onChange = { onChangeImage }
@@ -196,16 +233,17 @@ export function PostPage({
         onClose = { () => canEditImage(false) }
         
         onSave = { onUpdateImage }
-        onSaveStatus = { updateImageStatus }
+        onSaveStatus = { imageStatus }
 
         loading = { image === '' }
       />
     );
   }
 
+
+  
   return (
     <>
-
       <Helmet title={title} defaultTitle="Jonathan Jara Morales">
       </Helmet>
 
@@ -224,7 +262,7 @@ export function PostPage({
             title={ title } 
             center={ true } 
             divider={ false }
-            editable = { !editTitle }
+            editable = { !titleEditable }
             editableMode = { isAuthenticated }
 
             onChange = { onChangeTitle }
@@ -232,7 +270,7 @@ export function PostPage({
             onClose = { () => canEditTitle(false) }
             
             onSave = { onUpdateTitle }
-            onSaveStatus = { updateTitleStatus }
+            onSaveStatus = { titleStatus }
 
             loading = { title === '' }
           />
@@ -243,14 +281,14 @@ export function PostPage({
         <ContainerFluid>
             <Row>
               <Content 
-                editable={ editContent } 
+                editable={ contentEditable } 
                 content={ content } 
                 onChangeContent={ onChangeContent } 
                 tags={ tags } 
                 isAuthenticated = { isAuthenticated }
                 canEditContent = { canEditContent }
                 onSave = { onUpdateContent } 
-                onSaveStatus = { updateContentStatus }
+                onSaveStatus = { contentStatus }
                 renderDeleteModal = { onRenderDeleteModal }
               />
             </Row>
@@ -270,18 +308,7 @@ const mapStateToProps = createStructuredSelector({
   editable: makeEditable(),
   isAuthenticated: makeIsAuthenticated(),
   canRenderDeleteModal: makeRenderDeleteModal(),
-
-  // Title
-  editTitle: makeEditTitle(),
-  updateTitleStatus: makeUpdateTitleStatus(),
-
-  // Content
-  editContent: makeEditContent(),
-  updateContentStatus: makeUpdateContentStatus(),
-
-  // Image
-  editImage: makeEditImage(),
-  updateImageStatus: makeUpdateImageStatus(),
+  eventValue: makeEvents(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -290,15 +317,18 @@ function mapDispatchToProps(dispatch) {
     
     onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
     onUpdateTitle: () => dispatch(updateTitle()),
-    canEditTitle: (editable) => dispatch(editTitle(editable)),
-    
+   
+
     onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
     onUpdateContent: () => dispatch(updateContent()),
-    canEditContent: (editable) => dispatch(editContent(editable)),
+    
 
     onChangeImage: (evt) => dispatch(changeImage(evt.target.value)),
     onUpdateImage: () => dispatch(updateImage()),
-    canEditImage: (editable) => dispatch(editImage(editable)),
+
+    canEditContent: (editable) => dispatch(event(EVENT_CHANGE_CONTENT, editable)),
+    canEditTitle: (editable) => dispatch(event(EVENT_CHANGE_TITLE, editable)),
+    canEditImage: (editable) => dispatch(event(EVENT_CHANGE_IMAGE, editable)),
 
     onRenderDeleteModal: (render) => dispatch(renderDeleteModal(render)),
     dispatch,

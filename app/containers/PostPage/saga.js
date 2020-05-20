@@ -7,6 +7,10 @@ import {
   UPDATE_TITLE,
   UPDATE_CONTENT,
   UPDATE_IMAGE,
+
+  EVENT_CHANGE_TITLE_STATUS,
+  EVENT_CHANGE_IMAGE_STATUS,
+  EVENT_CHANGE_CONTENT_STATUS,
 } from './constants';
 
 import { 
@@ -14,6 +18,7 @@ import {
   updateTitleDone,
   updateContentDone,
   updateImageDone,
+  event,
 } from './actions';
 
 import { 
@@ -35,18 +40,22 @@ export function* sagaRetrieve() {
     const items = yield call(request, requestURL);
 
     if (isInfitiveLoading()) {
-      yield put(itemLoaded(null));
-    } else {
-      yield put(itemLoaded(items));
+      items = null;
     }
 
+    yield put(itemLoaded(items));
+  
   } catch (err) {
-    console.log(err);
     yield put(repoLoadingError(err));
+
+  } finally {
+    
   }
 }
   
 export function* sagaUpdateTitle() {    
+  let status = 2;
+
   try {
     const id = yield select(makeId());
     const item = yield select(makeItem());
@@ -58,18 +67,22 @@ export function* sagaUpdateTitle() {
         'Content-Type': 'application/json',
       },
     });
-    yield put(updateTitleDone(2));
   } catch (err) {
-    yield put(updateTitleDone(3));
+    status = 3;
+    
+  } finally {
+    yield put(event(EVENT_CHANGE_TITLE_STATUS, status));
   }
 }
 
 export function* sagaUpdateContent() {    
+  let status = 2;
+
   try {
     const id = yield select(makeId());
     const item = yield select(makeItem());
     const requestURL = httpCall(api.updateContent, id);
-    
+   
     yield call(request, requestURL, {
       method: 'PUT',
       body: JSON.stringify({ content: item.content }),
@@ -77,13 +90,18 @@ export function* sagaUpdateContent() {
         'Content-Type': 'application/json',
       },
     });
-    yield put(updateContentDone(2));
+    
   } catch (err) {
-    yield put(updateContentDone(3));
+    status = 3;
+
+  } finally {
+    yield put(event(EVENT_CHANGE_CONTENT_STATUS, status));
   }
 }
 
 export function* sagaUpdateImage() {    
+  let status = 2;
+
   try {
     const id = yield select(makeId());
     const item = yield select(makeItem());
@@ -96,9 +114,11 @@ export function* sagaUpdateImage() {
         'Content-Type': 'application/json',
       },
     });
-    yield put(updateImageDone(2));
   } catch (err) {
-    yield put(updateImageDone(3));
+    status = 3;
+
+  } finally {
+    yield put(event(EVENT_CHANGE_IMAGE_STATUS, status));
   }
 }
 

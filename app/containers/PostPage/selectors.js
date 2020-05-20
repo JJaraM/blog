@@ -34,24 +34,12 @@ const makeEditTitle = () =>
     substate => substate.editTitle,
   );
 
-const makeUpdateTitleStatus = () =>
-  createSelector(
-    selectPostPageDomain,
-    substate => substate.updateTitleStatus,
-  );
-
 // Content
 const makeEditContent = () =>
   createSelector(
     selectPostPageDomain,
     substate => substate.editContent,
   );
-
-const makeUpdateContentStatus = () =>
-  createSelector(
-    selectPostPageDomain,
-    substate => substate.updateContentStatus,
-  );  
 
 // Image
 const makeEditImage = () =>
@@ -60,10 +48,10 @@ const makeEditImage = () =>
     substate => substate.editImage,
   );
 
-const makeUpdateImageStatus = () =>
+const makeEvents = () =>
   createSelector(
     selectPostPageDomain,
-    substate => substate.updateImageStatus,
+    substate => substate.eventValue,
   );  
 
 export { 
@@ -74,8 +62,6 @@ export {
   makeEditTitle,
   makeEditContent,
   makeRenderDeleteModal,
-  makeUpdateTitleStatus,
-  makeUpdateContentStatus,
   makeEditImage,
-  makeUpdateImageStatus
+  makeEvents
 };

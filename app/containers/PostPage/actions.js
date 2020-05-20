@@ -3,22 +3,20 @@ import {
   RETRIEVE, 
   EDITABLE, 
   RENDER_DELETE_MODAL,
-
-  //Content
-  CHANGE_CONTENT,
-  EDIT_TITLE,
-  UPDATE_TITLE,
-  UPDATE_TITLE_DONE,
+  EVENT,
 
   //Title
   CHANGE_TITLE,
-  EDIT_CONTENT,
+  UPDATE_TITLE,
+  UPDATE_TITLE_DONE,
+
+  //Content
+  CHANGE_CONTENT,
   UPDATE_CONTENT,
   UPDATE_CONTENT_DONE,
 
    //Image
    CHANGE_IMAGE,
-   EDIT_IMAGE,
    UPDATE_IMAGE,
    UPDATE_IMAGE_DONE,
 
@@ -60,12 +58,6 @@ export function changeTitle(title) {
   };
 }
 
-export function editTitle(editTitle) {
-  return {
-    type: EDIT_TITLE,
-    editTitle
-  };
-}
 
 export function updateTitle() {
   return {
@@ -89,13 +81,6 @@ export function changeContent(content) {
   };
 }
 
-export function editContent(editContent) {
-  return {
-    type: EDIT_CONTENT,
-    editContent
-  }
-}
-
 export function updateContent() {
   return {
     type: UPDATE_CONTENT
@@ -117,13 +102,6 @@ export function changeImage(image) {
   };
 }
 
-export function editImage(editImage) {
-  return {
-    type: EDIT_IMAGE,
-    editImage
-  }
-}
-
 export function updateImage() {
   return {
     type: UPDATE_IMAGE
@@ -134,5 +112,13 @@ export function updateImageDone(updateImageStatus) {
   return {
     type: UPDATE_IMAGE_DONE,
     updateImageStatus
+  }
+}
+
+export function event(event, value) {
+  return {
+    type: EVENT,
+    event,
+    value
   }
 }

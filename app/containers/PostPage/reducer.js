@@ -8,7 +8,6 @@ import {
 
   // Title
   CHANGE_TITLE,
-  EDIT_TITLE,
   UPDATE_TITLE,
   UPDATE_TITLE_DONE,
 
@@ -20,10 +19,10 @@ import {
 
   // Image
   CHANGE_IMAGE, 
-  EDIT_IMAGE,
   UPDATE_IMAGE,
   UPDATE_IMAGE_DONE,
 
+  EVENT
 } from './constants';
 
 /**
@@ -51,6 +50,10 @@ export const initialState = {
   editImage: false,
   updateImageStatus: 0,
 
+  eventValue: [],
+  event: null,
+  value: null,
+
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -76,11 +79,6 @@ const postPageReducer = (state = initialState, action) =>
       // Title
       case CHANGE_TITLE:
         draft.item.title = action.title;
-        break;
-
-      case EDIT_TITLE:
-        draft.editTitle = action.editTitle;
-        draft.updateTitleStatus = 0;
         break;
 
       case UPDATE_TITLE:
@@ -111,13 +109,7 @@ const postPageReducer = (state = initialState, action) =>
 
       // Image
       case CHANGE_IMAGE:
-        console.log('change image');
         draft.item.image = action.image;
-        break;
-
-      case EDIT_IMAGE:
-        draft.editImage = action.editImage;
-        draft.updateImageStatus = 0;
         break;
 
       case UPDATE_IMAGE:
@@ -127,6 +119,43 @@ const postPageReducer = (state = initialState, action) =>
       case UPDATE_IMAGE_DONE:
         draft.updateImageStatus = action.updateImageStatus;
         break;
+
+      case EVENT:
+    
+        const event = {
+          event: action.event, // For example: Change, Edit, Update, Update Done
+          value: action.value, // For example a text or a boolean value
+        };
+
+        console.log(event);
+        
+        //Add a new value in the array
+        let result = {
+          ...state,
+          eventValue: [
+            ...state.eventValue, 
+            event,  
+            ...state.eventValue
+          ],
+        };
+        
+        //Check if the event already exist in the array
+        const index = state.eventValue.findIndex(x => x.event === action.event);
+        
+        // Update the existed one
+        if (index > -1) {
+          result = {
+            ...state,
+            eventValue: [
+              ...state.eventValue.slice(0, 0),
+              event,
+              ...state.eventValue.slice(0, index + 1),
+            ]
+          }
+        }
+
+
+        return result;
     }
   });
 
