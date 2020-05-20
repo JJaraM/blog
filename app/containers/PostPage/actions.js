@@ -8,17 +8,14 @@ import {
   //Title
   CHANGE_TITLE,
   UPDATE_TITLE,
-  UPDATE_TITLE_DONE,
 
   //Content
   CHANGE_CONTENT,
   UPDATE_CONTENT,
-  UPDATE_CONTENT_DONE,
 
    //Image
    CHANGE_IMAGE,
    UPDATE_IMAGE,
-   UPDATE_IMAGE_DONE,
 
 } from './constants';
 
@@ -62,13 +59,6 @@ export function changeTitle(title) {
 export function updateTitle() {
   return {
     type: UPDATE_TITLE
-  }
-}
-
-export function updateTitleDone(updateTitleStatus) {
-  return {
-    type: UPDATE_TITLE_DONE,
-    updateTitleStatus
   }
 }
 

@@ -8,19 +8,12 @@ import {
 
   // Title
   CHANGE_TITLE,
-  UPDATE_TITLE,
-  UPDATE_TITLE_DONE,
 
   // Content
   CHANGE_CONTENT, 
-  EDIT_CONTENT,
-  UPDATE_CONTENT,
-  UPDATE_CONTENT_DONE,
 
   // Image
   CHANGE_IMAGE, 
-  UPDATE_IMAGE,
-  UPDATE_IMAGE_DONE,
 
   EVENT
 } from './constants';
@@ -81,30 +74,9 @@ const postPageReducer = (state = initialState, action) =>
         draft.item.title = action.title;
         break;
 
-      case UPDATE_TITLE:
-        draft.updateTitleStatus = 1;
-        break;
-
-      case UPDATE_TITLE_DONE:
-        draft.updateTitleStatus = action.updateTitleStatus;
-        break;
-
       // Content
       case CHANGE_CONTENT:
         draft.item.content = action.content;
-        break;
-
-      case EDIT_CONTENT:
-        draft.editContent = action.editContent;
-        draft.updateContentStatus = 0;
-        break;
-
-      case UPDATE_CONTENT:
-        draft.updateContentStatus = 1;
-        break;
-
-      case UPDATE_CONTENT_DONE:
-        draft.updateContentStatus = action.updateContentStatus;
         break;
 
       // Image
@@ -112,13 +84,6 @@ const postPageReducer = (state = initialState, action) =>
         draft.item.image = action.image;
         break;
 
-      case UPDATE_IMAGE:
-        draft.updateImageStatus = 1;
-        break;
-
-      case UPDATE_IMAGE_DONE:
-        draft.updateImageStatus = action.updateImageStatus;
-        break;
 
       case EVENT:
     
@@ -126,8 +91,6 @@ const postPageReducer = (state = initialState, action) =>
           event: action.event, // For example: Change, Edit, Update, Update Done
           value: action.value, // For example a text or a boolean value
         };
-
-        console.log(event);
         
         //Add a new value in the array
         let result = {

@@ -36,6 +36,7 @@ export default function* init() {
 
 export function* sagaRetrieve() {
   try {
+    
     const requestURL = httpCall(api.tag.all);
     const items = yield call(request, requestURL);
     yield put(itemsLoaded(items));
