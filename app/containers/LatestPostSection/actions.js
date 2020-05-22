@@ -1,4 +1,10 @@
-import { RETRIEVE, ITEMS_LOADED, RETRIEVE_MORE, CHANGE_TAG } from './constants';
+import { 
+  RETRIEVE, 
+  ITEMS_LOADED, 
+  RETRIEVE_MORE, 
+  CHANGE_TAG,
+  ERROR
+} from './constants';
 
 export function retrieve() {
   return {
@@ -12,7 +18,6 @@ export function retrieveMore() {
   };
 }
 
-
 export function itemsLoaded(items) {
   return {
     type: ITEMS_LOADED,
@@ -24,6 +29,13 @@ export function changeTag(tagId) {
   return {
     type: CHANGE_TAG,
     tagId,
+  }
+}
+
+export function error(message) {
+  return {
+    type: ERROR,
+    message
   }
 }
 

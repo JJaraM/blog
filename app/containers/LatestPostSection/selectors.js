@@ -45,8 +45,19 @@ const makeSelectedTag = () =>
     selectLatestPostSectionDomain,
     substate => substate.tagId,
   );
-  
-//export default makeSelectLatestPostSection;
+
+const makeStatus = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.status,
+  );
+
+const makeMessage = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.message,
+  );
+
 export { 
   selectLatestPostSectionDomain,
   makeLatestPostPage, 
@@ -55,4 +66,6 @@ export {
   makeLoading,
   makeIsFirstLoading,
   makeSelectedTag,
+  makeStatus,
+  makeMessage
 };

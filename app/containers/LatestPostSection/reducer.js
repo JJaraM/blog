@@ -4,8 +4,14 @@
  *
  */
 import produce from 'immer';
-import { ITEMS_LOADED, RETRIEVE_MORE, CHANGE_TAG } from './constants';
+import { ITEMS_LOADED, RETRIEVE_MORE, CHANGE_TAG, ERROR } from './constants';
 
+/**
+ * Status List:
+ * 0 - Loading
+ * 1 - Load Complete
+ * 2 - Error
+ */
 export const initialState = {
   page: 0,
   countItems: 3,
@@ -13,6 +19,8 @@ export const initialState = {
   loading: true,
   isFirstLoading: false,
   tagId: 0,
+  status: 0,
+  message: null
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -23,6 +31,7 @@ const latestPostSectionReducer = (state = initialState, action) =>
         draft.items = [...state.items , ...action.items];
         draft.loading = false;
         draft.isFirstLoading = true;
+        draft.status = 1
         break;
 
       case RETRIEVE_MORE:
@@ -33,6 +42,13 @@ const latestPostSectionReducer = (state = initialState, action) =>
         draft.items = [];
         draft.tagId = action.tagId;
         draft.page = 0;
+        break;
+
+      case ERROR:
+        draft.items = [];
+        draft.page = 0;
+        draft.status = 2;
+        draft.message = action.message;
         break;
     }
   });

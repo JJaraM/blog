@@ -4,6 +4,7 @@ import LatestPostItemLoading from '../LatestPostItemLoading';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
 import { isLoadingComplete } from 'configuration/config';
+import ErrorMessage from 'components/ErrorMessage';
 
 import './style.scss';
 
@@ -18,10 +19,18 @@ function LatestPostItemList(props) {
     <LatestPostItemLoading key={`latest-post-item-${item}`} />
   ));
 
-  if (isLoadingComplete(props.loading)) {
+  if (isLoadingComplete(props.status === 2)) {
     content = props.items.map(item => (
       <LatestPostItem key={`latest-post-item-${item.id}`} item={item} />
     ));
+  }
+
+  if (props.status == 2) {
+    return (
+      <div className="mansory">
+        <ErrorMessage />
+      </div>
+    )
   }
 
   return (
@@ -37,6 +46,7 @@ function LatestPostItemList(props) {
 
 LatestPostItemList.propTypes = {
   loading: PropTypes.bool,
+  status: PropTypes.number,
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 

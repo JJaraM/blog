@@ -38,5 +38,18 @@ const makeLoading = () =>
     selectPostRelatedDomain,
     substate => substate.loaded,
   );
+
+const makePage = () =>
+  createSelector(
+    selectPostRelatedDomain,
+    substate => substate.page,
+  );
   
-export { makeSelectPostRelated, selectPostRelatedDomain, makeTags, makeItemsTags, makeLoading };
+export { 
+  makeSelectPostRelated, 
+  selectPostRelatedDomain, 
+  makeTags, 
+  makeItemsTags, 
+  makeLoading,
+  makePage
+};

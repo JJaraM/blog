@@ -9,13 +9,15 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
-import { retrieve } from './actions';
+import { retrieve, next, previous } from './actions';
 import { makeLoading, makeItemsTags } from './selectors';
 
 export function PostRelated({
   tags,
   items,
   onLoadPage,
+  onNext,
+  onPrevious
 }) {
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
@@ -28,8 +30,8 @@ export function PostRelated({
     let subList = items.map(item => {
       item.description = '';
       return (
-        <div className="sublist" key={`post-related-${item.id}`}>
-          <div className="row pb-30">
+        <div className="sublist" >
+          <div className="row pb-30" key={`post-related-${item.id}`}>
             <div className="col-lg-12">
               <RecomendationPostItem item={item} />
             </div>
@@ -37,7 +39,15 @@ export function PostRelated({
         </div>
       )
     });
-    return <>{subList}</>
+    return (
+      <div>
+        <div className="recomendations-container">
+          <i onClick={ onPrevious } className="fa fa-arrow-left" aria-hidden="true"></i>
+          <i onClick={ onNext } className="fa fa-arrow-right" aria-hidden="true"></i>
+        </div>
+        <div>{subList}</div>
+      </div>
+    );
   }
 
   return <div />;
@@ -58,6 +68,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: (tags) =>  dispatch(retrieve(tags)),
+    onNext: () => dispatch(next()),
+    onPrevious: () => dispatch(previous()),
     dispatch,
   };
 }

@@ -8,7 +8,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { isLoadingComplete } from 'configuration/config';
 import { FormattedMessage } from 'react-intl';
 
-import { makeItems, makeLoading, makeIsFirstLoading } from './selectors';
+import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { retrieve, retrieveMore } from './actions';
@@ -29,6 +29,9 @@ export function LatestPostSection({
   isFirstLoading,
   onLoadPage,
   onViewMore,
+
+  status,
+  message,
 }) {
   useInjectReducer({ key: 'latestPostSection', reducer });
   useInjectSaga({ key: 'latestPostSection', saga });
@@ -48,7 +51,7 @@ export function LatestPostSection({
 
   );
 
-  if (isLoadingComplete(loading)) {
+  if (isLoadingComplete(status === 2)) {
     ViewMore = () => (
       <ContainerCenter>
         <Button onClick={onViewMore}>
@@ -56,6 +59,10 @@ export function LatestPostSection({
         </Button>
       </ContainerCenter>
     )
+  }
+
+  if (status === 2) {
+    ViewMore = () => <></>
   }
 
   return (
@@ -75,7 +82,7 @@ export function LatestPostSection({
           <TagContainer />
         </ContainerCenter>
 
-        <LatestPostItemList items={items} loading={loading}/>
+        <LatestPostItemList items={items} loading={loading} status = {status} />
 
         <ViewMore />
       </SecondarySection>
@@ -91,6 +98,8 @@ const mapStateToProps = createStructuredSelector({
   items: makeItems(),
   loading: makeLoading(),
   isFirstLoading: makeIsFirstLoading(),
+  status: makeStatus(),
+  message: makeMessage(),
 });
 
 function mapDispatchToProps(dispatch) {

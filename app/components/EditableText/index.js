@@ -33,7 +33,7 @@ const closeTooltip = (id) => {
 const renderPCode = props => {
   const content = props.children.map(children => {
     let value = children.props.value;
-    if (value.includes("<<") && (value.includes(">>"))) {
+    if (value && value.includes("<<") && (value.includes(">>"))) {
       value = value.replace("<<", "");
       value = value.replace(">>", "");
 

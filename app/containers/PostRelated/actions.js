@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, RETRIEVE, ITEMS } from './constants';
+import { DEFAULT_ACTION, RETRIEVE, ITEMS, NEXT, PREVIOUS} from './constants';
 
 export function defaultAction() {
   return {
@@ -23,5 +23,18 @@ export function loadItems(items) {
   return {
     type: ITEMS,
     items,
+  };
+}
+
+export function next() {
+  return {
+    type: NEXT
+  };
+}
+
+
+export function previous() {
+  return {
+    type: PREVIOUS
   };
 }
