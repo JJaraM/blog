@@ -5,7 +5,7 @@ import './style.scss';
 function Button(props) {
 
   let Component = () => (
-    <button className={`btn ${props.className}`} onClick={props.onClick}>
+    <button id={props.id} className={`btn ${props.className}`} onClick={props.onClick}>
         { props.children }
       </button>
   );
@@ -35,6 +35,7 @@ Button.propTypes = {
   containerClassName: PropTypes.string,
   legend: PropTypes.string,
   onClick: PropTypes.func,
+  id: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -42,6 +43,7 @@ Button.defaultProps = {
   disable: false,
   className: '',
   containerClassName: '',
+  id: '',
 }
 
 export default memo(Button);

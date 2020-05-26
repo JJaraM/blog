@@ -1,21 +1,28 @@
 import React, { useEffect, memo } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItems, makeLoading } from './selectors';
+import { selectItems, selectStatus, selectError } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import RecomendationsPostList from 'components/RecomendationsPostList';
 import { retrieve } from './actions';
+
+import RecomendationsPostList from 'components/RecomendationsPostList';
+import PrimarySection from 'components/PrimarySection';
+import { makeIsAuthenticated } from 'containers/SignIn/selectors';
+
+import ErrorMessage from 'components/ErrorMessage';
+import { canRenderError } from 'configuration/config';
 
 export function RecomendationsPostSection({
   items,
-  loading,
+  status,
+  error,
   onLoadPage,
+  isAuthenticated,
 }) {
   useInjectReducer({ key: 'recomendationsPostSection', reducer });
   useInjectSaga({ key: 'recomendationsPostSection', saga });
@@ -24,20 +31,26 @@ export function RecomendationsPostSection({
     onLoadPage();
   }, []);
 
+  if (canRenderError(status)) {
+    return <ErrorMessage error={ error } isAdmin={ isAuthenticated } />
+  }
+
   return (
-    <div className="main-bg-color pt-30">
-      <RecomendationsPostList items={items} loading={loading} />
-    </div>
+    <PrimarySection>
+      <RecomendationsPostList 
+        items={ items } 
+        status={ status } 
+        error= { error }
+      />
+    </PrimarySection>
   );
 }
 
-RecomendationsPostSection.propTypes = {
-  onLoadPage: PropTypes.func,
-};
-
 const mapStateToProps = createStructuredSelector({
-  items: makeItems(),
-  loading: makeLoading(),
+  items: selectItems(),
+  status: selectStatus(),
+  error: selectError(),
+  isAuthenticated: makeIsAuthenticated(),
 });
 
 function mapDispatchToProps(dispatch) {

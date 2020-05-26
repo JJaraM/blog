@@ -1,9 +1,14 @@
+import { SUCCESS, ERROR  } from 'common/status';
+
 
 let postWs = 'http://localhost:5001';
 let tagWs = 'http://localhost:5003';
 
 const infiniteLoading = false;
-const environment = 'production';
+const environment = 'dev';
+
+const SORT_BY_VIEWS = 0;
+const SORT_BY_UPDATE_DATE = 1;
 
 if (environment === 'production') {//process.env.NODE_ENV === 'production'
     tagWs = 'https://blog-microservice-tag.herokuapp.com';
@@ -13,8 +18,8 @@ if (environment === 'production') {//process.env.NODE_ENV === 'production'
 const api = {
     testimonials : `${postWs}/testimonial/`,
     post: `${postWs}/post/`,
-    postMostPopular: `${postWs}/post/mostPopular/`,
-    byTitle: `${postWs}/post/byTitle/`,
+ 
+    byTitle: `${postWs}/post/find/byTitle/`,
     updateTitle: `${postWs}/post/updateTitle/`,
     updateContent: `${postWs}/post/updateContent/`,
     updateImage: `${postWs}/post/updateImage/`,
@@ -24,6 +29,10 @@ const api = {
         tag: {
             add: `${postWs}/post/addTag/`,
             remove: `${postWs}/post/removeTag/`,
+        },
+
+        find: {
+            all: `${postWs}/post/find/all/`,
         }
     },
 
@@ -45,10 +54,23 @@ const isInfitiveLoading = function isLoadingComplete() {
     return infiniteLoading;
 }
 
+const canRender = function canRender(status) {
+    return status === SUCCESS && !infiniteLoading;
+}
+
+const canRenderError = function canRender(status) {
+    return status === ERROR;
+}
+
 export {
     infiniteLoading,
     api,
     httpCall,
     isLoadingComplete,
-    isInfitiveLoading
+    isInfitiveLoading,
+    canRender,
+    canRenderError,
+    
+    SORT_BY_VIEWS,
+    SORT_BY_UPDATE_DATE,
 }

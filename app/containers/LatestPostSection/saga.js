@@ -1,7 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { RETRIEVE, RETRIEVE_MORE, CHANGE_TAG } from './constants';
 import { itemsLoaded, error } from './actions';
-import { api, httpCall } from 'configuration/config';
+import { api, httpCall, SORT_BY_UPDATE_DATE } from 'configuration/config';
 import request from 'utils/request';
 import { makeLatestPostPage, makeLatestPostCountItems, makeSelectedTag } from './selectors';
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
@@ -18,7 +18,7 @@ export function* getItems() {
   const latestPostPage = yield select(makeLatestPostPage());
   const latestPostItems = yield select(makeLatestPostCountItems());
   const tag = yield select(makeSelectedTag());
-  const requestURL = httpCall(api.post, latestPostPage, latestPostItems, tag);
+  const requestURL = httpCall(api.post_api.find.all, latestPostPage, latestPostItems, tag, SORT_BY_UPDATE_DATE);
   const res = yield call(fetch, requestURL);
   const json = yield call([res, 'json']) ;
 
@@ -28,7 +28,6 @@ export function* getItems() {
     if (!isAuthenticated) {
       items = items.filter(item => !item.tags.includes(182));
     }
-    console.log(items);
     yield put(itemsLoaded(items));
   } else {
     yield put(error(json));

@@ -4,42 +4,27 @@ import { initialState } from './reducer';
 const selectLatestPostSectionDomain = state =>
   state.recomendationsPostSection || initialState;
 
-  const makeSelectLatestPostSection = () =>
-  createSelector(
-    selectLatestPostSectionDomain,
-    substate => substate,
-  );
-
-const makeLatestPostPage = () =>
-  createSelector(
-    selectLatestPostSectionDomain,
-    substate => substate.page,
-  );
-
-const makeRecomendationsPostCountItems = () =>
-  createSelector(
-    selectLatestPostSectionDomain,
-    substate => substate.countItems,
-  );
-
-const makeItems = () => 
+const selectItems = () => 
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.items,
   );
 
-const makeLoading = () => 
+const selectStatus = () => 
   createSelector(
     selectLatestPostSectionDomain,
-    substate => substate.loading,
+    substate => substate.status,
   );
 
+const selectError = () => 
+  createSelector(
+    selectLatestPostSectionDomain,
+    substate => substate.error,
+  );
 
-//export default makeSelectLatestPostSection;
 export { 
   selectLatestPostSectionDomain,
-  makeLatestPostPage, 
-  makeRecomendationsPostCountItems, 
-  makeItems,
-  makeLoading,
+  selectItems,
+  selectStatus,
+  selectError,
 };

@@ -61,5 +61,18 @@
   "app.components.EditorCloseFullScreen.label" : "Close Full Screen",
 
   "app.containers.AboutMeSection.header" : "About Me",
-  "app.containers.AboutMeSection.subTitle": "How I am?"
+  "app.containers.AboutMeSection.subTitle": "How I am?",
+
+  "app.components.Date.january" : "January",
+  "app.components.Date.february" : "February",
+  "app.components.Date.march" : "March",
+  "app.components.Date.april" : "April",
+  "app.components.Date.may" : "May",
+  "app.components.Date.june" : "June",
+  "app.components.Date.july" : "July",
+  "app.components.Date.august" : "August",
+  "app.components.Date.september" : "September",
+  "app.components.Date.october" : "October",
+  "app.components.Date.november" : "November",
+  "app.components.Date.december" : "December"
 }

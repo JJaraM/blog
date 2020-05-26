@@ -1,10 +1,27 @@
 .error {
     background: var(--fourth-bg-color);
+    //background: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;
     width: 100%;
-    border-radius: 15px;
-    
 
     .footer-logo-box {
         border: none;
     }
+
+    .btn {
+        border-color: #FFF;
+
+        &:hover {
+            background: #FFF;
+            color: #000;
+        }
+    }
+
+    .pb-30 {
+        padding-left: 10px;
+    }
 }
+
+.button-error-container {
+    display: flex;
+}
+

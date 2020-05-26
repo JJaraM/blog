@@ -61,7 +61,19 @@
     "app.components.EditorCloseFullScreen.label" : "Cerrar Pantalla Completa",
 
     "app.containers.AboutMeSection.header" : "Acerca de mí",
-    "app.containers.AboutMeSection.subTitle": "¿Quién soy?"
+    "app.containers.AboutMeSection.subTitle": "¿Quién soy?",
 
+    "app.components.Date.january" : "Enero",
+    "app.components.Date.february" : "Febrero",
+    "app.components.Date.march" : "Marzo",
+    "app.components.Date.april" : "Abril",
+    "app.components.Date.may" : "Mayo",
+    "app.components.Date.june" : "Junio",
+    "app.components.Date.july" : "Julio",
+    "app.components.Date.august" : "Agosto",
+    "app.components.Date.september" : "Setiembre",
+    "app.components.Date.october" : "Octubre",
+    "app.components.Date.november" : "Noviembre",
+    "app.components.Date.december" : "Diciembre"
   }
   

@@ -4,7 +4,7 @@
  *
  */
 
-import { RETRIEVE, ITEMS_LOADED } from './constants';
+import { RETRIEVE, ITEMS_LOADED, FETCH_ERROR } from './constants';
 
 export function retrieve() {
   return {
@@ -16,5 +16,12 @@ export function itemsLoaded(items) {
   return {
     type: ITEMS_LOADED,
     items,
+  }
+}
+
+export function error(error) {
+  return {
+    type: FETCH_ERROR,
+    error
   }
 }

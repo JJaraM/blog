@@ -39,8 +39,8 @@ function LoadingLine(props) {
     .loading {
       .${id} {
         .line {
-          border-bottom-right-radius: 0px;
-          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 7px;
+          border-bottom-left-radius: 7px;
           border-top-right-radius: 7px;
           border-top-left-radius: 7px;
         }
