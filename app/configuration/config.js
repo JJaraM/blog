@@ -5,7 +5,7 @@ let postWs = 'http://localhost:5001';
 let tagWs = 'http://localhost:5003';
 
 const infiniteLoading = false;
-const environment = 'dev';
+const environment = 'production';
 
 const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
