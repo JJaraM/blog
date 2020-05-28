@@ -14,7 +14,7 @@ const SORT_BY_UPDATE_DATE = 1;
 let socket = null;
 
 if (socket == null) {
-    socket = new WebSocket('ws://localhost:5001/ws/profiles');
+    socket = new WebSocket('ws://blog-microservice-post.herokuapp.com/ws/profiles');
 }
 
 if (environment === 'production') {//process.env.NODE_ENV === 'production'
