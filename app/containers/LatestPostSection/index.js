@@ -40,7 +40,7 @@ export function LatestPostSection({
     if (!isFirstLoading) {
       onLoadPage();
     }
-    const socket = new WebSocket('ws://localhost:5001/ws/profiles');
+    const socket = new WebSocket('ws://blog-microservice-post.herokuapp.com/ws/profiles');
     socket.addEventListener('message', function (event) {
       const data = JSON.parse(event.data);
       onRefresh(data.source);
