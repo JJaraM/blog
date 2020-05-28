@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { retrieve, retrieveMore } from './actions';
+import { retrieve, retrieveMore, refresh } from './actions';
 import messages from './messages';
 
 import TagContainer from 'containers/TagContainer';
@@ -29,17 +29,22 @@ export function LatestPostSection({
   isFirstLoading,
   onLoadPage,
   onViewMore,
-
+  onRefresh,
   status,
   message,
 }) {
   useInjectReducer({ key: 'latestPostSection', reducer });
   useInjectSaga({ key: 'latestPostSection', saga });
 
-   useEffect(() => {
-     if (!isFirstLoading) {
+  useEffect(() => {
+    if (!isFirstLoading) {
       onLoadPage();
-     }
+    }
+    const socket = new WebSocket('ws://localhost:5001/ws/profiles');
+    socket.addEventListener('message', function (event) {
+      const data = JSON.parse(event.data);
+      onRefresh(data.source);
+    });
   }, []);
 
   let ViewMore = () => (
@@ -106,7 +111,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: () => dispatch(retrieve()),
     onViewMore:() => dispatch(retrieveMore()),
- 
+    onRefresh:(item) => dispatch(refresh(item)),
     dispatch,
   };
 }

@@ -5,10 +5,17 @@ let postWs = 'http://localhost:5001';
 let tagWs = 'http://localhost:5003';
 
 const infiniteLoading = false;
-const environment = 'production';
+const environment = 'dev';
 
 const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
+
+
+let socket = null;
+
+if (socket == null) {
+    socket = new WebSocket('ws://localhost:5001/ws/profiles');
+}
 
 if (environment === 'production') {//process.env.NODE_ENV === 'production'
     tagWs = 'https://blog-microservice-tag.herokuapp.com';
@@ -73,4 +80,6 @@ export {
     
     SORT_BY_VIEWS,
     SORT_BY_UPDATE_DATE,
+
+    socket,
 }

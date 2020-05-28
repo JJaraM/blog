@@ -52,18 +52,39 @@ function DateField(props) {
 
     const difference = today.getTime() - date.getTime(); // This will give difference in milliseconds
     const resultInMinutes = Math.round(difference / 60000);
+    const diffHours = today.getHours() - date.getHours();
 
     const diffInDays = afterDay - beforeDay;
-
     if (isToday(date)) {
       if (resultInMinutes <= 60) {
+        if (resultInMinutes === 0) {
+          Component = () => (
+            <div>
+              a few seconds ago
+            </div>
+          );
+        } else if (resultInMinutes === 1) {
+          Component = () => (
+            <div>
+              { resultInMinutes } minute ago
+            </div>
+          );
+        } else {
+          Component = () => (
+            <div>
+              { resultInMinutes } minutes ago
+            </div>
+          );
+        }
+       
+      } else if (diffInDays === 0 && afterYear === beforeYear) {
         Component = () => (
           <div>
-            { resultInMinutes } minutes ago
+            { diffHours } hours ago
           </div>
         );
-      }
-    } else if (diffInDays === 1 && afterYear === beforeYear) {
+      } 
+    } else if (diffInDays === 1) {
       Component = () => (
         <div>
           Yesterday

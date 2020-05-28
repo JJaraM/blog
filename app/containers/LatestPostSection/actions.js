@@ -3,7 +3,8 @@ import {
   ITEMS_LOADED, 
   RETRIEVE_MORE, 
   CHANGE_TAG,
-  ERROR
+  ERROR,
+  REFRESH
 } from './constants';
 
 export function retrieve() {
@@ -39,6 +40,12 @@ export function error(message) {
   }
 }
 
+export function refresh(item) {
+  return {
+    type: REFRESH,
+    item
+  }
+}
 
 
 

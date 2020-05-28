@@ -70,8 +70,37 @@
             cursor: pointer;
             background: #353535;
         }
+
+        &.refresh {
+            background-image:none !important; 
+            animation: fadeIt 5s ease-in-out;
+        }
+
+        .refresh-icon {
+            text-align: right;
+            animation: fade-out 5s;
+            opacity: 0;
+            i {
+                font-size: 12px !important;
+            }
+        }
     }
-    
+
+    @keyframes fade-out {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+     
+      @keyframes fadeIt {
+        0%   { background-color: #353535 !important; }
+        50%  { background-color: #353535; }
+        //100% { background-color: var(--main-bg-color); }
+      }
+      
 }
 
 .sanitize {

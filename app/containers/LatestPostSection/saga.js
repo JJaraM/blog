@@ -1,10 +1,12 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest, take } from 'redux-saga/effects';
 import { RETRIEVE, RETRIEVE_MORE, CHANGE_TAG } from './constants';
 import { itemsLoaded, error } from './actions';
-import { api, httpCall, SORT_BY_UPDATE_DATE } from 'configuration/config';
+import { api, httpCall, SORT_BY_UPDATE_DATE, socket } from 'configuration/config';
 import request from 'utils/request';
 import { makeLatestPostPage, makeLatestPostCountItems, makeSelectedTag } from './selectors';
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
+import {takeEvery, eventChannel} from 'redux-saga';
+
 
 export default function* init() {
   yield takeLatest([

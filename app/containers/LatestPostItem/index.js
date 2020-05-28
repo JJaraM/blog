@@ -23,26 +23,44 @@ export function LatestPostItem({
   useInjectReducer({ key: 'latestPostItem', reducer });
   useInjectSaga({ key: 'latestPostItem', saga });
 
+  const refresh = item.refresh;
+  let refreshClassName = '';
+  let Refresh = () => (<></>);
+
+  if (refresh) {
+      refreshClassName = 'refresh';
+      Refresh = () => (
+        <div className="refresh-icon">
+            <i className="fa fa-refresh" aria-hidden="true"></i>
+          </div>
+      );
+  }
+
+  const Component = () => (
+    <div className={`card-body ${refreshClassName}`}>
+      <div className="post-text">
+        <h3 className="main-title-color">
+            {item.title}
+        </h3>
+        <Metadata>
+          <span>
+            <DateField value={item.updateDate} />
+          </span>
+        </Metadata>
+        <div className="description">
+          <p>{item.description}</p>
+        </div>
+        <PostTagList item={item} items={tags}/>
+      </div>
+      <Refresh />
+    </div>
+  );
+
   return (
     <div className="card">
       <Link to={`/post/${item.id}`}>
         <Img src={item.image} className="card-img-top" alt="..." />
-        <div className="card-body">
-          <div className="post-text">
-            <h3 className="main-title-color">
-                {item.title}
-            </h3>
-            <Metadata>
-              <span>
-                <DateField value={item.updateDate} />
-              </span>
-            </Metadata>
-            <div className="description">
-              <p>{item.description}</p>
-            </div>
-            <PostTagList item={item} items={tags}/>
-          </div>
-        </div>
+        <Component />
       </Link>
     </div>
   );
