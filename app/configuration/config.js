@@ -1,51 +1,35 @@
 import { SUCCESS, ERROR  } from 'common/status';
-
-
-let postWs = 'http://localhost:5001';
-let tagWs = 'http://localhost:5003';
+import { HOST_NAME_POST, HOST_NAME_TAG } from 'configuration/hostname';
 
 const infiniteLoading = false;
-const environment = 'production';
 
 const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
 
-
-let socket = null;
-
-if (socket == null) {
-    socket = new WebSocket('ws://blog-microservice-post.herokuapp.com/ws/profiles');
-}
-
-if (environment === 'production') {//process.env.NODE_ENV === 'production'
-    tagWs = 'https://blog-microservice-tag.herokuapp.com';
-    postWs = 'https://blog-microservice-post.herokuapp.com';
-}
-
 const api = {
-    testimonials : `${postWs}/testimonial/`,
-    post: `${postWs}/post/`,
+    testimonials : `${HOST_NAME_POST}/testimonial/`,
+    post: `${HOST_NAME_POST}/post/`,
  
-    byTitle: `${postWs}/post/find/byTitle/`,
-    updateTitle: `${postWs}/post/updateTitle/`,
-    updateContent: `${postWs}/post/updateContent/`,
-    updateImage: `${postWs}/post/updateImage/`,
-    increaseViews: `${postWs}/post/view/`,
+    byTitle: `${HOST_NAME_POST}/post/find/byTitle/`,
+    updateTitle: `${HOST_NAME_POST}/post/updateTitle/`,
+    updateContent: `${HOST_NAME_POST}/post/updateContent/`,
+    updateImage: `${HOST_NAME_POST}/post/updateImage/`,
+    increaseViews: `${HOST_NAME_POST}/post/view/`,
 
     post_api: {
         tag: {
-            add: `${postWs}/post/addTag/`,
-            remove: `${postWs}/post/removeTag/`,
+            add: `${HOST_NAME_POST}/post/addTag/`,
+            remove: `${HOST_NAME_POST}/post/removeTag/`,
         },
 
         find: {
-            all: `${postWs}/post/find/all/`,
+            all: `${HOST_NAME_POST}/post/find/all/`,
         }
     },
 
     tag: {
-        create: `${tagWs}/tag/`,
-        all: `${tagWs}/tag/all/`,
+        create: `${HOST_NAME_TAG}/tag/`,
+        all: `${HOST_NAME_TAG}/tag/all/`,
     }
 };
 
@@ -80,6 +64,4 @@ export {
     
     SORT_BY_VIEWS,
     SORT_BY_UPDATE_DATE,
-
-    socket,
 }

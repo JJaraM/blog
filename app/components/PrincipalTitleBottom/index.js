@@ -5,7 +5,7 @@ import ContainerCenter from '../ContainerCenter';
 function PrincipalTitleBottom(props) {
   const { center } = props;
 
-  let { CenterComponent }  = (subProps) => (
+  let CenterComponent = (subProps) => (
     <>
       { subProps.children } 
     </>
@@ -31,5 +31,9 @@ function PrincipalTitleBottom(props) {
 PrincipalTitleBottom.propTypes = {
   center: PropTypes.bool,
 };
+
+PrincipalTitleBottom.defaultProps = {
+  center: false,
+}
 
 export default memo(PrincipalTitleBottom);

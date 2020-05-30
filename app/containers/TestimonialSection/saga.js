@@ -25,7 +25,7 @@ export function* getItems() {
       yield put(previous());
     }
   } catch (err) {
-    yield put(repoLoadingError(err));
+    console.log(err);
   }
 }
 

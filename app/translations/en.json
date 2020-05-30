@@ -74,5 +74,8 @@
   "app.components.Date.september" : "September",
   "app.components.Date.october" : "October",
   "app.components.Date.november" : "November",
-  "app.components.Date.december" : "December"
+  "app.components.Date.december" : "December",
+
+  "app.containers.LatestPostSection.header" : "Latest Posts",
+  "app.containers.LatestPostSection.description" : "In the below section you will find the most important posts"
 }

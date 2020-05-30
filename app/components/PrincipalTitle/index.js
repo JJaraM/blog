@@ -48,7 +48,6 @@ function PrincipalTitle(props) {
 
   if (bottomDescription) {
     BottomDescription = () => (
-      
       <PrincipalTitleBottom center={ center }>
         { bottomDescription }
       </PrincipalTitleBottom>
@@ -84,7 +83,6 @@ function PrincipalTitle(props) {
       <div className="principal-title pb-30 pt-30">
         <TopDescription />
         <CenterComponent>
-        
           <h1>
             { title }
             <IconEdit 
@@ -137,8 +135,8 @@ PrincipalTitle.propTypes = {
 };
 
 PrincipalTitle.defaultProps = {
-  center: false,
-  divider: false,
+  center: true,
+  divider: true,
   loading: false,
   onSaveStatus: 0,
 }

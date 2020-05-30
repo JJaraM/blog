@@ -5,8 +5,6 @@ import { api, httpCall, SORT_BY_UPDATE_DATE, socket } from 'configuration/config
 import request from 'utils/request';
 import { makeLatestPostPage, makeLatestPostCountItems, makeSelectedTag } from './selectors';
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
-import {takeEvery, eventChannel} from 'redux-saga';
-
 
 export default function* init() {
   yield takeLatest([

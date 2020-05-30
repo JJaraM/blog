@@ -5,7 +5,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { isLoadingComplete } from 'configuration/config';
 import { FormattedMessage } from 'react-intl';
 
 import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
@@ -14,14 +13,16 @@ import saga from './saga';
 import { retrieve, retrieveMore, refresh } from './actions';
 import messages from './messages';
 
-import TagContainer from 'containers/TagContainer';
+import { socket } from 'configuration/socket';
 
+import TagContainer from 'containers/TagContainer';
 import LatestPostItemList from 'components/LatestPostItemList';
-import Button from 'components/Button';
 import PrincipalTitle from 'components/PrincipalTitle';
 import ContainerCenter from 'components/ContainerCenter';
 import Container from 'components/Container';
 import SecondarySection from 'components/SecondarySection';
+import ButtonViewMore from 'components/ButtonViewMore';
+
 
 export function LatestPostSection({
   items,
@@ -39,57 +40,26 @@ export function LatestPostSection({
   useEffect(() => {
     if (!isFirstLoading) {
       onLoadPage();
-    }
-    const socket = new WebSocket('ws://blog-microservice-post.herokuapp.com/ws/profiles');
-    socket.addEventListener('message', function (event) {
-      const data = JSON.parse(event.data);
-      onRefresh(data.source);
-    });
+    }  
   }, []);
 
-  let ViewMore = () => (
-    <ContainerCenter>
-      <Button>
-        Loading...
-      </Button>
-    </ContainerCenter>
-
-  );
-
-  if (isLoadingComplete(status === 2)) {
-    ViewMore = () => (
-      <ContainerCenter>
-        <Button onClick={onViewMore}>
-          View More
-        </Button>
-      </ContainerCenter>
-    )
-  }
-
-  if (status === 2) {
-    ViewMore = () => <></>
-  }
+  socket('post').watchData(onRefresh);
 
   return (
     <Container>
-
       <SecondarySection>
         <PrincipalTitle 
-          center={ true } 
-          divider={ true }
-          title={
-            <FormattedMessage {...messages.header } />
-          }
-          bottomDescription="In the below section you will find the most important post in the last month"
+          title={ <FormattedMessage {...messages.header } /> }
+          bottomDescription={ <FormattedMessage {...messages.description } /> }
         />
       
         <ContainerCenter>
           <TagContainer />
         </ContainerCenter>
 
-        <LatestPostItemList items={items} loading={loading} status = {status} />
+        <LatestPostItemList items={ items } loading={ loading } status = {status} />
 
-        <ViewMore />
+        <ButtonViewMore status={ status } onClick={ onViewMore } />
       </SecondarySection>
     </Container>
   );

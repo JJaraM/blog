@@ -74,6 +74,9 @@
     "app.components.Date.september" : "Setiembre",
     "app.components.Date.october" : "Octubre",
     "app.components.Date.november" : "Noviembre",
-    "app.components.Date.december" : "Diciembre"
+    "app.components.Date.december" : "Diciembre",
+
+    "app.containers.LatestPostSection.header" : "Últimos artículos",
+    "app.containers.LatestPostSection.description" : "En la siguiente section encontrará los ultimos artículos"
   }
   
