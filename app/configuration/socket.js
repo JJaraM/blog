@@ -2,9 +2,8 @@ import { HOST_NAME_POST_SOCKET } from 'configuration/hostname';
 
 const getURL = function(channel) {
     let url = null;
-    if ('post' === channel) {
-        url = `${HOST_NAME_POST_SOCKET}/${channel}`
-    }
+    if ('post' === channel)
+        url = `${HOST_NAME_POST_SOCKET}/${channel}`;
     return url;
 }
 
