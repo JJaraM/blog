@@ -44,10 +44,9 @@ export function CategoryPage({
   const id = match.params.id;
   let title;
 
-  if (tags) {
+  if (tags && tags.length > 0) {
     const currentTag = tags.filter(tag => tag.id == id);
-    console.log(currentTag);
-    if (currentTag) {
+    if (currentTag && currentTag) {
       title = currentTag[0].name;
     }
   }
