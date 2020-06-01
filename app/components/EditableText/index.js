@@ -33,51 +33,38 @@ const closeTooltip = (id) => {
 const renderPCode = props => {
   const content = props.children.map(children => {
     let value = children.props.value;
-    if (value && value.includes("<<") && (value.includes(">>"))) {
-      value = value.replace("<<", "");
-      value = value.replace(">>", "");
-
+    if (value && value.includes("<<") && value.includes(">>")) {
+      value = value.replace("<<", "").replace(">>", "");
+      const id = _.uniqueId("token-");
       return (
-        <span className="token bullet bullet-fix">
+        <span key={ id } className="token bullet bullet-fix">
           { value }
         </span>
       )
     }
-    return children ;
+    return children;
   });
-
-  /*return (
-    <pre className={`language-${props.language}`}>
-      <code className={`language-${props.language}`}>
-        { props.value }
-      </code>
-    </pre>
-  );
-  */
-  return (<p>{ content } </p>);
+  return (<p> { content } </p>);
 }
 
-const renderImage = props => {
-
+const renderLink = props => {
   if (props.href && props.href.includes("ref")) {
     return ( 
-      <div className="tooltip-href">
+      <span className="tooltip-href">
         <span className="internal-nav" id={props.href} href={props.href} 
           onMouseEnter={() => onHrefHover(props.href, false)}
-          onClick={() => onHrefHover(props.href, true)}
-        >
+          onClick={() => onHrefHover(props.href, true)}>
           {props.children}
         </span>
-        <div id={`#tooltip-text-${props.href}`} className="tooltip-href-text">
-          <div className="tooltip-text-i-container">
+        <span id={`#tooltip-text-${props.href}`} className="tooltip-href-text">
+          <span className="tooltip-text-i-container">
             <i className="fa fa-times" aria-hidden="true" onClick={() => closeTooltip(props.href)}></i>
-          </div>
+          </span>
           <span id={`#tooltip-text-span-${props.href}`}></span>
-        </div>
-      </div>
+        </span>
+      </span>
     )
   }
-
   return <a href={props.href}>{props.children}</a>
 }
 
@@ -88,8 +75,10 @@ const FinalText = (props) => (
         escapeHtml={ false } 
         editable={ true }
         renderers={
-          {link: renderImage}
-          ,{paragraph: renderPCode}
+          {
+            link: renderLink,
+            paragraph: renderPCode
+          }
         } 
       />
   </Content>

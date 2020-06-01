@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import PostImageNotFound from 'images/PostImageNotFound.png';
 
 function Img(props) {
+
   let img = PostImageNotFound;
   if (props.src) {
     img = props.src;
@@ -24,7 +25,7 @@ function Img(props) {
 
 // We require the use of src and alt, only enforced by react in dev mode
 Img.propTypes = {
-  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   alt: PropTypes.string,
   className: PropTypes.string,
 };

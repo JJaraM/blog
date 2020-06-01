@@ -19,16 +19,20 @@ export function* getItems() {
       const id = yield select(makeId());
       const tags = yield select(makeTags());
       const page = yield select(makePage());
-      const requestURL = httpCall(api.post_api.find.all, page, 3, tags.join(","), SORT_BY_VIEWS);
-      let item = yield call(request, requestURL);
       
-      if (item.length > 0) {
-        item = item.filter(i => i.id != id)
-        yield put(loadItems(item));
-
-      } else if (page > 0) {
-        yield put(previous());
+      if (tags.length > 0) {
+        const requestURL = httpCall(api.post_api.find.all, page, 3, tags.join(","), SORT_BY_VIEWS);
+        let item = yield call(request, requestURL);
+        
+        if (item.length > 0) {
+          item = item.filter(i => i.id != id)
+          yield put(loadItems(item));
+  
+        } else if (page > 0) {
+          yield put(previous());
+        }
       }
+     
 
     } catch (err) {
       yield put(previous());

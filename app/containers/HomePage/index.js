@@ -44,7 +44,7 @@ export function HomePage({
       <LatestPostSection />
       <RecomendationsPostSection />
       <TestimonialSection/>
-      <AboutMeSection />
+      {/* <AboutMeSection /> */}
    
     </>
   );

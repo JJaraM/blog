@@ -177,7 +177,7 @@ export function PostPage({
       />
 
       <PostImage>
-        <Img src={image}/>
+        <Img src={image} />
         <PostHeader>
           <ImageInput />
           <PrincipalTitle 
