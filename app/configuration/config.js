@@ -9,8 +9,7 @@ const SORT_BY_UPDATE_DATE = 1;
 const api = {
     testimonials : `${HOST_NAME_POST}/testimonial/`,
     post: `${HOST_NAME_POST}/post/`,
- 
-    byTitle: `${HOST_NAME_POST}/post/find/byTitle/`,
+    byTitle: `${HOST_NAME_POST}/post/find/all/byTitle/`,
     updateTitle: `${HOST_NAME_POST}/post/updateTitle/`,
     updateContent: `${HOST_NAME_POST}/post/updateContent/`,
     updateImage: `${HOST_NAME_POST}/post/updateImage/`,
