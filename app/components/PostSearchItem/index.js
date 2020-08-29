@@ -6,9 +6,7 @@ import './style.scss';
 
 function PostSearchItem(props) {
 
-  let content = (
-    <></>
-  );
+  let content = ( <></> );
 
   if (props.items && props.items.length > 0) {
     content = props.items.map(item => (
@@ -36,9 +34,6 @@ function PostSearchItem(props) {
       </div>
     ));
   }
-  
-  
- 
 
   return (
     <div className="row d-flex justify-content-center search-results">    

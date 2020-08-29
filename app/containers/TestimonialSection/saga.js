@@ -7,25 +7,29 @@ import request from 'utils/request';
 import { makeLatestPostPage, makeRecomendationsTestimonialCountItems } from './selectors';
 
 export default function* init() {
-  yield takeLatest(RETRIEVE, getItems);
-  yield takeLatest(NEXT, getItems);
-  yield takeLatest(PREVIOUS, getItems);
+  yield fetch([RETRIEVE, NEXT, PREVIOUS], fetch);
 }
 
-export function* getItems() {
-  const latestPostPage = yield select(makeLatestPostPage());
-  const latestPostItems = yield select(makeRecomendationsTestimonialCountItems());
-  const requestURL = httpCall(api.testimonials, latestPostPage, latestPostItems);
+/**
+ * Gets the testimonials records, based on the page number and the count of items to retrieve in one single request
+ */
+export function* fetch() {
+  const pageNumber = yield select(makeLatestPostPage());
+  const totalOfItems = yield select(makeRecomendationsTestimonialCountItems());
+  const url = api.testimonials;
+  
+  const requestURL = httpCall(url, pageNumber, totalOfItems);
   
   try {
     const items = yield call(request, requestURL);
     if (items.length > 0) {
       yield put(itemsLoaded(items));
-    } else if (latestPostPage > 0) {
+    } else if (pageNumber > 0) {
       yield put(previous());
     }
   } catch (err) {
-    console.log(err);
+    console.erro(err);
+    yield put(itemsLoaded([]));
   }
 }
 

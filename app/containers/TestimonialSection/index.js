@@ -1,3 +1,8 @@
+/**
+ * Component that will render the testimionals
+ * 
+ * @author Jonathan Jara Morales
+ */
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';;
@@ -11,8 +16,12 @@ import { makeItems, makeLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { retrieve, next, previous } from './actions';
+
 import TestimonialList from 'components/TestimonialList';
 import SectionTitle from 'components/SectionTitle';
+import SecondarySection from 'components/SecondarySection';
+import ContainerCenter from 'components/ContainerCenter';
+import ArrowButton from 'components/ArrowButton';
 
 export function TestimonialSection({
   items,
@@ -21,60 +30,29 @@ export function TestimonialSection({
   onNext,
   onPrevious,
 }) {
-  useInjectReducer({ key: 'testimonialSection', reducer });
-  useInjectSaga({ key: 'testimonialSection', saga });
+  const key = "testimonialSection";
+
+  useInjectReducer({ key: key, reducer });
+  useInjectSaga({ key: key, saga });
 
   useEffect(() => {
     onLoadPage();
   }, []);
 
   return (
-    <div className="secondary-bg-color pt-30">
-
-        
-        <SectionTitle 
-          topDescription={
-            <FormattedMessage {...messages.subTitle} />
-          }
-          title={
-            <FormattedMessage {...messages.header} />
-          }
-        />
-        
-        <TestimonialList items={items} loading={loading} />
+    <SecondarySection>
+      <SectionTitle 
+        topDescription= { <FormattedMessage {...messages.subTitle} /> }
+        title={ <FormattedMessage { ...messages.header } /> }
+      />
       
-        <div className="d-flex justify-content-center pb-30">
-            <div className="button-container">
-              <span className="circle-button page-numbers" onClick={onPrevious}>
-                <svg className="slinder-arrow-svg slinder-left-arrow" 
-                  x="0px" 
-                  y="0px" 
-                  width="16px" 
-                  height="16px" 
-                  viewBox="0 0 7 12" 
-                  >
-                    <polyline fill="var(--main-title-color)" 
-                    points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "></polyline>
-                </svg>
-
-              </span>
-            </div>   
-            <div className="button-container" onClick={onNext}>
-              <span className="circle-button page-numbers">
-              <svg className="slinder-arrow-svg slinder-right-arrow" 
-                x="0px" 
-                y="0px" 
-                width="16px" 
-                height="16px" 
-                viewBox="0 0 7 12" 
-                >
-                  <polyline  fill="var(--main-title-color)" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "></polyline>
-              </svg>
-              </span>
-            </div>      
-          </div>
-          
-        </div>
+      <TestimonialList items={items} loading={ loading } />
+    
+      <ContainerCenter>
+        <ArrowButton onClick={onPrevious} direction='left'/>
+        <ArrowButton onClick={onNext} direction='right'/>    
+      </ContainerCenter>
+    </SecondarySection>
   );
 }
 
