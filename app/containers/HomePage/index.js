@@ -19,6 +19,7 @@ import LatestPostSection from 'containers/LatestPostSection';
 import RecomendationsPostSection from 'containers/RecomendationsPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
 import AboutMeSection from 'containers/AboutMeSection';
+import Welcome from 'components/Welcome';
 
 const key = 'home';
 
@@ -40,6 +41,8 @@ export function HomePage({
         <meta name="description" content="Personal Blog Site" />
       </Helmet>
      
+      <Welcome />
+
       
       <LatestPostSection />
       <RecomendationsPostSection />
