@@ -77,6 +77,9 @@
     "app.components.Date.december" : "Diciembre",
 
     "app.containers.LatestPostSection.header" : "Últimos artículos",
-    "app.containers.LatestPostSection.description" : "En la siguiente section encontrará los ultimos artículos"
+    "app.containers.LatestPostSection.description" : "En la siguiente section encontrará los ultimos artículos",
+
+    "app.components.Welcome.download" : "Descargar",
+    "app.components.Welcome.workTitle" : "Ingeniero de Software"
   }
   

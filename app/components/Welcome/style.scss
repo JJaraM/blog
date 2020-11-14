@@ -1,14 +1,54 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap');
 
+.image-overlay {
+  background-color: rgba(0,0,0,0.50);
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+}
+
+.social-media-welcome {
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 2%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: opacity .35s ease .75s;
+  z-index: 7;
+
+  ul {
+    li {
+      padding-bottom: 10px;
+    }
+  }
+
+  .fa {
+    font-size: 26px !important;
+    color: #b0b2c3;
+
+    &:hover {
+      font-size: 40px !important;
+      color: #FFF;
+    }
+  }
+}
 
 
 .container-welcome {
   width: 100%;
-  height: 90vh;
+  height: 93vh;
   background: #232323;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: cover;
 
   .box {
     width: 250px;
@@ -29,7 +69,7 @@
       .block {
         width: 0%;
         height: inherit;
-        background: #ffb510;
+        background: #75d69c;
         position: absolute;
         animation: mainBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
         display: flex;
@@ -55,7 +95,7 @@
           -moz-border-radius: 50%;
           border-radius: 50%;
 
-          background: #ffb510;
+          background: #75d69c;
           -webkit-animation: load 0.6s cubic-bezier(.74, .06, .4, .92) forwards;
           animation: popIn 0.8s cubic-bezier(.74, .06, .4, .92) forwards;
           animation-delay: 2s;
@@ -179,7 +219,7 @@
   100% {
     width: 7px;
     height: 7px;
-    background: #e9d856;
+    background: #75d69c;
     border: 0px solid #222;
     bottom: 13px;
 
@@ -195,9 +235,6 @@
     opacity: 0.5;
   }
 }
-
-
-
 
 .footer-welcome {
   width: 350px;

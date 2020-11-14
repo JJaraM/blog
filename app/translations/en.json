@@ -77,5 +77,8 @@
   "app.components.Date.december" : "December",
 
   "app.containers.LatestPostSection.header" : "Latest Posts",
-  "app.containers.LatestPostSection.description" : "In the below section you will find the most important posts"
+  "app.containers.LatestPostSection.description" : "In the below section you will find the most important posts",
+
+  "app.components.Welcome.download" : "Download",
+  "app.components.Welcome.workTitle" : "Software Engineer"
 }

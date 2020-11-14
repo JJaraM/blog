@@ -29,6 +29,7 @@ import '!file-loader?name=[name].[ext]!./images/favicon.png';
 import '!file-loader?name=[name].[ext]!./images/GitHub-Mark-Light-64px.png';
 import '!file-loader?name=[name].[ext]!./images/avatar.jpg';
 import '!file-loader?name=[name].[ext]!./images/PostImageNotFound.png';
+import '!file-loader?name=[name].[ext]!./images/Home2.jpeg';
 import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
 
 import configureStore from './configureStore';
