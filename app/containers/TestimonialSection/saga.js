@@ -7,7 +7,11 @@ import request from 'utils/request';
 import { makeLatestPostPage, makeRecomendationsTestimonialCountItems } from './selectors';
 
 export default function* init() {
-  yield fetch([RETRIEVE, NEXT, PREVIOUS], fetch);
+  yield takeLatest([
+    RETRIEVE, 
+    NEXT, 
+    PREVIOUS
+  ], fetch);
 }
 
 /**
@@ -28,7 +32,7 @@ export function* fetch() {
       yield put(previous());
     }
   } catch (err) {
-    console.erro(err);
+    console.log(err);
     yield put(itemsLoaded([]));
   }
 }
