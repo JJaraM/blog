@@ -40,7 +40,7 @@ export function LatestPostSection({
   useEffect(() => {
     if (!isFirstLoading) {
       onLoadPage();
-    }  
+    }
   }, []);
 
   socket('post').watchData(onRefresh);
@@ -48,11 +48,11 @@ export function LatestPostSection({
   return (
     <Container>
       <SecondarySection>
-        <PrincipalTitle 
+        <PrincipalTitle
           title={ <FormattedMessage {...messages.header } /> }
           bottomDescription={ <FormattedMessage {...messages.description } /> }
         />
-      
+
         <ContainerCenter>
           <TagContainer />
         </ContainerCenter>

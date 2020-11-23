@@ -4,35 +4,34 @@ import { initialState } from './reducer';
 const selectTestimonialSectionDomain = state =>
   state.testimonialSection || initialState;
 
-const makeLatestPostPage = () =>
+const getPageNumber = () =>
   createSelector(
     selectTestimonialSectionDomain,
     substate => substate.page,
   );
 
-const makeRecomendationsTestimonialCountItems = () =>
+const getItemsCount = () =>
   createSelector(
     selectTestimonialSectionDomain,
     substate => substate.countItems,
   );
 
-const makeItems = () => 
+const makeItems = () =>
   createSelector(
     selectTestimonialSectionDomain,
     substate => substate.items,
   );
 
-const makeLoading = () => 
+const makeLoading = () =>
   createSelector(
     selectTestimonialSectionDomain,
     substate => substate.loading,
   );
 
-export { 
+export {
   selectTestimonialSectionDomain,
-  makeLatestPostPage, 
-  makeRecomendationsTestimonialCountItems, 
+  getPageNumber,
+  getItemsCount,
   makeItems,
   makeLoading,
 };
-

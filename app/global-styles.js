@@ -83,7 +83,7 @@ h3 {
   margin-bottom: 10px;
 }
 
-.tags span {
+.tags span, .tag-item  {
   border-style: none;
   border-width: 1px 1px 1px 1px;
   background: var(--third-bg-color);
@@ -106,7 +106,6 @@ h3 {
     box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.5);
   }
 }
-
 
 
 

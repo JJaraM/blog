@@ -14,20 +14,15 @@ import reducer from './reducer';
 export function TagListItemMore({
   items,
   after,
-  tagId,
   onChange
 }) {
 
 useInjectReducer({ key: 'tagListItem', reducer });
-
-  console.log(items);
-
   let pos = 0;
   const more = items.map(item => {
     pos++;
     if (pos > after) {
-      return <button className="tag-button dropdown-item" value={item.id} onClick={onChange}>{item.name}</button>
-      //return <a key={`tag-item-${item.id}`} value={item.id} className="tag-button dropdown-item" href="#">{item.name}</a>;
+      return <button key={`tag-item-${item.id}`} className="tag-button dropdown-item" value={item.id} onClick={onChange}>{item.name}</button>
     }
     return;      
   });

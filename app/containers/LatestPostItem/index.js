@@ -31,8 +31,8 @@ export function LatestPostItem({
       refreshClassName = 'refresh';
       Refresh = () => (
         <div className="refresh-icon">
-            <i className="fa fa-refresh" aria-hidden="true"></i>
-          </div>
+          <i className="fa fa-refresh" aria-hidden="true"></i>
+        </div>
       );
   }
 
@@ -58,10 +58,12 @@ export function LatestPostItem({
 
   return (
     <div className="card">
-      <Link to={`/post/${item.id}`}>
-        <Img src={item.image} className="card-img-top" alt="..." />
+      <div>
+        <Link to={`/post/${item.id}`}>
+          <Img src={item.image} className="card-img-top" alt="..." />
+        </Link>
         <Component />
-      </Link>
+      </div>
     </div>
   );
 }

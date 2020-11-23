@@ -31,20 +31,18 @@ function Welcome() {
 
         <ul className="social-media-welcome">
           <li><a target="_blank" href="https://github.com/JJaraM"><i className="fa fa-github" aria-hidden="true"></i></a></li>
-          <li><a target="_blank" href="https://www.linkedin.com/in/jonathan-jara-morales"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+          <li><a target="_blank" href="https://www.linkedin.com/in/jonathan-jara-morales"><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
         </ul>
     </div>
 
-    <a href="https://youtu.be/7d2XsPSjjjI" target="_blank">
-      <div className="footer-welcome">
-        <div>
-          <span>
-            <i className="fa fa-download"></i>
-            <FormattedMessage {...messages.download} />
-          </span>
-        </div>
+    <div className="footer-welcome download-cv">
+      <div>
+        <span>
+          <i className="fa fa-download"></i>
+          <FormattedMessage {...messages.download} />
+        </span>
       </div>
-    </a>
+    </div>
   </div>
   );
 }

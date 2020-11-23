@@ -4,12 +4,6 @@ import { initialState } from './reducer';
 const selectLatestPostSectionDomain = state =>
   state.latestPostSection || initialState;
 
-  const makeSelectLatestPostSection = () =>
-  createSelector(
-    selectLatestPostSectionDomain,
-    substate => substate,
-  );
-
 const makeLatestPostPage = () =>
   createSelector(
     selectLatestPostSectionDomain,
@@ -22,50 +16,50 @@ const makeLatestPostCountItems = () =>
     substate => substate.countItems,
   );
 
-const makeItems = () => 
+const makeItems = () =>
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.items,
   );
 
-const makeLoading = () => 
+const makeLoading = () =>
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.loading,
   );
 
-const makeIsFirstLoading = () => 
+const makeIsFirstLoading = () =>
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.isFirstLoading,
   );
 
-const makeSelectedTag = () => 
+const makeSelectedTag = () =>
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.tagId,
   );
 
-const makeStatus = () => 
+const makeStatus = () =>
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.status,
   );
 
-const makeMessage = () => 
+const makeMessage = () =>
   createSelector(
     selectLatestPostSectionDomain,
     substate => substate.message,
   );
 
-export { 
+export {
   selectLatestPostSectionDomain,
-  makeLatestPostPage, 
-  makeLatestPostCountItems, 
+  makeLatestPostPage,
+  makeLatestPostCountItems,
   makeItems,
   makeLoading,
   makeIsFirstLoading,
   makeSelectedTag,
   makeStatus,
-  makeMessage
+  makeMessage,
 };

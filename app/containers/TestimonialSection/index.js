@@ -1,11 +1,11 @@
 /**
  * Component that will render the testimionals
- * 
+ *
  * @author Jonathan Jara Morales
  */
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';;
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
@@ -41,16 +41,16 @@ export function TestimonialSection({
 
   return (
     <SecondarySection>
-      <SectionTitle 
+      <SectionTitle
         topDescription= { <FormattedMessage {...messages.subTitle} /> }
         title={ <FormattedMessage { ...messages.header } /> }
       />
-      
+
       <TestimonialList items={items} loading={ loading } />
-    
+
       <ContainerCenter>
         <ArrowButton onClick={onPrevious} direction='left'/>
-        <ArrowButton onClick={onNext} direction='right'/>    
+        <ArrowButton onClick={onNext} direction='right'/>
       </ContainerCenter>
     </SecondarySection>
   );

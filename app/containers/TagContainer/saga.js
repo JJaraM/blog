@@ -1,31 +1,15 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { 
-  RETRIEVE,
-  ADD,
-  REMOVE,
-  CREATE
-} from './constants';
+import { makeId, makeItem } from 'containers/PostPage/selectors';
 
-import { 
-  makeTagId, 
-  makeText,
-  makeTagItems
-} from './selectors';
+import { itemLoaded } from 'containers/PostPage/actions';
 
-import { 
-  makeId,
-  makeItem
-} from 'containers/PostPage/selectors';
-
-import { 
-  itemLoaded
-} from 'containers/PostPage/actions';
-
-import { itemsLoaded, createDone} from './actions';
 import { api, httpCall, isInfitiveLoading } from 'configuration/config';
 
 import request from 'utils/request';
+import { itemsLoaded, createDone } from './actions';
+import { makeTagId, makeText, makeTagItems } from './selectors';
+import { RETRIEVE, ADD, REMOVE, CREATE } from './constants';
 
 export default function* init() {
   yield takeLatest(RETRIEVE, sagaRetrieve);
@@ -36,7 +20,6 @@ export default function* init() {
 
 export function* sagaRetrieve() {
   try {
-    
     const requestURL = httpCall(api.tag.all);
     const items = yield call(request, requestURL);
     yield put(itemsLoaded(items));
@@ -47,13 +30,12 @@ export function* sagaRetrieve() {
 
 export function* sagaAdd() {
   try {
-    
     const id = yield select(makeTagId());
     const postId = yield select(makeId());
     const requestURL = httpCall(api.post_api.tag.add, postId);
     yield call(request, requestURL, {
       method: 'PUT',
-      body: JSON.stringify({ tags: [ id ] }),
+      body: JSON.stringify({ tags: [id] }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -63,7 +45,6 @@ export function* sagaAdd() {
     postItem.tags.push(id);
 
     yield put(itemLoaded(postItem));
-
   } catch (err) {
     console.log(err);
   }
@@ -71,14 +52,13 @@ export function* sagaAdd() {
 
 export function* sagaRemove() {
   try {
-   
     const id = yield select(makeTagId());
     const postId = yield select(makeId());
     const requestURL = httpCall(api.post_api.tag.remove, postId);
-  
+
     yield call(request, requestURL, {
       method: 'PUT',
-      body: JSON.stringify({ tags: [ id ] }),
+      body: JSON.stringify({ tags: [id] }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -87,7 +67,6 @@ export function* sagaRemove() {
     const items = yield select(makeTagItems());
     const filterItems = items.filter(item => item.id !== id);
     yield put(createDone(filterItems));
-
   } catch (err) {
     console.log(err);
   }
@@ -112,23 +91,22 @@ export function* sagaCreate() {
     requestURL = httpCall(api.post_api.tag.add, postId);
     yield call(request, requestURL, {
       method: 'PUT',
-      body: JSON.stringify({ tags: [ tag.id ] }),
+      body: JSON.stringify({ tags: [tag.id] }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
     const items = yield select(makeTagItems());
-    tag.posts = [ postId ];
+    tag.posts = [postId];
     items.push(tag);
 
     const postItem = yield select(makeItem());
     postItem.tags.push(tag.id);
-    
-    yield put(createDone(items));
 
+    yield put(createDone(items));
   } catch (err) {
-    //yield put(repoLoadingError(err));
+    // yield put(repoLoadingError(err));
     console.log(err);
   }
 }

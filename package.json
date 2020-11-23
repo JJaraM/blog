@@ -179,5 +179,7 @@
     "webpack-pwa-manifest": "4.0.0",
     "whatwg-fetch": "3.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "configuration": "^2.1.0"
+  }
 }
