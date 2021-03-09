@@ -43,34 +43,34 @@ export function SearchContainer({
   if (render) {
     return (
       <div className="search-container">
-        
+
         <Container>
           <div className="btn-close">
             <button className="btn-search fa fa-close" onClick={ onClose }></button>
           </div>
         </Container>
-       
+
         <div className="row h-100">
-      
+
           <div className="col-sm-12 my-auto">
             <Container>
               <ContainerCenter>
-                <PrincipalTitle center={true} title="search a post" divider={true} bottomDescription="Enter any word to fin the post"/>
+                <PrincipalTitle center={true} title="search post" divider={true} bottomDescription="Enter any word to fin the post"/>
               </ContainerCenter>
             </Container>
             <div className="pb-30">
               <Container>
                 <ContainerCenter>
-                  <input id="language" type="text" 
-                    value={searchText} 
-                    className="search" 
+                  <input id="language" type="text"
+                    value={searchText}
+                    className="search"
                     onChange={ onChangeSearch } />
                 </ContainerCenter>
               </Container>
             </div>
             <Container>
               <ContainerCenter>
-                <PostSearchItem items={items} onClick={ onClose } />
+                <PostSearchItem items={items} onClick={onClose} />
               </ContainerCenter>
             </Container>
 
@@ -96,7 +96,7 @@ export function SearchContainer({
         </div>
       </div>
     );
-  } 
+  }
 
   return (
     <div className="search-container-hide" />
@@ -114,7 +114,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeSearch: (evt) => {
+    onChangeSearch: evt => {
       dispatch(search(evt.target.value))
     },
     onNext: () => dispatch(next()),

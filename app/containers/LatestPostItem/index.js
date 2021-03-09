@@ -17,7 +17,7 @@ import Img from 'components/Img';
 import Metadata from 'components/Metadata';
 
 export function LatestPostItem({
-  item, 
+  item,
   tags
 }) {
   useInjectReducer({ key: 'latestPostItem', reducer });

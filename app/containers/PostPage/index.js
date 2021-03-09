@@ -1,8 +1,8 @@
 /**
  * Page that displayed the post information.
- * 
+ *
  * @author Jonathan Jara Morales
- * @since 20202-05-04 
+ * @since 20202-05-04
  */
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
@@ -13,31 +13,31 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { Helmet } from 'react-helmet';
 
-import { 
-  makeItem, 
-  makeEditable, 
+import {
+  makeItem,
+  makeEditable,
   makeRenderDeleteModal,
   makeEvents,
 } from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
-import { 
-  retrieve, 
+import {
+  retrieve,
   renderDeleteModal,
 
   event,
 
   //Content
-  changeContent, 
+  changeContent,
   updateContent,
 
   //Title
-  changeTitle, 
+  changeTitle,
   updateTitle,
 
   //Image
-  changeImage, 
+  changeImage,
   updateImage,
 } from './actions';
 
@@ -58,13 +58,13 @@ import './tableOfContent.scss';
 
 import PostEditableContent from 'components/PostEditableContent';
 
-import { 
-  EVENT_CHANGE_TITLE, 
-  EVENT_CHANGE_IMAGE, 
-  EVENT_CHANGE_CONTENT, 
-  EVENT_CHANGE_TITLE_STATUS, 
-  EVENT_CHANGE_IMAGE_STATUS, 
-  EVENT_CHANGE_CONTENT_STATUS 
+import {
+  EVENT_CHANGE_TITLE,
+  EVENT_CHANGE_IMAGE,
+  EVENT_CHANGE_CONTENT,
+  EVENT_CHANGE_TITLE_STATUS,
+  EVENT_CHANGE_IMAGE_STATUS,
+  EVENT_CHANGE_CONTENT_STATUS
 } from './constants';
 
 function renderEditableComponent(eventValue, eventV) {
@@ -96,7 +96,7 @@ export function PostPage({
   onLoadPage,
   canRenderDeleteModal,
   onRenderDeleteModal,
-  
+
   //Title
   onChangeTitle,
   onUpdateTitle,
@@ -112,10 +112,10 @@ export function PostPage({
   eventValue,
   canEdit
 }) {
-  
+
   useInjectReducer({ key: 'postPage', reducer });
   useInjectSaga({ key: 'postPage', saga });
-  
+
   const id = match.params.id;
 
   const titleStatus = renderStatusComponent(eventValue, EVENT_CHANGE_TITLE_STATUS);
@@ -123,7 +123,7 @@ export function PostPage({
 
   const imageEditable = renderEditableComponent(eventValue, EVENT_CHANGE_IMAGE);
   const imageStatus = renderStatusComponent(eventValue, EVENT_CHANGE_IMAGE_STATUS);
- 
+
   const contentEditable = renderEditableComponent(eventValue, EVENT_CHANGE_CONTENT);
   const contentStatus = renderStatusComponent(eventValue, EVENT_CHANGE_CONTENT_STATUS);
 
@@ -135,19 +135,21 @@ export function PostPage({
   let ImageInput = () => (<></>);
 
   if (item && item.id != id) {
+    console.log('load page');
     onLoadPage(id);
   }
 
-  useEffect(() => {    
+  useEffect(() => {
+    console.log('use effect');
     onLoadPage(id);
   }, []);
 
   if (isAuthenticated) {
 
     ImageInput = () => (
-      <PrincipalTitle 
-        title={ imageEditable ? image : '' } 
-        center={ true } 
+      <PrincipalTitle
+        title={ imageEditable ? image : '' }
+        center={ true }
         divider={ false }
         editable = { !imageEditable }
         editableMode = { isAuthenticated }
@@ -155,7 +157,7 @@ export function PostPage({
         onChange = { onChangeImage }
         onEdit={ () => canEdit(EVENT_CHANGE_IMAGE, true) }
         onClose = { () => canEdit(EVENT_CHANGE_IMAGE, false) }
-        
+
         onSave = { onUpdateImage }
         onSaveStatus = { imageStatus }
 
@@ -169,9 +171,9 @@ export function PostPage({
       <Helmet title={title} defaultTitle="Jonathan Jara Morales">
       </Helmet>
 
-      <DeletePost 
+      <DeletePost
         render={ canRenderDeleteModal }
-        onClose= { () => onRenderDeleteModal(false) } 
+        onClose= { () => onRenderDeleteModal(false) }
         title = { title }
         id = { id }
       />
@@ -180,9 +182,9 @@ export function PostPage({
         <Img src={image} />
         <PostHeader>
           <ImageInput />
-          <PrincipalTitle 
-            title={ title } 
-            center={ true } 
+          <PrincipalTitle
+            title={ title }
+            center={ true }
             divider={ false }
             editable = { !titleEditable }
             editableMode = { isAuthenticated }
@@ -199,14 +201,14 @@ export function PostPage({
       <ThirdSection>
         <ContainerFluid>
             <Row>
-              <PostEditableContent 
-                editable={ contentEditable } 
-                content={ content } 
-                onChangeContent={ onChangeContent } 
-                tags={ tags } 
+              <PostEditableContent
+                editable={ contentEditable }
+                content={ content }
+                onChangeContent={ onChangeContent }
+                tags={ tags }
                 isAuthenticated = { isAuthenticated }
                 canEdit = { canEdit }
-                onSave = { onUpdateContent } 
+                onSave = { onUpdateContent }
                 onSaveStatus = { contentStatus }
                 renderDeleteModal = { onRenderDeleteModal }
                 event = { EVENT_CHANGE_CONTENT }
@@ -234,13 +236,13 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: (id) => dispatch(retrieve(id)),
-    
+
     onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
     onUpdateTitle: () => dispatch(updateTitle()),
-   
+
     onChangeContent: (evt) => dispatch(changeContent(evt.target.value)),
     onUpdateContent: () => dispatch(updateContent()),
-    
+
     onChangeImage: (evt) => dispatch(changeImage(evt.target.value)),
     onUpdateImage: () => dispatch(updateImage()),
 

@@ -5,28 +5,27 @@ import DateField from 'components/DateField';
 import './style.scss';
 
 function PostSearchItem(props) {
-
-  let content = ( <></> );
+  let content = <></>;
 
   if (props.items && props.items.length > 0) {
     content = props.items.map(item => (
       <div className="col-lg-12 separator">
         <div className="row">
           <div className="col-lg-2">
-            <Link to={`/post/${item.id}`} onClick={ props.onClick }>
-              <img className="search-img" src={item.image} />
+            <Link to={`/post/${item.id}`} onClick={props.onClick}>
+              <img className="search-img" src={item.image} alt={item.image}/>
             </Link>
           </div>
           <div className="col-lg-10">
             <h3>
-              <Link to={`/post/${item.id}`} onClick={ props.onClick }>
+              <Link to={`/post/${item.id}`} onClick={props.onClick}>
                 {item.title}
               </Link>
             </h3>
-            <DateField value={item.updateDate} /> 
+            <DateField value={item.updateDate} />
             <p className="p-search">
-              <Link to={`/post/${item.id}`} onClick={ props.onClick }>
-                { item.description }
+              <Link to={`/post/${item.id}`} onClick={props.onClick}>
+                {item.description}
               </Link>
             </p>
           </div>
@@ -36,8 +35,29 @@ function PostSearchItem(props) {
   }
 
   return (
-    <div className="row d-flex justify-content-center search-results">    
-      { content }
+    <div className="row d-flex justify-content-center search-results">
+      <div className="col-lg-12 separator">
+        <div className="row">
+          <div className="col-lg-2">
+            <Link to={`/post/168`} onClick={props.onClick}>
+              <img className="search-img" src="" />
+            </Link>
+          </div>
+          <div className="col-lg-10">
+            <h3>
+              <Link to={`/post/168`} onClick={props.onClick}>
+                asdasd
+              </Link>
+            </h3>
+
+            <p className="p-search">
+              <Link to={`/post/168`} onClick={props.onClick}>
+               asdasd
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

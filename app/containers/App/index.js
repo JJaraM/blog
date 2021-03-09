@@ -60,14 +60,14 @@ export function App({
         <meta name="description" content="Personal Site of Jonathan Jara Morales" />
       </Helmet>
 
-      <Header 
-        isAuthenticated={ isAuthenticated } 
-        onSearch={ onSearch } 
-        onSignIn={ onSignIn } 
+      <Header
+        isAuthenticated={ isAuthenticated }
+        onSearch={ onSearch }
+        onSignIn={ onSignIn }
         onSignOut={ onSignOut }
         onPostCreate = { onPostCreate }
-        /> 
-      
+        />
+
       <SearchContainer render={renderSearch} close={onClose} />
       <SignIn render={renderSignIn} close={onClose} />
 
@@ -79,7 +79,7 @@ export function App({
       </Switch>
 
       <Footer />
-      
+
       <GlobalStyle />
     </>
   );
