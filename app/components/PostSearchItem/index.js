@@ -36,28 +36,7 @@ function PostSearchItem(props) {
 
   return (
     <div className="row d-flex justify-content-center search-results">
-      <div className="col-lg-12 separator">
-        <div className="row">
-          <div className="col-lg-2">
-            <Link to={`/post/168`} onClick={props.onClick}>
-              <img className="search-img" src="" />
-            </Link>
-          </div>
-          <div className="col-lg-10">
-            <h3>
-              <Link to={`/post/168`} onClick={props.onClick}>
-                asdasd
-              </Link>
-            </h3>
-
-            <p className="p-search">
-              <Link to={`/post/168`} onClick={props.onClick}>
-               asdasd
-              </Link>
-            </p>
-          </div>
-        </div>
-      </div>
+      { content }
     </div>
   );
 }

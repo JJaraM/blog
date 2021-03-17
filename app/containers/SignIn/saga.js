@@ -4,7 +4,7 @@ import { makeSelectPassword, makeSelectUsername } from './selectors';
 import { authenticate } from './actions';
 
 export default function* saga() {
-  yield takeLatest(SIGN_OUT, onSignOut)
+  yield takeLatest(SIGN_OUT, onSignOut);
   yield takeLatest(SIGN_IN, onSignIn);
 }
 

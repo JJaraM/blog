@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
 .main-bg-color {
   background: var(--main-bg-color);
-  background-image: linear-gradient(200deg, #292929 0%, var(--main-bg-color) 100%);
+  //background-image: linear-gradient(200deg, #292929 0%, var(--main-bg-color) 100%);
 }
 
 .secondary-bg-color {
@@ -102,7 +102,7 @@ h3 {
   letter-spacing: 1px;
   margin-right: 10px;
 
-  &:hover { 
+  &:hover {
     box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.5);
   }
 }
@@ -196,15 +196,15 @@ h3 {
     height: 100%;
     width: 100%;
   }
-  
+
 }
 
 @media only screen and (max-width: 959px) {
 
-  .img-elementor { 
+  .img-elementor {
     height: 140px;
   }
-  
+
   .post-text {
     padding-top: 1.25rem;
   }
@@ -217,7 +217,7 @@ h3 {
         display: inline !important;
       }
     }
-    
+
   }
 
   .sublist {
@@ -226,11 +226,11 @@ h3 {
     }
   }
 
- 
+
   .card {
     max-width: 100% !important;
 
-    .card-body {    
+    .card-body {
       .post-text {
         background: var(--main-bg-color);
       }
@@ -243,21 +243,21 @@ h3 {
     }
   }
 
-  
+
   .container {
     height: auto !important;
     display: inline-block;
     width: 100%;
-    
+
     .card {
       width: 100%;
       display: contents;
-  
+
       .card-body {
         margin-bottom: 30px;
       }
     }
-  
+
   }
 
   .testimonials {
@@ -266,12 +266,12 @@ h3 {
       width: 100%;
       display: flex;
     }
-    
+
     .post-text {
       background: var(--main-bg-color);
     }
-    
-  } 
+
+  }
 
   .post-text {
     padding: 25px 0px 0px 0px;

@@ -23,6 +23,9 @@ module.exports = {
     },
   },
   rules: {
+    "no-param-reassign": [2, {"props": false}],
+    "whitespace": [true, "check-module"],
+    "object-curly-spacing": [1, "always"],
     'prettier/prettier': ['error', prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
@@ -34,6 +37,7 @@ module.exports = {
     'import/no-unresolved': 2,
     'import/no-webpack-loader-syntax': 0,
     'import/prefer-default-export': 0,
+    "react/prop-types": 0,
     indent: [
       2,
       2,
@@ -41,6 +45,7 @@ module.exports = {
         SwitchCase: 1,
       },
     ],
+    'func-names': ["error", "as-needed", { "generators": "never" }],
     'jsx-a11y/aria-props': 2,
     'jsx-a11y/heading-has-content': 0,
     'jsx-a11y/label-has-associated-control': [

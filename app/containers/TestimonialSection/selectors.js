@@ -1,31 +1,30 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectTestimonialSectionDomain = state =>
-  state.testimonialSection || initialState;
+const selectTestimonialSectionDomain = state => state.testimonialSection || initialState;
 
 const getPageNumber = () =>
   createSelector(
     selectTestimonialSectionDomain,
-    substate => substate.page,
+    state => state.page,
   );
 
 const getItemsCount = () =>
   createSelector(
     selectTestimonialSectionDomain,
-    substate => substate.countItems,
+    state => state.countItems,
   );
 
 const makeItems = () =>
   createSelector(
     selectTestimonialSectionDomain,
-    substate => substate.items,
+    state => state.items,
   );
 
 const makeLoading = () =>
   createSelector(
     selectTestimonialSectionDomain,
-    substate => substate.loading,
+    state => state.loading,
   );
 
 export {

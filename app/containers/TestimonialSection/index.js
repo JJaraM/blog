@@ -9,31 +9,24 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItems, makeLoading } from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import { retrieve, next, previous } from './actions';
-
 import TestimonialList from 'components/TestimonialList';
 import SectionTitle from 'components/SectionTitle';
 import SecondarySection from 'components/SecondarySection';
 import ContainerCenter from 'components/ContainerCenter';
 import ArrowButton from 'components/ArrowButton';
+import { retrieve, next, previous } from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import { makeItems, makeLoading } from './selectors';
+import messages from './messages';
 
-export function TestimonialSection({
-  items,
-  loading,
-  onLoadPage,
-  onNext,
-  onPrevious,
-}) {
-  const key = "testimonialSection";
+export function TestimonialSection({ items, loading, onLoadPage, onNext, onPrevious }) {
+  const key = 'testimonialSection';
 
-  useInjectReducer({ key: key, reducer });
-  useInjectSaga({ key: key, saga });
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   useEffect(() => {
     onLoadPage();
@@ -42,15 +35,19 @@ export function TestimonialSection({
   return (
     <SecondarySection>
       <SectionTitle
-        topDescription= { <FormattedMessage {...messages.subTitle} /> }
-        title={ <FormattedMessage { ...messages.header } /> }
+        topDescription={
+          <FormattedMessage {...messages.subTitle} />
+        }
+        title={
+          <FormattedMessage {...messages.header} />
+        }
       />
 
-      <TestimonialList items={items} loading={ loading } />
+      <TestimonialList items={items} loading={loading} />
 
       <ContainerCenter>
-        <ArrowButton onClick={onPrevious} direction='left'/>
-        <ArrowButton onClick={onNext} direction='right'/>
+        <ArrowButton onClick={onPrevious} direction="left" />
+        <ArrowButton onClick={onNext} direction="right" />
       </ContainerCenter>
     </SecondarySection>
   );

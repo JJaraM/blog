@@ -10,7 +10,7 @@ export function itemsLoaded(items) {
   return {
     type: ITEMS_LOADED,
     items,
-  }
+  };
 }
 
 export function next() {
@@ -24,4 +24,3 @@ export function previous() {
     type: PREVIOUS,
   };
 }
-

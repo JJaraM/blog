@@ -39,9 +39,11 @@ export function LatestPostItem({
   const Component = () => (
     <div className={`card-body ${refreshClassName}`}>
       <div className="post-text">
-        <h3 className="main-title-color">
+        <Link to={`/post/${item.id}`}>
+          <h3 className="main-title-color">
             {item.title}
-        </h3>
+          </h3>
+        </Link>
         <Metadata>
           <span>
             <DateField value={item.updateDate} />

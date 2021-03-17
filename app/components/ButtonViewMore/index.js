@@ -1,43 +1,31 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/Button';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import { isLoadingComplete } from 'configuration/config';
 import ContainerCenter from 'components/ContainerCenter';
 
 function ButtonViewMore(props) {
-  const { status, onClick } = props;
-  
+  const { loading, onClick } = props;
+
   let ViewMore = () => (
     <ContainerCenter>
-      <Button>
-        Loading...
-      </Button>
+      <Button> Loading... </Button>
     </ContainerCenter>
   );
 
-  if (isLoadingComplete(status === 2)) {
+  if (!loading) {
     ViewMore = () => (
       <ContainerCenter>
-        <Button onClick={ onClick }>
-          View More
-        </Button>
+        <Button onClick={onClick}> View More </Button>
       </ContainerCenter>
-    )
-  }
-
-  if (status === 2) {
-    ViewMore = () => <></>
+    );
   }
 
   return <ViewMore />;
 }
 
 ButtonViewMore.propTypes = {
-  status: PropTypes.number,
   onClick: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default memo(ButtonViewMore);

@@ -38,7 +38,6 @@ import './styles/base.scss';
 import './styles/sanitize.scss';
 
 const key = 'home';
-const key2 = 'home2';
 
 export function App({
   onSearch,
@@ -46,6 +45,7 @@ export function App({
   onSignOut,
   onPostCreate,
   onClose,
+  onClear,
   renderSearch,
   renderSignIn,
   isAuthenticated,
@@ -78,7 +78,11 @@ export function App({
         <Route path="" component={NotFoundPage} />
       </Switch>
 
+      {/*
+        <div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>
+      */}
       <Footer />
+
 
       <GlobalStyle />
     </>
@@ -100,7 +104,9 @@ export function mapDispatchToProps(dispatch) {
     onSearch: () => dispatch(search()),
     onSignIn: () => dispatch(signIn()),
     onSignOut: () => dispatch(signOut()),
-    onClose: () => dispatch(close()),
+    onClose: () => {
+      dispatch(close());
+    },
     onPostCreate: () => dispatch(createPost()),
     dispatch,
   };

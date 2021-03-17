@@ -6,15 +6,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { FormattedMessage } from 'react-intl';
-
-import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import { retrieve, retrieveMore, refresh } from './actions';
-import messages from './messages';
-
 import { socket } from 'configuration/socket';
-
 import TagContainer from 'containers/TagContainer';
 import LatestPostItemList from 'components/LatestPostItemList';
 import PrincipalTitle from 'components/PrincipalTitle';
@@ -22,7 +14,11 @@ import ContainerCenter from 'components/ContainerCenter';
 import Container from 'components/Container';
 import SecondarySection from 'components/SecondarySection';
 import ButtonViewMore from 'components/ButtonViewMore';
-
+import messages from './messages';
+import { retrieve, retrieveMore, refresh } from './actions';
+import reducer from './reducer';
+import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
+import saga from './saga';
 
 export function LatestPostSection({
   items,
@@ -49,17 +45,17 @@ export function LatestPostSection({
     <Container>
       <SecondarySection>
         <PrincipalTitle
-          title={ <FormattedMessage {...messages.header } /> }
-          bottomDescription={ <FormattedMessage {...messages.description } /> }
+          title={<FormattedMessage {...messages.header} />}
+          bottomDescription={<FormattedMessage {...messages.description} />}
         />
 
         <ContainerCenter>
           <TagContainer />
         </ContainerCenter>
 
-        <LatestPostItemList items={ items } loading={ loading } status = {status} />
+        <LatestPostItemList items={items} loading={loading} status={status} />
 
-        <ButtonViewMore status={ status } onClick={ onViewMore } />
+        <ButtonViewMore loading={loading} onClick={onViewMore} />
       </SecondarySection>
     </Container>
   );
@@ -80,8 +76,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: () => dispatch(retrieve()),
-    onViewMore:() => dispatch(retrieveMore()),
-    onRefresh:(item) => dispatch(refresh(item)),
+    onViewMore: () => dispatch(retrieveMore()),
+    onRefresh: item => dispatch(refresh(item)),
     dispatch,
   };
 }

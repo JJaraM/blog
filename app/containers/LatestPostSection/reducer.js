@@ -1,8 +1,3 @@
-/*
- *
- * LatestPostSection reducer
- *
- */
 import produce from 'immer';
 import { ITEMS_LOADED, RETRIEVE_MORE, CHANGE_TAG, ERROR, REFRESH } from './constants';
 
@@ -29,14 +24,14 @@ const latestPostSectionReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case ITEMS_LOADED:
-        draft.items = [...state.items , ...action.items];
+        draft.items = [...state.items, ...action.items];
         draft.loading = false;
         draft.isFirstLoading = true;
-        draft.status = 1
+        draft.status = 1;
         break;
 
       case RETRIEVE_MORE:
-        draft.page = draft.page + 1;
+        draft.page += 1;
         break;
 
       case CHANGE_TAG:
@@ -55,11 +50,11 @@ const latestPostSectionReducer = (state = initialState, action) =>
       case REFRESH:
         //Check if the event already exist in the array
         const index = state.items.findIndex(x => x.id === action.item.id);
-        
+
         // Update the existed one
         if (index > -1) {
           action.item.refresh = true;
-          
+
           return {
             ...state,
             items: [

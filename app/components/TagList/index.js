@@ -14,6 +14,8 @@ function TagList(props) {
     <TagListItemLoading key={`latest-post-item-${item}`}/>
   ));
 
+  let MoreOption = () => <></>;
+
   const splitListOn = 8;
 
   if (isLoadingComplete(loading)) {
@@ -22,25 +24,28 @@ function TagList(props) {
     if (index === -1) {
       items.splice(splitListOn - 2, 0, {id: 0, name: "all"});
     }
-    
+
     var pos = 0;
     list = items.map(item => {
       pos++;
       if (pos < splitListOn) {
         return <TagListItem key={`tag-item-${item.id}`} item={item} />;
       }
-      return;      
+      return;
     });
-  }
- 
 
-  return (  
+    MoreOption = () => (
+      <li>
+        <TagListItemMore items={items} after={splitListOn} />
+      </li>
+    );
+  }
+
+  return (
     <div id="tags-section" className="section_tags row justify-content-center align-self-center">
       <ul>
         { list }
-        <li>
-          <TagListItemMore items={items} after={splitListOn} />
-        </li>
+        <MoreOption />
       </ul>
     </div>
   );

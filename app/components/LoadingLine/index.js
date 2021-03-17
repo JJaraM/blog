@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 
 function LoadingLine(props) {
-  const { 
-    width, height, randomWidthMin, randomWidthMax, 
+  const {
+    width, height, randomWidthMin, randomWidthMax,
     randomHeightMin, randomHeightMax, unit,
     primaryBgColor, secondaryBgColor, widthUnit,
   } = props;
-  
+
   const id = _.uniqueId("prefix-");
 
   let loadingWidth = width;
@@ -31,7 +31,7 @@ function LoadingLine(props) {
   if (secondaryBgColor) {
     loadingSecondaryBgColor = secondaryBgColor;
   }
-  
+
   const CustomStyle = createGlobalStyle`
 
   .img-elementor {
@@ -47,7 +47,7 @@ function LoadingLine(props) {
       }
     }
   }
-    
+
   /*
     .${id} {
       .line {
@@ -65,7 +65,7 @@ function LoadingLine(props) {
       0% {
         background-position: -100px;
       }
-    
+
       40%, 100% {
         background-position: ${loadingWidth}${widthUnit};
       }
@@ -77,22 +77,32 @@ function LoadingLine(props) {
       }
     }
 
-   
 
 
+    //
     .${id} {
       .line {
         width: ${loadingWidth}${widthUnit};
         height: ${loadingHeight}${unit};
-        animation: loading-${id} 1.6s infinite linear;
         float: left;
         border-radius: 7px;
-     
-        background: linear-gradient(270deg, var(--${loadingPrimaryBgColor}), var(--${loadingSecondaryBgColor}));
-        background-size: 400% 400%;       
+        animation-duration: 1.6s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        background: linear-gradient(to right, var(--${loadingPrimaryBgColor}) 8%, var(--${loadingSecondaryBgColor}) 50%, var(--${loadingPrimaryBgColor}) 54%);
+        background-size: 1000px 140px;
+        position: relative;
       }
     }
-
+    @keyframes placeHolderShimmer{
+        0%{
+            background-position: -500px 0
+        }
+        100%{
+            background-position: 500px 0
+        }
+    }
     .post-text {
       .line {
         margin-bottom: 5px;
@@ -105,7 +115,7 @@ function LoadingLine(props) {
       100%{background-position:0% 50%}
     }
 
-    
+
 
     @media only screen and (max-width: 959px) {
       .${id} {
@@ -125,13 +135,13 @@ function LoadingLine(props) {
         .pb-30 {
           padding-bottom: 30px;
         }
-        
+
         .post-text {
           .line {
             margin-bottom: 5px;
           }
         }
-        
+
         .img-elementor {
           display: grid;
           .loading {
@@ -144,7 +154,7 @@ function LoadingLine(props) {
           }
         }
       }
-    } 
+    }
   `;
 
   return (

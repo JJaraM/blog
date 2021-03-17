@@ -12,7 +12,7 @@
 .download-cv {
   &:hover {
     cursor: pointer;
-    background-image: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;   
+    background-image: linear-gradient(180deg, #fe7570 0%, #ffa57c 100%) !important;
   }
 }
 
@@ -68,19 +68,33 @@
   }
 
   .box {
-    width: 250px;
-    height: 250px;
     position: relative;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+
+    .img-container {
+      width: 250px;
+      height: 250px;
+    }
+
+    .description-container {
+      width: 30%;
+      text-indent: 40px;
+      text-align: justify;
+      margin-bottom: 1.25rem;
+      font-size: 14px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.75em;
+      color: #d5d5d5;
+      padding-left: 20px;
+    }
 
     .title {
       width: 100%;
       position: relative;
       display: flex;
       align-items: center;
-      height: 50px;
       padding-left: 0px;
 
       .block {
@@ -143,10 +157,10 @@
         animation-delay: 2s;
         display: flex;
 
-        
+
       }
 
-    
+
 
       p {
         animation: secFadeIn 2s forwards;
@@ -248,7 +262,7 @@
 @keyframes secFadeIn {
   0% {
     opacity: 0;
-    
+
   }
   100% {
     opacity: 0.5;
@@ -269,7 +283,7 @@
   animation-delay: 4s;
   opacity: 0;
 
-  
+
   span {
     display: flex;
     align-items: center;
@@ -330,8 +344,8 @@
 }
 
 .about-me.img-circle {
-  width: 80%;
-  max-width: 80%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .welcome-about-me {

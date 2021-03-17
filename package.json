@@ -180,6 +180,8 @@
     "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {
-    "configuration": "^2.1.0"
+    "components": "^0.1.0",
+    "configuration": "^2.1.0",
+    "utils": "^0.3.1"
   }
 }

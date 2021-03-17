@@ -1,6 +1,6 @@
 /**
  *
- * Tests for SmallRightContainerFluid
+ * Tests for PostPanelLeftSide
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -14,7 +14,7 @@ import { IntlProvider } from 'react-intl';
 import SmallRightContainerFluid from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 
-describe('<SmallRightContainerFluid />', () => {
+describe('<PostPanelLeftSide />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(

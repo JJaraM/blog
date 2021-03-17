@@ -9,7 +9,7 @@ const getURL = function(channel) {
 
 const socket = function(channel) {
     const url = getURL(channel);
-    var socket = new WebSocket(url);
+    const socket = new WebSocket(url);
     return {
         watchData: function(action) {
             socket.addEventListener('message', function (event) {

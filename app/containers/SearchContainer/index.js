@@ -117,6 +117,9 @@ function mapDispatchToProps(dispatch) {
     onChangeSearch: evt => {
       dispatch(search(evt.target.value))
     },
+    onClear: () => {
+      dispatch(search(""))
+    },
     onNext: () => dispatch(next()),
     onPrevious: () => dispatch(previous()),
     dispatch,
