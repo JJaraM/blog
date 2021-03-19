@@ -19,12 +19,12 @@ function Header(props) {
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          
-         
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+          <div className="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo01">
+            <ul className="navbar-nav ml-auto ">
                  {/*<li className="nav-item active">
-                <a className="nav-link" href="#">Home 
+                <a className="nav-link" href="#">Home
                   <span className="sr-only">(current)</span>
                 </a>
               </li>
@@ -40,24 +40,24 @@ function Header(props) {
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <FormattedMessage {...messages.post} />
                   </a>
-                  
-                  <div className="dropdown-menu" 
-                    aria-labelledby="navbarDropdown" 
+
+                  <div className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
                     onClick={ props.onPostCreate }>
-                    
+
                     <a className="dropdown-item" href="#">
                       <FormattedMessage {...messages.post_create} />
                     </a>
-                    
+
                     {/* <div className="dropdown-divider"></div>
                     <a className="dropdown-item" href="#">Something else here</a>   */}
                   </div>
-                </li> 
+                </li>
               </RenderComponent>
             </ul>
-            
+
             <button className="btn-search fa fa-search" onClick={props.onSearch}></button>
-            
+
             <RenderComponent render={!props.isAuthenticated}>
               <button className="btn-search fa fa-user" onClick={props.onSignIn}></button>
             </RenderComponent>
@@ -65,7 +65,7 @@ function Header(props) {
             <RenderComponent render={props.isAuthenticated}>
               <button className="btn-search fa fa-sign-out" onClick={props.onSignOut}></button>
             </RenderComponent>
-           
+
 
           </div>
         </div>

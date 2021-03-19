@@ -11,7 +11,9 @@
 }
 
 .navbar {
-    z-index: 999;
+  z-index: 999;
+  background: var(--secondary-bg-color);
+  //border-bottom: 3px solid var(--fourth-bg-color);
 }
 
 .home_slinder {
@@ -63,7 +65,7 @@ header {
     background-size: cover;
     background-position: center center;
     background-image: url('https://cdn.shopify.com/s/files/1/0094/1621/2537/files/12S_HiRIseProforiMac_LS3_HiRes_b316c95e-815e-4d13-92b2-a016445637a5_1920x.jpg?v=1557932414');
-    
+
     &::before {
         content: "";
         display: block;
@@ -121,4 +123,6 @@ header {
     background: transparent;
     border: none;
     color: #FFF;
+    padding: 15px;
+    font-size: 22px;
 }
