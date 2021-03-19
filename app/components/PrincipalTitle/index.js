@@ -19,12 +19,12 @@ import LoadingContainer from 'components/LoadingContainer';
 import './style.scss';
 
 function PrincipalTitle(props) {
-  const { center, divider, bottomDescription, title, editable, editableMode, onChange, 
+  const { center, divider, bottomDescription, title, editable, editableMode, onChange,
     onEdit, onClose, onSave, loading, onSaveStatus, topDescription } = props;
 
   let CenterComponent  = (subProps) => (
     <>
-      { subProps.children } 
+      { subProps.children }
     </>
   );
 
@@ -39,7 +39,7 @@ function PrincipalTitle(props) {
       </ContainerCenter>
     )
   }
-  
+
   if (divider) {
     DividerComponent = () => (
       <DividerLine />
@@ -54,7 +54,7 @@ function PrincipalTitle(props) {
     )
   }
 
-  if (topDescription) { 
+  if (topDescription) {
     TopDescription = () => (
       <ContainerCenter>
         <div className="brief-description">
@@ -63,16 +63,16 @@ function PrincipalTitle(props) {
       </ContainerCenter>
     )
   }
-  
+
   if (loading) {
     return (
       <LoadingContainer>
-        <LoadingLine 
-          randomWidthMax={500} 
-          randomWidthMin={125} 
+        <LoadingLine
+          randomWidthMax={500}
+          randomWidthMin={125}
           height={40}
-          primaryBgColor="fifth-bg-color" 
-          secondaryBgColor="sixth-bg-color" 
+          primaryBgColor="fifth-bg-color"
+          secondaryBgColor="sixth-bg-color"
         />
       </LoadingContainer>
     )
@@ -80,14 +80,14 @@ function PrincipalTitle(props) {
 
   if (editable === undefined || editable) {
     return (
-      <div className="principal-title pb-30 pt-30">
+      <div className="principal-title">
         <TopDescription />
         <CenterComponent>
           <h1>
             { title }
-            <IconEdit 
-              render={ editableMode} 
-              onClick={ onEdit } 
+            <IconEdit
+              render={ editableMode}
+              onClick={ onEdit }
             />
           </h1>
         </CenterComponent>
@@ -102,17 +102,17 @@ function PrincipalTitle(props) {
 
           <IconSave
             status = { onSaveStatus }
-            render={ editableMode } 
-            onClick={ onSave } 
+            render={ editableMode }
+            onClick={ onSave }
           />
 
-          <IconClose 
-            render={ editableMode } 
-            onClick={ onClose } 
+          <IconClose
+            render={ editableMode }
+            onClick={ onClose }
           />
 
         </IconContainer>
-        
+
         <textarea className="search" value={ props.title } onChange={ onChange } />
       </div>
     )

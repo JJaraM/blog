@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import RecomendationPostItem from 'containers/RecomendationPostItem';
-
+import PostPanelLeftSide from 'components/PostPanelLeftSide';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
@@ -22,7 +22,7 @@ export function PostRelated({
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
 
-  useEffect(() => {    
+  useEffect(() => {
     onLoadPage(tags);
   }, []);
 
@@ -30,23 +30,23 @@ export function PostRelated({
     let subList = items.map(item => {
       item.description = '';
       return (
-        <div className="sublist" >
-          <div className="row pb-30" key={`post-related-${item.id}`}>
-            <div className="col-lg-12">
-              <RecomendationPostItem item={item} />
+          <div className="sublist" >
+            <div className="row pb-30" key={`post-related-${item.id}`}>
+              <div className="col-lg-12">
+                <RecomendationPostItem item={item} />
+              </div>
             </div>
           </div>
-        </div>
       )
     });
     return (
-      <div>
+      <PostPanelLeftSide>
         <div className="recomendations-container">
           <i onClick={ onPrevious } className="fa fa-arrow-left" aria-hidden="true"></i>
           <i onClick={ onNext } className="fa fa-arrow-right" aria-hidden="true"></i>
         </div>
         <div>{subList}</div>
-      </div>
+      </PostPanelLeftSide>
     );
   }
 

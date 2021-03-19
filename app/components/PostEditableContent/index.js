@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'components/Container';
 import BigLeftContainerFluid from 'components/BigLeftContainerFluid';
-import PostPanelLeftSide from 'components/PostPanelLeftSide';
+
 import EditableText from 'components/EditableText';
 import IconContainer from 'components/IconContainer';
 import IconEdit from 'components/IconEdit';
@@ -28,9 +28,7 @@ function PostEditableContent(props) {
         <EditableText content={props.content} />
       </BigLeftContainerFluid>
 
-      <PostPanelLeftSide>
-        <PostRelated tags={props.tags} />
-      </PostPanelLeftSide>
+      <PostRelated tags={props.tags} />
     </>
   );
 

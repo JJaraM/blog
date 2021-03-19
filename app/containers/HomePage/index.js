@@ -30,7 +30,7 @@ export function HomePage({
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-   
+
   }, []);
 
 
@@ -40,15 +40,15 @@ export function HomePage({
         <title>Home</title>
         <meta name="description" content="Personal Blog Site" />
       </Helmet>
-     
-      <Welcome />
 
-      
+      {/* <Welcome /> */}
+
+
       <LatestPostSection />
       <RecomendationsPostSection />
       <TestimonialSection/>
       {/* <AboutMeSection /> */}
-   
+
     </>
   );
 
@@ -61,7 +61,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    
+
   };
 }
 

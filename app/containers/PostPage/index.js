@@ -135,12 +135,10 @@ export function PostPage({
   let ImageInput = () => (<></>);
 
   if (item && item.id != id) {
-    console.log('load page');
     onLoadPage(id);
   }
 
   useEffect(() => {
-    console.log('use effect');
     onLoadPage(id);
   }, []);
 
