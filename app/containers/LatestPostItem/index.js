@@ -12,13 +12,14 @@ import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
 import PostTagList from 'components/PostTagList';
-import { makeTagItems } from '../TagContainer/selectors';
+import { makeTagItems, makeLoading } from '../TagContainer/selectors';
 import Img from 'components/Img';
 import Metadata from 'components/Metadata';
 
 export function LatestPostItem({
   item,
-  tags
+  tags,
+  loading
 }) {
   useInjectReducer({ key: 'latestPostItem', reducer });
   useInjectSaga({ key: 'latestPostItem', saga });
@@ -52,7 +53,7 @@ export function LatestPostItem({
         <div className="description">
           <p>{item.description}</p>
         </div>
-        <PostTagList item={item} items={tags}/>
+        <PostTagList item={item} items={tags} loading={loading}/>
       </div>
       <Refresh />
     </div>
@@ -77,6 +78,7 @@ LatestPostItem.propTypes = {
 const mapStateToProps = createStructuredSelector({
   latestPostItem: makeSelectLatestPostItem(),
   tags: makeTagItems(),
+  loading: makeLoading(),
 });
 
 function mapDispatchToProps(dispatch) {

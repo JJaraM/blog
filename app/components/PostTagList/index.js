@@ -13,12 +13,13 @@ class PostTagList extends React.Component {
       this.state = {
         suggestions: [],
         original: [],
-        tags: []
+        tags: [],
+        loading: false,
       };
     }
-    
+
     onChange = (value) => {
-      const result = this.state.original.filter(item => 
+      const result = this.state.original.filter(item =>
         item.name.includes(value) && !this.state.tags.some(tag => tag.value == item.id)
       ).map( item => ({
         label: item.name,
@@ -31,7 +32,7 @@ class PostTagList extends React.Component {
       const id = item[0].value;
       this.props.onRemove(id);
     }
-    
+
     onAdd = (item) => {
       const id = item.value;
       const text = item.label;
@@ -49,14 +50,24 @@ class PostTagList extends React.Component {
     }
 
     render() {
-      const { items, item, isAuthenticated } =  this.props;
-    
+      const { items, item, isAuthenticated, loading } =  this.props;
+
       let Component = () => <div/>;
 
-      if (!items || !item) {
+      if ((!items || !item) && !loading) {
         return <Component />
       }
-     
+
+      if (loading) {
+        return (
+          <ContainerCenter>
+            <div className="tags">
+              <PostTag loading={loading} />
+            </div>
+          </ContainerCenter>
+        );
+      }
+
       if (isAuthenticated) {
         if (this.state.tags && this.state.tags.length === 0) {
           this.state.original = items;
@@ -67,22 +78,22 @@ class PostTagList extends React.Component {
         }
 
         return (
-          <Autocomplete className="autocomplete-tags" 
+          <Autocomplete className="autocomplete-tags"
             tags= { this.state.tags }
             onChange = { this.onChange }
-            onAdd={ this.onAdd } 
+            onAdd={ this.onAdd }
             onDelete = { this.onDelete }
             suggestions={ this.state.suggestions }
           />
         );
       }
-    
+
       const content = items.map(subItem => {
         if (item.tags && item.tags.includes(subItem.id)) {
-          return <PostTag key={`tag-item-${subItem.id}`} item={subItem} />;
+          return <PostTag key={`tag-item-${subItem.id}`} item={subItem} loading={this.state.loading}/>;
         }
       });
-    
+
       return (
         <ContainerCenter>
           <div className="tags">
@@ -97,6 +108,7 @@ PostTagList.propTypes = {
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   item: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool,
   onAdd: PropTypes.func,
   onRemove: PropTypes.func,
   onCreate: PropTypes.func,

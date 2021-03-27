@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import LatestPostItem from 'containers/LatestPostItem';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
-import { isLoadingComplete } from 'configuration/config';
 import ErrorMessage from 'components/ErrorMessage';
 import LatestPostItemLoading from '../LatestPostItemLoading';
 
@@ -16,7 +15,7 @@ function LatestPostItemList(props) {
 
   let content = [1, 2, 3].map(item => <LatestPostItemLoading key={`latest-post-item-${item}`} />);
 
-  if (isLoadingComplete(props.status === 2)) {
+  if (!props.loading) {
     content = props.items.map(item => (
       <LatestPostItem key={`latest-post-item-${item.id}`} item={item} />
     ));
