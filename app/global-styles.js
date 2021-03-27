@@ -2,10 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
-.tags {
-  display: flex;
-}
-
 .main-bg-color {
   background: var(--main-bg-color);
   //background-image: linear-gradient(200deg, #292929 0%, var(--main-bg-color) 100%);
