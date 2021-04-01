@@ -38,3 +38,43 @@ Prism.languages.insertBefore('bash', 'operator', {
 Prism.languages.insertBefore('bash', 'comment', {
 	'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
 });
+
+/*groovy*/
+Prism.languages.insertBefore('groovy', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('groovy', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('groovy', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+/*yaml*/
+Prism.languages.insertBefore('yaml', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('yaml', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('yaml', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+/*yml*/
+Prism.languages.insertBefore('yml', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('yml', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('yml', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+

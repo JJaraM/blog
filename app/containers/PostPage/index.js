@@ -178,7 +178,7 @@ export function PostPage({
 
       <PostImage>
         <Img src={image} />
-        <PostHeader>
+        <PostHeader editable={ isAuthenticated }>
           <ImageInput />
           <PrincipalTitle
             title={ title }
