@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
   //background-image: linear-gradient(200deg, #292929 0%, var(--main-bg-color) 100%);
 }
 
+
+
 .secondary-bg-color {
   background: var(--secondary-bg-color);
   width: 100%;
