@@ -22,12 +22,15 @@ export function TestimonialItem({
   return (
     <div className="card">
       <div className="testimonials">
-        <div className="d-flex justify-content-center pt-30 pb-30">
-          <img src={item.img} 
-            className="img-circle "
-            onError={onError}
-            onError={(e)=>{e.target.onerror = null; e.target.src="/avatar.jpg"}}
-          />
+        <div className="d-flex justify-content-center pr-30 pl-30 ">
+          <div className="testimonial-section-header d-flex justify-content-center  pt-30 pb-30 ">
+            <img src={item.img}
+                 className="img-circle "
+                 onError={onError}
+                 onError={(e)=>{e.target.onerror = null; e.target.src="/avatar.jpg"}}
+            />
+          </div>
+
         </div>
         <div className="pb-30 pr-30 pl-30">
           <div className="post-text">

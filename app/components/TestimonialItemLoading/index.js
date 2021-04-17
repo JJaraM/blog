@@ -12,7 +12,7 @@ import './style.scss';
 import LoadingCircle from '../LoadingCircle';
 
 function TestimonialItemLoading() {
-  
+
   return (
     <div className="card">
       <div className="testimonials">

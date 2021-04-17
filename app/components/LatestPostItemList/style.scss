@@ -2,10 +2,10 @@
 
 
 .mansory {
-  
+
     .container {
         display: inherit;
-        
+
     }
 
     .card {
@@ -26,12 +26,12 @@
         margin-left: auto;
     }
 
-    
+
     /*@media (min-width: 1200px) {
         .main_container {
             max-width: 1140px;
         }
-        
+
     }
 
     @media (min-width: 992px) {
@@ -61,7 +61,7 @@
     margin-bottom: 2%;
     margin-right: 1%;
     background: transparent;
-    
+
 
     .card-body {
         border-bottom-left-radius: 5px;
@@ -72,7 +72,7 @@
         }
 
         &.refresh {
-            background-image:none !important; 
+            background-image:none !important;
             animation: fadeIt 5s ease-in-out;
         }
 
@@ -94,13 +94,13 @@
           opacity: 0;
         }
       }
-     
+
       @keyframes fadeIt {
         0%   { background-color: #353535 !important; }
         50%  { background-color: #353535; }
         //100% { background-color: var(--main-bg-color); }
       }
-      
+
 }
 
 .sanitize {
@@ -112,7 +112,7 @@
     border-radius: 50%;
     vertical-align: middle;
     border: 0;
-    max-width: 40%;
+    max-width: 70%;
     height: auto;
 }
 
