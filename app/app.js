@@ -99,3 +99,13 @@ if (!window.Intl) {
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
+
+console.log(process.env.NODE_ENV);
+
+if (process.env.NODE_ENV !== "local") {
+  if (window.location.protocol === 'http:') {
+    const redirect = "https:" + window.location.host + window.location.pathname;
+    window.location.replace(redirect);
+  }
+}
+
