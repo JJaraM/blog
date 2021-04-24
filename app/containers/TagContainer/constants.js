@@ -4,3 +4,4 @@ export const CREATE = 'app/TagContainer/CREATE';
 export const REMOVE = 'app/TagContainer/REMOVE';
 export const ADD = 'app/TagContainer/ADD';
 export const CREATE_DONE = 'app/TagContainer/CREATE_DONE';
+export const SEARCH = 'app/TagContainer/SEARCH';

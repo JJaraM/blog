@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { changeTag } from '../LatestPostSection/actions';
 import { makeSelectedTag } from '../LatestPostSection/selectors';
-import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { createStructuredSelector } from 'reselect';
 import makeSelectTagListItem from './selectors';
@@ -10,22 +9,37 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import reducer from './reducer';
+import './style.scss';
 
 export function TagListItemMore({
   items,
   after,
-  onChange
+  onFilter,
+  onChange,
+  searchText,
 }) {
 
 useInjectReducer({ key: 'tagListItem', reducer });
-  let pos = 0;
-  const more = items.map(item => {
-    pos++;
-    if (pos > after) {
+  let more;
+
+  if (items.length === 0) {
+    return (
+      <div className="dropdown">
+        <button className="tag-button dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          More
+        </button>
+        <div className="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton">
+          <input type="text" value={searchText} className="search-filter-dropdown-list" onChange={onFilter}></input>
+        </div>
+      </div>
+    )
+  } else {
+    more = items.map(item => {
       return <button key={`tag-item-${item.id}`} className="tag-button dropdown-item" value={item.id} onClick={onChange}>{item.name}</button>
-    }
-    return;      
-  });
+    });
+  }
+
+
 
   return (
     <div className="dropdown">
@@ -33,7 +47,10 @@ useInjectReducer({ key: 'tagListItem', reducer });
         More
       </button>
       <div className="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton">
-        { more }
+        <input type="text" value={searchText} className="search-filter-dropdown-list" onChange={onFilter}></input>
+        <div className="pre-scrollable-tags">
+          { more }
+        </div>
       </div>
     </div>
   );
@@ -42,8 +59,10 @@ useInjectReducer({ key: 'tagListItem', reducer });
 TagListItemMore.propTypes = {
   dispatch: PropTypes.func.isRequired,
   onChange: PropTypes.func,
+  onFilter: PropTypes.func,
   items: PropTypes.any,
   after: PropTypes.number,
+  searchText: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({

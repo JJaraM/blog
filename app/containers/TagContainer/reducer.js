@@ -1,10 +1,11 @@
 import produce from 'immer';
-import { 
+import {
   ITEMS_LOADED,
   CREATE,
   ADD,
   REMOVE,
-  CREATE_DONE
+  CREATE_DONE,
+  SEARCH
 } from './constants';
 
 export const initialState = {
@@ -13,6 +14,7 @@ export const initialState = {
   items: [],
   loading: true,
   isFirstLoading: false,
+  searchText: '',
   text: '',
   id: 0
 };
@@ -30,6 +32,10 @@ const tagContainerReducer = (state = initialState, action) =>
 
       case CREATE:
         draft.text = action.text;
+        break;
+
+      case SEARCH:
+        draft.searchText = action.searchText;
         break;
 
       case ADD:

@@ -13,41 +13,48 @@ const makeSelectTagContainer = () =>
     substate => substate,
   );
 
-const makeTagItems = () => 
+const makeTagItems = () =>
   createSelector(
     selectTagContainerDomain,
     substate => substate.items,
   );
 
-const makeLoading = () => 
+const makeLoading = () =>
   createSelector(
     selectTagContainerDomain,
     substate => substate.loading,
   );
 
-const makeIsFirstLoading = () => 
+const makeIsFirstLoading = () =>
   createSelector(
     selectTagContainerDomain,
     substate => substate.isFirstLoading,
   );
 
-const makeText = () => 
+const makeText = () =>
   createSelector(
     selectTagContainerDomain,
     substate => substate.text,
   );
 
-const makeTagId = () => 
+const makeTagId = () =>
   createSelector(
     selectTagContainerDomain,
     substate => substate.id,
   );
 
-export { 
+const makeSearchText = () =>
+  createSelector(
+    selectTagContainerDomain,
+    substate => substate.searchText,
+  );
+
+export {
   selectTagContainerDomain,
   makeTagItems,
   makeLoading,
   makeIsFirstLoading,
   makeText,
-  makeTagId
+  makeTagId,
+  makeSearchText
 };

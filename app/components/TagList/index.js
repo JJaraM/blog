@@ -5,10 +5,9 @@ import TagListItemMore from 'containers/TagListItemMore';
 import { isLoadingComplete } from 'configuration/config';
 import TagListItemLoading from '../TagListItemLoading';
 
-
 function TagList(props) {
 
-  const { items, loading } =  props;
+  const { items, loading, onFilter, searchText } =  props;
 
   let list = [1, 2, 3, 4,5, 6, 7, 8, 9, 10].map(item => (
     <TagListItemLoading key={`latest-post-item-${item}`}/>
@@ -20,12 +19,12 @@ function TagList(props) {
 
   if (isLoadingComplete(loading)) {
     //Adding all option, this value does not exists in the data source
-    var index = items.findIndex(x => x.id === 0)
+    const index = items.findIndex(x => x.id === 0);
     if (index === -1) {
       items.splice(splitListOn - 2, 0, {id: 0, name: "all"});
     }
 
-    var pos = 0;
+    let pos = 0;
     list = items.map(item => {
       pos++;
       if (pos < splitListOn) {
@@ -34,26 +33,39 @@ function TagList(props) {
       return;
     });
 
-    MoreOption = () => (
-      <li>
-        <TagListItemMore items={items} after={splitListOn} />
-      </li>
+    const filterList = items.filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
+
+    console.log(filterList);
+
+    return (
+      <div id="tags-section" className="section_tags row justify-content-center align-self-center">
+        <ul>
+          { list }
+          <li>
+            <TagListItemMore items={filterList} after={splitListOn} onFilter={onFilter} searchText={searchText}  />
+          </li>
+        </ul>
+      </div>
+    );
+  } else {
+    return (
+      <div id="tags-section" className="section_tags row justify-content-center align-self-center">
+        <ul>
+          { list }
+          <MoreOption />
+        </ul>
+      </div>
     );
   }
 
-  return (
-    <div id="tags-section" className="section_tags row justify-content-center align-self-center">
-      <ul>
-        { list }
-        <MoreOption />
-      </ul>
-    </div>
-  );
+
 }
 
 TagList.propTypes = {
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loading: PropTypes.bool.isRequired,
+  onFilter: PropTypes.func,
+  searchText: PropTypes.string,
 };
 
 export default memo(TagList);

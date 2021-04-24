@@ -199,6 +199,23 @@ h3 {
 
 }
 
+.pre-scrollable {
+  overflow: hidden;
+}
+
+.pre-scrollable-tags::-webkit-scrollbar-track {
+  background: #FFF;
+}
+
+.pre-scrollable-tags::-webkit-scrollbar-thumb {
+  background-color: var(--fifth-bg-color);
+}
+
+.pre-scrollable-tags {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 @media only screen and (max-width: 959px) {
 
   .img-elementor {

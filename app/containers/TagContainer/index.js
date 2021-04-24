@@ -8,13 +8,14 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
-import { 
+import {
   retrieve,
   add,
   remove,
-  create
+  create,
+  search,
 } from './actions';
-import { makeTagItems, makeLoading, makeIsFirstLoading } from './selectors'
+import { makeTagItems, makeLoading, makeIsFirstLoading, makeSearchText } from './selectors'
 import TagList from 'components/TagList';
 import PostTagList from 'components/PostTagList';
 
@@ -29,6 +30,8 @@ export function TagContainer({
   onAdd,
   onRemove,
   onCreate,
+  onFilter,
+  searchText,
 }) {
   useInjectReducer({ key: 'tagContainer', reducer });
   useInjectSaga({ key: 'tagContainer', saga });
@@ -40,23 +43,26 @@ export function TagContainer({
   }, []);
 
   let Component = () => (
-    <TagList items={items} loading={loading} />
+    <TagList items={items} loading={loading} onFilter={onFilter} searchText={searchText} />
   );
 
   if (usePost) {
     Component = () => (
-      <PostTagList 
-        item={ item } 
-        items={ items }  
-        isAuthenticated={ isAuthenticated }  
+      <PostTagList
+        item={ item }
+        items={ items }
+        isAuthenticated={ isAuthenticated }
         onAdd = { onAdd }
         onCreate = { onCreate }
         onRemove = { onRemove }
         />
     )
+    return <Component />;
+  } else {
+    return <TagList items={items} loading={loading} onFilter={onFilter} searchText={searchText} />;
   }
 
-  return <Component />;
+
 }
 
 TagContainer.propTypes = {
@@ -69,6 +75,7 @@ const mapStateToProps = createStructuredSelector({
   items: makeTagItems(),
   loading: makeLoading(),
   isFirstLoading: makeIsFirstLoading(),
+  searchText: makeSearchText(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -77,6 +84,7 @@ function mapDispatchToProps(dispatch) {
     onAdd: (id) => dispatch(add(id)),
     onRemove: (id) => dispatch(remove(id)),
     onCreate: (text) => dispatch(create(text)),
+    onFilter: (evt) => dispatch(search(evt.target.value)),
     dispatch,
   };
 }

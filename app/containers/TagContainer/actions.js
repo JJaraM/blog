@@ -4,13 +4,14 @@
  *
  */
 
-import { 
-  RETRIEVE, 
+import {
+  RETRIEVE,
   ITEMS_LOADED,
   CREATE,
   ADD,
   REMOVE,
-  CREATE_DONE
+  CREATE_DONE,
+  SEARCH
 } from './constants';
 
 export function retrieve() {
@@ -18,6 +19,13 @@ export function retrieve() {
     type: RETRIEVE,
   };
 }
+
+export function search(searchText) {
+  return {
+    type: SEARCH, searchText
+  };
+}
+
 
 export function itemsLoaded(items) {
   return {
