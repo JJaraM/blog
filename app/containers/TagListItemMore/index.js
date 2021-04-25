@@ -30,6 +30,7 @@ useInjectReducer({ key: 'tagListItem', reducer });
         </button>
         <div className="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton">
           <input type="text" value={searchText} className="search-filter-dropdown-list" onChange={onFilter}></input>
+          <span className="search-icon"><i className="fa fa-search"></i></span>
         </div>
       </div>
     )
@@ -47,7 +48,11 @@ useInjectReducer({ key: 'tagListItem', reducer });
         More
       </button>
       <div className="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton">
+
+        <span className="search-icon"><i className="fa fa-search"></i></span>
         <input type="text" value={searchText} className="search-filter-dropdown-list" onChange={onFilter}></input>
+
+
         <div className="pre-scrollable-tags">
           { more }
         </div>

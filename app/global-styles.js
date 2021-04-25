@@ -216,6 +216,25 @@ h3 {
   overflow-y: scroll;
 }
 
+.dropdown-menu.show {
+    left: -50px !important;
+}
+
+.search-icon {
+    font-size: 12px;
+    border-radius: 10px;
+    color: #8f8f8f;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    text-align: center;
+    cursor: pointer;
+
+    i {
+      font-size: 16px !important;
+    }
+}
+
 @media only screen and (max-width: 959px) {
 
   .img-elementor {
