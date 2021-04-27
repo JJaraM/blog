@@ -1,6 +1,6 @@
 /**
  *
- * Tests for TagListItemMore
+ * Tests for TagComboBox
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -12,7 +12,7 @@ import { render } from 'react-testing-library';
 
 import TagListItemMore from '../index';
 
-describe('<TagListItemMore />', () => {
+describe('<TagComboBox />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(<TagListItemMore />);

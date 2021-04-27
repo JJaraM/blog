@@ -1,0 +1,28 @@
+.jjara-tag-container-list {
+  padding-top: 10px;
+
+  ul li {
+    display: inline-block;
+    width: auto;
+    height: 28px;
+    background: var(--jjara-tag-container-list-ul-li-bg-color);
+    border-radius: 14px;
+    text-align: center;
+    padding-left: 22px;
+    padding-right: 22px;
+    cursor: pointer;
+    float:left;
+    margin-right: 4px;
+    margin-bottom: 4px;
+
+    &:hover {
+      background: var(--jjara-tag-container-list-ul-li-hover-bg-color);
+    }
+
+    &.active {
+      background: var(--jjara-tag-container-list-ul-li-active-bg-color);
+    }
+  }
+
+}
+

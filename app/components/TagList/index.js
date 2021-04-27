@@ -1,71 +1,29 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import TagListItem from 'containers/TagListItem';
-import TagListItemMore from 'containers/TagListItemMore';
 import { isLoadingComplete } from 'configuration/config';
 import TagListItemLoading from '../TagListItemLoading';
 
 function TagList(props) {
 
-  const { items, loading, onFilter, searchText } =  props;
-
-  let list = [1, 2, 3, 4,5, 6, 7, 8, 9, 10].map(item => (
-    <TagListItemLoading key={`latest-post-item-${item}`}/>
-  ));
-
-  let MoreOption = () => <></>;
-
-  const splitListOn = 8;
+  const { items, loading } =  props;
+  let list = [1, 2, 3, 4,5, 6, 7, 8, 9, 10].map(item => <TagListItemLoading key={`jjara-tag-list-item-loadings-${item}`}/> );
 
   if (isLoadingComplete(loading)) {
-    //Adding all option, this value does not exists in the data source
-    const index = items.findIndex(x => x.id === 0);
-    if (index === -1) {
-      items.splice(splitListOn - 2, 0, {id: 0, name: "all"});
-    }
-
-    let pos = 0;
-    list = items.map(item => {
-      pos++;
-      if (pos < splitListOn) {
-        return <TagListItem key={`tag-item-${item.id}`} item={item} />;
-      }
-      return;
-    });
-
-    const filterList = items.filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
-
-    console.log(filterList);
-
-    return (
-      <div id="tags-section" className="section_tags row justify-content-center align-self-center">
-        <ul>
-          { list }
-          <li>
-            <TagListItemMore items={filterList} after={splitListOn} onFilter={onFilter} searchText={searchText}  />
-          </li>
-        </ul>
-      </div>
-    );
-  } else {
-    return (
-      <div id="tags-section" className="section_tags row justify-content-center align-self-center">
-        <ul>
-          { list }
-          <MoreOption />
-        </ul>
-      </div>
-    );
+    list = items.map(item => <TagListItem key={`jjara-tag-list-item-${item.id}`} item={item} /> );
   }
 
+  return (
+    <>
+      { list }
+    </>
+  );
 
 }
 
 TagList.propTypes = {
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loading: PropTypes.bool.isRequired,
-  onFilter: PropTypes.func,
-  searchText: PropTypes.string,
 };
 
 export default memo(TagList);

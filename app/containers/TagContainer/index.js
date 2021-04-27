@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
@@ -18,6 +17,9 @@ import {
 import { makeTagItems, makeLoading, makeIsFirstLoading, makeSearchText } from './selectors'
 import TagList from 'components/TagList';
 import PostTagList from 'components/PostTagList';
+import { getFilterList, getItems } from '../TagComboBox/service';
+import TagContainerList from '../../components/TagContainerList';
+import TagComboBox from 'containers/TagComboBox';
 
 export function TagContainer({
   items,
@@ -42,26 +44,38 @@ export function TagContainer({
     }
   }, []);
 
-  let Component = () => (
-    <TagList items={items} loading={loading} onFilter={onFilter} searchText={searchText} />
-  );
+  const splitListOn = 8;
+  const newList = getItems(items, splitListOn);
+  const comboBoxItems = items.slice(splitListOn - 2);
+
+  let component = <TagList items={newList} loading={loading} />;
+  let comboBox = null;
 
   if (usePost) {
-    Component = () => (
-      <PostTagList
-        item={ item }
-        items={ items }
-        isAuthenticated={ isAuthenticated }
-        onAdd = { onAdd }
-        onCreate = { onCreate }
-        onRemove = { onRemove }
-        />
-    )
-    return <Component />;
-  } else {
-    return <TagList items={items} loading={loading} onFilter={onFilter} searchText={searchText} />;
+    component = <PostTagList
+      item={ item }
+      items={ items }
+      isAuthenticated={ isAuthenticated }
+      onAdd = { onAdd }
+      onCreate = { onCreate }
+      onRemove = { onRemove }
+    />;
   }
 
+  if (items.length > 0) {
+    comboBox = (
+      <li>
+        <TagComboBox loading={loading} items={comboBoxItems} after={splitListOn} onFilter={onFilter} searchText={searchText}  />
+      </li>
+    )
+  }
+
+  return (
+    <TagContainerList>
+      { component }
+      { comboBox }
+    </TagContainerList>
+  )
 
 }
 

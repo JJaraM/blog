@@ -1,0 +1,17 @@
+.jjara-combo-box-item {
+  border: none;
+  background: transparent;
+  display: block;
+  line-height: 28px;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+
+  &:active, &:focus {
+    box-shadow: none !important;
+    outline: none;
+  }
+}

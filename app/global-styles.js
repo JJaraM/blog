@@ -133,34 +133,11 @@ h3 {
   padding: 15px 0px 0px 0px;
 }
 
-.section_tags ul li:hover, .section_tags ul li.active {
-  background: #FFFFFF;
-}
 
-.section_tags {
-  padding-top: 10px;
-}
-/*
-.section_tags ul li:not(:last-child) {
-  margin-right: 4px;
-  margin-bottom: 4px;
 
-}*/
 
-.section_tags ul li {
-  display: inline-block;
-  width: auto;
-  height: 28px;
-  background: #ededed;
-  border-radius: 14px;
-  text-align: center;
-  padding-left: 22px;
-  padding-right: 22px;
-  cursor: pointer;
-  float:left;
-  margin-right: 4px;
-  margin-bottom: 4px;
-}
+
+
 
 .section_tags_loading {
   background: transparent !important;
@@ -170,7 +147,7 @@ h3 {
 
 .tag-button {
   border: none;
-    background: transparent;
+  background: transparent;
   display: block;
   line-height: 28px;
   font-family: "Montserrat", Sans-serif;
@@ -180,13 +157,12 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.025em;
 
-
-
   &:active, &:focus {
     box-shadow: none !important;
     outline: none;
   }
 }
+
 
 .latest-posts {
 
@@ -220,20 +196,7 @@ h3 {
     left: -50px !important;
 }
 
-.search-icon {
-    font-size: 12px;
-    border-radius: 10px;
-    color: #8f8f8f;
-    position: absolute;
-    top: 12px;
-    left: 20px;
-    text-align: center;
-    cursor: pointer;
 
-    i {
-      font-size: 16px !important;
-    }
-}
 
 @media only screen and (max-width: 959px) {
 

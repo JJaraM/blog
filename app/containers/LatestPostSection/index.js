@@ -28,7 +28,6 @@ export function LatestPostSection({
   onViewMore,
   onRefresh,
   status,
-  message,
 }) {
   useInjectReducer({ key: 'latestPostSection', reducer });
   useInjectSaga({ key: 'latestPostSection', saga });
@@ -45,8 +44,12 @@ export function LatestPostSection({
     <Container>
       <SecondarySection>
         <PrincipalTitle
-          title={<FormattedMessage {...messages.header} />}
-          bottomDescription={<FormattedMessage {...messages.description} />}
+          title={
+            <FormattedMessage {...messages.header} />
+          }
+          bottomDescription={
+            <FormattedMessage {...messages.description} />
+          }
         />
 
         <ContainerCenter>

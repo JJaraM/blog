@@ -1,0 +1,58 @@
+/*
+ * Dropdown list style
+ */
+.jjara-comboBox-icon {
+  font-size: 12px;
+  border-radius: 10px;
+  color: var(----jjara-comboBox-icon-color);
+  position: absolute;
+  top: 12px;
+  text-align: center;
+  cursor: pointer;
+
+  i {
+    font-size: 16px !important;
+  }
+}
+
+/*
+ * Search Icon that is inside of the input
+ */
+.jjara-comboBox-icon-search {
+  left: 20px;
+}
+
+/*
+ * Clear Icon that is inside of the input
+ */
+.jjara-comboBox-icon-clear {
+  right: 20px;
+}
+
+/*
+ * This property try to resolve the issue that I am getting when someone wants to clear an element in the input
+ * text field, if this property is deleted then you will see a fake input that is going to act as the cleaner "button"
+ */
+.jjara-fake-close-input {
+  background: transparent;
+  caret-color: transparent;
+  border: none;
+  outline: none;
+  width: 20px;
+  display: flex;
+  left: 5px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/*
+ * This is property is going to cancel the events when someone wants to press the close icon, for this the user
+ * is going to press the input text field that is going to act as the cleaner option
+ */
+.jjara-fake-close-input  ~ i.fa.fa-close {
+  top: 0;
+  z-index: 0;
+  position: absolute;
+  pointer-events: none;
+  cursor: pointer;
+}
