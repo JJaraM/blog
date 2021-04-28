@@ -2,7 +2,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { api, httpCall, isInfitiveLoading } from 'configuration/config';
 
-import { 
+import {
   RETRIEVE,
   UPDATE_TITLE,
   UPDATE_CONTENT,
@@ -13,16 +13,16 @@ import {
   EVENT_CHANGE_CONTENT_STATUS,
 } from './constants';
 
-import { 
-  itemLoaded, 
+import {
+  itemLoaded,
   updateTitleDone,
   updateContentDone,
   updateImageDone,
   event,
 } from './actions';
 
-import { 
-  makeId, 
+import {
+  makeId,
   makeItem
 } from './selectors';
 
@@ -32,8 +32,8 @@ export default function* latestPostItemSaga() {
   yield takeLatest(UPDATE_CONTENT, sagaUpdateContent);
   yield takeLatest(UPDATE_IMAGE, sagaUpdateImage);
 }
-  
-export function* sagaRetrieve() {    
+
+export function* sagaRetrieve() {
   try {
     const id = yield select(makeId());
     const requestURL = httpCall(api.post, id);
@@ -44,16 +44,16 @@ export function* sagaRetrieve() {
     }
 
     yield put(itemLoaded(items));
-  
+
   } catch (err) {
     yield put(repoLoadingError(err));
 
   } finally {
-    
+
   }
 }
-  
-export function* sagaUpdateTitle() {    
+
+export function* sagaUpdateTitle() {
   let status = 2;
 
   try {
@@ -69,20 +69,20 @@ export function* sagaUpdateTitle() {
     });
   } catch (err) {
     status = 3;
-    
+
   } finally {
     yield put(event(EVENT_CHANGE_TITLE_STATUS, status));
   }
 }
 
-export function* sagaUpdateContent() {    
+export function* sagaUpdateContent() {
   let status = 2;
 
   try {
     const id = yield select(makeId());
     const item = yield select(makeItem());
     const requestURL = httpCall(api.updateContent, id);
-   
+
     yield call(request, requestURL, {
       method: 'PUT',
       body: JSON.stringify({ content: item.content }),
@@ -90,7 +90,7 @@ export function* sagaUpdateContent() {
         'Content-Type': 'application/json',
       },
     });
-    
+
   } catch (err) {
     status = 3;
 
@@ -99,14 +99,14 @@ export function* sagaUpdateContent() {
   }
 }
 
-export function* sagaUpdateImage() {    
+export function* sagaUpdateImage() {
   let status = 2;
 
   try {
     const id = yield select(makeId());
     const item = yield select(makeItem());
     const requestURL = httpCall(api.updateImage, id);
-    
+
     yield call(request, requestURL, {
       method: 'PUT',
       body: JSON.stringify({ image: item.image }),

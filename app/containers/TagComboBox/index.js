@@ -13,13 +13,12 @@ import './style.scss';
 import ComboBox from '../../components/ComboBox';
 
 export function TagListItemMore({
-                                  items,
-                                  after,
-                                  loading,
-                                  onFilter,
-                                  onChange,
-                                  searchText,
-                                }) {
+  items,
+  loading,
+  onFilter,
+  onChange,
+  searchText,
+}) {
 
   useInjectReducer({ key: 'tagListItem', reducer });
 
@@ -38,7 +37,6 @@ TagListItemMore.propTypes = {
   onChange: PropTypes.func,
   onFilter: PropTypes.func,
   items: PropTypes.any,
-  after: PropTypes.number,
   searchText: PropTypes.string,
   loading: PropTypes.bool.isRequired,
 };

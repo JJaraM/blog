@@ -50,7 +50,7 @@
     "app.components.IconSave.inProgress": "Guardando",
     "app.components.IconSave.done": "Listo",
     "app.components.IconSave.error": "Error",
-    
+
     "app.containers.DeletePost.header": "Eliminar Artículo",
     "app.containers.DeletePost.description": "¿Está seguro que desea eliminar el artículo? Porfavor ingrese {name} para confirmar",
     "app.containers.DeletePost.delete": "Confirmar",
@@ -80,6 +80,8 @@
     "app.containers.LatestPostSection.description" : "En la siguiente section encontrará los ultimos artículos",
 
     "app.components.Welcome.download" : "Descargar",
-    "app.components.Welcome.workTitle" : "Ingeniero de Software"
-  }
-  
+    "app.components.Welcome.workTitle" : "Ingeniero de Software",
+
+    "app.containers.LatestPostSection.viewMore" : "Ver más",
+    "app.containers.LatestPostSection.loading" : "Cargando"
+}

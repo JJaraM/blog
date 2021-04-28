@@ -12,7 +12,7 @@ import PostRelated from 'containers/PostRelated';
 function PostEditableContent(props) {
   const Component = () => (
     <>
-      <BigLeftContainerFluid>
+      <BigLeftContainerFluid isMinimized = {props.isMinimized}>
         <IconContainer>
           <IconEdit
             render={props.isAuthenticated}
@@ -28,7 +28,7 @@ function PostEditableContent(props) {
         <EditableText content={props.content} />
       </BigLeftContainerFluid>
 
-      <PostRelated tags={props.tags} />
+      <PostRelated tags={props.tags} onMinimize={props.onMinimize} isMinimized={props.isMinimized}/>
     </>
   );
 
@@ -66,6 +66,8 @@ PostEditableContent.propTypes = {
   onSave: PropTypes.func,
   onSaveStatus: PropTypes.number,
   event: PropTypes.string,
+  isMinimized: PropTypes.bool,
+  onMinimize: PropTypes.func,
 };
 
 export default memo(PostEditableContent);

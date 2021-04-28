@@ -13,6 +13,7 @@ export function* onSignIn() {
   const password = yield select(makeSelectPassword());
   if (username === 'jonathan' && password === 'admin') {
     localStorage.setItem('authenticated', true);
+    console.log('auth');
     yield put(authenticate(true));
   }
 }

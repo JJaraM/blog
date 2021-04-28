@@ -4,8 +4,8 @@ import Logo from 'components/Logo';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-
 import RenderComponent from 'components/RenderComponent';
+import ButtonIcon from './ButtonIcon';
 
 import './style.scss';
 
@@ -56,16 +56,9 @@ function Header(props) {
               </RenderComponent>
             </ul>
 
-            <button className="btn-search fa fa-search" onClick={props.onSearch}></button>
-
-            <RenderComponent render={!props.isAuthenticated}>
-              <button className="btn-search fa fa-user" onClick={props.onSignIn}></button>
-            </RenderComponent>
-
-            <RenderComponent render={props.isAuthenticated}>
-              <button className="btn-search fa fa-sign-out" onClick={props.onSignOut}></button>
-            </RenderComponent>
-
+            <ButtonIcon className="fa fa-search" onClick={props.onSearch} />
+            <ButtonIcon className="fa fa-user" onClick={props.onSignIn} render={!props.isAuthenticated} />
+            <ButtonIcon className="fa fa-sign-out" onClick={props.onSignOut} render={props.isAuthenticated} />
 
           </div>
         </div>

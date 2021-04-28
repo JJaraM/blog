@@ -15,10 +15,10 @@ function Img(props) {
   if (props.src) {
     img = props.src;
   }
-  return <img 
-    className={props.className} 
-    src={img} 
-    alt={props.alt} 
+  return <img
+    className={props.className}
+    src={img}
+    alt={props.alt}
     onError={(e)=>{e.target.onerror = null; e.target.src="/PostImageNotFound.png"}}
   />;
 }

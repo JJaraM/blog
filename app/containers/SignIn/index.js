@@ -1,6 +1,6 @@
 /**
  * View used to handle the user authentication and authorization.
- * 
+ *
  * @author Jonathan Jara Morales
  * @since 2020-05-03
  */
@@ -17,13 +17,10 @@ import { makeIsAuthenticated } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-
 import { changeUsername, changePassword, signIn } from './actions';
-
 import ContainerCenter from 'components/ContainerCenter';
 import PrincipalTitle from 'components/PrincipalTitle';
-import Button from 'components/Button';
-
+import Button from 'ui/Button';
 import './style.scss';
 
 export function SignIn({
@@ -53,12 +50,12 @@ export function SignIn({
 
         <div className="row h-100">
           <div className="col-sm-12 my-auto">
-            
+
             <Container>
               <ContainerCenter>
-                <PrincipalTitle center={true} 
+                <PrincipalTitle center={true}
                   title={<FormattedMessage {...messages.header} />}
-                  divider={true} 
+                  divider={true}
                   bottomDescription={<FormattedMessage {...messages.description} />}
                 />
               </ContainerCenter>
@@ -77,7 +74,7 @@ export function SignIn({
                 </ContainerCenter>
               </Container>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -98,7 +95,10 @@ function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
     onChangePassword: evt => dispatch(changePassword(evt.target.value)),
-    onSignIn: () => dispatch(signIn()),
+    onSignIn: () => {
+      console.log('press it');
+      dispatch(signIn());
+    },
     dispatch,
   };
 }

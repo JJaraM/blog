@@ -102,7 +102,9 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     onSearch: () => dispatch(search()),
-    onSignIn: () => dispatch(signIn()),
+    onSignIn: () => {
+      dispatch(signIn())
+    },
     onSignOut: () => dispatch(signOut()),
     onClose: () => {
       dispatch(close());

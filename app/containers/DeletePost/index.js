@@ -7,7 +7,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -22,7 +21,7 @@ import { disable, deletePost } from './actions';
 import Container from 'components/Container';
 import ContainerCenter from 'components/ContainerCenter';
 import PrincipalTitle from 'components/PrincipalTitle';
-import Button from 'components/Button';
+import Button from 'ui/Button';
 
 
 import './style.scss';
@@ -43,27 +42,27 @@ export function DeletePost({
   if (render) {
     return (
       <div className="search-container">
-  
+
         <Container>
           <div className="btn-close">
             <button className="btn-search fa fa-close" onClick={ onClose }></button>
           </div>
         </Container>
-  
+
         <div className="row h-100">
           <div className="col-sm-12 my-auto">
             <Container>
               <ContainerCenter>
-                <PrincipalTitle center={true} 
+                <PrincipalTitle center={true}
                   title={
-                    <FormattedMessage 
-                      {...messages.header} 
+                    <FormattedMessage
+                      {...messages.header}
                     />
                   }
-                  divider={true} 
+                  divider={true}
                   bottomDescription={
-                    <FormattedMessage 
-                      {...messages.description} 
+                    <FormattedMessage
+                      {...messages.description}
                       values={{
                         name: <b className="post-name" onClick={ onCopy(title) }>{ title }</b>,
                       }}
@@ -77,19 +76,19 @@ export function DeletePost({
               <Container>
                 <ContainerCenter>
                   <div className="metadata-fields">
-                    <input 
-                      id="btn-delete" 
-                      type="text" 
-                      className="search delete" 
+                    <input
+                      id="btn-delete"
+                      type="text"
+                      className="search delete"
                       placeholder={ title }
-                      onChange = { (evt) => onChange(evt, title) } 
+                      onChange = { (evt) => onChange(evt, title) }
                     />
-                    <Button 
-                      className="signIn-button" 
-                      containerClassName="signIn-button-container" 
+                    <Button
+                      className="signIn-button"
+                      containerClassName="signIn-button-container"
                       disable={ disable }
                       onClick={() => onDelete(id, disable) }>
-                      
+
                       <FormattedMessage {...messages.delete } />
                     </Button>
                   </div>
@@ -106,7 +105,7 @@ export function DeletePost({
   return (
     <></>
   );
-  
+
 }
 
 DeletePost.propTypes = {
@@ -118,7 +117,7 @@ DeletePost.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  disable: selectDisable(), 
+  disable: selectDisable(),
 });
 
 function mapDispatchToProps(dispatch) {

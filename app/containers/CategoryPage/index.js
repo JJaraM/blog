@@ -7,8 +7,6 @@
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { isLoadingComplete } from 'configuration/config';
@@ -17,7 +15,6 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { makeItems } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 import Container from 'components/Container';
 import SecondarySection from 'components/SecondarySection'
@@ -26,7 +23,7 @@ import LatestPostItemList from 'components/LatestPostItemList'
 import { retrieve, retrieveMore } from './actions';
 import ContainerCenter from 'components/ContainerCenter';
 import TagContainer from 'containers/TagContainer';
-import Button from 'components/Button';
+import Button from 'ui/Button';
 import { makeTagItems } from 'containers/TagContainer/selectors';
 
 let prevId;
@@ -54,13 +51,13 @@ export function CategoryPage({
   if (!prevId) {
     prevId = id;
   }
-  
+
   if (prevId !== id) {
     prevId = id;
     onLoadPage(prevId);
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     onLoadPage(prevId);
   }, []);
 
@@ -86,8 +83,8 @@ export function CategoryPage({
   return (
     <Container>
       <SecondarySection>
-        <PrincipalTitle 
-          center={ true } 
+        <PrincipalTitle
+          center={ true }
           divider={ true }
           title={title}
           bottomDescription="In the below section you will find the last post for the current category"
@@ -98,7 +95,7 @@ export function CategoryPage({
             <TagContainer />
           </ContainerCenter>
         </div>
-      
+
         <LatestPostItemList items={items} loading={items.length === 0}/>
 
         <ViewMore />

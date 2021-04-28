@@ -28,6 +28,8 @@ export function RecomendationPostItem(props) {
     image = '/PostImageNotFound.png';
   }
 
+  console.log(item);
+
   return (
     <div className="row pb-30">
       <div className="col-lg-6">
@@ -59,7 +61,7 @@ export function RecomendationPostItem(props) {
           </div>
         </div>
       </div>
-      
+
     </div>
   );
 }

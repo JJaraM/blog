@@ -20,6 +20,7 @@ import RecomendationsPostSection from 'containers/RecomendationsPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
 import AboutMeSection from 'containers/AboutMeSection';
 import Welcome from 'components/Welcome';
+import Project from '../Project';
 
 const key = 'home';
 
@@ -47,6 +48,7 @@ export function HomePage({
       <LatestPostSection />
       <RecomendationsPostSection />
       <TestimonialSection/>
+      <Project />
       {/* <AboutMeSection /> */}
 
     </>

@@ -9,15 +9,17 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
-import { retrieve, next, previous } from './actions';
-import { makeLoading, makeItemsTags } from './selectors';
+import { retrieve, next, previous, resize } from './actions';
+import { makeLoading, makeItemsTags, makeResize } from './selectors';
 
 export function PostRelated({
   tags,
   items,
+  isMinimized,
   onLoadPage,
   onNext,
-  onPrevious
+  onPrevious,
+  onMinimize
 }) {
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
@@ -39,8 +41,9 @@ export function PostRelated({
           </div>
       )
     });
+
     return (
-      <PostPanelLeftSide>
+      <PostPanelLeftSide onMinimize={onMinimize} isMinimized={isMinimized}>
         <div className="recomendations-container">
           <i onClick={ onPrevious } className="fa fa-arrow-left" aria-hidden="true"></i>
           <i onClick={ onNext } className="fa fa-arrow-right" aria-hidden="true"></i>
@@ -63,6 +66,7 @@ PostRelated.propTypes = {
 const mapStateToProps = createStructuredSelector({
   items: makeItemsTags(),
   loaded: makeLoading(),
+
 });
 
 function mapDispatchToProps(dispatch) {

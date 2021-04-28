@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, RETRIEVE, ITEMS, NEXT, PREVIOUS} from './constants';
+import { DEFAULT_ACTION, RETRIEVE, ITEMS, NEXT, PREVIOUS, RESIZE} from './constants';
 
 export function defaultAction() {
   return {
@@ -37,4 +37,10 @@ export function previous() {
   return {
     type: PREVIOUS
   };
+}
+
+export function resize() {
+  return {
+    type: RESIZE
+  }
 }

@@ -41,7 +41,6 @@ function LatestPostItemList(props) {
 }
 
 LatestPostItemList.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
   loading: PropTypes.bool,
   status: PropTypes.number,
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),

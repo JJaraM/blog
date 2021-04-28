@@ -13,12 +13,12 @@ import PrincipalTitle from 'components/PrincipalTitle';
 import ContainerCenter from 'components/ContainerCenter';
 import Container from 'components/Container';
 import SecondarySection from 'components/SecondarySection';
-import ButtonViewMore from 'components/ButtonViewMore';
 import messages from './messages';
 import { retrieve, retrieveMore, refresh } from './actions';
 import reducer from './reducer';
 import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
 import saga from './saga';
+import Button from 'ui/Button';
 
 export function LatestPostSection({
   items,
@@ -40,6 +40,20 @@ export function LatestPostSection({
 
   socket('post').watchData(onRefresh);
 
+  let button = (
+    <Button onClick={onViewMore} center>
+      <FormattedMessage {...messages.viewMore} />
+    </Button>
+  );
+
+  if (loading) {
+    button = (
+      <Button onClick={onViewMore} center disable>
+        <FormattedMessage {...messages.loading} />
+      </Button>
+    );
+  }
+
   return (
     <Container>
       <SecondarySection>
@@ -58,7 +72,8 @@ export function LatestPostSection({
 
         <LatestPostItemList items={items} loading={loading} status={status} />
 
-        <ButtonViewMore loading={loading} onClick={onViewMore} />
+        { button }
+
       </SecondarySection>
     </Container>
   );

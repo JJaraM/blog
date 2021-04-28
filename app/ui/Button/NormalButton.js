@@ -4,8 +4,8 @@ import './style.scss';
 
 function NormalButton(props) {
   return (
-    <button className={`btn`} onClick={props.onClick}>
-      { props.children }
+    <button className="btn" onClick={props.onClick}>
+      {props.children}
     </button>
   );
 }

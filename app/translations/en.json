@@ -5,7 +5,7 @@
   "boilerplate.components.Header.home": "Home",
   "boilerplate.components.Header.post": "Post",
   "boilerplate.components.Header.post_create": "Create",
-  
+
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",
@@ -80,5 +80,8 @@
   "app.containers.LatestPostSection.description" : "In the below section you will find the most important posts",
 
   "app.components.Welcome.download" : "Download",
-  "app.components.Welcome.workTitle" : "Software Engineer"
+  "app.components.Welcome.workTitle" : "Software Engineer",
+
+  "app.containers.LatestPostSection.viewMore" : "View More",
+  "app.containers.LatestPostSection.loading" : "Loading ..."
 }

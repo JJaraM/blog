@@ -4,13 +4,14 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION, RETRIEVE, ITEMS, NEXT, PREVIOUS } from './constants';
+import { DEFAULT_ACTION, RETRIEVE, ITEMS, NEXT, PREVIOUS, RESIZE } from './constants';
 
 export const initialState = {
   tags: [],
   items:[],
   loaded: false,
   page: 0,
+  resize: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -23,6 +24,10 @@ const postRelatedReducer = (state = initialState, action) =>
       case RETRIEVE:
         draft.loaded = true;
         draft.tags = action.tags;
+        break;
+
+      case RESIZE:
+        draft.resize = !draft.resize;
         break;
 
       case ITEMS:

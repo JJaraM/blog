@@ -6,11 +6,8 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import Button from 'components/Button';
+import Button from 'ui/Button';
 
 import './style.scss';
 
@@ -36,7 +33,7 @@ function ErrorMessage(props) {
               <Button id='btn-error' onClick={() => showMessage('btn-error', error.error)}>
                 Error
               </Button>
-        
+
               <Button id='btn-stackTrace' onClick={() => showMessage('btn-stackTrace', error.trace)}>
                 StackTrace
               </Button>

@@ -17,7 +17,7 @@ import {
 import { makeTagItems, makeLoading, makeIsFirstLoading, makeSearchText } from './selectors'
 import TagList from 'components/TagList';
 import PostTagList from 'components/PostTagList';
-import { getFilterList, getItems } from '../TagComboBox/service';
+import { getItems } from '../TagComboBox/service';
 import TagContainerList from '../../components/TagContainerList';
 import TagComboBox from 'containers/TagComboBox';
 
@@ -62,7 +62,7 @@ export function TagContainer({
     />;
   }
 
-  if (items.length > 0) {
+  if (items.length > 0 && !usePost) {
     comboBox = (
       <li>
         <TagComboBox loading={loading} items={comboBoxItems} after={splitListOn} onFilter={onFilter} searchText={searchText}  />

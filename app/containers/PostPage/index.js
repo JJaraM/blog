@@ -66,6 +66,8 @@ import {
   EVENT_CHANGE_IMAGE_STATUS,
   EVENT_CHANGE_CONTENT_STATUS
 } from './constants';
+import { makeResize } from '../PostRelated/selectors';
+import { resize } from '../PostRelated/actions';
 
 function renderEditableComponent(eventValue, eventV) {
   let value = false;
@@ -110,8 +112,12 @@ export function PostPage({
   onUpdateImage,
 
   eventValue,
-  canEdit
+  canEdit,
+
+  onMinimize,
+  isMinimized
 }) {
+
 
   useInjectReducer({ key: 'postPage', reducer });
   useInjectSaga({ key: 'postPage', saga });
@@ -166,8 +172,8 @@ export function PostPage({
 
   return (
     <>
-      <Helmet title={title} defaultTitle="Jonathan Jara Morales">
-      </Helmet>
+      <Helmet title={title} defaultTitle="Jonathan Jara Morales" />
+
 
       <DeletePost
         render={ canRenderDeleteModal }
@@ -196,6 +202,7 @@ export function PostPage({
           <TagContainer item={item} usePost={true} isAuthenticated = { isAuthenticated } />
         </PostHeader>
       </PostImage>
+
       <ThirdSection>
         <ContainerFluid>
             <Row>
@@ -210,6 +217,8 @@ export function PostPage({
                 onSaveStatus = { contentStatus }
                 renderDeleteModal = { onRenderDeleteModal }
                 event = { EVENT_CHANGE_CONTENT }
+                onMinimize = {onMinimize}
+                isMinimized = {isMinimized}
               />
             </Row>
         </ContainerFluid>
@@ -229,6 +238,7 @@ const mapStateToProps = createStructuredSelector({
   isAuthenticated: makeIsAuthenticated(),
   canRenderDeleteModal: makeRenderDeleteModal(),
   eventValue: makeEvents(),
+  isMinimized: makeResize(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -247,6 +257,8 @@ function mapDispatchToProps(dispatch) {
     canEdit: (action, value) => dispatch(event(action, value)),
 
     onRenderDeleteModal: (render) => dispatch(renderDeleteModal(render)),
+
+    onMinimize: () => dispatch(resize()),
     dispatch,
   };
 }
