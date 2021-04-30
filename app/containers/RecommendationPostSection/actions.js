@@ -6,13 +6,13 @@ export function retrieve() {
   };
 }
 
-export function onNext() {
+export function next() {
   return {
     type: ON_NEXT,
   };
 }
 
-export function onPrevious() {
+export function previous() {
   return {
     type: ON_PREVIOUS,
   };

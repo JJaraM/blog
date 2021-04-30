@@ -22,11 +22,11 @@ import React, { useEffect, memo } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { useInjectReducer } from '../../../internals/templates/utils/injectReducer';
-import { useInjectSaga } from '../../../internals/templates/utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
 
 import { selectItems, selectStatus, selectError } from './selectors';
-import { onNext, onPrevious, retrieve } from './actions';
+import { next, previous, retrieve } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -78,8 +78,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: () => dispatch(retrieve()),
-    onNext:() => dispatch(onNext()),
-    onPrevious:() => dispatch(onPrevious()),
+    onNext:() => dispatch(next()),
+    onPrevious:() => dispatch(previous()),
     dispatch,
   };
 }
