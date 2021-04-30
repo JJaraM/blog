@@ -26,7 +26,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import { selectItems, selectStatus, selectError } from './selectors';
-import { next, previous, retrieve } from './actions';
+import { next, previous, retrieve, refresh } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -34,6 +34,7 @@ import ErrorMessage from '../../components/ErrorMessage';
 import PrimarySection from '../../components/PrimarySection';
 import RecommendationPostList from '../../components/RecommendationPostList';
 import Pagination from '../../ui/Pagination';
+import { socket } from '../../configuration/socket';
 
 /**
  * Section that contains the recommendation posts, based on the count of views.
@@ -44,11 +45,13 @@ export function RecommendationPostSection({
   error,
   onLoadPage,
   onNext,
-  onPrevious
+  onPrevious,
+  onRefresh,
 }) {
 
   useInjectReducer({ key: 'recommendationPostSection', reducer });
   useInjectSaga({ key: 'recommendationPostSection', saga });
+  socket('post').watchData(onRefresh);
 
   useEffect(() => {
     onLoadPage();
@@ -80,6 +83,7 @@ function mapDispatchToProps(dispatch) {
     onLoadPage: () => dispatch(retrieve()),
     onNext:() => dispatch(next()),
     onPrevious:() => dispatch(previous()),
+    onRefresh: (item) => dispatch(refresh(item)),
     dispatch,
   };
 }

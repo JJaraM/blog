@@ -15,6 +15,7 @@ import PostTagList from 'components/PostTagList';
 import { makeTagItems, makeLoading } from '../TagContainer/selectors';
 import Img from 'components/Img';
 import Metadata from 'components/Metadata';
+import RefreshIcon from '../../ui/RefreshIcon';
 
 export function LatestPostItem({
   item,
@@ -30,11 +31,7 @@ export function LatestPostItem({
 
   if (refresh) {
       refreshClassName = 'refresh';
-      Refresh = () => (
-        <div className="refresh-icon">
-          <i className="fa fa-refresh" aria-hidden="true"></i>
-        </div>
-      );
+      Refresh = () => <RefreshIcon />;
   }
 
   const Component = () => (

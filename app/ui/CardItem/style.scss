@@ -1,0 +1,15 @@
+.jjara-image-card-info-refresh {
+  float: right;
+}
+
+.jjara-card-item {
+  padding: 10px;
+
+  &.refresh {
+    background-image:none !important;
+    animation: fadeIt 5s ease-in-out;
+    border-radius: 5px;
+  }
+}
+
+

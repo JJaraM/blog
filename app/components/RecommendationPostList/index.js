@@ -32,7 +32,9 @@ import ImageCardInfoDescription from '../../ui/CardItem/ImageCardInfoDescription
 import ImageCardItem from '../../ui/CardItem';
 import ImageCardList from '../../ui/CardItem/ImageCardList';
 import SmallRightContent from '../SmallRightContent';
-import { api } from '../../configuration/config';
+import { api, canRender } from '../../configuration/config';
+import ImageCardInfoRefresh from '../../ui/CardItem/ImageCardInfoRefresh';
+import RenderComponent from '../RenderComponent';
 
 /**
  * Component that is going to return a div with two columns where in the left side you will be able to see the first 2
@@ -50,17 +52,18 @@ function RecommendationPostList(props) {
     <Container>
       <BigLeftContent>
         <ImageCardList size={2} start={0} items={ items } status={ status } itemKey={ITEM_KEY} onEach={(item, key, loading) => (
-          <ImageCardItem key={key}>
+          <ImageCardItem key={key} refresh={item.refresh}>
             <ImageCardDivider>
-              <CardImage href={`${api.paths.postPage} ${item.id}`} image={item.image} loading={loading}>
+              <CardImage href={`${api.paths.postPage}${item.id}`} image={item.image} loading={loading}>
                 <CardImageTag tag={item.views} loading={loading} />
               </CardImage>
             </ImageCardDivider>
             <ImageCardDivider>
               <ImageCardInfoContainer>
-                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage} ${item.id}`} loading={loading} />
+                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} />
                 <ImageCardInfoMetadata date={item.updateDate} loading={loading} />
                 <ImageCardInfoDescription description={item.description} />
+                <ImageCardInfoRefresh refresh={item.refresh} />
               </ImageCardInfoContainer>
             </ImageCardDivider>
           </ImageCardItem>
@@ -68,22 +71,26 @@ function RecommendationPostList(props) {
       </BigLeftContent>
 
       <SmallRightContent>
-        { props.pagination }
+        <RenderComponent render={canRender(status)}>
+          { props.pagination }
+        </RenderComponent>
         <ImageCardList size={4} start={2} items={ items } status={ status } itemKey={ITEM_KEY} onEach={(item, key, loading) => (
-          <ImageCardItem key={key}>
+          <ImageCardItem key={key} refresh={item.refresh}>
             <ImageCardDivider>
-              <CardImage href={`${api.paths.postPage} ${item.id}`} image={item.image} loading={loading}>
+              <CardImage href={`${api.paths.postPage}${item.id}`} image={item.image} loading={loading}>
                 <CardImageTag tag={item.views} loading={loading} />
               </CardImage>
             </ImageCardDivider>
             <ImageCardDivider>
               <ImageCardInfoContainer>
-                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage} ${item.id}`} loading={loading} />
+                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} />
                 <ImageCardInfoMetadata date={item.updateDate} loading={loading} />
+                <ImageCardInfoRefresh refresh={item.refresh} />
               </ImageCardInfoContainer>
             </ImageCardDivider>
           </ImageCardItem>
         )}/>
+
       </SmallRightContent>
     </Container>
   );

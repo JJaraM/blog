@@ -1,4 +1,4 @@
-import { RETRIEVE, ITEMS_LOADED, FETCH_ERROR, ON_NEXT, ON_PREVIOUS } from './constants';
+import { RETRIEVE, ITEMS_LOADED, FETCH_ERROR, ON_NEXT, ON_PREVIOUS, ON_REFRESH } from './constants';
 
 export function retrieve() {
   return {
@@ -15,6 +15,13 @@ export function next() {
 export function previous() {
   return {
     type: ON_PREVIOUS,
+  };
+}
+
+export function refresh(item) {
+  return {
+    type: ON_REFRESH,
+    item,
   };
 }
 

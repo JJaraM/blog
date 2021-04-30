@@ -54,6 +54,14 @@
 
 }
 
+.refresh-icon {
+  text-align: right;
+  animation: fade-out 5s;
+  opacity: 0;
+  i {
+    font-size: 12px !important;
+  }
+}
 
 .card {
     flex: 0 0 25%;
@@ -76,14 +84,7 @@
             animation: fadeIt 5s ease-in-out;
         }
 
-        .refresh-icon {
-            text-align: right;
-            animation: fade-out 5s;
-            opacity: 0;
-            i {
-                font-size: 12px !important;
-            }
-        }
+
     }
 
     @keyframes fade-out {

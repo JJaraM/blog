@@ -196,7 +196,33 @@ h3 {
     left: -50px !important;
 }
 
+.sublist {
 
+  .row {
+    .pb-30 {
+      padding: 0;
+    }
+  }
+
+  .post-text {
+    padding: 0px;
+  }
+
+  .pb-30 {
+    padding-bottom: 10px;
+  }
+
+  h2 {
+      font-size: 14px !important;
+      font-weight: 700;
+      line-height: 1.2em;
+      margin: 0px 0px 2px 0px;
+      text-align: left;
+      order: 1;
+      font-family: "Montserrat", Sans-serif;
+  }
+
+}
 
 @media only screen and (max-width: 959px) {
 
@@ -206,6 +232,12 @@ h3 {
 
   .post-text {
     padding-top: 1.25rem;
+  }
+
+  .sublist {
+    .post-text {
+      padding: 1.25rem !important;
+    }
   }
 
   .container {
@@ -219,11 +251,7 @@ h3 {
 
   }
 
-  .sublist {
-    .post-text {
-      padding: 1.25rem !important;
-    }
-  }
+
 
 
   .card {
