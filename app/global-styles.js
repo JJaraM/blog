@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
   float: right;
   &.tags {
     span {
-      background: #75d69c !important;
+      background: var(--jjara-tag-bg-color) !important;
       color: #000;
     }
   }

@@ -15,37 +15,37 @@ body {
 }
 
 
-@-webkit-keyframes blackWhite {  
+@-webkit-keyframes blackWhite {
     0% { background-color: white; }
     50% { background-color: white; }
     51% { background-color: black; }
     100% { background-color: black; }
   }
-  
-  @-webkit-keyframes blackWhiteFade {  
+
+  @-webkit-keyframes blackWhiteFade {
     0% { background-color: white; }
     50% { background-color: black; }
     100% { background-color: white; }
   }
 
-  
+
   .show-selection {
     background-color: black;
     -webkit-animation-name: blackWhiteFade;
-    -webkit-animation-iteration-count: 1;  
-    -webkit-animation-duration: 2s; 
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 2s;
   }
-  
+
 h1, h2, h3, h4, h5 {
-    
-            
+
+
     span {
         a {
             display: block;
             position: relative;
             top: -50px;
             visibility: hidden;
-            
+
         }
     }
 }
@@ -70,15 +70,15 @@ img {
 .pt-30 {
     padding-top: 30px;
 }
-  
+
 .pb-30 {
     padding-bottom: 30px;
 }
-  
+
 .pr-30 {
     padding-right: 30px;
 }
-  
+
 .pl-30 {
     padding-left: 30px;
 }
@@ -118,25 +118,25 @@ i {
     //font-size: 200%;
     overflow: auto;
   }
-  
+
   #fullscreen:fullscreen > h1 {
     //color: red;
   }
-  
+
   #fullscreen:fullscreen > p {
    // color: darkred;
   }
-  
+
   #fullscreen:fullscreen > button {
     display: none;
   }
 
 .text-content {
     a {
-        color: #75d69c;
-        
+        color: var(--jjara-tag-bg-color);
+
         &.hover {
-            text-decoration: underline; 
+            text-decoration: underline;
         }
     }
 }

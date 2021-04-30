@@ -100,7 +100,7 @@
       .block {
         width: 0%;
         height: inherit;
-        background: #75d69c;
+        background: var(--jjara-tag-bg-color);
         position: absolute;
         animation: mainBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
         display: flex;
@@ -126,7 +126,7 @@
           -moz-border-radius: 50%;
           border-radius: 50%;
 
-          background: #75d69c;
+          background: var(--jjara-tag-bg-color);
           -webkit-animation: load 0.6s cubic-bezier(.74, .06, .4, .92) forwards;
           animation: popIn 0.8s cubic-bezier(.74, .06, .4, .92) forwards;
           animation-delay: 2s;
@@ -227,14 +227,14 @@
   0% {
     width: 0px;
     height: 0px;
-    background: #75d69c;
+    background: var(--jjara-tag-bg-color);
     border: 0px solid #ddd;
     opacity: 0;
   }
   50% {
     width: 10px;
     height: 10px;
-    background: #75d69c;
+    background: var(--jjara-tag-bg-color);
     opacity: 1;
     bottom: 45px;
   }
@@ -252,7 +252,7 @@
   100% {
     width: 7px;
     height: 7px;
-    background: #75d69c;
+    background: var(--jjara-tag-bg-color);
     border: 0px solid #222;
     bottom: 13px;
 

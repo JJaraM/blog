@@ -6,6 +6,9 @@ const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
 
 const api = {
+  paths: {
+    postPage: '/post/'
+  },
   testimonials: `${HOST_NAME_POST}/testimonial/`,
   post: `${HOST_NAME_POST}/post/`,
   byTitle: `${HOST_NAME_POST}/post/find/all/byTitle/`,
@@ -34,6 +37,7 @@ const api = {
 const httpCall = function httpCall(endPoint, ...args) {
   return endPoint + args.join('/');
 };
+
 
 const isLoadingComplete = function isLoadingComplete(loading) {
   return !loading && !infiniteLoading;

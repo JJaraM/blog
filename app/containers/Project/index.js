@@ -4,8 +4,8 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import PrincipalTitle from 'components/PrincipalTitle';
-import { selectItems } from '../RecomendationsPostSection/selectors';
-import RecomendationsPostList from '../../components/RecomendationsPostList';
+import { selectItems } from '../RecommendationPostSection/selectors';
+import RecomendationsPostList from '../../components/RecommendationPostList';
 
 export function Project({ items }) {
   items = [
@@ -65,7 +65,9 @@ export function Project({ items }) {
         topDescription=""
         bottomDescription="What about my projects?"
       />
-      <RecomendationsPostList items={items} status={1} />
+      {/*
+      <RecommendationPostList items={items} status={1} />
+      */}
     </div>
   );
 }

@@ -19,6 +19,7 @@ import reducer from './reducer';
 import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
 import saga from './saga';
 import Button from 'ui/Button';
+import { isInfitiveLoading } from '../../configuration/config';
 
 export function LatestPostSection({
   items,
@@ -53,6 +54,11 @@ export function LatestPostSection({
       </Button>
     );
   }
+
+  if (!loading) {
+    loading = isInfitiveLoading();
+  }
+
 
   return (
     <Container>

@@ -16,7 +16,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './saga';
 import LatestPostSection from 'containers/LatestPostSection';
-import RecomendationsPostSection from 'containers/RecomendationsPostSection';
+import RecommendationPostSection from 'containers/RecommendationPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
 import AboutMeSection from 'containers/AboutMeSection';
 import Welcome from 'components/Welcome';
@@ -46,10 +46,10 @@ export function HomePage({
 
 
       <LatestPostSection />
-      <RecomendationsPostSection />
+      <RecommendationPostSection />
       <TestimonialSection/>
-      <Project />
-      {/* <AboutMeSection /> */}
+      {/*<Project />
+     <AboutMeSection /> */}
 
     </>
   );

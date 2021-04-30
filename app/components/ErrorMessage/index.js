@@ -6,11 +6,8 @@
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-
 import Button from 'ui/Button';
-
 import './style.scss';
-
 
 function showMessage(id, message) {
   console.log(message);
@@ -19,7 +16,13 @@ function showMessage(id, message) {
 function ErrorMessage(props) {
   const { error, isAdmin } = props;
 
-  console.log(error);
+  if (error === null || error === undefined) {
+    return (
+      <>
+        { props.children }
+      </>
+    )
+  }
 
   return (
     <div className="d-flex justify-content-center  pb-30">
@@ -39,9 +42,6 @@ function ErrorMessage(props) {
               </Button>
             </div>
 
-            <div>
-              asds
-            </div>
           </div>
         </div>
     </div>

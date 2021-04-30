@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import RecomendationPostItem from 'containers/RecomendationPostItem';
 import PostPanelLeftSide from 'components/PostPanelLeftSide';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -11,6 +10,14 @@ import reducer from './reducer';
 import saga from './saga';
 import { retrieve, next, previous, resize } from './actions';
 import { makeLoading, makeItemsTags, makeResize } from './selectors';
+import CardDivider from '../../ui/CardItem/ImageCardDivider';
+import CardImage from '../../ui/CardItem/CardImage';
+import CardImageTag from '../../ui/CardItem/CardImageTag';
+import CardInfoContainer from '../../ui/CardItem/ImageCardInfoContainer';
+import CardInfoTitle from '../../ui/CardItem/ImageCardInfoTitle';
+import CardInfoMetadata from '../../ui/CardItem/ImageCardInfoMetadata';
+import CardInfoDescription from '../../ui/CardItem/ImageCardInfoDescription';
+import CardContainer from '../../ui/CardItem';
 
 export function PostRelated({
   tags,
@@ -30,12 +37,25 @@ export function PostRelated({
 
   if (items.length > 0 ) {
     let subList = items.map(item => {
-      item.description = '';
+      item = Object.assign({}, item, {description: ''})
       return (
           <div className="sublist" >
             <div className="row pb-30" key={`post-related-${item.id}`}>
               <div className="col-lg-12">
-                <RecomendationPostItem item={item} />
+                <CardContainer key={`jjara-recommendation-item-${item.id}`}>
+                  <CardDivider>
+                    <CardImage href={`/post/${item.id}`} image={item.image}>
+                      <CardImageTag tag={item.views} />
+                    </CardImage>
+                  </CardDivider>
+                  <CardDivider>
+                    <CardInfoContainer>
+                      <CardInfoTitle title={item.title} href={`/post/${item.id}`} />
+                      <CardInfoMetadata date={item.updateDate} />
+                      <CardInfoDescription description={item.description} />
+                    </CardInfoContainer>
+                  </CardDivider>
+                </CardContainer>
               </div>
             </div>
           </div>

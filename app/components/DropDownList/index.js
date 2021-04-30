@@ -5,9 +5,8 @@ import ComboBoxItem from '../ComboBoxItem';
 function DropDownList(props) {
 
   let items = props.items;
-
   if (items.length == 0) {
-    items = <ComboBoxItem id="0" value="No Data" />
+    items = <ComboBoxItem key="jjara-combo-box-item-no-data" value="No Data" />
   }
 
   return (
@@ -15,7 +14,7 @@ function DropDownList(props) {
       <button className="tag-button dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         More
       </button>
-      <div className="dropdown-menu" autoClose="nonInput" auto-close="disabled" >
+      <div className="dropdown-menu" >
         { props.children }
         <div className="pre-scrollable-tags">
           { items }
