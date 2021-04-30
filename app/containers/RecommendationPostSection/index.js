@@ -46,9 +46,9 @@ export function RecommendationPostSection({
   onNext,
   onPrevious
 }) {
-  const key = 'recommendationPostSection';
-  useInjectReducer({ key: key, reducer });
-  useInjectSaga({ key: key, saga });
+
+  useInjectReducer({ key: 'recommendationPostSection', reducer });
+  useInjectSaga({ key: 'recommendationPostSection', saga });
 
   useEffect(() => {
     onLoadPage();
