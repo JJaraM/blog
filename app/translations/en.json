@@ -5,6 +5,8 @@
   "boilerplate.components.Header.home": "Home",
   "boilerplate.components.Header.post": "Post",
   "boilerplate.components.Header.post_create": "Create",
+  "boilerplate.components.Header.cases_of_study": "Cases of Study",
+  "boilerplate.components.Header.cases_of_study_cloud_services": "Cloud Services",
 
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
@@ -34,15 +36,14 @@
   "app.containers.TestimonialSection.header": "Testimonials",
   "app.containers.TestimonialSection.subTitle": "What's the rumor about me?",
 
-
   "app.containers.SignIn.header": "Sign In",
   "app.containers.SignIn.description": "Enter your credentials to access",
   "app.containers.SignIn.username": "User",
   "app.containers.SignIn.password": "Password",
   "app.containers.SignIn.signIn": "Sign In",
 
-  "app.components.IconEdit.label" : "Edit",
-  "app.components.IconDelete.label" : "Delete",
+  "app.components.IconEdit.label": "Edit",
+  "app.components.IconDelete.label": "Delete",
 
   "app.components.IconClose.label": "Close",
 
@@ -57,31 +58,31 @@
 
   "app.components.EditorItemTableOfContent.tableOfContents": "Table of Contents",
   "app.components.EditorItemTableOfContent.label": "File Tree",
-  "app.components.EditorOpenFullScreen.label" : "Full Screen",
-  "app.components.EditorCloseFullScreen.label" : "Close Full Screen",
+  "app.components.EditorOpenFullScreen.label": "Full Screen",
+  "app.components.EditorCloseFullScreen.label": "Close Full Screen",
 
-  "app.containers.AboutMeSection.header" : "About Me",
+  "app.containers.AboutMeSection.header": "About Me",
   "app.containers.AboutMeSection.subTitle": "How I am?",
 
-  "app.components.Date.january" : "January",
-  "app.components.Date.february" : "February",
-  "app.components.Date.march" : "March",
-  "app.components.Date.april" : "April",
-  "app.components.Date.may" : "May",
-  "app.components.Date.june" : "June",
-  "app.components.Date.july" : "July",
-  "app.components.Date.august" : "August",
-  "app.components.Date.september" : "September",
-  "app.components.Date.october" : "October",
-  "app.components.Date.november" : "November",
-  "app.components.Date.december" : "December",
+  "app.components.Date.january": "January",
+  "app.components.Date.february": "February",
+  "app.components.Date.march": "March",
+  "app.components.Date.april": "April",
+  "app.components.Date.may": "May",
+  "app.components.Date.june": "June",
+  "app.components.Date.july": "July",
+  "app.components.Date.august": "August",
+  "app.components.Date.september": "September",
+  "app.components.Date.october": "October",
+  "app.components.Date.november": "November",
+  "app.components.Date.december": "December",
 
-  "app.containers.LatestPostSection.header" : "Latest Posts",
-  "app.containers.LatestPostSection.description" : "In the below section you will find the most important posts",
+  "app.containers.LatestPostSection.header": "Latest Posts",
+  "app.containers.LatestPostSection.description": "In the below section you will find the most important posts",
 
-  "app.components.Welcome.download" : "Download",
-  "app.components.Welcome.workTitle" : "Software Engineer",
+  "app.components.Welcome.download": "Download",
+  "app.components.Welcome.workTitle": "Software Engineer",
 
-  "app.containers.LatestPostSection.viewMore" : "View More",
-  "app.containers.LatestPostSection.loading" : "Loading ..."
+  "app.containers.LatestPostSection.viewMore": "View More",
+  "app.containers.LatestPostSection.loading": "Loading ..."
 }

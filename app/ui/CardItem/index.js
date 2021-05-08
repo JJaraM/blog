@@ -13,7 +13,7 @@ function CardItem(props) {
   return (
     <div className="pb-30 ">
       <div className={`jjara-card-item ${className}`}>
-        <div className="row pb-30">
+        <div className="row">
           { props.children }
         </div>
       </div>

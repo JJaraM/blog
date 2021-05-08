@@ -42,6 +42,19 @@
       //background: var(--tb-bg-color);
   }
 
+
+
+  pre[class*="language-gitclonesmall"]::before {
+    background-image: url('/GitHub-Mark-Light-64px.png') ;
+    content: '';
+    display: block;
+    height: 65px;
+    width: 65px;
+    background-repeat: no-repeat;
+    display: -webkit-inline-flex;
+    background-size: 40px 40px;
+  }
+
   pre[class*="language-gitclone"]::before {
     background-image: url('/GitHub-Mark-Light-64px.png') ;
     content: '';
@@ -49,13 +62,14 @@
     height: 65px;
     width: 65px;
     background-repeat: no-repeat;
+    display: -webkit-inline-flex;
   }
 
-  pre[class*="language-gitclone"] {
+  pre[class*="language-gitclone"], pre[class*="language-gitclonesmall"] {
     display: flex;
   }
 
-  code[class*=" language-gitclone"] {
+  code[class*=" language-gitclone"], pre[class*="language-gitclonesmall"] {
     padding-left: 10px;
   }
 
@@ -107,7 +121,7 @@
 
 
 
-  code[class*="language-gitclone"], pre[class*="language-gitclone"] {
+  code[class*="language-gitclone"], pre[class*="language-gitclonesmall"] {
     color: #343233;
     white-space: pre-line;
     text-shadow: none;
@@ -126,7 +140,12 @@
 
   code[class*="language-gitclone"] > .token.prism-btn {
     background: #3c3e49;
-    padding: 10px;
+    //padding: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+
     border-radius: 5px;
     display: inline-flex;
     color: #FFF;
@@ -139,3 +158,34 @@
   }
 
 
+
+
+
+
+code[class*="language-gitclonesmall"] > .token.punctuation {
+  color: #f1fa8c;
+}
+
+code[class*="language-gitclonesmall"] > .token.strong {
+  color: #43fa71;
+  font-weight: 100;
+}
+
+code[class*="language-gitclonesmall"] > .token.prism-btn {
+  background: #3c3e49;
+  //padding: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-radius: 5px;
+  display: inline-flex;
+  color: #FFF;
+  margin-top: 10px;
+}
+
+code[class*="language-gitclonesmall"] > .token.prism-btn:hover {
+  background: #25262d;
+  cursor: pointer;
+}

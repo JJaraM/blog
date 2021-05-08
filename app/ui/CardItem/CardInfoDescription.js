@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-function ImageCardInfoDescription(props) {
+function CardInfoDescription(props) {
   return (
     <div className="description">
       <p>{ props.description} </p>
@@ -9,8 +9,8 @@ function ImageCardInfoDescription(props) {
   );
 }
 
-ImageCardInfoDescription.propTypes = {
+CardInfoDescription.propTypes = {
   description: PropTypes.string
 };
 
-export default memo(ImageCardInfoDescription);
+export default memo(CardInfoDescription);

@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 
 function RenderComponent(props) {
+  if (props.component) {
+    return <> { props.component } </>
+  }
   if (props.render) {
     return <>{ props.children }</>
   }
@@ -11,6 +13,7 @@ function RenderComponent(props) {
 
 RenderComponent.propTypes = {
   render: PropTypes.bool,
+  component: PropTypes.node,
 };
 
 export default memo(RenderComponent);

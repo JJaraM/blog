@@ -8,11 +8,10 @@ export default function* saga() {
   yield takeLatest(DELETE, sagaDelete);
 }
 
-export function* sagaDelete() {    
+export function* sagaDelete() {
   try {
     const id = yield select(selectId());
     const requestURL = httpCall(api.post, id);
-    console.log(requestURL);
 
     yield call(request, requestURL, {
       method: 'DELETE',
@@ -23,7 +22,7 @@ export function* sagaDelete() {
 
     window.location.href='/';
   } catch (err) {
-    
+
     console.log(err);
   }
 }

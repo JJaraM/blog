@@ -10,13 +10,13 @@ import reducer from './reducer';
 import saga from './saga';
 import { retrieve, next, previous, resize } from './actions';
 import { makeLoading, makeItemsTags, makeResize } from './selectors';
-import CardDivider from '../../ui/CardItem/ImageCardDivider';
+import CardDivider from '../../ui/CardItem/CardDivider';
 import CardImage from '../../ui/CardItem/CardImage';
 import CardImageTag from '../../ui/CardItem/CardImageTag';
-import CardInfoContainer from '../../ui/CardItem/ImageCardInfoContainer';
-import CardInfoTitle from '../../ui/CardItem/ImageCardInfoTitle';
-import CardInfoMetadata from '../../ui/CardItem/ImageCardInfoMetadata';
-import CardInfoDescription from '../../ui/CardItem/ImageCardInfoDescription';
+import CardInfoContainer from '../../ui/CardItem/CardInfoContainer';
+import CardInfoTitle from '../../ui/CardItem/CardInfoTitle';
+import CardInfoMetadata from '../../ui/CardItem/CardInfoMetadata';
+import CardInfoDescription from '../../ui/CardItem/CardInfoDescription';
 import CardContainer from '../../ui/CardItem';
 
 export function PostRelated({

@@ -21,7 +21,7 @@ function CardImage(props) {
 
   return (
     <Link to={props.href}>
-      <div className="img-elementor" style={{backgroundImage: `url(${image})`}}>
+      <div className="img-elementor" style={{backgroundImage: `url(${image})`}} onLoad={() => console.log('load')}>
         { props.children }
       </div>
     </Link>

@@ -21,6 +21,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeItems, makeLoading } from './selectors';
 import messages from './messages';
+import './style.scss';
 
 export function TestimonialSection({ items, loading, onLoadPage, onNext, onPrevious }) {
   const key = 'testimonialSection';

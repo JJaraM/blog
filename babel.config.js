@@ -1,12 +1,11 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      "@babel/preset-react",
       {
-        modules: false,
-      },
-    ],
-    '@babel/preset-react',
+        "throwIfNamespace": false // defaults to true
+      }
+    ]
   ],
   plugins: [
     'styled-components',

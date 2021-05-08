@@ -21,6 +21,7 @@ export function* getItems() {
     const res = yield call(fetch, requestURL);
     const json = yield call([res, 'json']) ;
 
+
     if (res.status === 200) {
       let items = yield call(request, requestURL);
       yield put(itemsLoaded(items));
@@ -28,6 +29,9 @@ export function* getItems() {
       yield put(error(json));
     }
   } catch (e) {
+    console.log(res);
+    console.log(e);
+
     yield put(error({
       error: e.message
     }));

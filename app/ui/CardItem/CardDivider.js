@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 
-function ImageCardDivider(props) {
+function CardDivider(props) {
   return (
     <div className="col-lg-6">
       { props.children }
@@ -11,4 +11,4 @@ function ImageCardDivider(props) {
 
 
 
-export default memo(ImageCardDivider);
+export default memo(CardDivider);

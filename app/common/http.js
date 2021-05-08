@@ -7,27 +7,46 @@ let url;
 
 let okFunction;
 let noContentFunction;
+let serviceUnavailableFunction;
 
 function* done() {
   res = yield call(fetch, url);
-  if (res.status === 200) {
-    data = yield call(request, url);
-    yield okFunction(data);
-  } else if (res.status === 204) {
-    yield noContentFunction();
+
+  try {
+    if (res.status === 200) {
+      data = yield call(request, url);
+      yield okFunction(data);
+    } else if (res.status === 204) {
+      yield noContentFunction();
+    } else if (res.status === 503) {
+      console.log('Service Unavailable');
+      yield serviceUnavailableFunction();
+    }
+  } catch (e) {
+    console.log(e.response);
   }
+
 }
 
 function on() {
   return {
     ok,
     noContent,
+    serviceUnavailable,
     done,
   };
 }
 
 function noContent(func) {
   noContentFunction = func;
+  return {
+    on,
+    done,
+  };
+}
+
+function serviceUnavailable(func) {
+  serviceUnavailableFunction = func;
   return {
     on,
     done,
@@ -68,6 +87,12 @@ const httpRequest = function httpRequest() {
     }
   }
 
+  function* onServiceUnavailable(fun) {
+    if (res.status === 503) {
+      yield fun(data);
+    }
+  }
+
   function* onInternalServerError(fun) {
     if (res.status === 500) {
       yield fun(res);
@@ -75,9 +100,13 @@ const httpRequest = function httpRequest() {
   }
 
   function* onCall(requestURL) {
-    res = yield call(fetch, requestURL);
-    if (res.status === 200) {
-      data = yield call(request, requestURL);
+    try {
+      res = yield call(fetch, requestURL);
+      if (res.status === 200) {
+        data = yield call(request, requestURL);
+      }
+    } catch (e) {
+      console.log(e.response);
     }
   }
 
@@ -86,6 +115,7 @@ const httpRequest = function httpRequest() {
     onCall,
     onInternalServerError,
     onNoContent,
+    onServiceUnavailable,
   };
 };
 

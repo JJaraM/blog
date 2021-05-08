@@ -3,7 +3,7 @@ import RefreshIcon from '../RefreshIcon';
 import './style.scss';
 import PropTypes from 'prop-types';
 
-function ImageCardInfoRefresh(props) {
+function CardInfoRefresh(props) {
   let refreshIcon = <></>;
 
   if (props.refresh) {
@@ -16,8 +16,8 @@ function ImageCardInfoRefresh(props) {
   );
 }
 
-ImageCardInfoRefresh.propTypes = {
+CardInfoRefresh.propTypes = {
   refresh: PropTypes.any,
 };
 
-export default memo(ImageCardInfoRefresh);
+export default memo(CardInfoRefresh);

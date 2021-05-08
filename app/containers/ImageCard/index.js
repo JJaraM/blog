@@ -8,11 +8,11 @@ import './style.scss';
 import CardContainer from '../../ui/CardItem';
 import CardImage from '../../ui/CardItem/CardImage';
 import CardImageTag from '../../ui/CardItem/CardImageTag';
-import CardDivider from '../../ui/CardItem/ImageCardDivider';
-import CardInfoContainer from '../../ui/CardItem/ImageCardInfoContainer';
-import CardInfoTitle from '../../ui/CardItem/ImageCardInfoTitle';
-import CardInfoMetadata from '../../ui/CardItem/ImageCardInfoMetadata';
-import CardInfoDescription from '../../ui/CardItem/ImageCardInfoDescription';
+import CardDivider from '../../ui/CardItem/CardDivider';
+import CardInfoContainer from '../../ui/CardItem/CardInfoContainer';
+import CardInfoTitle from '../../ui/CardItem/CardInfoTitle';
+import CardInfoMetadata from '../../ui/CardItem/CardInfoMetadata';
+import CardInfoDescription from '../../ui/CardItem/CardInfoDescription';
 
 export function ImageCard(props) {
 

@@ -22,19 +22,19 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Container from '../Container';
 import BigLeftContent from '../BigLeftContent';
-import ImageCardDivider from '../../ui/CardItem/ImageCardDivider';
+import ImageCardDivider from '../../ui/CardItem/CardDivider';
 import CardImage from '../../ui/CardItem/CardImage';
 import CardImageTag from '../../ui/CardItem/CardImageTag';
-import ImageCardInfoContainer from '../../ui/CardItem/ImageCardInfoContainer';
-import ImageCardInfoTitle from '../../ui/CardItem/ImageCardInfoTitle';
-import ImageCardInfoMetadata from '../../ui/CardItem/ImageCardInfoMetadata';
-import ImageCardInfoDescription from '../../ui/CardItem/ImageCardInfoDescription';
+import ImageCardInfoContainer from '../../ui/CardItem/CardInfoContainer';
+import ImageCardInfoTitle from '../../ui/CardItem/CardInfoTitle';
+import ImageCardInfoMetadata from '../../ui/CardItem/CardInfoMetadata';
+import ImageCardInfoDescription from '../../ui/CardItem/CardInfoDescription';
 import ImageCardItem from '../../ui/CardItem';
 import ImageCardList from '../../ui/CardItem/ImageCardList';
 import SmallRightContent from '../SmallRightContent';
 import { api, canRender } from '../../configuration/config';
-import ImageCardInfoRefresh from '../../ui/CardItem/ImageCardInfoRefresh';
-import RenderComponent from '../RenderComponent';
+import ImageCardInfoRefresh from '../../ui/CardItem/CardInfoRefresh';
+import Pagination from '../RenderComponent';
 
 /**
  * Component that is going to return a div with two columns where in the left side you will be able to see the first 2
@@ -60,7 +60,7 @@ function RecommendationPostList(props) {
             </ImageCardDivider>
             <ImageCardDivider>
               <ImageCardInfoContainer>
-                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} />
+                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} lines={3} small={true}/>
                 <ImageCardInfoMetadata date={item.updateDate} loading={loading} />
                 <ImageCardInfoDescription description={item.description} />
                 <ImageCardInfoRefresh refresh={item.refresh} />
@@ -71,9 +71,7 @@ function RecommendationPostList(props) {
       </BigLeftContent>
 
       <SmallRightContent>
-        <RenderComponent render={canRender(status)}>
-          { props.pagination }
-        </RenderComponent>
+        <Pagination render={canRender(status)} component={props.pagination} />
         <ImageCardList size={4} start={2} items={ items } status={ status } itemKey={ITEM_KEY} onEach={(item, key, loading) => (
           <ImageCardItem key={key} refresh={item.refresh}>
             <ImageCardDivider>

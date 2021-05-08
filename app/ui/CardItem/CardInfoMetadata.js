@@ -5,7 +5,7 @@ import Metadata from '../../components/Metadata';
 import LoadingLine from '../../components/LoadingLine';
 import LoadingContainer from '../../components/LoadingContainer';
 
-function ImageCardInfoMetadata(props) {
+function CardInfoMetadata(props) {
 
   if (props.loading) {
     return (
@@ -17,18 +17,25 @@ function ImageCardInfoMetadata(props) {
     )
   }
 
+  let title = null;
+  if (props.title) {
+    title = <span>{ props.title} </span>
+  }
+
   return (
     <Metadata>
        <span>
+         { title }
         <DateField value={props.date} />
       </span>
     </Metadata>
   );
 }
 
-ImageCardInfoMetadata.propTypes = {
+CardInfoMetadata.propTypes = {
   date: PropTypes.any,
+  title: PropTypes.string,
   loading: PropTypes.bool,
 };
 
-export default memo(ImageCardInfoMetadata);
+export default memo(CardInfoMetadata);

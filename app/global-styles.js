@@ -196,6 +196,65 @@ h3 {
     left: -50px !important;
 }
 
+.jjara-diagram-container {
+  background: #687DA8;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+
+/*
+#stp1{
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  -webkit-animation: draw2 10s linear 0s infinite normal; //backwards
+  animation: draw2 10s linear 0s infinite normal;
+}
+
+
+@-webkit-keyframes draw2{
+
+  to {
+    stroke-dashoffset: 0;
+  }
+
+  from {
+    stroke-dashoffset: 822;
+  }
+
+}
+
+@keyframes draw2 {
+
+   0%{fill:#ff0000}
+    50%{fill:#000}
+    100%{fill: #ff0000}
+
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+     stroke-dashoffset: 100;
+     stroke: red;
+  }
+
+  10%  {
+    motion-offset: 100%;
+    offset-distance: 100%;
+    .path {
+      stroke: red
+    }
+   }
+
+
+}
+*/
+
+.jjara-unavailable {
+  background: #ff5a6e;
+}
+
 .sublist {
 
   .row {

@@ -21,5 +21,11 @@ export default defineMessages({
   },
   post_create: {
     id: `${scope}.post_create`,
+  },
+  cases_of_study: {
+    id: `${scope}.cases_of_study`,
+  },
+  cases_of_study_cloud_services: {
+    id: `${scope}.cases_of_study_cloud_services`,
   }
 });

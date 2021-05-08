@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 
-
-function ImageCardInfoContainer(props) {
+function CardInfoContainer(props) {
   return (
     <div className="post-text">
       { props.children }
@@ -11,4 +10,4 @@ function ImageCardInfoContainer(props) {
 
 
 
-export default memo(ImageCardInfoContainer);
+export default memo(CardInfoContainer);

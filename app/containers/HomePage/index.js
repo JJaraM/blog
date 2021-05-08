@@ -18,6 +18,7 @@ import saga from './saga';
 import LatestPostSection from 'containers/LatestPostSection';
 import RecommendationPostSection from 'containers/RecommendationPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
+
 import AboutMeSection from 'containers/AboutMeSection';
 import Welcome from 'components/Welcome';
 import Project from '../Project';
@@ -25,7 +26,7 @@ import Project from '../Project';
 const key = 'home';
 
 export function HomePage({
-
+                           dispatch
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
@@ -48,8 +49,14 @@ export function HomePage({
       <LatestPostSection />
       <RecommendationPostSection />
       <TestimonialSection/>
+
+
+
       {/*<Project />
      <AboutMeSection /> */}
+
+
+
 
     </>
   );

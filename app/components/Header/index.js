@@ -8,6 +8,7 @@ import RenderComponent from 'components/RenderComponent';
 import ButtonIcon from './ButtonIcon';
 
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 function Header(props) {
 
@@ -23,7 +24,35 @@ function Header(props) {
 
           <div className="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo01">
             <ul className="navbar-nav ml-auto ">
-                 {/*<li className="nav-item active">
+
+
+
+              {/*<li className="nav-item active">
+                <Link to={`/cases-study-1`} className="nav-link">
+                  <FormattedMessage {...messages.cases_of_study} />
+                </Link>
+              </li> */}
+
+              <li className="nav-item active dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <FormattedMessage {...messages.cases_of_study} />
+                </a>
+
+                <div className="dropdown-menu"
+                     aria-labelledby="navbarDropdown"
+                     onClick={ props.onPostCreate }>
+
+                  <Link to={`/cases-study-1`} className="drop-down-item">
+                    <FormattedMessage {...messages.cases_of_study_cloud_services} />
+                  </Link>
+
+                  {/* <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="#">Something else here</a>   */}
+                </div>
+              </li>
+
+
+                {/*<li className="nav-item active">
                 <a className="nav-link" href="#">Home
                   <span className="sr-only">(current)</span>
                 </a>

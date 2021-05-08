@@ -61,6 +61,47 @@ Prism.languages.insertBefore('gitclone', 'operator', {
   }
 });
 
+/**************************************************/
+
+Prism.languages.gitclonesmall = {
+  'keyword': null,
+  'strong': /([\*]{2}(.*?)[\*]{2})/,
+  'prism-btn': /([<]{2}(.*?)[\>]{2})/,
+  'sup': /(['^']{2}(.*?)['^']{2})/,
+  'punctuation': /[(){};:]/
+};
+
+Prism.hooks.add('wrap', function(env) {
+  if (env.type === 'strong') {
+    env.content = env.content.replace(/\*/g, '');
+  }
+  if (env.type === 'prism-btn') {
+    env.content = env.content.replace(/&lt;&lt;/g, '');
+    env.content = env.content.replace(/[>]/g, '');
+  }
+  if (env.type === 'sup') {
+    env.content = env.content.replace(/\^/g, '');
+  }
+});
+
+Prism.languages.insertBefore('gitclonesmall', 'number', {
+  'btn': {
+    pattern: /([<]{2}(.*?)[\>]{2})/,
+    lookbehind: true,
+    inside: Prism.languages.gitclone,
+    greedy: true
+  }
+});
+
+Prism.languages.insertBefore('gitclonesmall', 'operator', {
+  'strong': {
+    pattern: /([\*]{2}(.*?)[\*]{2})/,
+    lookbehind: true,
+    inside: Prism.languages.gitclone,
+    greedy: true
+  }
+});
+
 /****************************************/
 Prism.languages.cisco = {
   'keyword': null,

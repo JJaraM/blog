@@ -78,3 +78,15 @@ Prism.languages.insertBefore('yml', 'comment', {
   'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
 });
 
+/*xml*/
+Prism.languages.insertBefore('xml', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('xml', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('xml', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});

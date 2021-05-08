@@ -105,3 +105,53 @@
    transition: all 0.2s ease-in-out;
 
  }
+@import url('http://fonts.cdnfonts.com/css/vt323');
+@import url('http://fonts.cdnfonts.com/css/menlo');
+
+.cookie-banner {
+
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 400px;
+  padding: 0 23px;
+  background: #000;
+  color: #ccc;
+  //font: 12px/16px Menlo,Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+  font-size: 16px;
+  font-family: 'VT323', 'Menlo',Consolas, Lucida;
+
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 400px;
+  z-index: 100;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+  visibility: visible;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+
+  input, button {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ccc;
+    padding: 0px;
+  }
+
+
+  &::before {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    content: "";
+    display: block;
+    height: 19px;
+    box-shadow: inset 0 5px 10px #000;
+  }
+}

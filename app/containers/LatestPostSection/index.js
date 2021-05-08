@@ -78,6 +78,9 @@ export function LatestPostSection({
 
         <LatestPostItemList items={items} loading={loading} status={status} />
 
+
+
+
         { button }
 
       </SecondarySection>
@@ -87,6 +90,7 @@ export function LatestPostSection({
 
 LatestPostSection.propTypes = {
   onLoadPage: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

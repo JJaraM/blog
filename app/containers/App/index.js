@@ -24,6 +24,7 @@ import SearchContainer from 'containers/SearchContainer';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import CaseOfStudy1 from 'containers/CaseOfStudy1';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
 import { makeRenderSearch, makeRenderSignIn }  from './selectors';
@@ -36,6 +37,8 @@ import './styles/variables.scss';
 import './styles/scrollbar.scss';
 import './styles/base.scss';
 import './styles/sanitize.scss';
+import CookieBanner from '../CookieBanner';
+
 
 const key = 'home';
 
@@ -75,12 +78,17 @@ export function App({
         <Route exact path="/" component={HomePage} />
         <Route exact path="/post/:id" component={PostPage} />
         <Route exact path="/category/:id" component={CategoryPage} />
+        <Route exact path="/cases-study-1" component={CaseOfStudy1} />
         <Route path="" component={NotFoundPage} />
+
       </Switch>
 
       {/*
         <div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>
       */}
+
+
+      <CookieBanner  />
       <Footer />
 
 
