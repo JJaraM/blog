@@ -34,13 +34,13 @@ function Header(props) {
               </li> */}
 
               <li className="nav-item active dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <FormattedMessage {...messages.cases_of_study} />
                 </a>
 
                 <div className="dropdown-menu"
-                     aria-labelledby="navbarDropdown"
-                     onClick={ props.onPostCreate }>
+                     aria-labelledby="navbarDropdown">
 
                   <Link to={`/cases-study-1`} className="drop-down-item">
                     <FormattedMessage {...messages.cases_of_study_cloud_services} />

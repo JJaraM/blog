@@ -110,7 +110,7 @@ export function CaseOfStudy1({
             </Row>
 
             <Row>
-              <BigLeftContainerFluid isMinimized={true}>
+              <BigLeftContainerFluid isMinimized={false}>
                 <h2>Architecture Design</h2>
                 <p>
                   In the following section you will see a brief description of the application workflow:
@@ -119,9 +119,7 @@ export function CaseOfStudy1({
             </Row>
 
             <Row>
-              <BigLeftContainerFluid>
-
-
+              <BigLeftContainerFluid isMinimized={true}>
                 <div className="jjara-diagram-container">
                   <ContainerCenter>
                     <ArchitectureModel throwIfNamespace={false} />
@@ -129,38 +127,7 @@ export function CaseOfStudy1({
                 </div>
               </BigLeftContainerFluid>
 
-              <SmallRightContent>
-                <div className="text-content">
-                  <Markdown source={
-                    '```comment\n' +
-                    '<<1>> An user access to the website and the application itself sends an HTTP Request to the **post web service** ' +
-                          'and **tag web service**\n' +
-                    '<<2>> The website sends the request to the **gateway service** that is going to request to eureka server the cluster' +
-                          'members of the instance. And return the information to the gateway service\n' +
-                    '<<3>> The gateway service with the cluster member information is going to redirect the request to the specific cluster member.' +
-                          'you can click on the cloud services to be redirected to the instance.\n' +
-                    '<<4>> Each web service is going to access to the specific data resource, in this case is mongo\n' +
-                    '<<5>> If the action is a POST, PUT or DELETE operation the **post webservice** is going to send a message by redis to the tag' +
-                          'service indicating that there was a change in the post and needs to change information contained in that service.\n' +
-                    '<<6>> And finally if everything is completed without any issue, then the **post web service** is going to send a notification by' +
-                          'a websocket to all application register indicating that was a change in the post.\n' +
-                    '```\n'
-                  } />
 
-                  <Markdown source={
-                    '```gitclonesmall\n' +
-                    'List of repositories \n' +
-                    '<<Blog: https://github.com/JJaraM/blog>>\n' +
-                    '<<PostWS: https://github.com/JJaraM/blog-microservice-post>>\n' +
-                    '<<TagWS: https://github.com/JJaraM/blog-microservice-tag>>\n' +
-                    '<<EurekaServer: https://github.com/JJaraM/blog-eureka-server>>\n' +
-                    '<<GatewayServer: https://github.com/JJaraM/blog-microservice-api-gateway>>\n' +
-
-                    '```\n'
-                  } />
-
-                </div>
-              </SmallRightContent>
             </Row>
 
             <Row>

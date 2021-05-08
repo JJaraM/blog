@@ -202,6 +202,9 @@ h3 {
   border-radius: 5px;
 }
 
+text {
+  font-family: var(--primary-font-family);
+}
 
 /*
 #stp1{
