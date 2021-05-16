@@ -49,9 +49,9 @@ const renderPCode = props => {
 
 const renderLink = props => {
   if (props.href && props.href.includes("ref")) {
-    return ( 
+    return (
       <span className="tooltip-href">
-        <span className="internal-nav" id={props.href} href={props.href} 
+        <span className="internal-nav" id={props.href} href={props.href}
           onMouseEnter={() => onHrefHover(props.href, false)}
           onClick={() => onHrefHover(props.href, true)}>
           {props.children}
@@ -70,16 +70,16 @@ const renderLink = props => {
 
 const FinalText = (props) => (
   <Content loading={ false }>
-      <Markdown 
-        source={ props.content } 
-        escapeHtml={ false } 
+      <Markdown
+        source={ props.content }
+        escapeHtml={ false }
         editable={ true }
         renderers={
           {
             link: renderLink,
             paragraph: renderPCode
           }
-        } 
+        }
       />
   </Content>
 );
@@ -92,24 +92,24 @@ function EditableText(props) {
   if (props.editable) {
     return (
       <Row className="full-width-row">
-        <EditableMetadata 
-          onSave={ props.onSave } 
-          onClose={ props.onClose } 
+        <EditableMetadata
+          onSave={ props.onSave }
+          onClose={ props.onClose }
           onSaveStatus={ props.onSaveStatus }
         />
-      
+
         <Row className="text-editor" id="fullscreen">
           <div className="col-lg-12">
             <div id="id-button-options-container" className="button-options-container">
               <EditorItemTableOfContent onChange = { props.onChangeContent } />
               <EditorItemFileTree onChange = { props.onChangeContent } />
-              <i className="fa fa-github" aria-hidden="true"></i>  
+              <i className="fa fa-github" aria-hidden="true"></i>
               <EditorOpenFullScreen containerClassName="right" open="fullscreen" />
               <EditorCloseFullScreen containerClassName="right" close="fullscreen" />
             </div>
           </div>
 
-         
+
           <Col6>
             <TextArea id='editable-text-id' content={ props.content } onChangeContent={ props.onChangeContent }/>
           </Col6>

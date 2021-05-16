@@ -90,3 +90,17 @@ Prism.languages.insertBefore('xml', 'operator', {
 Prism.languages.insertBefore('xml', 'comment', {
   'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
 });
+
+
+/*json*/
+Prism.languages.insertBefore('json', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('json', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('json', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});

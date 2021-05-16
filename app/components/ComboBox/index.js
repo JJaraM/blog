@@ -23,7 +23,6 @@ function ComboBox(props) {
 
   const filterList = getFilterList(props.items, props.value);
 
-
   if (props.items.length > 0) {
     const more = filterList.map(item => {
       const key = _.uniqueId("jjara-combo-box-item-key-");
@@ -45,7 +44,7 @@ function ComboBox(props) {
             * I need to set the value as empty so in that way the event takes this empty value and clear the value
             * that was set by reflux in the previous action.
           */}
-          <input type="text" value=" " className="jjara-fake-close-input" onClick={props.onChange} onChange={props.onChange} />
+          <input type="text" value="" className="jjara-fake-close-input" onClick={props.onChange} onChange={props.onChange} />
           <i className="fa fa-close" />
         </span>
       </DropDownList>

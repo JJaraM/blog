@@ -38,8 +38,8 @@
   }
 
   :not(pre) > code[class*="language-"], pre[class*="language-"] {
-      background: #343233;
-      //background: var(--tb-bg-color);
+      //background: #343233;
+      background: #263238;
   }
 
 
@@ -188,4 +188,18 @@ code[class*="language-gitclonesmall"] > .token.prism-btn {
 code[class*="language-gitclonesmall"] > .token.prism-btn:hover {
   background: #25262d;
   cursor: pointer;
+}
+
+code[class*="language-json"] {
+  .token.property, .token.tag, .token.constant, .token.symbol, .token.deleted {
+    color: #c792ea;
+  }
+
+  .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted {
+    color: #89ddff;
+  }
+
+  .token.boolean, .token.number {
+    color: #f07178;
+  }
 }

@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 
 function PostPanelLeftSide(props) {
 
+  const col = window.screen.availWidth > 1280 ? "col-md-2" : "col-md-3";
+
   if (props.isMinimized) {
     return (
       <div className="jjara-post-panel-left-size-minimize">
@@ -19,7 +21,7 @@ function PostPanelLeftSide(props) {
   }
 
   return (
-    <div className="offset-md-1 col-md-3 col-md-pull-2 small-right-container-fluid">
+    <div className={`offset-md-1 ${col} col-md-pull-2 small-right-container-fluid`}>
       <i className="jjara-post-left-minimize fa fa-minus" onClick={props.onMinimize}/>
       { props.children }
     </div>

@@ -30,13 +30,13 @@ function Footer() {
         </div>
         </div>
         <div className="bottom">
-          © COPYRIGHT jjara { year } ALL RIGHTS RESERVED. 
-          <br />Project Build using React Native
+          © COPYRIGHT jjara 2019 - { year } ALL RIGHTS RESERVED.
+          <br />Project Build using React and spring cloud
           <section>
             <LocaleToggle />
           </section>
        </div>
-       
+
     </footer>
   );
 }

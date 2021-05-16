@@ -13,16 +13,17 @@ function CardInfoTitle(props) {
     if (props.small) {
       height = 15;
     }
-
     let lines = <LoadingLine width={100} height={height} widthUnit="%" unit="px"
                    primaryBgColor="jjara-loading-primary-title-bg-color "
                    secondaryBgColor="jjara-loading-secondary-title-bg-color" />;
 
     if (props.lines) {
       lines = [...Array(props.lines).keys()]
-        .map(x => <LoadingLine randomWidthMax={200} height={height} widthUnit="px" unit="px"
-           primaryBgColor="jjara-loading-primary-title-bg-color "
-           secondaryBgColor="jjara-loading-secondary-title-bg-color" />
+        .map(x => {
+            return <LoadingLine key={`card-info-title-loading-${_.uniqueId(props.itemKey)}`} randomWidthMax={200} height={height} widthUnit="px" unit="px"
+                                primaryBgColor="jjara-loading-primary-title-bg-color "
+                                secondaryBgColor="jjara-loading-secondary-title-bg-color" />;
+          }
         );
     }
 

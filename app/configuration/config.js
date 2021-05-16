@@ -9,7 +9,7 @@ const api = {
   paths: {
     postPage: '/post/'
   },
-  testimonials: `${HOST_NAME_POST}/testimonial/`,
+  testimonials: `${HOST_NAME_POST}/v1/testimonial/`,
   post: `${HOST_NAME_POST}/post/`,
   byTitle: `${HOST_NAME_POST}/post/find/all/byTitle/`,
   updateTitle: `${HOST_NAME_POST}/post/updateTitle/`,

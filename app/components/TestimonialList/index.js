@@ -18,7 +18,7 @@ function TestimonialList(props) {
       <Card key={`testimonial-item-${key}`}>
         <div className="testimonials">
           <div className="d-flex justify-content-center pr-30 pl-30 ">
-            <div className="testimonial-section-header d-flex justify-content-center  pt-30 pb-30 ">
+            <div className="testimonial-item testimonial-section-header d-flex justify-content-center  pt-30 pb-30 ">
               <ImageCircle src={item.img} loading={loading} />
             </div>
           </div>

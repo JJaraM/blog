@@ -197,13 +197,116 @@ h3 {
 }
 
 .jjara-diagram-container {
-  background: #687DA8;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 16px;
+  background: #17151e;
+
+
+-webkit-box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+}
+
+.post-head__box {
+  margin-left: 16px;
+  padding-top: 20%;
+}
+
+.jjara-max-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.post__author {
+    float: left;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.post__author-image {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    padding: 3px;
+    margin-right: 8px;
+    border: 2px solid #ff7b7b;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.post__bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 13px;
+    line-height: 30px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.post__author-link {
+    font-size: 13px;
+    color: #fff;
+}
+
+.image-box {
+    position: relative;
+    padding-top: 90%;
+    min-height: 280px;
+    border-radius: 16px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+    background-color: #09080f;
+}
+
+.case-of-study {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  h1, h2, h3, h4, h5 {
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: initial;
+  }
+}
+
+.post__date {
+    color: #aaa;
+    padding-left: 0.1rem;
+}
+
+.jjara-col {
+    padding-left: 32px;
+    padding-right: 16px;
+}
+.jjara-col6-image {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    -o-object-fit: cover;
+    object-fit: cover;
+
 }
 
 text {
   font-family: var(--primary-font-family);
+  font-size: 12px;
+}
+
+.Text.cls {
+  text {
+    margin-left: 2x;
+  }
 }
 
 /*
@@ -287,7 +390,9 @@ text {
 }
 
 @media only screen and (max-width: 959px) {
-
+  .testimonial-item {
+    background: var(--main-bg-color);
+  }
   .img-elementor {
     height: 140px;
   }
@@ -322,11 +427,16 @@ text {
     .card-body {
       .post-text {
         background: var(--main-bg-color);
+
+        &:hover {
+          cursor: pointer;
+          background: #353535;
+        }
       }
 
       &:hover {
         cursor: pointer;
-        background: var(--main-bg-color);
+        background: #353535;
       }
 
     }

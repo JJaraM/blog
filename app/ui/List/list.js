@@ -9,8 +9,6 @@ function List(props) {
       props.onEach(item, _.uniqueId(props.itemKey), true)
     );
 
-  console.log(loading);
-
   if (!loading) {
    content = items
       .map(item =>

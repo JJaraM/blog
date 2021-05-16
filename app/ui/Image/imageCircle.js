@@ -15,7 +15,7 @@ function ImageCircle(props) {
 }
 
 ImageCircle.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   loading: PropTypes.bool,
 };
 

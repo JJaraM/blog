@@ -26,7 +26,7 @@ import ImageCardDivider from '../../ui/CardItem/CardDivider';
 import CardImage from '../../ui/CardItem/CardImage';
 import CardImageTag from '../../ui/CardItem/CardImageTag';
 import ImageCardInfoContainer from '../../ui/CardItem/CardInfoContainer';
-import ImageCardInfoTitle from '../../ui/CardItem/CardInfoTitle';
+import CardInfoTitle from '../../ui/CardItem/CardInfoTitle';
 import ImageCardInfoMetadata from '../../ui/CardItem/CardInfoMetadata';
 import ImageCardInfoDescription from '../../ui/CardItem/CardInfoDescription';
 import ImageCardItem from '../../ui/CardItem';
@@ -52,7 +52,7 @@ function RecommendationPostList(props) {
     <Container>
       <BigLeftContent>
         <ImageCardList size={2} start={0} items={ items } status={ status } itemKey={ITEM_KEY} onEach={(item, key, loading) => (
-          <ImageCardItem key={key} refresh={item.refresh}>
+          <ImageCardItem key={`recommendation-post-list-card-item-${key}`} refresh={item.refresh}>
             <ImageCardDivider>
               <CardImage href={`${api.paths.postPage}${item.id}`} image={item.image} loading={loading}>
                 <CardImageTag tag={item.views} loading={loading} />
@@ -60,7 +60,7 @@ function RecommendationPostList(props) {
             </ImageCardDivider>
             <ImageCardDivider>
               <ImageCardInfoContainer>
-                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} lines={3} small={true}/>
+                <CardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} lines={3} small={true}/>
                 <ImageCardInfoMetadata date={item.updateDate} loading={loading} />
                 <ImageCardInfoDescription description={item.description} />
                 <ImageCardInfoRefresh refresh={item.refresh} />
@@ -73,7 +73,7 @@ function RecommendationPostList(props) {
       <SmallRightContent>
         <Pagination render={canRender(status)} component={props.pagination} />
         <ImageCardList size={4} start={2} items={ items } status={ status } itemKey={ITEM_KEY} onEach={(item, key, loading) => (
-          <ImageCardItem key={key} refresh={item.refresh}>
+          <ImageCardItem key={`recommendation-post-list-card-item-${key}`} refresh={item.refresh}>
             <ImageCardDivider>
               <CardImage href={`${api.paths.postPage}${item.id}`} image={item.image} loading={loading}>
                 <CardImageTag tag={item.views} loading={loading} />
@@ -81,7 +81,7 @@ function RecommendationPostList(props) {
             </ImageCardDivider>
             <ImageCardDivider>
               <ImageCardInfoContainer>
-                <ImageCardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} />
+                <CardInfoTitle title={item.title} href={`${api.paths.postPage}${item.id}`} loading={loading} />
                 <ImageCardInfoMetadata date={item.updateDate} loading={loading} />
                 <ImageCardInfoRefresh refresh={item.refresh} />
               </ImageCardInfoContainer>

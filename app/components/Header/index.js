@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 function Header(props) {
 
   return (
-    <header id="header">
+    <header id="header" className="jjara-max-container">
       <Nav>
         <div className="container-fluid">
           <Logo />

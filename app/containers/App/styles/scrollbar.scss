@@ -92,22 +92,23 @@ pre[class*="language-"] {
     &::-webkit-scrollbar-track {
         box-shadow: inset 0 0 15px grey;
         //border-radius: 10px;
+      background: #E1E4E4;
     }
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        //background: var(--third-bg-color);
-        //border-radius: 10px;
+        background: #E1E4E4;
+        border-radius: 0px;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-        //background: var(--third-bg-color);
+        background: #E1E4E4;
         cursor: pointer;
     }
 
     &::-webkit-scrollbar {
-        height: 5px;
+        height: 8px;
 
         &.hover {
 
