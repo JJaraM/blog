@@ -68,8 +68,9 @@ const renderLink = props => {
   return <a href={props.href}>{props.children}</a>
 }
 
+//props.content === ''
 const FinalText = (props) => (
-  <Content loading={ false }>
+  <Content loading={ props.content === '' }>
       <Markdown
         source={ props.content }
         escapeHtml={ false }

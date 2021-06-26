@@ -56,7 +56,7 @@ import DeletePost from 'containers/DeletePost';
 import './style.scss';
 import './tableOfContent.scss';
 
-import PostEditableContent from 'components/PostEditableContent';
+
 
 import {
   EVENT_CHANGE_TITLE,
@@ -68,6 +68,7 @@ import {
 } from './constants';
 import { makeResize } from '../PostRelated/selectors';
 import { resize } from '../PostRelated/actions';
+import PostEditableContent from '../../components/PostEditableContent';
 
 function renderEditableComponent(eventValue, eventV) {
   let value = false;
@@ -117,7 +118,6 @@ export function PostPage({
   onMinimize,
   isMinimized
 }) {
-
 
   useInjectReducer({ key: 'postPage', reducer });
   useInjectSaga({ key: 'postPage', saga });

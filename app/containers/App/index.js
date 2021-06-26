@@ -20,7 +20,6 @@ import PostPage from 'containers/PostPage';
 import CategoryPage from 'containers/CategoryPage';
 
 import SignIn from 'containers/SignIn';
-import SearchContainer from 'containers/SearchContainer';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -38,9 +37,15 @@ import './styles/scrollbar.scss';
 import './styles/base.scss';
 import './styles/sanitize.scss';
 import CookieBanner from '../CookieBanner';
-
-
+import SearchContainer from '../SearchContainer';
 const key = 'home';
+
+function showOverflow() {
+  const element = document.getElementsByClassName("fontLoaded")[0];
+  if (element) {
+    element.style.overflow = 'auto';
+  }
+}
 
 export function App({
   onSearch,
@@ -113,8 +118,12 @@ export function mapDispatchToProps(dispatch) {
     onSignIn: () => {
       dispatch(signIn())
     },
-    onSignOut: () => dispatch(signOut()),
+    onSignOut: () => {
+      showOverflow();
+      dispatch(signOut());
+    },
     onClose: () => {
+      showOverflow();
       dispatch(close());
     },
     onPostCreate: () => dispatch(createPost()),

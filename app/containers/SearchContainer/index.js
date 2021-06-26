@@ -11,13 +11,13 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeText, makeItems } from './selectors';
 
-import Container from 'components/Container';
 import ContainerCenter from 'components/ContainerCenter'
 import PrincipalTitle from 'components/PrincipalTitle';
 import PostSearchItem from 'components/PostSearchItem';
 import { search, next, previous } from './actions';
 
 import './style.scss';
+import Container from '../../components/Container';
 
 let initialize = false;
 
@@ -40,18 +40,24 @@ export function SearchContainer({
     onClear();
   }
 
+
+
+
   if (render) {
+
+    const element = document.getElementsByClassName("fontLoaded")[0];
+    if (element) {
+      element.style.overflow = 'hidden';
+    }
+
     return (
       <div className="search-container">
-
         <Container>
           <div className="btn-close">
             <button className="btn-search fa fa-close" onClick={ onClose }></button>
           </div>
         </Container>
-
         <div className="row h-100">
-
           <div className="col-sm-12 my-auto">
             <Container>
               <ContainerCenter>
@@ -68,7 +74,7 @@ export function SearchContainer({
                 </ContainerCenter>
               </Container>
             </div>
-            <Container>
+            <Container className="scrollable">
               <ContainerCenter>
                 <PostSearchItem items={items} onClick={onClose} />
               </ContainerCenter>

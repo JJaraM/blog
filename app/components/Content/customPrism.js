@@ -104,3 +104,16 @@ Prism.languages.insertBefore('json', 'operator', {
 Prism.languages.insertBefore('json', 'comment', {
   'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
 });
+
+/*properties*/
+Prism.languages.insertBefore('properties', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('properties', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('properties', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});

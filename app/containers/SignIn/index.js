@@ -40,6 +40,11 @@ export function SignIn({
   }
 
   if (render) {
+    const element = document.getElementsByClassName("fontLoaded")[0];
+    if (element) {
+      element.style.overflow = 'hidden';
+    }
+
     return (
       <div className="search-container">
         <Container>

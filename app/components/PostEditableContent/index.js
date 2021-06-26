@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Container from 'components/Container';
 import BigLeftContainerFluid from 'components/BigLeftContainerFluid';
 
-import EditableText from 'components/EditableText';
 import IconContainer from 'components/IconContainer';
 import IconEdit from 'components/IconEdit';
 import IconDelete from 'components/IconDelete';
 import PostRelated from 'containers/PostRelated';
+import EditableText from '../EditableText';
 
 function PostEditableContent(props) {
   const Component = () => (

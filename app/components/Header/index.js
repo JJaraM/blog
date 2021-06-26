@@ -15,7 +15,7 @@ function Header(props) {
   return (
     <header id="header" className="jjara-max-container">
       <Nav>
-        <div className="container-fluid">
+        <div className="container">
           <Logo />
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -39,15 +39,17 @@ function Header(props) {
                   <FormattedMessage {...messages.cases_of_study} />
                 </a>
 
-                <div className="dropdown-menu"
-                     aria-labelledby="navbarDropdown">
+                <div className="dropdown-menu dropdown" aria-labelledby="navbarDropdownMenuLink">
 
-                  <Link to={`/cases-study-1`} className="drop-down-item">
+                  <Link to={`/cases-study-1`} className="dropdown-item">
                     <FormattedMessage {...messages.cases_of_study_cloud_services} />
                   </Link>
 
-                  {/* <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#">Something else here</a>   */}
+
+                  <div className="dropdown-divider"></div>
+                  <Link to={`/cases-study-1`} className="dropdown-item">
+                    <FormattedMessage {...messages.cases_of_study_cloud_services} />
+                  </Link>
                 </div>
               </li>
 
@@ -70,7 +72,7 @@ function Header(props) {
                     <FormattedMessage {...messages.post} />
                   </a>
 
-                  <div className="dropdown-menu"
+                  <div className="dropdown-menu dropdown"
                     aria-labelledby="navbarDropdown"
                     onClick={ props.onPostCreate }>
 

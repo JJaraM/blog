@@ -28,6 +28,10 @@
 
 .footer_social {
     margin-top: 34px;
+
+    ul {
+      padding-inline-start: 0px;
+    }
 }
 
 .footer_social ul li:not(:last-child) {

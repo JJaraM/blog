@@ -14,7 +14,7 @@ function DropDownList(props) {
       <button className="tag-button dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         More
       </button>
-      <div className="dropdown-menu" >
+      <div className="dropdown-menu dropdown" >
         { props.children }
         <div className="pre-scrollable-tags">
           { items }

@@ -130,7 +130,7 @@ h3 {
 
 .brief-description {
   font-size: 0.7rem;
-  padding: 15px 0px 0px 0px;
+  padding: 15px 0px 15px 0px;
 }
 
 

@@ -13,8 +13,61 @@
 .navbar {
   z-index: 999;
   background: var(--secondary-bg-color);
-  //border-bottom: 3px solid var(--fourth-bg-color);
+  font-size: 12px;
+  text-transform: uppercase;
+
+
+  .dropdown-menu {
+    font-size: 12px;
+    background: rgba(33,34,38,.8);
+    color: #FFF;
+    padding: 0;
+  }
+
 }
+
+.dropdown-divider {
+  content: '';
+  left: 0;
+  right: 0;
+  margin: 0 20px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(222,222,222,.1) !important;
+}
+
+
+.nav-link {
+  span {
+    &:hover {
+      transition: all .2s;
+      color: var(--fourth-bg-color);
+    }
+  }
+}
+
+.nav-item {
+  .dropdown-menu {
+    .dropdown-item {
+      color: #FFF;
+      transition: all 0.2s ease 0s, width 0s ease 0s, height 0s ease 0s;
+    }
+  }
+
+  .dropdown-toggle {
+    &:hover:after {
+      transition: all .2s;
+      color: var(--fourth-bg-color);
+    }
+  }
+}
+
+.dropdown > .dropdown-item:hover{
+  background:var(--fourth-bg-color);
+  color:white;
+}
+
+
 
 .home_slinder {
     height: 80vh;
@@ -24,7 +77,7 @@ header {
     -webkit-transition: all 200ms ease;
     -o-transition: all 200ms ease;
     transition: all 200ms ease;
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    //box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
     height: 67px;
     .fixed-top {
         background: rgba(0,0,0,0.75);
