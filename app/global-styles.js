@@ -206,6 +206,17 @@ h3 {
     box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
 }
 
+
+table {
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    /* display: inline-block; */
+    padding: 1rem;
+    background: var(--main-bg-color) !important;
+    background-image: linear-gradient(200deg, #292929 0%, var(--main-bg-color) 100%) !important;
+    border: 1px solid #303030;
+}
+
 .post-head__box {
   margin-left: 16px;
   padding-top: 20%;

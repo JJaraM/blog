@@ -46,10 +46,12 @@ function Header(props) {
                   </Link>
 
 
+                  {/*
                   <div className="dropdown-divider"></div>
                   <Link to={`/cases-study-1`} className="dropdown-item">
                     <FormattedMessage {...messages.cases_of_study_cloud_services} />
                   </Link>
+                  */}
                 </div>
               </li>
 
