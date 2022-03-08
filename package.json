@@ -8,7 +8,7 @@
   },
   "engines": {
     "npm": ">=5",
-    "node": "12.0.0",
+    "node": "16.0.0",
     "yarn": "1.22.10"
   },
   "author": "Max Stoiber",
