@@ -101,7 +101,6 @@ function mapDispatchToProps(dispatch) {
     onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
     onChangePassword: evt => dispatch(changePassword(evt.target.value)),
     onSignIn: () => {
-      console.log('press it');
       dispatch(signIn());
     },
     dispatch,

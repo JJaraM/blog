@@ -6,8 +6,8 @@ import { getPageNumber, getItemsCount } from './selectors';
 import request from 'utils/request';
 import { delay } from '@redux-saga/core/effects';
 
-const delayTime = 60000;
-const maxRetries = 10;
+const delayTime = 10000;
+const maxRetries = 100;
 
 export default function* init() {
   yield takeLatest([RETRIEVE, NEXT, PREVIOUS], fetchTestimonials);
@@ -42,7 +42,7 @@ export function* fetchTestimonials() {
           yield put(previous());
         }
 
-        //No Content
+        //Service Unavailable
         if (res.status === 503) {
           yield callRetry(attempt, requestURL);
         }
