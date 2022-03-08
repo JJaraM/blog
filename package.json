@@ -45,7 +45,7 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
-    "heroku-prebuild": "nmp install --network-timeout 1000000"
+    "heroku-prebuild": "npm install --network-timeout 1000000"
   },
   "browserslist": [
     "last 2 versions",
