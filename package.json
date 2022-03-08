@@ -94,7 +94,7 @@
     "compare-versions": "3.4.0",
     "compression": "1.7.4",
     "compression-webpack-plugin": "^6.0.5",
-    "connected-react-router": "6.4.0",
+    "connected-react-router": "^6.4.0",
     "coveralls": "3.0.3",
     "cross-env": "5.2.0",
     "css-loader": "2.1.1",
