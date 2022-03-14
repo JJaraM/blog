@@ -3,60 +3,37 @@ import { api, httpCall } from '../../configuration/config';
 import { RETRIEVE, NEXT, PREVIOUS } from './constants';
 import { itemsLoaded, previous } from './actions';
 import { getPageNumber, getItemsCount } from './selectors';
-import request from 'utils/request';
-import { delay } from '@redux-saga/core/effects';
+import { httpRequest } from '../../common/http';
+import { error } from '../LatestPostSection/actions';
 
-const delayTime = 10000;
-const maxRetries = 100;
+let retry = { attempt : 0 };
 
 export default function* init() {
-  yield takeLatest([RETRIEVE, NEXT, PREVIOUS], fetchTestimonials);
+  yield takeLatest([RETRIEVE, NEXT, PREVIOUS], getItems);
 }
 
-export function* fetchTestimonials() {
+export function* getItems() {
+  const page = yield select(getPageNumber());
+  const count = yield select(getItemsCount());
+  const requestURL = httpCall(api.testimonials, page, count);
 
-  function* callRetry(attempt, requestURL) {
-    const retryAttempt = yield attempt + 1;
-    console.log('Retry #' + retryAttempt + " for the request " + requestURL + " waiting " + delayTime + "ms ...");
+  yield httpRequest().onCall(requestURL);
 
-    yield delay(delayTime);
-    yield retry(retryAttempt);
-  }
+  yield httpRequest().onOk(function*(items) {
+    yield put(itemsLoaded(items));
+  });
 
-  function* retry(attempt) {
-    if (attempt < maxRetries) {
-      try {
-        const page = yield select(getPageNumber());
-        const count = yield select(getItemsCount());
-        const requestURL = httpCall(api.testimonials, page, count);
-        const res = yield call(fetch, requestURL);
+  yield httpRequest().onNoContent(function*() {
+    yield put(previous());
+  });
 
-        //Ok
-        if (res.status === 200) {
-          const items = yield call(request, requestURL);
-          yield put(itemsLoaded(items));
-        }
+  yield httpRequest().onServiceUnavailable(retry,function *() {
+    yield getItems();
+  });
 
-        //No Content
-        if (res.status === 204) {
-          yield put(previous());
-        }
+  yield httpRequest().onInternalServerError(function*(res) {
+    const json = yield call([res, 'json']);
+    yield put(error(json));
+  });
 
-        //Service Unavailable
-        if (res.status === 503) {
-          yield callRetry(attempt, requestURL);
-        }
-      } catch (e) {
-        const status = e.response.status;
-        if (status == 503) {
-          yield callRetry(attempt, requestURL);
-        }
-      }
-    }
-  }
-
-  yield retry(0);
 }
-
-
-

@@ -4,6 +4,8 @@ import { HOST_NAME_POST, HOST_NAME_TAG } from 'configuration/hostname';
 const infiniteLoading = false;
 const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
+const DELAY_TIME = 30000;
+const MAX_RETRIES = 5;
 
 const api = {
   paths: {
@@ -32,7 +34,20 @@ const api = {
     create: `${HOST_NAME_TAG}/tag/`,
     all: `${HOST_NAME_TAG}/tag/all/`,
   },
+
+  console: {
+    log: {
+      all: true
+    }
+  }
 };
+
+
+const log = function log(message, key) {
+  if (api.console.log) {
+    console.log(message);
+  }
+}
 
 const httpCall = function httpCall(endPoint, ...args) {
   return endPoint + args.join('/');
@@ -68,6 +83,9 @@ export {
   canRender,
   canRenderError,
   logError,
+  log,
   SORT_BY_VIEWS,
   SORT_BY_UPDATE_DATE,
+  DELAY_TIME,
+  MAX_RETRIES,
 };

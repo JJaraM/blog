@@ -14,6 +14,7 @@ import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-git';
 import 'prismjs/components/prism-groovy';
 import 'prismjs/components/prism-properties';
+import 'prismjs/components/prism-go';
 
 import './prism-okaida.scss';
 import './style.scss';

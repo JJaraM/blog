@@ -1,5 +1,8 @@
-import { call } from 'redux-saga/effects';
+import { call} from 'redux-saga/effects';
+import { delay } from '@redux-saga/core/effects';
 import request from 'utils/request';
+import { MAX_RETRIES, DELAY_TIME } from 'configuration/config';
+import { log } from '../configuration/config';
 
 let data;
 let res;
@@ -11,7 +14,6 @@ let serviceUnavailableFunction;
 
 function* done() {
   res = yield call(fetch, url);
-
   try {
     if (res.status === 200) {
       data = yield call(request, url);
@@ -19,13 +21,11 @@ function* done() {
     } else if (res.status === 204) {
       yield noContentFunction();
     } else if (res.status === 503) {
-      console.log('Service Unavailable');
       yield serviceUnavailableFunction();
     }
   } catch (e) {
     console.log(e.response);
   }
-
 }
 
 function on() {
@@ -87,9 +87,14 @@ const httpRequest = function httpRequest() {
     }
   }
 
-  function* onServiceUnavailable(fun) {
+  function* onServiceUnavailable(retry, fun) {
     if (res.status === 503) {
-      yield fun(data);
+      if (retry.attempt < MAX_RETRIES) {
+        retry.attempt++;
+        log("Retry #" + retry.attempt + " retrying in " + DELAY_TIME + "ms");
+        yield delay(DELAY_TIME)
+        yield fun(res);
+      }
     }
   }
 

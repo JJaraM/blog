@@ -6,12 +6,11 @@ import request from 'utils/request';
 import { itemsLoaded, createDone } from './actions';
 import { makeTagId, makeText, makeTagItems } from './selectors';
 import { RETRIEVE, ADD, REMOVE, CREATE } from './constants';
-import { delay } from '@redux-saga/core/effects';
-import { getItemsCount, getPageNumber } from '../TestimonialSection/selectors';
 import { previous } from '../TestimonialSection/actions';
+import { error } from '../LatestPostSection/actions';
+import { httpRequest } from '../../common/http';
 
-const delayTime = 10000;
-const maxRetries = 100;
+let retry = { attempt : 0 };
 
 export default function* init() {
   yield takeLatest(RETRIEVE, sagaRetrieve);
@@ -21,48 +20,69 @@ export default function* init() {
 }
 
 export function* sagaRetrieve() {
+  const requestURL = httpCall(api.tag.all);
 
-  function* callRetry(attempt, requestURL) {
-    const retryAttempt = yield attempt + 1;
-    console.log('Retry #' + retryAttempt + " for the request " + requestURL + " waiting " + delayTime + "ms ...");
+  yield httpRequest().onCall(requestURL);
 
-    yield delay(delayTime);
-    yield retry(retryAttempt);
-  }
+  yield httpRequest().onOk(function*(items) {
+    yield put(itemsLoaded(items));
+  });
 
-  function* retry(attempt) {
-    if (attempt < maxRetries) {
-      try {
-        const page = yield select(getPageNumber());
-        const count = yield select(getItemsCount());
-        const requestURL = httpCall(api.tag.all);
-        const res = yield call(fetch, requestURL);
+  yield httpRequest().onServiceUnavailable(retry,function *() {
+    yield sagaRetrieve();
+  });
 
-        //Ok
-        if (res.status === 200) {
-          const items = yield call(request, requestURL);
-          yield put(itemsLoaded(items));
-        }
+  yield httpRequest().onNoContent(function*() {
+    yield put(previous());
+  });
 
-        //No Content
-        if (res.status === 204) {
-          yield put(previous());
-        }
+  yield httpRequest().onInternalServerError(function*(res) {
+    const json = yield call([res, 'json']);
+    yield put(error(json));
+  });
 
-        //Service Unavailable
-        if (res.status === 503) {
-          yield callRetry(attempt, requestURL);
-        }
-      } catch (e) {
-        const status = e.response.status;
-        if (status == 503) {
-          yield callRetry(attempt, requestURL);
-        }
-      }
-    }
-  }
-  yield retry(0);
 }
+//
+// export function* sagaRetrieve() {
+//
+//   function* callRetry(attempt, requestURL) {
+//     const retryAttempt = yield attempt + 1;
+//     //console.log('Retry #' + retryAttempt + " for the request " + requestURL + " waiting " + delayTime + "ms ...");
+//     yield delay(delayTime);
+//     yield retry(retryAttempt);
+//   }
+//
+//   function* retry(attempt) {
+//     if (attempt < maxRetries) {
+//       try {
+//         const requestURL = httpCall(api.tag.all);
+//         const res = yield call(fetch, requestURL);
+//
+//         //Ok
+//         if (res.status === 200) {
+//           const items = yield call(request, requestURL);
+//           yield put(itemsLoaded(items));
+//         }
+//
+//         //No Content
+//         if (res.status === 204) {
+//           yield put(previous());
+//         }
+//
+//         //Service Unavailable
+//         if (res.status === 503) {
+//           yield callRetry(attempt, requestURL);
+//         }
+//       } catch (e) {
+//         const status = e.response.status;
+//         if (status == 503) {
+//           yield callRetry(attempt, requestURL);
+//         }
+//       }
+//     }
+//   }
+//   yield retry(0);
+// }
 
 export function* sagaAdd() {
   try {
