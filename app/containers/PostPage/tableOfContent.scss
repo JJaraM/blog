@@ -8,11 +8,17 @@
         padding: 1rem;
     }
 
+    h1 {
+      &:last-child {
+        color: #039490 !important;
+      }
+    }
+
     ul {
         counter-reset: section;
         list-style-type: none;
         padding-left: 1rem;
-        
+
         li {
             &:before {
                 counter-increment: section;
@@ -24,7 +30,20 @@
             ul > li{
                 padding-left: 0.25rem;
             }
-        } 
-        
-    } 
+        }
+
+      &:last-child {
+        background: #FBC84F !important;
+
+        li {
+          &:before{
+            color: #000 !important;
+          }
+        }
+        a {
+          color: #000 !important;
+
+        }
+      }
+    }
 }

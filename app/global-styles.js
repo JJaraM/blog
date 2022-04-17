@@ -183,6 +183,15 @@ h3 {
   background: #FFF;
 }
 
+table {
+  tr, th, td {
+    border: 1px solid #303030 !important;
+    th {
+      padding: 5.5px;
+    }
+  }
+}
+
 .pre-scrollable-tags::-webkit-scrollbar-thumb {
   background-color: var(--fifth-bg-color);
 }

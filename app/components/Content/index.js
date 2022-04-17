@@ -15,7 +15,8 @@ import 'prismjs/components/prism-git';
 import 'prismjs/components/prism-groovy';
 import 'prismjs/components/prism-properties';
 import 'prismjs/components/prism-go';
-
+import 'prismjs/components/prism-splunk-spl';
+import 'prismjs/components/prism-sql';
 import './prism-okaida.scss';
 import './style.scss';
 import './prism.scss';

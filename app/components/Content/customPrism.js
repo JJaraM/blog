@@ -117,3 +117,16 @@ Prism.languages.insertBefore('properties', 'operator', {
 Prism.languages.insertBefore('properties', 'comment', {
   'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
 });
+
+/*splunk-spl*/
+Prism.languages.insertBefore('splunk-spl', 'number', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('splunk-spl', 'operator', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
+
+Prism.languages.insertBefore('splunk-spl', 'comment', {
+  'bullet': /([/]*[<]{2}(.*?)[\>]{2})/
+});
