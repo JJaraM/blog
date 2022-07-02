@@ -1,77 +1,50 @@
 /*
- * HomePage
+ *  Copyright 2022-present Jonathan Jara Morales
  *
- * This is the first thing users see of our App, at the '/' route
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
-
-import React, { useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
-
-import reducer from './reducer';
-import saga from './saga';
 import LatestPostSection from 'containers/LatestPostSection';
 import RecommendationPostSection from 'containers/RecommendationPostSection';
 import TestimonialSection from 'containers/TestimonialSection';
 
-import AboutMeSection from 'containers/AboutMeSection';
-import Welcome from 'components/Welcome';
-import Project from '../Project';
-
-const key = 'home';
-
-export function HomePage({
-                           dispatch
-}) {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-
-  useEffect(() => {
-
-  }, []);
-
-
+// Page component that keeps the order of the different contains that are going
+// to be render in the home page
+export function HomePage() {
   return (
     <>
       <Helmet>
         <title>Home</title>
-        <meta name="description" content="Personal Blog Site" />
+        <meta name="description" content="Jonathan Jara Morales" />
       </Helmet>
-
-      {/* <Welcome /> */}
-
-
+      {/* Displays the latest available post*/}
       <LatestPostSection />
+      {/* Displays the posts with more views*/}
       <RecommendationPostSection />
-      <TestimonialSection/>
-
-
-
-      {/*<Project />
-     <AboutMeSection /> */}
-
-
-
-
+      {/* Displays the testimonials about my person*/}
+      <TestimonialSection />
     </>
   );
+}
 
+const mapStateToProps = createStructuredSelector({});
 
-};
-
-const mapStateToProps = createStructuredSelector({
-
-});
-
-export function mapDispatchToProps(dispatch) {
-  return {
-
-  };
+export function mapDispatchToProps() {
+  return {};
 }
 
 const withConnect = connect(

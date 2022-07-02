@@ -1,35 +1,29 @@
-/**
- * Copyright (c) 2021 Jonathan Jara
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+/*
+ *  Copyright 2022-present Jonathan Jara Morales
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
+
 import React, { useEffect, memo } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-
 import { selectItems, selectStatus, selectError } from './selectors';
 import { next, previous, retrieve, refresh } from './actions';
 import reducer from './reducer';
 import saga from './saga';
-
 import ErrorMessage from '../../components/ErrorMessage';
 import PrimarySection from '../../components/PrimarySection';
 import RecommendationPostList from '../../components/RecommendationPostList';
@@ -48,24 +42,31 @@ export function RecommendationPostSection({
   onPrevious,
   onRefresh,
 }) {
-
   useInjectReducer({ key: 'recommendationPostSection', reducer });
   useInjectSaga({ key: 'recommendationPostSection', saga });
+
+  // We are going to list this event if there is any change we are going to update the displayed components
   socket('post').watchData(onRefresh);
 
+  // When the page is loaded by first time we are going to make a request to get the recommendation posts,
+  // which are the posts with more views
   useEffect(() => {
     onLoadPage();
   }, []);
 
+  // If there are not items we are not going to render the pagination div, as is not possible to fetch data
+  let PaginationComponent = () => null;
+  if (items.length > 0) {
+    PaginationComponent = () => <Pagination onNext={onNext} onPrevious={onPrevious} />;
+  }
+
   return (
-    <ErrorMessage error={ error }>
+    <ErrorMessage error={error}>
       <PrimarySection>
         <RecommendationPostList
-          items={ items }
-          status={ status }
-          pagination={
-            <Pagination onNext={onNext} onPrevious={onPrevious} />
-          }
+          items={items}
+          status={status}
+          pagination={<PaginationComponent />}
         />
       </PrimarySection>
     </ErrorMessage>
@@ -75,15 +76,15 @@ export function RecommendationPostSection({
 const mapStateToProps = createStructuredSelector({
   items: selectItems(),
   status: selectStatus(),
-  error: selectError()
+  error: selectError(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: () => dispatch(retrieve()),
-    onNext:() => dispatch(next()),
-    onPrevious:() => dispatch(previous()),
-    onRefresh: (item) => dispatch(refresh(item)),
+    onNext: () => dispatch(next()),
+    onPrevious: () => dispatch(previous()),
+    onRefresh: item => dispatch(refresh(item)),
     dispatch,
   };
 }

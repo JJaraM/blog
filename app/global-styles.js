@@ -134,11 +134,6 @@ h3 {
 }
 
 
-
-
-
-
-
 .section_tags_loading {
   background: transparent !important;
   padding-left: 0px !important;

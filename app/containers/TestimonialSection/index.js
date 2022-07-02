@@ -1,8 +1,19 @@
-/**
- * Component that will render the testimionals
+/*
+ *  Copyright 2022-present Jonathan Jara Morales
  *
- * @author Jonathan Jara Morales
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
+
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -24,32 +35,35 @@ import messages from './messages';
 import './style.scss';
 
 export function TestimonialSection({ items, loading, onLoadPage, onNext, onPrevious }) {
+  // Injection of the components
   const key = 'testimonialSection';
-
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
+  // On the page load we are going to request the testimonials data
   useEffect(() => {
     onLoadPage();
   }, []);
 
-  return (
-    <SecondarySection>
-      <SectionTitle
-        topDescription={
-          <FormattedMessage {...messages.subTitle} />
-        }
-        title={
-          <FormattedMessage {...messages.header} />
-        }
-      />
-
-      <TestimonialList items={items} loading={loading} />
-
+  // The Pagination is going to be render only if there are data visible
+  let Pagination = () => null;
+  if (items.length > 0) {
+    Pagination = () => (
       <ContainerCenter>
         <ArrowButton onClick={onPrevious} direction="left" />
         <ArrowButton onClick={onNext} direction="right" />
       </ContainerCenter>
+    );
+  }
+
+  return (
+    <SecondarySection>
+      <SectionTitle
+        topDescription={<FormattedMessage {...messages.subTitle} />}
+        title={<FormattedMessage {...messages.header} />}
+      />
+      <TestimonialList items={items} loading={loading} />
+      <Pagination />
     </SecondarySection>
   );
 }

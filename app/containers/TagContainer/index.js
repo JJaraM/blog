@@ -1,3 +1,19 @@
+/*
+ *  Copyright 2022-present Jonathan Jara Morales
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,14 +23,8 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
-import {
-  retrieve,
-  add,
-  remove,
-  create,
-  search,
-} from './actions';
-import { makeTagItems, makeLoading, makeIsFirstLoading, makeSearchText } from './selectors'
+import { retrieve, add, remove, create, search } from './actions';
+import { makeTagItems, makeLoading, makeIsFirstLoading, makeSearchText } from './selectors';
 import TagList from 'components/TagList';
 import PostTagList from 'components/PostTagList';
 import { getItems } from '../TagComboBox/service';
@@ -35,13 +45,15 @@ export function TagContainer({
   onFilter,
   searchText,
 }) {
+
+  // Injection of the components
   useInjectReducer({ key: 'tagContainer', reducer });
   useInjectSaga({ key: 'tagContainer', saga });
 
+  // Effect to detect if the page is being rendered by first time in order
+  // to keep a good performance to don't sent multiple times the same request to the server
   useEffect(() => {
-    if (!isFirstLoading) {
-     onLoadPage();
-    }
+    if (!isFirstLoading) onLoadPage();
   }, []);
 
   const splitListOn = 8;
@@ -52,31 +64,38 @@ export function TagContainer({
   let comboBox = null;
 
   if (usePost) {
-    component = <PostTagList
-      item={ item }
-      items={ items }
-      isAuthenticated={ isAuthenticated }
-      onAdd = { onAdd }
-      onCreate = { onCreate }
-      onRemove = { onRemove }
-    />;
+    component = (
+      <PostTagList
+        item={item}
+        items={items}
+        isAuthenticated={isAuthenticated}
+        onAdd={onAdd}
+        onCreate={onCreate}
+        onRemove={onRemove}
+      />
+    );
   }
 
-  if (items.length > 0 && !usePost) {
+  if (items.length > 0 && !usePost && !loading) {
     comboBox = (
       <li>
-        <TagComboBox loading={loading} items={comboBoxItems} after={splitListOn} onFilter={onFilter} searchText={searchText}  />
+        <TagComboBox
+          loading={loading}
+          items={comboBoxItems}
+          after={splitListOn}
+          onFilter={onFilter}
+          searchText={searchText}
+        />
       </li>
-    )
+    );
   }
 
   return (
     <TagContainerList>
-      { component }
-      { comboBox }
+      {component}
+      {comboBox}
     </TagContainerList>
-  )
-
+  );
 }
 
 TagContainer.propTypes = {
@@ -95,10 +114,10 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onLoadPage: () => dispatch(retrieve()),
-    onAdd: (id) => dispatch(add(id)),
-    onRemove: (id) => dispatch(remove(id)),
-    onCreate: (text) => dispatch(create(text)),
-    onFilter: (evt) => dispatch(search(evt.target.value)),
+    onAdd: id => dispatch(add(id)),
+    onRemove: id => dispatch(remove(id)),
+    onCreate: text => dispatch(create(text)),
+    onFilter: evt => dispatch(search(evt.target.value)),
     dispatch,
   };
 }

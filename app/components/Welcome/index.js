@@ -13,25 +13,37 @@ function Welcome() {
 
   return (
     <div>
-      <div className="container-welcome" style={{backgroundImage: `url(${image})`}}>
-      <div className="image-overlay"></div>
+      <div className="container-welcome" > {/*style={{backgroundImage: `url(${image})`}}*/}
+
+      {/*<div className="image-overlay"></div>*/}
         <div className="box">
-          <div className="img-container">
-            <div className="welcome-about-me">
-              <img src={Me} className="about-me img-circle " />
+
+
+          <div className="job-title-group">
+            <div className="job-title" >
+              <h1>Jonathan Jara Morales <span></span></h1>
+              <h2>Software Developer <span></span></h2>
             </div>
 
-
+            <div className="img-container">
+              <div className="welcome-about-me">
+                <img src={Me} className="about-me img-circle " />
+              </div>
+            </div>
           </div>
+
           <div className="description-container">
-            <div className="title">
-              <span className="block"></span>
-              <h1>Jonathan Jara Morales<span></span></h1>
-            </div>
-            <div className="role">
-              <div className="block"></div>
-              <p><FormattedMessage {...messages.workTitle} /></p>
-            </div>
+            {/*<div className="title">*/}
+            {/*  <span className="block"></span>*/}
+            {/*  <h1>Jonathan Jara Morales<span></span></h1>*/}
+            {/*</div>*/}
+
+
+            {/*<div className="role">*/}
+            {/*  <div className="block"></div>*/}
+            {/*  <p><FormattedMessage {...messages.workTitle} /></p>*/}
+            {/*</div>*/}
+
             I am a software developer that start working at 18 years old, during this time
             I worked and study at the same time, now I am a senior developer, with more than
             8 years of experience working on java and a javascript developer as a hobbit.
