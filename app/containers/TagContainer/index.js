@@ -76,7 +76,7 @@ export function TagContainer({
     if (newList.length == 7) {
       newList.pop()
     }
-    
+
     // When an user hits an element of the dropdown list by first time we are going to remove it from on dropdownList
     // and then we are going to push the element in the main div so the user can get a feed back about what tag is
     // using to get the details
