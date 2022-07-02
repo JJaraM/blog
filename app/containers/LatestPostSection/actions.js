@@ -1,7 +1,6 @@
-import { 
-  RETRIEVE, 
-  ITEMS_LOADED, 
-  RETRIEVE_MORE, 
+import {
+  RETRIEVE,
+  ITEMS_LOADED,
   CHANGE_TAG,
   ERROR,
   REFRESH
@@ -10,12 +9,6 @@ import {
 export function retrieve() {
   return {
     type: RETRIEVE,
-  };
-}
-
-export function retrieveMore() {
-  return {
-    type: RETRIEVE_MORE,
   };
 }
 
