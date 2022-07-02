@@ -1,8 +1,8 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { api, httpCall, SORT_BY_UPDATE_DATE } from 'configuration/config';
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
-import { CHANGE_TAG, RETRIEVE_LAST_POST } from './constants';
-import { error, itemsLoaded } from './actions';
+import { RETRIEVE_BY_TAG, RETRIEVE_LAST_POST } from './constants';
+import { error, done } from './actions';
 import { makeLatestPostCountItems, makeLatestPostPage, makeSelectedTag } from './selectors';
 import { httpRequest } from '../../common/http';
 
@@ -12,7 +12,7 @@ let retry = { attempt : 0 };
 // Indicate what method is being called for each of the events that were executed
 export default function* init() {
   // Find the latest post when the user search more data, search data by first time or if change the tag
-  yield takeLatest([RETRIEVE_LAST_POST, CHANGE_TAG], getItems);
+  yield takeLatest([RETRIEVE_LAST_POST, RETRIEVE_BY_TAG], getItems);
 }
 
 export function* getItems() {
@@ -35,7 +35,7 @@ export function* getItems() {
     if (!isAuthenticated) {
       items = items.filter(item => !item.tags.includes(182));
     }
-    yield put(itemsLoaded(items));
+    yield put(done(items));
   });
 
   // Function that is going to be called when the HTTP Status code is 503

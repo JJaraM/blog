@@ -20,7 +20,11 @@
     }
 
     &.active {
-      background: var(--jjara-tag-container-list-ul-li-active-bg-color);
+      background: #adadad;
+
+      button {
+        color: #FFF;
+      }
     }
   }
 

@@ -9,7 +9,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectTagListItem from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { changeTag } from '../LatestPostSection/actions';
+import { retrieveByTag } from '../LatestPostSection/actions';
 import { makeSelectedTag } from '../LatestPostSection/selectors';
 
 export function TagListItem({
@@ -41,7 +41,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChange: (evt) => dispatch(changeTag(evt.target.value)),
+    onChange: (evt) => dispatch(retrieveByTag(evt.target.value)),
     dispatch,
   };
 }

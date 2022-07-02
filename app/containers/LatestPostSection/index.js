@@ -33,12 +33,12 @@ import LoadingButton from 'components/LoadingButton';
 import messages from './messages';
 import { retrieve, refresh } from './actions';
 import reducer from './reducer';
-import { makeItems, makeLoading, makeIsFirstLoading } from './selectors';
+import { makeItems, makeLoading, makeIsFirstLoading, makeSelectedTag } from './selectors';
 import saga from './saga';
 
 // The following component is going to render the last 'n' post available
 // based on the last edition received
-export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, onRefresh }) {
+export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, onRefresh, selectedTag }) {
   // Injection of the components
   useInjectReducer({ key: 'latestPostSection', reducer });
   useInjectSaga({ key: 'latestPostSection', saga });
@@ -66,7 +66,7 @@ export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, 
 
         {/* Render all the available tags centered*/}
         <ContainerCenter>
-          <TagContainer />
+          <TagContainer selectedTag={selectedTag} />
         </ContainerCenter>
 
         {/* Render all the latest available post*/}
@@ -94,6 +94,8 @@ const mapStateToProps = createStructuredSelector({
   loading: makeLoading(),
   // Verifies if the application is loading by first time
   isFirstLoading: makeIsFirstLoading(),
+  // Gets the tag that is selected currently
+  selectedTag: makeSelectedTag(),
 });
 
 // Operations that indicates that is going to make a call to an http service

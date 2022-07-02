@@ -44,6 +44,7 @@ export function TagContainer({
   onCreate,
   onFilter,
   searchText,
+  selectedTag,
 }) {
 
   // Injection of the components
@@ -56,9 +57,34 @@ export function TagContainer({
     if (!isFirstLoading) onLoadPage();
   }, []);
 
+  // We are going to split the tags in 2 collections and this collection will be one that is going to be outside of the
+  // dropdownList so the user can see easily the most important tags plus the current one at the end.
   const splitListOn = 8;
   const newList = getItems(items, splitListOn);
-  const comboBoxItems = items.slice(splitListOn - 2);
+  const newListItem = newList.filter(e => e.id == selectedTag);
+
+  // Filter the dropdownList in order to remove the items that are going to be displayed as primary
+  // and filter again to remove the item if the user has selected an option that was in this collection
+  let comboBoxItems = items.slice(splitListOn - 2);
+  const comboBoxItem = comboBoxItems.filter(e => e.id == selectedTag);
+
+  // If the selected item is not in the primary list we are going to render the components in a way that the selected
+  // item is displayed in the div and the item in the dropdownList will be removed to don't have duplicate entries
+  if (newListItem.length == 0) {
+    // If the new list already have an item that comes from the drop down list we are going to remove it, as this
+    // indicates that the user hits again an element in the dropdownList
+    if (newList.length == 7) {
+      newList.pop()
+    }
+    
+    // When an user hits an element of the dropdown list by first time we are going to remove it from on dropdownList
+    // and then we are going to push the element in the main div so the user can get a feed back about what tag is
+    // using to get the details
+    if (newList.length == 6) {
+      comboBoxItems = comboBoxItems.filter(e => e.id != parseInt(selectedTag));
+      newList.push(comboBoxItem.at(-1))
+    }
+  }
 
   let component = <TagList items={newList} loading={loading} />;
   let comboBox = null;
@@ -102,6 +128,7 @@ TagContainer.propTypes = {
   item: PropTypes.object,
   usePost: PropTypes.bool,
   isAuthenticated: PropTypes.bool,
+  selectedTag: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({

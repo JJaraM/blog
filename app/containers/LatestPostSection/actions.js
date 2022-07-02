@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import { RETRIEVE_LAST_POST, ITEMS_LOADED, CHANGE_TAG, ERROR, REFRESH } from './constants';
+import { RETRIEVE_LAST_POST, RETRIEVE_DONE, RETRIEVE_BY_TAG, ERROR, REFRESH } from './constants';
 
 // Retrieve the latest post
 export function retrieve() {
@@ -23,16 +23,17 @@ export function retrieve() {
   };
 }
 
-export function itemsLoaded(items) {
+// Indicates when the data was fetch correctly
+export function done(items) {
   return {
-    type: ITEMS_LOADED,
+    type: RETRIEVE_DONE,
     items,
   };
 }
 
-export function changeTag(tagId) {
+export function retrieveByTag(tagId) {
   return {
-    type: CHANGE_TAG,
+    type: RETRIEVE_BY_TAG,
     tagId,
   };
 }

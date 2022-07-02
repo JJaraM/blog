@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { ITEMS_LOADED, CHANGE_TAG, ERROR, REFRESH } from './constants';
+import { RETRIEVE_BY_TAG, ERROR, REFRESH, RETRIEVE_DONE } from './constants';
 
 /**
  * Status List:
@@ -23,7 +23,7 @@ export const initialState = {
 const latestPostSectionReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case ITEMS_LOADED:
+      case RETRIEVE_DONE:
         draft.items = [...state.items, ...action.items];
         draft.loading = false;
         draft.isFirstLoading = true;
@@ -31,7 +31,7 @@ const latestPostSectionReducer = (state = initialState, action) =>
         draft.page += 1;
         break;
 
-      case CHANGE_TAG:
+      case RETRIEVE_BY_TAG:
         draft.items = [];
         draft.tagId = action.tagId;
         draft.page = 0;

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { changeTag } from '../LatestPostSection/actions';
+import { retrieveByTag } from '../LatestPostSection/actions';
 import { makeSelectedTag } from '../LatestPostSection/selectors';
 import { useInjectReducer } from 'utils/injectReducer';
 import { createStructuredSelector } from 'reselect';
@@ -48,7 +48,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChange: (evt) => dispatch(changeTag(evt.target.value)),
+    onChange: (evt) => dispatch(retrieveByTag(evt.target.value)),
     dispatch,
   };
 }
