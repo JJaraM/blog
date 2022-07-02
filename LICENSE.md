@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2019 Maximilian Stoiber
+Copyright (c) 2022 Jonathan Jara Morales
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -13,98 +13,76 @@ import PrincipalTitle from 'components/PrincipalTitle';
 import ContainerCenter from 'components/ContainerCenter';
 import Container from 'components/Container';
 import SecondarySection from 'components/SecondarySection';
+import LoadingButton from 'components/LoadingButton';
 import messages from './messages';
-import { retrieve, retrieveMore, refresh } from './actions';
+import { retrieve, refresh } from './actions';
 import reducer from './reducer';
-import { makeItems, makeLoading, makeIsFirstLoading, makeStatus, makeMessage } from './selectors';
+import { makeItems, makeLoading, makeIsFirstLoading } from './selectors';
 import saga from './saga';
-import Button from 'ui/Button';
-import { isInfitiveLoading } from '../../configuration/config';
 
-export function LatestPostSection({
-  items,
-  loading,
-  isFirstLoading,
-  onLoadPage,
-  onViewMore,
-  onRefresh,
-  status,
-}) {
+// The following component is going to render the last 'n' post available
+// based on the last edition received
+export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, onRefresh }) {
+  // Injection of the components
   useInjectReducer({ key: 'latestPostSection', reducer });
   useInjectSaga({ key: 'latestPostSection', saga });
 
+  // Effect to detect if the page is being rendered by first time in order
+  // to keep a good performance to don't sent multiple times the same request
+  // to the server
   useEffect(() => {
-    if (!isFirstLoading) {
-      onLoadPage();
-    }
+    if (!isFirstLoading) onRetrieve();
   }, []);
 
+  // We are going to connect to a web socket to keep listen the events for the
+  // post so in that way we can have a realtime feature and makes possible
+  // that any user can see if there is a change in the posts
   socket('post').watchData(onRefresh);
 
-  let button = (
-    <Button onClick={onViewMore} center>
-      <FormattedMessage {...messages.viewMore} />
-    </Button>
-  );
-
-  if (loading) {
-    button = (
-      <Button onClick={onViewMore} center disable>
-        <FormattedMessage {...messages.loading} />
-      </Button>
-    );
-  }
-
-  if (!loading) {
-    loading = isInfitiveLoading();
-  }
-
-
+  // Construct the entire component that is going to be rendered in the browser
   return (
     <Container>
       <SecondarySection>
         <PrincipalTitle
-          title={
-            <FormattedMessage {...messages.header} />
-          }
-          bottomDescription={
-            <FormattedMessage {...messages.description} />
-          }
+          title={<FormattedMessage {...messages.header} />}
+          bottomDescription={<FormattedMessage {...messages.description} />}
         />
 
         <ContainerCenter>
           <TagContainer />
         </ContainerCenter>
 
-        <LatestPostItemList items={items} loading={loading} status={status} />
+        <LatestPostItemList loading={loading} items={items} />
 
-
-
-
-        { button }
-
+        <LoadingButton loading={loading} onClick={onRetrieve}>
+          <FormattedMessage {...messages.viewMore} />
+        </LoadingButton>
       </SecondarySection>
     </Container>
   );
 }
 
+// Parameters available when the component is going to be called for any other
 LatestPostSection.propTypes = {
-  onLoadPage: PropTypes.func,
   dispatch: PropTypes.func.isRequired,
 };
 
+// Operations that is going to be executed by the component
 const mapStateToProps = createStructuredSelector({
+  // Fetch the latest post items previously loaded
   items: makeItems(),
+  // Verifies if the application is loading
   loading: makeLoading(),
+  // Verifies if the application is loading by first time
   isFirstLoading: makeIsFirstLoading(),
-  status: makeStatus(),
-  message: makeMessage(),
 });
 
+// Operations that indicates that is going to make a call to an http service
 function mapDispatchToProps(dispatch) {
   return {
-    onLoadPage: () => dispatch(retrieve()),
-    onViewMore: () => dispatch(retrieveMore()),
+    // Makes an HTTP Request to retrieve the latest posts
+    onRetrieve: () => dispatch(retrieve()),
+    // When there is a web socket event the post is going to be updated
     onRefresh: item => dispatch(refresh(item)),
     dispatch,
   };

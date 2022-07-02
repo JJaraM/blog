@@ -18,13 +18,13 @@ function EditableMetadata(props) {
       <IconContainer>
           <IconSave
             status = { onSaveStatus }
-            render={ true } 
-            onClick={ onSave } 
+            render={ true }
+            onClick={ onSave }
           />
 
-          <IconClose 
-            render={ true } 
-            onClick={ onClose } 
+          <IconClose
+            render={ true }
+            onClick={ onClose }
           />
       </IconContainer>
     </div>

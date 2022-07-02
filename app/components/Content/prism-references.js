@@ -30,6 +30,7 @@ Prism.languages.references = {
 
     if (env.type === 'sup') {
       env.content = env.content.replace(/\^/g, '');
+      id++;
       env.attributes.id = '#text-#ref-' + id;
     }
   });

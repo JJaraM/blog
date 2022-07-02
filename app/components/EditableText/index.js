@@ -15,6 +15,11 @@ const onHrefHover = (id, keepStatic) => {
   const tooltip = document.getElementById("#tooltip-text-span-" + id); //tooltip
   const text = document.getElementById("#text-" + id);//text
   const tooltipContainer = document.getElementById("#tooltip-text-" + id);
+
+  //#tooltip-text-#ref-1
+  console.log("#text-" + id); //#text-#ref-1
+
+
   if (tooltip) {
     tooltip.innerHTML = text.innerText;
   }
@@ -119,6 +124,12 @@ function EditableText(props) {
             <FinalText content={props.content} />
           </Col6>
         </Row>
+
+        <EditableMetadata
+          onSave={ props.onSave }
+          onClose={ props.onClose }
+          onSaveStatus={ props.onSaveStatus }
+        />
       </Row>
     )
   }

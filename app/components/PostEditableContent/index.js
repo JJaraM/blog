@@ -26,6 +26,14 @@ function PostEditableContent(props) {
         </IconContainer>
 
         <EditableText content={props.content} />
+
+        <IconContainer>
+          <IconEdit
+            render={props.isAuthenticated}
+            onClick={() => props.canEdit(props.event, true)}
+          />
+        </IconContainer>
+
       </BigLeftContainerFluid>
 
       <PostRelated tags={props.tags} onMinimize={props.onMinimize} isMinimized={props.isMinimized}/>

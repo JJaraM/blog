@@ -6,6 +6,7 @@ import ErrorMessage from 'components/ErrorMessage';
 import LatestPostItemLoading from '../LatestPostItemLoading';
 
 import './style.scss';
+import { isInfitiveLoading } from '../../configuration/config';
 
 function LatestPostItemList(props) {
   const masonryOptions = {
@@ -15,18 +16,16 @@ function LatestPostItemList(props) {
 
   let content = [1, 2, 3].map(item => <LatestPostItemLoading key={`latest-post-item-${item}`} />);
 
-  if (!props.loading) {
+  let loading = props.loading;
+
+  if (!loading) {
+    loading = isInfitiveLoading();
+  }
+
+  if (!loading) {
     content = props.items.map(item => (
       <LatestPostItem key={`latest-post-item-${item.id}`} item={item} />
     ));
-  }
-
-  if (props.status === 2) {
-    return (
-      <div className="mansory">
-        <ErrorMessage />
-      </div>
-    );
   }
 
   return (
@@ -42,7 +41,6 @@ function LatestPostItemList(props) {
 
 LatestPostItemList.propTypes = {
   loading: PropTypes.bool,
-  status: PropTypes.number,
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 

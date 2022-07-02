@@ -28,10 +28,10 @@ const latestPostSectionReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.isFirstLoading = true;
         draft.status = 1;
+        draft.page += 1;
         break;
 
       case RETRIEVE_MORE:
-        draft.page += 1;
         break;
 
       case CHANGE_TAG:
