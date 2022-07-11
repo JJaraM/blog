@@ -5,7 +5,7 @@ function SectionTitle(props) {
   return (
     <div className="principal-title pb-30 pt-30">
       <div className="container d-flex justify-content-center">
-        <div className="brief-description">
+        <div className="jjara-principal-title-brief-description">
           { props.topDescription }
         </div>
       </div>

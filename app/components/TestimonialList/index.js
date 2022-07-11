@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import List from '../../ui/List/list';
+import List from '../../ui/List/List';
 import ImageCircle from '../../ui/Image/imageCircle';
 import ImageCardInfoContainer from '../../ui/CardItem/CardInfoContainer';
 import ImageCardInfoTitle from '../../ui/CardItem/CardInfoTitle';

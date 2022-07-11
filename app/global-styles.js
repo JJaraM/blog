@@ -9,10 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 
-.secondary-bg-color {
-  background: var(--secondary-bg-color);
-  width: 100%;
-}
+
 
 .main-title-color {
   color: var(--main-title-color);
@@ -126,11 +123,6 @@ h3 {
   border-top-width: 3px;
   border-top-color: var(--fourth-bg-color);
   width: 100px;
-}
-
-.brief-description {
-  font-size: 0.7rem;
-  padding: 15px 0px 15px 0px;
 }
 
 

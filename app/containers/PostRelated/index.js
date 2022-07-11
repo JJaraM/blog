@@ -18,6 +18,7 @@ import CardInfoTitle from '../../ui/CardItem/CardInfoTitle';
 import CardInfoMetadata from '../../ui/CardItem/CardInfoMetadata';
 import CardInfoDescription from '../../ui/CardItem/CardInfoDescription';
 import CardContainer from '../../ui/CardItem';
+import Pagination from '../../ui/Pagination'
 
 export function PostRelated({
   tags,
@@ -64,10 +65,7 @@ export function PostRelated({
 
     return (
       <PostPanelLeftSide onMinimize={onMinimize} isMinimized={isMinimized}>
-        <div className="recomendations-container">
-          <i onClick={ onPrevious } className="fa fa-arrow-left" aria-hidden="true"></i>
-          <i onClick={ onNext } className="fa fa-arrow-right" aria-hidden="true"></i>
-        </div>
+        <Pagination onNext={onNext} onPrevious={onPrevious}/>
         <div>{subList}</div>
       </PostPanelLeftSide>
     );

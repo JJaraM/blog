@@ -1,0 +1,13 @@
+.jjara-small-pagination {
+  text-align: right;
+  padding-bottom: 10px;
+
+  i {
+    font-size: 12px !important;
+    padding: 5px;
+
+    &:hover {
+      color: var(--jjara-tag-bg-color);
+    }
+  }
+}

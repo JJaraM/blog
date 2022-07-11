@@ -7,7 +7,7 @@ function PrincipalTitleBottom(props) {
 
   let CenterComponent = (subProps) => (
     <>
-      { subProps.children } 
+      { subProps.children }
     </>
   );
 
@@ -21,7 +21,7 @@ function PrincipalTitleBottom(props) {
 
   return (
     <CenterComponent>
-      <div className="brief-description">
+      <div className="jjara-principal-title-brief-description">
         { props.children }
       </div>
     </CenterComponent>
