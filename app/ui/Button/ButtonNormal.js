@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-function NormalButton(props) {
+function ButtonNormal(props) {
   return (
     <button className="btn" onClick={props.onClick}>
       {props.children}
@@ -10,8 +10,8 @@ function NormalButton(props) {
   );
 }
 
-NormalButton.propTypes = {
+ButtonNormal.propTypes = {
   onClick: PropTypes.func,
 };
 
-export default NormalButton;
+export default ButtonNormal;

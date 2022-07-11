@@ -16,14 +16,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Container from 'components/Container';
 import './style.scss';
 
-function ButtonContainer(props) {
-  return <div className={`pb-30 ${props.className}`}>{props.children}</div>;
+function ButtonClose(props) {
+  return (
+    <Container>
+      <div className="jjara-btn-close">
+        <button className="jjara-btn-transparent fa fa-close" onClick={props.onClick} />
+      </div>
+    </Container>
+  );
 }
 
-ButtonContainer.propTypes = {
-  className: PropTypes.string,
+ButtonClose.propTypes = {
+  onClick: PropTypes.func,
 };
 
-export default ButtonContainer;
+export default ButtonClose;

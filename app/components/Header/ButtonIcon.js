@@ -7,7 +7,7 @@ import './style.scss';
 function ButtonIcon(props) {
   return (
     <RenderComponent render={props.render}>
-      <button className={`btn-search ${props.className}`} onClick={props.onClick} />
+      <button className={`jjara-btn-transparent ${props.className}`} onClick={props.onClick} />
     </RenderComponent>
   );
 }

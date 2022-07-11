@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { canRender } from '../../configuration/config';
 
 function List(props) {
   const { items, loading } =  props;

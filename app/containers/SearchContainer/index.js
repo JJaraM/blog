@@ -18,6 +18,7 @@ import { search, next, previous } from './actions';
 
 import './style.scss';
 import Container from '../../components/Container';
+import ButtonClose from 'ui/Button/ButtonClose'
 
 let initialize = false;
 
@@ -52,11 +53,8 @@ export function SearchContainer({
 
     return (
       <div className="search-container">
-        <Container>
-          <div className="btn-close">
-            <button className="btn-search fa fa-close" onClick={ onClose }></button>
-          </div>
-        </Container>
+        <ButtonClose onClick={onClose} />
+
         <div className="row h-100">
           <div className="col-sm-12 my-auto">
             <Container>

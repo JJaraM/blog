@@ -49,13 +49,6 @@
     border-bottom: 1px solid var(--main-bg-color);
 }
 
-.btn-close {
-    margin-left: auto;
-    font-size: 16px;
-    padding-top: 10px;;
-}
-
-
 .search-results {
     background: var(--secondary-bg-color);
     border-radius: 5px;
@@ -94,8 +87,9 @@
 
     .signIn-button-container {
         text-align: center;
-      padding-top: 10px;
+        padding-top: 10px;
     }
+
     .signIn-button {
         margin-top: 10px;
     }

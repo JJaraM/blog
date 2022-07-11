@@ -1,4 +1,4 @@
-.jjara-bnt-legend{
+.jjara-bnt-legend {
     text-align: center;
     font-size: 10px;
     margin-top: 10px;
@@ -8,4 +8,17 @@
     cursor: not-allowed !important;
     border-color: gray !important;
     background: gray !important;
+}
+
+.jjara-btn-close {
+  margin-left: auto;
+  font-size: 16px;
+  padding-top: 10px;;
+}
+
+.jjara-btn-transparent {
+  background:transparent;
+  border:none;color:#FFF;
+  padding:15px;
+  font-size:22px
 }

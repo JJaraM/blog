@@ -21,9 +21,11 @@
 
     &.active {
       background: #adadad;
+      cursor: not-allowed;
 
       button {
         color: #FFF;
+        cursor: not-allowed;
       }
     }
   }

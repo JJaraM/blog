@@ -155,6 +155,7 @@ h3 {
   &:active, &:focus {
     box-shadow: none !important;
     outline: none;
+
   }
 }
 

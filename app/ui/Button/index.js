@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import ContainerCenter from 'components/ContainerCenter';
 import ButtonDisable from './ButtonDisable';
-import NormalButton from './NormalButton';
+import ButtonNormal from './ButtonNormal';
 import ButtonLegend from './ButtonLegend';
 import ButtonContainer from './ButtonContainer';
 
 import './style.scss';
 
 function Button(props) {
-  let button = <NormalButton onClick={props.onClick}> {props.children} </NormalButton>;
+  let button = <ButtonNormal onClick={props.onClick}> {props.children} </ButtonNormal>;
 
   if (props.disable) {
     button = <ButtonDisable> {props.children} </ButtonDisable>;

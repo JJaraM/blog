@@ -29,5 +29,11 @@
   "boilerplate.containers.LocaleToggle.en": "",
   "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden.",
   "app.containers.TestimonialSection.header": "Testimonios",
-  "app.containers.TestimonialSection.subTitle": "¿Cuál es el rumor acerca de mí?"
+  "app.containers.TestimonialSection.subTitle": "¿Cuál es el rumor acerca de mí?",
+
+  "app.containers.SignIn.header": "Sign In",
+  "app.containers.SignIn.description": "Enter your credentials to access",
+  "app.containers.SignIn.username": "User",
+  "app.containers.SignIn.password": "Password",
+  "app.containers.SignIn.signIn": "Sign In"
 }

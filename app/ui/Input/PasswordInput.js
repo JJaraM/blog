@@ -14,16 +14,23 @@
  *  limitations under the License.
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
 
-function ButtonContainer(props) {
-  return <div className={`pb-30 ${props.className}`}>{props.children}</div>;
+function TextInput(props) {
+  return (
+    <input
+      type="password"
+      className="search"
+      placeholder={props.placeholder}
+      onChange={props.onChange}
+    />
+  );
 }
 
-ButtonContainer.propTypes = {
-  className: PropTypes.string,
+TextInput.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.oneOfType([PropTypes.any, PropTypes.string]),
 };
 
-export default ButtonContainer;
+export default memo(TextInput);

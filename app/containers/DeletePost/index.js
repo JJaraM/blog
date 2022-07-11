@@ -22,7 +22,7 @@ import Container from 'components/Container';
 import ContainerCenter from 'components/ContainerCenter';
 import PrincipalTitle from 'components/PrincipalTitle';
 import Button from 'ui/Button';
-
+import ButtonClose from 'ui/Button/ButtonClose'
 
 import './style.scss';
 
@@ -42,12 +42,7 @@ export function DeletePost({
   if (render) {
     return (
       <div className="search-container">
-
-        <Container>
-          <div className="btn-close">
-            <button className="btn-search fa fa-close" onClick={ onClose }></button>
-          </div>
-        </Container>
+        <ButtonClose onClick={onClose} />
 
         <div className="row h-100">
           <div className="col-sm-12 my-auto">
