@@ -15,6 +15,20 @@ const GlobalStyle = createGlobalStyle`
   color: var(--main-title-color);
 }
 
+.description {
+  font-size: 14px;
+}
+
+.loading-enter {
+  width: 100%;
+  height: 20px;
+  display: flex;
+}
+
+.loading-line-code {
+ background: #e83e8c;
+}
+
 
 
 .img-elementor {

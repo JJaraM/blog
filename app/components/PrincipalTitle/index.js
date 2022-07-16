@@ -76,6 +76,10 @@ function PrincipalTitle(props) {
   }
 
   if (loading) {
+    const style = {
+      "display": "flex"
+    }
+
     return (
       <LoadingContainer>
         <LoadingLine
@@ -85,6 +89,20 @@ function PrincipalTitle(props) {
           primaryBgColor="fifth-bg-color"
           secondaryBgColor="sixth-bg-color"
         />
+        <div style={ style }>
+          <LoadingLine
+            width={60}
+            height={20}
+            primaryBgColor="jjara-loading-primary-code-bg-color"
+            secondaryBgColor="jjara-loading-secondary-code-bg-color"
+          />
+          <LoadingLine
+            width={100}
+            height={20}
+            primaryBgColor="jjara-loading-primary-code-bg-color"
+            secondaryBgColor="jjara-loading-secondary-code-bg-color"
+          />
+        </div>
       </LoadingContainer>
     );
   }

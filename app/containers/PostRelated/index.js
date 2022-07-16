@@ -18,7 +18,8 @@ import CardInfoTitle from '../../ui/CardItem/CardInfoTitle';
 import CardInfoMetadata from '../../ui/CardItem/CardInfoMetadata';
 import CardInfoDescription from '../../ui/CardItem/CardInfoDescription';
 import CardContainer from '../../ui/CardItem';
-import Pagination from '../../ui/Pagination'
+import Pagination from '../../ui/Pagination';
+import LoadingLine from '../../components/LoadingLine';
 
 export function PostRelated({
   tags,
@@ -27,7 +28,8 @@ export function PostRelated({
   onLoadPage,
   onNext,
   onPrevious,
-  onMinimize
+  onMinimize,
+  isLoading,
 }) {
   useInjectReducer({ key: 'postRelated', reducer });
   useInjectSaga({ key: 'postRelated', saga });
@@ -36,38 +38,79 @@ export function PostRelated({
     onLoadPage(tags);
   }, []);
 
-  if (items.length > 0 ) {
+  if (items.length > 0) {
     let subList = items.map(item => {
-      item = Object.assign({}, item, {description: ''})
+      item = Object.assign({}, item, { description: '' });
       return (
-          <div className="sublist" >
-            <div className="row pb-30" key={`post-related-${item.id}`}>
-              <div className="col-lg-12">
-                <CardContainer key={`jjara-recommendation-item-${item.id}`}>
-                  <CardDivider>
-                    <CardImage href={`/post/${item.id}`} image={item.image}>
-                      <CardImageTag tag={item.views} />
-                    </CardImage>
-                  </CardDivider>
-                  <CardDivider>
-                    <CardInfoContainer>
-                      <CardInfoTitle title={item.title} href={`/post/${item.id}`} />
-                      <CardInfoMetadata date={item.updateDate} />
-                      <CardInfoDescription description={item.description} />
-                    </CardInfoContainer>
-                  </CardDivider>
-                </CardContainer>
-              </div>
+        <div className="sublist">
+          <div className="row pb-30" key={`post-related-${item.id}`}>
+            <div className="col-lg-12">
+              <CardContainer key={`jjara-recommendation-item-${item.id}`}>
+                <CardDivider>
+                  <CardImage href={`/post/${item.id}`} image={item.image}>
+                    <CardImageTag tag={item.views} />
+                  </CardImage>
+                </CardDivider>
+                <CardDivider>
+                  <CardInfoContainer>
+                    <CardInfoTitle title={item.title} href={`/post/${item.id}`} />
+                    <CardInfoMetadata date={item.updateDate} />
+                    <CardInfoDescription description={item.description} />
+                  </CardInfoContainer>
+                </CardDivider>
+              </CardContainer>
             </div>
           </div>
-      )
+        </div>
+      );
     });
 
     return (
       <PostPanelLeftSide onMinimize={onMinimize} isMinimized={isMinimized}>
-        <Pagination onNext={onNext} onPrevious={onPrevious}/>
+        <Pagination onNext={onNext} onPrevious={onPrevious} />
         <div>{subList}</div>
       </PostPanelLeftSide>
+    );
+  }
+
+  if (isLoading) {
+    const style = {
+      width: '330px',
+    };
+
+    return (
+      <div className="post-text" style={style}>
+        <div className="loading-enter" />
+        <LoadingLine widthUnit="%" width={48} height={100} />
+        <LoadingLine
+          widthUnit="%"
+          width={48}
+          height={60}
+          primaryBgColor="jjara-loading-primary-date-metadata-bg-color"
+          secondaryBgColor="jjara-loading-primary-date-metadata-bg-color"
+        />
+        <LoadingLine widthUnit="%" width={48} height={35} />
+
+        <LoadingLine widthUnit="%" width={48} height={100} />
+        <LoadingLine
+          widthUnit="%"
+          width={48}
+          height={60}
+          primaryBgColor="jjara-loading-primary-date-metadata-bg-color"
+          secondaryBgColor="jjara-loading-primary-date-metadata-bg-color"
+        />
+        <LoadingLine widthUnit="%" width={48} height={35} />
+
+        <LoadingLine widthUnit="%" width={48} height={100} />
+        <LoadingLine
+          widthUnit="%"
+          width={48}
+          height={60}
+          primaryBgColor="jjara-loading-primary-date-metadata-bg-color"
+          secondaryBgColor="jjara-loading-primary-date-metadata-bg-color"
+        />
+        <LoadingLine widthUnit="%" width={48} height={35} />
+      </div>
     );
   }
 
@@ -79,17 +122,17 @@ PostRelated.propTypes = {
   tags: PropTypes.array.isRequired,
   onLoadPage: PropTypes.func,
   items: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   items: makeItemsTags(),
   loaded: makeLoading(),
-
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoadPage: (tags) =>  dispatch(retrieve(tags)),
+    onLoadPage: tags => dispatch(retrieve(tags)),
     onNext: () => dispatch(next()),
     onPrevious: () => dispatch(previous()),
     dispatch,

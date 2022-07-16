@@ -174,7 +174,6 @@ export function PostPage({
     <>
       <Helmet title={title} defaultTitle="Jonathan Jara Morales" />
 
-
       <DeletePost
         render={ canRenderDeleteModal }
         onClose= { () => onRenderDeleteModal(false) }

@@ -21,7 +21,7 @@ function PostPanelLeftSide(props) {
   }
 
   return (
-    <div className={`offset-md-1 ${col} col-md-pull-2 small-right-container-fluid`}>
+    <div className={`jjara-post-left-offset-md-1 ${col} col-md-pull-2 small-right-container-fluid`}>
       <i className="jjara-post-left-minimize fa fa-minus" onClick={props.onMinimize}/>
       { props.children }
     </div>

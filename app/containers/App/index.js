@@ -85,12 +85,11 @@ export function App({
         <Route exact path="/category/:id" component={CategoryPage} />
         <Route exact path="/cases-study-1" component={CaseOfStudy1} />
         <Route path="" component={NotFoundPage} />
-
       </Switch>
 
-      {/*
-        <div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>
-      */}
+
+        {/*<div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>*/}
+
 
 
       <CookieBanner  />

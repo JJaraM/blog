@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function BigLeftContainerFluid(props) {
 
   const colMinimized = window.screen.availWidth > 1280 ? "col-md-11" : "col-md-10 ";
-  const colMaximized = window.screen.availWidth > 1280 ? "col-md-7" : "col-md-6 ";
+  const colMaximized = window.screen.availWidth > 1280 ? "col-md-7" : "col-md-7 ";
 
   if (props.isMinimized) {
     return (
