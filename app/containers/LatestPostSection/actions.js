@@ -14,7 +14,14 @@
  *  limitations under the License.
  */
 
-import { RETRIEVE_LAST_POST, RETRIEVE_DONE, RETRIEVE_BY_TAG, ERROR, REFRESH } from './constants';
+import {
+  RETRIEVE_LAST_POST,
+  RETRIEVE_DONE,
+  RETRIEVE_BY_TAG,
+  ERROR,
+  REFRESH,
+  NO_CONTENT,
+} from './constants';
 
 // Retrieve the latest post
 export function retrieve() {
@@ -49,5 +56,11 @@ export function refresh(item) {
   return {
     type: REFRESH,
     item,
+  };
+}
+
+export function noContent() {
+  return {
+    type: NO_CONTENT,
   };
 }

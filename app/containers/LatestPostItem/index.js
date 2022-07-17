@@ -15,32 +15,31 @@ import PostTagList from 'components/PostTagList';
 import { makeTagItems, makeLoading } from '../TagContainer/selectors';
 import Img from 'components/Img';
 import Metadata from 'components/Metadata';
-import RefreshIcon from '../../ui/RefreshIcon';
 
-export function LatestPostItem({
-  item,
-  tags,
-  loading
-}) {
+export function LatestPostItem({ item, tags, loading, onFavourite }) {
   useInjectReducer({ key: 'latestPostItem', reducer });
   useInjectSaga({ key: 'latestPostItem', saga });
 
   const refresh = item.refresh;
   let refreshClassName = '';
-  let Refresh = () => (<></>);
+  let Refresh = () => <></>;
 
   if (refresh) {
-      refreshClassName = 'refresh';
-      Refresh = () => <RefreshIcon />;
+    refreshClassName = 'refresh';
+  }
+
+  let favourites = JSON.parse(localStorage.getItem('favourites'));
+  const index = favourites.findIndex(object => object.id === item.id);
+  let selected = 'favourite-selected';
+  if (index === -1) {
+    selected = '';
   }
 
   const Component = () => (
     <div className={`card-body ${refreshClassName}`}>
       <div className="post-text">
         <Link to={`/post/${item.id}`}>
-          <h3 className="main-title-color">
-            {item.title}
-          </h3>
+          <h3 className="main-title-color">{item.title}</h3>
         </Link>
         <Metadata>
           <span>
@@ -50,7 +49,7 @@ export function LatestPostItem({
         <div className="description">
           <p>{item.description}</p>
         </div>
-        <PostTagList item={item} items={tags} loading={loading}/>
+        <PostTagList item={item} items={tags} loading={loading} />
       </div>
       <Refresh />
     </div>
@@ -59,6 +58,13 @@ export function LatestPostItem({
   return (
     <div className="card">
       <div>
+        <i
+          id={`favourite-${item.id}`}
+          className={`fa fa-star favourite-blog ${selected}`}
+          aria-hidden="true"
+          value={item.id}
+          onClick={() => onFavourite(item.id)}
+        />
         <Link to={`/post/${item.id}`}>
           <Img src={item.image} className="card-img-top" alt="..." />
         </Link>
@@ -80,6 +86,24 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    onFavourite: id => {
+      let favourites = JSON.parse(localStorage.getItem('favourites'));
+      const el = document.getElementById('favourite-' + id);
+
+      if (favourites == undefined) {
+        favourites = [];
+      }
+      const index = favourites.findIndex(object => object.id === id);
+      if (index === -1) {
+        favourites.push({ id: id });
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+        el.classList.add('favourite-selected');
+      } else {
+        favourites.splice(index, 1);
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+        el.classList.remove('favourite-selected');
+      }
+    },
     dispatch,
   };
 }

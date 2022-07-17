@@ -2,10 +2,11 @@ import React from 'react';
 import Logo from 'components/Logo';
 import SocialItem from './SocialItem';
 import LocaleToggle from 'containers/LocaleToggle';
-
+import Button from 'ui/Button';
 import './style.scss';
+import PropTypes from 'prop-types';
 
-function Footer() {
+function Footer(props) {
 
   const year = new Date().getFullYear();
 
@@ -34,11 +35,18 @@ function Footer() {
           <br />Project Build using React and spring cloud
           <section>
             <LocaleToggle />
+            <Button id='btn-stackTrace' onClick={props.onSpyCode}>
+              Spy this code?
+            </Button>
           </section>
        </div>
 
     </footer>
   );
+}
+
+Footer.propTypes = {
+  onSpyCode: PropTypes.func,
 }
 
 export default Footer;

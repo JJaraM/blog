@@ -7,8 +7,20 @@ const GlobalStyle = createGlobalStyle`
   //background-image: linear-gradient(200deg, #292929 0%, var(--main-bg-color) 100%);
 }
 
+.favourite-selected {
+  color: #FCAC34;
+}
+.favourite-blog {
 
+  position: absolute;
+  z-index: 999;
+  top: 0.5rem;
+  right: 0.5rem;
 
+  &:hover {
+   color: #FCAC34;
+ }
+}
 
 
 .main-title-color {

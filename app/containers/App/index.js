@@ -20,17 +20,18 @@ import PostPage from 'containers/PostPage';
 import CategoryPage from 'containers/CategoryPage';
 
 import SignIn from 'containers/SignIn';
+import SpyCode from 'containers/SpyCode'
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import CaseOfStudy1 from 'containers/CaseOfStudy1';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
-import { makeRenderSearch, makeRenderSignIn }  from './selectors';
+import { makeRenderSearch, makeRenderSignIn, makeRenderSpy }  from './selectors';
 
 import { signOut } from 'containers/SignIn/actions';
 
-import { search, close, signIn, createPost } from './actions';
+import { search, close, signIn, createPost, spy } from './actions';
 
 import './styles/variables.scss';
 import './styles/scrollbar.scss';
@@ -53,9 +54,11 @@ export function App({
   onSignOut,
   onPostCreate,
   onClose,
+  onSpyCode,
   onClear,
   renderSearch,
   renderSignIn,
+  renderSpyCode,
   isAuthenticated,
 }) {
 
@@ -78,6 +81,7 @@ export function App({
 
       <SearchContainer render={renderSearch} close={onClose} />
       <SignIn render={renderSignIn} close={onClose} />
+      <SpyCode render={renderSpyCode} close={onClose} />
 
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -93,7 +97,7 @@ export function App({
 
 
       <CookieBanner  />
-      <Footer />
+      <Footer onSpyCode={ onSpyCode } />
 
 
       <GlobalStyle />
@@ -108,12 +112,14 @@ App.propTypes = {
 const mapStateToProps = createStructuredSelector({
   renderSearch: makeRenderSearch(),
   renderSignIn: makeRenderSignIn(),
+  renderSpyCode: makeRenderSpy(),
   isAuthenticated: makeIsAuthenticated(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     onSearch: () => dispatch(search()),
+    onSpyCode: () => dispatch(spy()),
     onSignIn: () => {
       dispatch(signIn())
     },

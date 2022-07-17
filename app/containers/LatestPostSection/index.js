@@ -33,12 +33,26 @@ import LoadingButton from 'components/LoadingButton';
 import messages from './messages';
 import { retrieve, refresh } from './actions';
 import reducer from './reducer';
-import { makeItems, makeLoading, makeIsFirstLoading, makeSelectedTag } from './selectors';
+import {
+  makeItems,
+  makeLoading,
+  makeIsFirstLoading,
+  makeSelectedTag,
+  makeNoContent,
+} from './selectors';
 import saga from './saga';
 
 // The following component is going to render the last 'n' post available
 // based on the last edition received
-export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, onRefresh, selectedTag }) {
+export function LatestPostSection({
+  items,
+  loading,
+  isFirstLoading,
+  onRetrieve,
+  onRefresh,
+  selectedTag,
+  noContent,
+}) {
   // Injection of the components
   useInjectReducer({ key: 'latestPostSection', reducer });
   useInjectSaga({ key: 'latestPostSection', saga });
@@ -53,6 +67,13 @@ export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, 
   // post so in that way we can have a realtime feature and makes possible
   // that any user can see if there is a change in the posts
   socket('post').watchData(onRefresh);
+
+  if (selectedTag == -1 && items) {
+    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    items = items.filter(
+      item => favourites.find(favourite => favourite.id == item.id) != undefined,
+    );
+  }
 
   // Construct the entire component that is going to be rendered in the browser
   return (
@@ -73,7 +94,7 @@ export function LatestPostSection({ items, loading, isFirstLoading, onRetrieve, 
         <LatestPostItemList loading={loading} items={items} />
 
         {/* Button that is going to display more data in the view*/}
-        <LoadingButton loading={loading} onClick={onRetrieve}>
+        <LoadingButton render={noContent} loading={loading} onClick={onRetrieve}>
           <FormattedMessage {...messages.viewMore} />
         </LoadingButton>
       </SecondarySection>
@@ -96,6 +117,8 @@ const mapStateToProps = createStructuredSelector({
   isFirstLoading: makeIsFirstLoading(),
   // Gets the tag that is selected currently
   selectedTag: makeSelectedTag(),
+  // Indicates if there are not more content to retrieve
+  noContent: makeNoContent(),
 });
 
 // Operations that indicates that is going to make a call to an http service

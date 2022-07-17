@@ -19,9 +19,16 @@ const makeRenderSignIn = () =>
     globalState => globalState.renderSignIn,
   );
 
+const makeRenderSpy = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.renderSpy,
+  );
+
 
 export {
   selectGlobal,
   makeRenderSearch,
   makeRenderSignIn,
+  makeRenderSpy,
 };

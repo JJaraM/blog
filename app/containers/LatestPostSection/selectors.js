@@ -51,6 +51,12 @@ const makeMessage = () =>
     state => state.message,
   );
 
+const makeNoContent = () =>
+  createSelector(
+    selectLatestPostSectionDomain,
+    state => state.noContent,
+  );
+
 export {
   selectLatestPostSectionDomain,
   makeLatestPostPage,
@@ -61,4 +67,5 @@ export {
   makeSelectedTag,
   makeStatus,
   makeMessage,
+  makeNoContent,
 };

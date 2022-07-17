@@ -12,7 +12,7 @@ import EditableText from '../EditableText';
 function PostEditableContent(props) {
   const Component = () => (
     <>
-      <BigLeftContainerFluid isMinimized = {props.isMinimized}>
+      <BigLeftContainerFluid isMinimized={props.isMinimized}>
         <IconContainer>
           <IconEdit
             render={props.isAuthenticated}
@@ -33,10 +33,14 @@ function PostEditableContent(props) {
             onClick={() => props.canEdit(props.event, true)}
           />
         </IconContainer>
-
       </BigLeftContainerFluid>
 
-      <PostRelated tags={props.tags} onMinimize={props.onMinimize} isMinimized={props.isMinimized} isLoading={props.content}/>
+      <PostRelated
+        tags={props.tags}
+        onMinimize={props.onMinimize}
+        isMinimized={props.isMinimized}
+        isLoading={props.content}
+      />
     </>
   );
 

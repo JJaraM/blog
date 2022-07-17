@@ -1,8 +1,8 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { api, httpCall } from 'configuration/config';
 
-import { 
+import {
   CREATE_POST,
 } from './constants';
 
@@ -10,7 +10,7 @@ export default function* latestPostItemSaga() {
   yield takeLatest(CREATE_POST, sagaCreatePost);
 }
 
-export function* sagaCreatePost() {    
+export function* sagaCreatePost() {
   try {
     const requestURL = httpCall(api.post);
     const response = yield call(request, requestURL, {
@@ -22,7 +22,7 @@ export function* sagaCreatePost() {
     });
 
     window.location.href='/post/' + response.id;
-    
+
   } catch (err) {
     console.log(err);
   }

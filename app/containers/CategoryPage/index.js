@@ -12,33 +12,27 @@ import { compose } from 'redux';
 import { isLoadingComplete } from 'configuration/config';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeItems } from './selectors';
-import reducer from './reducer';
-import saga from './saga';
 
 import Container from 'components/Container';
-import SecondarySection from 'components/SecondarySection'
-import PrincipalTitle from 'components/PrincipalTitle'
-import LatestPostItemList from 'components/LatestPostItemList'
-import { retrieve, retrieveMore } from './actions';
+import SecondarySection from 'components/SecondarySection';
+import PrincipalTitle from 'components/PrincipalTitle';
+import LatestPostItemList from 'components/LatestPostItemList';
 import ContainerCenter from 'components/ContainerCenter';
 import TagContainer from 'containers/TagContainer';
 import Button from 'ui/Button';
 import { makeTagItems } from 'containers/TagContainer/selectors';
+import { retrieve, retrieveMore } from './actions';
+import saga from './saga';
+import reducer from './reducer';
+import { makeItems } from './selectors';
 
 let prevId;
 
-export function CategoryPage({
-  match,
-  onLoadPage,
-  items,
-  onViewMore,
-  tags
-}) {
+export function CategoryPage({ match, onLoadPage, items, onViewMore, tags }) {
   useInjectReducer({ key: 'categoryPage', reducer });
   useInjectSaga({ key: 'categoryPage', saga });
 
-  const id = match.params.id;
+  const { id } = match.params;
   let title;
 
   if (tags && tags.length > 0) {
@@ -63,34 +57,29 @@ export function CategoryPage({
 
   let ViewMore = () => (
     <ContainerCenter>
-      <Button>
-        Loading...
-      </Button>
+      <Button>Loading...</Button>
     </ContainerCenter>
-
   );
 
   if (isLoadingComplete(items.length === 0)) {
     ViewMore = () => (
       <ContainerCenter>
-        <Button onClick={onViewMore}>
-          View More
-        </Button>
+        <Button onClick={onViewMore}>View More</Button>
       </ContainerCenter>
-    )
+    );
   }
 
   return (
     <Container>
       <SecondarySection>
         <PrincipalTitle
-          center={ true }
-          divider={ true }
+          center
+          divider
           title={title}
           bottomDescription="In the below section you will find the last post for the current category"
         />
 
-        <LatestPostItemList items={items} loading={items.length === 0}/>
+        <LatestPostItemList items={items} loading={items.length === 0} />
 
         <ViewMore />
       </SecondarySection>
@@ -110,8 +99,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoadPage: (id) => dispatch(retrieve(id)),
-    onViewMore:() => dispatch(retrieveMore()),
+    onLoadPage: id => dispatch(retrieve(id)),
+    onViewMore: () => dispatch(retrieveMore()),
     dispatch,
   };
 }

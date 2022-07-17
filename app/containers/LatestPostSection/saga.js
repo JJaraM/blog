@@ -2,7 +2,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { api, httpCall, SORT_BY_UPDATE_DATE } from 'configuration/config';
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
 import { RETRIEVE_BY_TAG, RETRIEVE_LAST_POST } from './constants';
-import { error, done } from './actions';
+import { error, done, noContent } from './actions';
 import { makeLatestPostCountItems, makeLatestPostPage, makeSelectedTag } from './selectors';
 import { httpRequest } from '../../common/http';
 
@@ -19,9 +19,15 @@ export function* getItems() {
   // Get the page number to retrieve
   const page = yield select(makeLatestPostPage());
   // Get the count of items that wants to return
-  const count = yield select(makeLatestPostCountItems());
+  let count = yield select(makeLatestPostCountItems());
   // Get the tags that wants to be retrieved
-  const tag = yield select(makeSelectedTag());
+  let tag = yield select(makeSelectedTag());
+
+
+  if (tag == -1) {
+    tag = 0;
+    count = 100;
+  }
   // Makes an HTTP Request to an external web service using the url defined in the first argument follow parameters used
   // to filter the data that is going to be displayed
   const requestURL = httpCall(api.post_api.find.all, page, count, tag, SORT_BY_UPDATE_DATE);
@@ -48,4 +54,10 @@ export function* getItems() {
     const json = yield call([res, 'json']);
     yield put(error(json));
   });
+
+  // Function that is going to be called when the HTTP status codes is 500
+  yield httpRequest().onNoContent(function*() {
+    yield put(noContent());
+  });
+
 }

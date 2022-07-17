@@ -1,4 +1,4 @@
-import { SEARCH, CLOSE, SIGN_IN, CREATE_POST } from './constants';
+import { SEARCH, CLOSE, SIGN_IN, CREATE_POST, SPY } from './constants';
 
 export function search() {
   return {
@@ -21,5 +21,11 @@ export function signIn() {
 export function createPost() {
   return {
     type: CREATE_POST,
+  }
+}
+
+export function spy() {
+  return {
+    type: SPY,
   }
 }
