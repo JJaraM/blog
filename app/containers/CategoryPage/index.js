@@ -43,7 +43,7 @@ export function CategoryPage({
 
   if (tags && tags.length > 0) {
     const currentTag = tags.filter(tag => tag.id == id);
-    if (currentTag && currentTag) {
+    if (currentTag && currentTag.length > 0) {
       title = currentTag[0].name;
     }
   }
@@ -89,12 +89,6 @@ export function CategoryPage({
           title={title}
           bottomDescription="In the below section you will find the last post for the current category"
         />
-
-        <div className="hide">
-          <ContainerCenter>
-            <TagContainer />
-          </ContainerCenter>
-        </div>
 
         <LatestPostItemList items={items} loading={items.length === 0}/>
 

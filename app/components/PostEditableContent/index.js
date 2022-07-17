@@ -36,7 +36,7 @@ function PostEditableContent(props) {
 
       </BigLeftContainerFluid>
 
-      <PostRelated tags={props.tags} onMinimize={props.onMinimize} isMinimized={props.isMinimized} isLoading={props.content.length == 0}/>
+      <PostRelated tags={props.tags} onMinimize={props.onMinimize} isMinimized={props.isMinimized} isLoading={props.content}/>
     </>
   );
 
