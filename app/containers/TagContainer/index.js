@@ -22,14 +22,14 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { makeInfinitiveLoading } from 'containers/App/selectors';
-import { makeLoading } from './selectors';
 import TagList from 'components/TagList';
 import PostTagList from 'components/PostTagList';
 import TagComboBox from 'containers/TagComboBox';
+import { makeLoading, makeTagItems, makeIsFirstLoading, makeSearchText } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { retrieve, add, remove, create, search } from './actions';
-import { makeTagItems, makeIsFirstLoading, makeSearchText } from './selectors';
+
 import { getItems } from '../TagComboBox/service';
 import TagContainerList from '../../components/TagContainerList';
 

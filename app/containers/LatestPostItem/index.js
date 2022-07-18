@@ -15,6 +15,7 @@ import PostTagList from 'components/PostTagList';
 import { makeTagItems, makeLoading } from '../TagContainer/selectors';
 import Img from 'components/Img';
 import Metadata from 'components/Metadata';
+import RefreshIcon from '../../ui/RefreshIcon';
 
 export function LatestPostItem({ item, tags, loading, onFavourite }) {
   useInjectReducer({ key: 'latestPostItem', reducer });
@@ -22,10 +23,11 @@ export function LatestPostItem({ item, tags, loading, onFavourite }) {
 
   const { refresh } = item;
   let refreshClassName = '';
-  const Refresh = () => <></>;
+  let Refresh = () => <></>;
 
   if (refresh) {
     refreshClassName = 'refresh';
+    Refresh = () => <RefreshIcon refresh={refresh} />
   }
 
   const favourites = JSON.parse(localStorage.getItem('favourites'));

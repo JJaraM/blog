@@ -15,7 +15,7 @@ function LatestPostItemList(props) {
 
   let content = [1, 2, 3].map(item => <LatestPostItemLoading key={`latest-post-item-${item}`} />);
 
-  let loading = props.loading;
+  let { loading } = props;
 
   if (!loading) {
     loading = isInfitiveLoading();
