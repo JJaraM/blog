@@ -21,7 +21,8 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeLoading } from 'containers/App/selectors';
+import { makeInfinitiveLoading } from 'containers/App/selectors';
+import { makeLoading } from './selectors';
 import TagList from 'components/TagList';
 import PostTagList from 'components/PostTagList';
 import TagComboBox from 'containers/TagComboBox';
@@ -46,6 +47,7 @@ export function TagContainer({
   onFilter,
   searchText,
   selectedTag,
+  infinitiveLoading,
 }) {
   // Injection of the components
   useInjectReducer({ key: 'tagContainer', reducer });
@@ -86,7 +88,7 @@ export function TagContainer({
     }
   }
 
-  let component = <TagList items={newList} loading={loading} />;
+  let component = <TagList items={newList} loading={loading || infinitiveLoading} />;
   let comboBox = null;
 
   if (usePost) {
@@ -133,6 +135,7 @@ TagContainer.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   items: makeTagItems(),
+  infinitiveLoading: makeInfinitiveLoading(),
   loading: makeLoading(),
   isFirstLoading: makeIsFirstLoading(),
   searchText: makeSearchText(),

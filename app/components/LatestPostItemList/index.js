@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import LatestPostItem from 'containers/LatestPostItem';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
-import ErrorMessage from 'components/ErrorMessage';
 import LatestPostItemLoading from '../LatestPostItemLoading';
 
 import './style.scss';

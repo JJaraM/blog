@@ -29,11 +29,11 @@ export function LatestPostItem({ item, tags, loading, onFavourite }) {
   }
 
   const favourites = JSON.parse(localStorage.getItem('favourites'));
-  let selected = 'favourite-selected';
+  let selected = '';
   if (favourites) {
     const index = favourites.findIndex(object => object.id === item.id);
-    if (index === -1) {
-      selected = '';
+    if (index > -1) {
+      selected = 'favourite-selected';
     }
   }
 

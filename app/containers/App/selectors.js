@@ -25,10 +25,10 @@ const makeRenderSpy = () =>
     globalState => globalState.renderSpy,
   );
 
-const makeLoading = () =>
+const makeInfinitiveLoading = () =>
   createSelector(
     selectGlobal,
     globalState => globalState.loading,
   );
 
-export { selectGlobal, makeRenderSearch, makeRenderSignIn, makeRenderSpy, makeLoading };
+export { selectGlobal, makeRenderSearch, makeRenderSignIn, makeRenderSpy, makeInfinitiveLoading };
