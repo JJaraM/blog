@@ -18,7 +18,7 @@ export function* sagaCreatePost() {
       body: JSON.stringify({ title: 'TEST' }),
     });
 
-    window.location.href = '/post/' + response.id;
+    window.location.href = `/post/${response.id}`;
   } catch (err) {
     console.log(err);
   }

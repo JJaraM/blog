@@ -3,32 +3,34 @@ import PropTypes from 'prop-types';
 import ComboBoxItem from '../ComboBoxItem';
 
 function DropDownList(props) {
-
-  let items = props.items;
-  let More = () => <></>
+  let { items } = props;
+  let More = () => <></>;
 
   if (items && items.length == 0) {
-    items = <ComboBoxItem key="jjara-combo-box-item-no-data" value="No Data" />
+    items = <ComboBoxItem key="jjara-combo-box-item-no-data" value="No Data" />;
   } else {
     More = () => (
-      <button className="tag-button dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button
+        className="tag-button dropdown-toggle"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         More
       </button>
-    )
+    );
   }
 
   return (
     <>
       <More />
-      <div className="dropdown-menu dropdown" >
-        { props.children }
-        <div className="pre-scrollable-tags">
-          { items }
-        </div>
+      <div className="dropdown-menu dropdown">
+        {props.children}
+        <div className="pre-scrollable-tags">{items}</div>
       </div>
     </>
   );
-
 }
 
 DropDownList.propTypes = {

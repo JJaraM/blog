@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { retrieveByTag } from '../LatestPostSection/actions';
-import { makeSelectedTag } from '../LatestPostSection/selectors';
 import { useInjectReducer } from 'utils/injectReducer';
 import { createStructuredSelector } from 'reselect';
-import makeSelectTagListItem from './selectors';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import makeSelectTagListItem from './selectors';
+import { makeSelectedTag } from '../LatestPostSection/selectors';
+import { retrieveByTag } from '../LatestPostSection/actions';
 
 import reducer from './reducer';
 import './style.scss';

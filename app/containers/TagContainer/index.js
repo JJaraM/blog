@@ -21,16 +21,16 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { makeLoading } from 'containers/App/selectors';
+import TagList from 'components/TagList';
+import PostTagList from 'components/PostTagList';
+import TagComboBox from 'containers/TagComboBox';
 import reducer from './reducer';
 import saga from './saga';
 import { retrieve, add, remove, create, search } from './actions';
 import { makeTagItems, makeIsFirstLoading, makeSearchText } from './selectors';
-import { makeLoading } from 'containers/App/selectors';
-import TagList from 'components/TagList';
-import PostTagList from 'components/PostTagList';
 import { getItems } from '../TagComboBox/service';
 import TagContainerList from '../../components/TagContainerList';
-import TagComboBox from 'containers/TagComboBox';
 
 export function TagContainer({
   items,
@@ -47,7 +47,6 @@ export function TagContainer({
   searchText,
   selectedTag,
 }) {
-
   // Injection of the components
   useInjectReducer({ key: 'tagContainer', reducer });
   useInjectSaga({ key: 'tagContainer', saga });
@@ -75,7 +74,7 @@ export function TagContainer({
     // If the new list already have an item that comes from the drop down list we are going to remove it, as this
     // indicates that the user hits again an element in the dropdownList
     if (newList.length == 7) {
-      newList.pop()
+      newList.pop();
     }
 
     // When an user hits an element of the dropdown list by first time we are going to remove it from on dropdownList
@@ -83,7 +82,7 @@ export function TagContainer({
     // using to get the details
     if (newList.length == 6) {
       comboBoxItems = comboBoxItems.filter(e => e.id != parseInt(selectedTag));
-      newList.push(comboBoxItem.at(-1))
+      newList.push(comboBoxItem.at(-1));
     }
   }
 

@@ -29,13 +29,6 @@ const makeLoading = () =>
   createSelector(
     selectGlobal,
     globalState => globalState.loading,
-  )
+  );
 
-
-export {
-  selectGlobal,
-  makeRenderSearch,
-  makeRenderSignIn,
-  makeRenderSpy,
-  makeLoading,
-};
+export { selectGlobal, makeRenderSearch, makeRenderSignIn, makeRenderSpy, makeLoading };

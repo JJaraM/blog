@@ -8,24 +8,24 @@ export function accept() {
 
 export function denied() {
   return {
-    type: DENIED
+    type: DENIED,
   };
 }
 
 export function verify() {
   return {
-    type: VERIFY
+    type: VERIFY,
   };
 }
 
 export function acknowledge() {
   return {
-    type: ACKNOWLEDGE
+    type: ACKNOWLEDGE,
   };
 }
 
 export function commandResult() {
   return {
-    type: COMMAND_RESULT
+    type: COMMAND_RESULT,
   };
 }

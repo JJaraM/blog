@@ -21,18 +21,18 @@ export function signIn() {
 export function createPost() {
   return {
     type: CREATE_POST,
-  }
+  };
 }
 
 export function spy() {
   return {
     type: SPY,
-  }
+  };
 }
 
 export function loading(loading) {
   return {
     type: LOADING,
-    loading: loading,
-  }
+    loading,
+  };
 }

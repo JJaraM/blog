@@ -1,7 +1,9 @@
 import { SUCCESS, ERROR } from 'common/status';
 import { HOST_NAME_POST, HOST_NAME_TAG } from 'configuration/hostname';
 
-const infiniteLoading = localStorage.getItem('infiniteLoading') && localStorage.getItem('infiniteLoading') === 'true' ? true : false;
+const infiniteLoading = !!(
+  localStorage.getItem('infiniteLoading') && localStorage.getItem('infiniteLoading') === 'true'
+);
 const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
 const DELAY_TIME = 30000;
@@ -9,7 +11,7 @@ const MAX_RETRIES = 5;
 
 const api = {
   paths: {
-    postPage: '/post/'
+    postPage: '/post/',
   },
   testimonials: `${HOST_NAME_POST}/v1/testimonial/`,
   post: `${HOST_NAME_POST}/post/`,
@@ -37,22 +39,20 @@ const api = {
 
   console: {
     log: {
-      all: true
-    }
-  }
+      all: true,
+    },
+  },
 };
-
 
 const log = function log(message, key) {
   if (api.console.log) {
     console.log(message);
   }
-}
+};
 
 const httpCall = function httpCall(endPoint, ...args) {
   return endPoint + args.join('/');
 };
-
 
 const isLoadingComplete = function isLoadingComplete(loading) {
   return !loading && !infiniteLoading;

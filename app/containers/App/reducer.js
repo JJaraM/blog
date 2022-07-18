@@ -34,7 +34,6 @@ const appReducer = (state = initialState, action) =>
       case LOADING:
         draft.loading = action.loading;
         break;
-
     }
   });
 

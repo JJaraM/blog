@@ -20,15 +20,15 @@ export function LatestPostItem({ item, tags, loading, onFavourite }) {
   useInjectReducer({ key: 'latestPostItem', reducer });
   useInjectSaga({ key: 'latestPostItem', saga });
 
-  const refresh = item.refresh;
+  const { refresh } = item;
   let refreshClassName = '';
-  let Refresh = () => <></>;
+  const Refresh = () => <></>;
 
   if (refresh) {
     refreshClassName = 'refresh';
   }
 
-  let favourites = JSON.parse(localStorage.getItem('favourites'));
+  const favourites = JSON.parse(localStorage.getItem('favourites'));
   let selected = 'favourite-selected';
   if (favourites) {
     const index = favourites.findIndex(object => object.id === item.id);
@@ -36,7 +36,6 @@ export function LatestPostItem({ item, tags, loading, onFavourite }) {
       selected = '';
     }
   }
-
 
   const Component = () => (
     <div className={`card-body ${refreshClassName}`}>
@@ -91,14 +90,14 @@ function mapDispatchToProps(dispatch) {
   return {
     onFavourite: id => {
       let favourites = JSON.parse(localStorage.getItem('favourites'));
-      const el = document.getElementById('favourite-' + id);
+      const el = document.getElementById(`favourite-${id}`);
 
       if (favourites == undefined) {
         favourites = [];
       }
       const index = favourites.findIndex(object => object.id === id);
       if (index === -1) {
-        favourites.push({ id: id });
+        favourites.push({ id });
         localStorage.setItem('favourites', JSON.stringify(favourites));
         el.classList.add('favourite-selected');
       } else {

@@ -20,31 +20,41 @@ import './style.scss';
  * @returns {JSX.Element|null} the component to be displayed or nothing
  */
 function ComboBox(props) {
-
   const filterList = getFilterList(props.items, props.value);
 
   if (props.items.length > 0) {
     const more = filterList.map(item => {
-      const key = _.uniqueId("jjara-combo-box-item-key-");
-      return <ComboBoxItem id={item.id} key={key} value={item.name} onClick={props.onClick} />
+      const key = _.uniqueId('jjara-combo-box-item-key-');
+      return <ComboBoxItem id={item.id} key={key} value={item.name} onClick={props.onClick} />;
     });
 
     return (
       <DropDownList items={more} label={props.label}>
         <span className="jjara-comboBox-icon jjara-comboBox-icon-search">
-          <i className="fa fa-search"/>
+          <i className="fa fa-search" />
         </span>
-        <input type="text" value={props.value} className="search-filter-dropdown-list" onChange={props.onChange} />
+        <input
+          type="text"
+          value={props.value}
+          className="search-filter-dropdown-list"
+          onChange={props.onChange}
+        />
         {/*
-          * This is a hack because I was getting issues in the clear event when someone press the button,
-          * because the dropdown list were closing automatically
-        */}
+         * This is a hack because I was getting issues in the clear event when someone press the button,
+         * because the dropdown list were closing automatically
+         */}
         <span className="jjara-comboBox-icon jjara-comboBox-icon-clear">
           {/*
-            * I need to set the value as empty so in that way the event takes this empty value and clear the value
-            * that was set by reflux in the previous action.
-          */}
-          <input type="text" value="" className="jjara-fake-close-input" onClick={props.onChange} onChange={props.onChange} />
+           * I need to set the value as empty so in that way the event takes this empty value and clear the value
+           * that was set by reflux in the previous action.
+           */}
+          <input
+            type="text"
+            value=""
+            className="jjara-fake-close-input"
+            onClick={props.onChange}
+            onChange={props.onChange}
+          />
           <i className="fa fa-close" />
         </span>
       </DropDownList>
@@ -63,4 +73,3 @@ ComboBox.propTypes = {
 };
 
 export default memo(ComboBox);
-
