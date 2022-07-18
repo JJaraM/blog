@@ -1,7 +1,7 @@
 import { SUCCESS, ERROR } from 'common/status';
 import { HOST_NAME_POST, HOST_NAME_TAG } from 'configuration/hostname';
 
-const infiniteLoading = false;
+const infiniteLoading = localStorage.getItem('infiniteLoading') && localStorage.getItem('infiniteLoading') === 'true' ? true : false;
 const SORT_BY_VIEWS = 0;
 const SORT_BY_UPDATE_DATE = 1;
 const DELAY_TIME = 30000;

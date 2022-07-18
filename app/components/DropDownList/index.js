@@ -5,15 +5,21 @@ import ComboBoxItem from '../ComboBoxItem';
 function DropDownList(props) {
 
   let items = props.items;
-  if (items.length == 0) {
+  let More = () => <></>
+
+  if (items && items.length == 0) {
     items = <ComboBoxItem key="jjara-combo-box-item-no-data" value="No Data" />
+  } else {
+    More = () => (
+      <button className="tag-button dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        More
+      </button>
+    )
   }
 
   return (
     <>
-      <button className="tag-button dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        More
-      </button>
+      <More />
       <div className="dropdown-menu dropdown" >
         { props.children }
         <div className="pre-scrollable-tags">
@@ -28,6 +34,7 @@ function DropDownList(props) {
 DropDownList.propTypes = {
   items: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   label: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
 };
 
 export default memo(DropDownList);

@@ -119,12 +119,32 @@
   }
 }
 
-.cookie-banner {
+.cookie-banner-minimized {
+  max-height: 20px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  width: 100px !important;
+  background: var(--main-bg-color) !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  &:before {
+    height: 0px !important;
+  }
+}
 
-  position: relative;
+.cookie-banner-body {
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
   max-height: 400px;
+}
+.full-width {
+  width: 80%;
+}
+
+.cookie-banner {
+  position: relative;
+  max-height: 500px;
   padding: 0 23px;
   background: #000;
   color: #ccc;
@@ -155,6 +175,9 @@
     padding: 0px;
   }
 
+  label {
+    margin-bottom: 0rem;
+  }
 
   &::before {
     position: sticky;

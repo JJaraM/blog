@@ -12,14 +12,7 @@ import reducer from './reducer';
 import './style.scss';
 import ComboBox from '../../components/ComboBox';
 
-export function TagListItemMore({
-  items,
-  loading,
-  onFilter,
-  onChange,
-  searchText,
-}) {
-
+export function TagListItemMore({ items, loading, onFilter, onChange, searchText }) {
   useInjectReducer({ key: 'tagListItem', reducer });
 
   if (loading) {
@@ -27,9 +20,14 @@ export function TagListItemMore({
   }
 
   return (
-    <ComboBox items={items} label="More" value={searchText} onChange={onFilter} onClick={onChange} />
-  )
-
+    <ComboBox
+      items={items}
+      label="More"
+      value={searchText}
+      onChange={onFilter}
+      onClick={onChange}
+    />
+  );
 }
 
 TagListItemMore.propTypes = {
@@ -48,7 +46,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChange: (evt) => dispatch(retrieveByTag(evt.target.value)),
+    onChange: evt => dispatch(retrieveByTag(evt.target.value)),
     dispatch,
   };
 }
@@ -62,4 +60,3 @@ export default compose(
   withConnect,
   memo,
 )(TagListItemMore);
-

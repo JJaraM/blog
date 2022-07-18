@@ -15,8 +15,10 @@ const acknowledge = () =>
     substate => substate.acknowledge,
   );
 
-export {
-  selectCookieBannerDomain,
-  grantedPermissions,
-  acknowledge
-};
+const commandResult = () =>
+  createSelector(
+    selectCookieBannerDomain,
+    substate => substate.commandResult,
+  );
+
+export { selectCookieBannerDomain, grantedPermissions, acknowledge, commandResult };

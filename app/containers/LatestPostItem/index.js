@@ -29,11 +29,14 @@ export function LatestPostItem({ item, tags, loading, onFavourite }) {
   }
 
   let favourites = JSON.parse(localStorage.getItem('favourites'));
-  const index = favourites.findIndex(object => object.id === item.id);
   let selected = 'favourite-selected';
-  if (index === -1) {
-    selected = '';
+  if (favourites) {
+    const index = favourites.findIndex(object => object.id === item.id);
+    if (index === -1) {
+      selected = '';
+    }
   }
+
 
   const Component = () => (
     <div className={`card-body ${refreshClassName}`}>

@@ -1,4 +1,4 @@
-import { ACCEPT, DENIED, VERIFY, ACKNOWLEDGE } from './constants';
+import { ACCEPT, DENIED, VERIFY, ACKNOWLEDGE, COMMAND_RESULT } from './constants';
 
 export function accept() {
   return {
@@ -21,5 +21,11 @@ export function verify() {
 export function acknowledge() {
   return {
     type: ACKNOWLEDGE
+  };
+}
+
+export function commandResult() {
+  return {
+    type: COMMAND_RESULT
   };
 }

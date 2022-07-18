@@ -10,10 +10,16 @@ const GlobalStyle = createGlobalStyle`
 .favourite-selected {
   color: #FCAC34;
 }
+
+.console {
+ p, label {
+  margin-bottom: 0rem;
+ }
+}
 .favourite-blog {
 
   position: absolute;
-  z-index: 999;
+  z-index: 1;
   top: 0.5rem;
   right: 0.5rem;
 

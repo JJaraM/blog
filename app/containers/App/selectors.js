@@ -25,10 +25,17 @@ const makeRenderSpy = () =>
     globalState => globalState.renderSpy,
   );
 
+const makeLoading = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.loading,
+  )
+
 
 export {
   selectGlobal,
   makeRenderSearch,
   makeRenderSignIn,
   makeRenderSpy,
+  makeLoading,
 };

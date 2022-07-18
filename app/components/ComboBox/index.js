@@ -58,7 +58,8 @@ ComboBox.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
 };
 
 export default memo(ComboBox);
