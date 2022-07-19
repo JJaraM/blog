@@ -21,7 +21,7 @@ const makeItems = () =>
     state => state.items,
   );
 
-const makeLoading = () =>
+const makeLoadingLatestPost = () =>
   createSelector(
     selectLatestPostSectionDomain,
     state => state.loading,
@@ -62,7 +62,7 @@ export {
   makeLatestPostPage,
   makeLatestPostCountItems,
   makeItems,
-  makeLoading,
+  makeLoadingLatestPost,
   makeIsFirstLoading,
   makeSelectedTag,
   makeStatus,

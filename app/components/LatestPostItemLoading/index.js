@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import LoadingLine from '../LoadingLine';
 import LoadingContainer from '../LoadingContainer';
-import PropTypes from 'prop-types';
 
 function LatestPostItemLoading() {
   const id = _.uniqueId("latest-post-item-container-");
@@ -28,7 +27,5 @@ function LatestPostItemLoading() {
     </div>
   );
 }
-
-
 
 export default memo(LatestPostItemLoading);

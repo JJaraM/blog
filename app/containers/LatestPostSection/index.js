@@ -35,12 +35,13 @@ import { retrieve, refresh } from './actions';
 import reducer from './reducer';
 import {
   makeItems,
-  makeLoading,
+  makeLoadingLatestPost,
   makeIsFirstLoading,
   makeSelectedTag,
   makeNoContent,
 } from './selectors';
 import saga from './saga';
+import { makeInfinitiveLoading } from 'containers/App/selectors';
 
 // The following component is going to render the last 'n' post available
 // based on the last edition received
@@ -52,6 +53,7 @@ export function LatestPostSection({
   onRefresh,
   selectedTag,
   noContent,
+  infinitiveLoading,
 }) {
   // Injection of the components
   useInjectReducer({ key: 'latestPostSection', reducer });
@@ -74,6 +76,13 @@ export function LatestPostSection({
       item => favourites.find(favourite => favourite.id == item.id) != undefined,
     );
   }
+
+  //If the option for infinitive loading is activated then we are going to send an empty list
+  if (infinitiveLoading) {
+    items = [];
+  }
+
+  loading = loading || infinitiveLoading;
 
   // Construct the entire component that is going to be rendered in the browser
   return (
@@ -111,14 +120,16 @@ LatestPostSection.propTypes = {
 const mapStateToProps = createStructuredSelector({
   // Fetch the latest post items previously loaded
   items: makeItems(),
-  // Verifies if the application is loading
-  loading: makeLoading(),
+  // Verifies if the HTTP Request that fetch the latest post is complete
+  loading: makeLoadingLatestPost(),
   // Verifies if the application is loading by first time
   isFirstLoading: makeIsFirstLoading(),
   // Gets the tag that is selected currently
   selectedTag: makeSelectedTag(),
   // Indicates if there are not more content to retrieve
   noContent: makeNoContent(),
+  // Indicates if the option for the infinitive loading is activated
+  infinitiveLoading: makeInfinitiveLoading(),
 });
 
 // Operations that indicates that is going to make a call to an http service

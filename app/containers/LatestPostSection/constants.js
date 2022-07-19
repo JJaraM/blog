@@ -4,3 +4,4 @@ export const RETRIEVE_BY_TAG = 'app/LatestPostSection/RETRIEVE_BY_TAG';
 export const ERROR = 'app/LatestPostSection/ERROR';
 export const REFRESH = 'app/LatestPostSection/REFRESH';
 export const NO_CONTENT = 'app/LatestPostSection/NO_CONTENT';
+export const LOADING_LATEST_POST = 'app/LatestPostSection/LOADING_LATEST_POST';

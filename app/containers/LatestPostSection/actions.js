@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import {
   RETRIEVE_LAST_POST,
   RETRIEVE_DONE,
@@ -21,6 +20,7 @@ import {
   ERROR,
   REFRESH,
   NO_CONTENT,
+  LOADING_LATEST_POST
 } from './constants';
 
 // Retrieve the latest post
@@ -63,4 +63,10 @@ export function noContent() {
   return {
     type: NO_CONTENT,
   };
+}
+
+export function loadingLatestPost() {
+  return {
+    type: LOADING_LATEST_POST,
+  }
 }

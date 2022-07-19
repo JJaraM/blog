@@ -18,17 +18,17 @@ import SecondarySection from 'components/SecondarySection';
 import PrincipalTitle from 'components/PrincipalTitle';
 import LatestPostItemList from 'components/LatestPostItemList';
 import ContainerCenter from 'components/ContainerCenter';
-import TagContainer from 'containers/TagContainer';
 import Button from 'ui/Button';
 import { makeTagItems } from 'containers/TagContainer/selectors';
 import { retrieve, retrieveMore } from './actions';
 import saga from './saga';
 import reducer from './reducer';
 import { makeItems } from './selectors';
+import { makeInfinitiveLoading } from 'containers/App/selectors';
 
 let prevId;
 
-export function CategoryPage({ match, onLoadPage, items, onViewMore, tags }) {
+export function CategoryPage({ match, onLoadPage, items, onViewMore, tags, infinitiveLoading}) {
   useInjectReducer({ key: 'categoryPage', reducer });
   useInjectSaga({ key: 'categoryPage', saga });
 
@@ -79,7 +79,7 @@ export function CategoryPage({ match, onLoadPage, items, onViewMore, tags }) {
           bottomDescription="In the below section you will find the last post for the current category"
         />
 
-        <LatestPostItemList items={items} loading={items.length === 0} />
+        <LatestPostItemList items={items} loading={ items.length === 0 || infinitiveLoading } />
 
         <ViewMore />
       </SecondarySection>
@@ -90,6 +90,8 @@ export function CategoryPage({ match, onLoadPage, items, onViewMore, tags }) {
 CategoryPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   onLoadPage: PropTypes.func,
+  // Indicates if the option for the infinitive loading is activated
+  infinitiveLoading: makeInfinitiveLoading(),
 };
 
 const mapStateToProps = createStructuredSelector({

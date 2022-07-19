@@ -2,7 +2,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { api, httpCall, SORT_BY_UPDATE_DATE } from 'configuration/config';
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
 import { RETRIEVE_BY_TAG, RETRIEVE_LAST_POST } from './constants';
-import { error, done, noContent } from './actions';
+import { error, done, noContent, loadingLatestPost } from './actions';
 import { makeLatestPostCountItems, makeLatestPostPage, makeSelectedTag } from './selectors';
 import { httpRequest } from '../../common/http';
 
@@ -23,6 +23,7 @@ export function* getItems() {
   // Get the tags that wants to be retrieved
   let tag = yield select(makeSelectedTag());
 
+  yield put(loadingLatestPost())
 
   if (tag == -1) {
     tag = 0;

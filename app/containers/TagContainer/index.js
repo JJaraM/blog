@@ -104,7 +104,7 @@ export function TagContainer({
     );
   }
 
-  if (items.length > 0 && !usePost && !loading) {
+  if (items.length > 0 && !usePost && !loading && !infinitiveLoading) {
     comboBox = (
       <li>
         <TagComboBox
