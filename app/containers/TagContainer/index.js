@@ -84,7 +84,11 @@ export function TagContainer({
     // using to get the details
     if (newList.length == 6) {
       comboBoxItems = comboBoxItems.filter(e => e.id != parseInt(selectedTag));
-      newList.push(comboBoxItem.at(-1));
+      try {
+        newList.push(comboBoxItem.at(-1));
+      } catch (e) {
+        console.log("The browser does not support the at function");
+      }
     }
   }
 

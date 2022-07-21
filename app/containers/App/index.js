@@ -67,11 +67,12 @@ export function App({
   useInjectSaga({ key, saga });
 
   let currentTheme = localStorage.getItem("theme");
-  console.log(currentTheme);
 
-  if (currentTheme === undefined) {
+
+  if (currentTheme === undefined || currentTheme == null) {
     currentTheme = 'dark'
   }
+
   document.documentElement.setAttribute('data-theme', currentTheme);
 
 
