@@ -11,22 +11,37 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
+  let theme = localStorage.getItem('theme');
+  let iconClass = 'fa fa-moon-o';
+
+  if (theme == 'dark') {
+    iconClass = 'fa fa-sun-o';
+  }
+  if (theme == 'light') {
+    iconClass = 'fa fa-moon-o';
+  }
+
+
 
   return (
     <header id="header" className="jjara-max-container">
       <Nav>
         <div className="container">
           <Logo />
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
           </button>
-
 
           <div className="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo01">
             <ul className="navbar-nav ml-auto ">
-
-
-
               {/*<li className="nav-item active">
                 <Link to={`/cases-study-1`} className="nav-link">
                   <FormattedMessage {...messages.cases_of_study} />
@@ -34,17 +49,22 @@ function Header(props) {
               </li> */}
 
               <li className="nav-item active dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   <FormattedMessage {...messages.cases_of_study} />
                 </a>
 
                 <div className="dropdown-menu dropdown" aria-labelledby="navbarDropdownMenuLink">
-
                   <Link to={`/cases-study-1`} className="dropdown-item">
                     <FormattedMessage {...messages.cases_of_study_cloud_services} />
                   </Link>
-
 
                   {/*
                   <div className="dropdown-divider"></div>
@@ -55,8 +75,7 @@ function Header(props) {
                 </div>
               </li>
 
-
-                {/*<li className="nav-item active">
+              {/*<li className="nav-item active">
                 <a className="nav-link" href="#">Home
                   <span className="sr-only">(current)</span>
                 </a>
@@ -68,16 +87,25 @@ function Header(props) {
                 <a className="nav-link disabled" href="#">Disabled</a>
               </li>*/}
 
-              <RenderComponent render={ props.isAuthenticated }>
+              <RenderComponent render={props.isAuthenticated}>
                 <li className="nav-item active dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     <FormattedMessage {...messages.post} />
                   </a>
 
-                  <div className="dropdown-menu dropdown"
+                  <div
+                    className="dropdown-menu dropdown"
                     aria-labelledby="navbarDropdown"
-                    onClick={ props.onPostCreate }>
-
+                    onClick={props.onPostCreate}
+                  >
                     <a className="dropdown-item" href="#">
                       <FormattedMessage {...messages.post_create} />
                     </a>
@@ -90,9 +118,21 @@ function Header(props) {
             </ul>
 
             <ButtonIcon className="fa fa-search" onClick={props.onSearch} />
-            <ButtonIcon className="fa fa-user" onClick={props.onSignIn} render={!props.isAuthenticated} />
-            <ButtonIcon className="fa fa-sign-out" onClick={props.onSignOut} render={props.isAuthenticated} />
-
+            <ButtonIcon
+              className="fa fa-user"
+              onClick={props.onSignIn}
+              render={!props.isAuthenticated}
+            />
+            <ButtonIcon
+              id="theme"
+              className={iconClass}
+              onClick={props.onSwitchTheme}
+            />
+            <ButtonIcon
+              className="fa fa-sign-out"
+              onClick={props.onSignOut}
+              render={props.isAuthenticated}
+            />
           </div>
         </div>
       </Nav>
@@ -105,7 +145,9 @@ Header.propTypes = {
   onSignIn: PropTypes.func,
   onSignOut: PropTypes.func,
   onPostCreate: PropTypes.func,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  onDarkMode: PropTypes.func,
+  onLightMode: PropTypes.func,
 };
 
 export default Header;

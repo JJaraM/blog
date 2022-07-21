@@ -20,7 +20,7 @@
     }
 
     &.active {
-      background: #adadad;
+      background: var(--jjara-tag-container-list-ul-li-active-bg-color);
       cursor: not-allowed;
 
       button {

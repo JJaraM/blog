@@ -7,7 +7,7 @@ import './style.scss';
 function ButtonIcon(props) {
   return (
     <RenderComponent render={props.render}>
-      <button className={`jjara-btn-transparent ${props.className}`} onClick={props.onClick} />
+      <button id={props.id} className={`jjara-btn-transparent ${props.className}`} onClick={props.onClick} />
     </RenderComponent>
   );
 }
@@ -16,6 +16,7 @@ ButtonIcon.propTypes = {
   className: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   render: PropTypes.bool,
+  id: PropTypes.string,
 };
 
 ButtonIcon.defaultProps = {

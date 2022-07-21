@@ -164,6 +164,14 @@ h3 {
   padding-right: 0px !important;
 }
 
+.hide-element {
+  display: none;
+}
+
+.show-element {
+  display: inherit;
+}
+
 .tag-button {
   border: none;
   background: transparent;

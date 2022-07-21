@@ -59,11 +59,10 @@
 }
 
 
-
- [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-    cursor: pointer;
-    outline: none !important;
-    box-shadow: none !important;
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 @media only screen and (max-width: 959px) {

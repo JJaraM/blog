@@ -55,6 +55,7 @@ export function App({
   onPostCreate,
   onClose,
   onSpyCode,
+  onSwitchTheme,
   onClear,
   renderSearch,
   renderSignIn,
@@ -64,6 +65,15 @@ export function App({
 
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+
+  let currentTheme = localStorage.getItem("theme");
+  console.log(currentTheme);
+
+  if (currentTheme === undefined) {
+    currentTheme = 'dark'
+  }
+  document.documentElement.setAttribute('data-theme', currentTheme);
+
 
   return (
     <>
@@ -77,6 +87,7 @@ export function App({
         onSignIn={ onSignIn }
         onSignOut={ onSignOut }
         onPostCreate = { onPostCreate }
+        onSwitchTheme = { onSwitchTheme }
         />
 
       <SearchContainer render={renderSearch} close={onClose} />
@@ -132,6 +143,28 @@ export function mapDispatchToProps(dispatch) {
       dispatch(close());
     },
     onPostCreate: () => dispatch(createPost()),
+    onSwitchTheme: () => {
+      let currentTheme = localStorage.getItem("theme");
+      const themeElement = document.getElementById("theme");
+
+      if (currentTheme == 'dark') {
+        currentTheme = 'light'
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (themeElement) {
+          themeElement.classList.add("fa-moon-o");
+          themeElement.classList.remove("fa-sun-o");
+        }
+      } else {
+        currentTheme = 'dark'
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (themeElement) {
+          themeElement.classList.remove("fa-moon-o");
+          themeElement.classList.add("fa-sun-o");
+        }
+      }
+      localStorage.setItem("theme", currentTheme);
+    },
+
     dispatch,
   };
 }
