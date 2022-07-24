@@ -37,7 +37,10 @@ export function* sagaRetrieve() {
   try {
     const id = yield select(makeId());
     const requestURL = httpCall(api.post, id);
-    const items = yield call(request, requestURL);
+    let items = yield call(request, requestURL);
+    let geoLocation = yield call(request, "https://geolocation-db.com/json/");
+
+    console.log(geoLocation['IPv4']);
 
     if (isInfitiveLoading()) {
       items = null;
