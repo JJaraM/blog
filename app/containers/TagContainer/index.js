@@ -32,6 +32,7 @@ import { retrieve, add, remove, create, search } from './actions';
 
 import { getItems } from '../TagComboBox/service';
 import TagContainerList from '../../components/TagContainerList';
+import { makeFavourites } from '../LatestPostSection/selectors';
 
 export function TagContainer({
   items,
@@ -48,6 +49,7 @@ export function TagContainer({
   searchText,
   selectedTag,
   infinitiveLoading,
+  favourites,
 }) {
   // Injection of the components
   useInjectReducer({ key: 'tagContainer', reducer });
@@ -62,7 +64,7 @@ export function TagContainer({
   // We are going to split the tags in 2 collections and this collection will be one that is going to be outside of the
   // dropdownList so the user can see easily the most important tags plus the current one at the end.
   const splitListOn = 8;
-  const newList = getItems(items, splitListOn);
+  const newList = getItems(items, splitListOn, favourites);
   const newListItem = newList.filter(e => e.id == selectedTag);
 
   // Filter the dropdownList in order to remove the items that are going to be displayed as primary
@@ -87,7 +89,7 @@ export function TagContainer({
       try {
         newList.push(comboBoxItem.at(-1));
       } catch (e) {
-        console.log("The browser does not support the at function");
+        console.log('The browser does not support the at function');
       }
     }
   }
@@ -143,6 +145,7 @@ const mapStateToProps = createStructuredSelector({
   loading: makeLoading(),
   isFirstLoading: makeIsFirstLoading(),
   searchText: makeSearchText(),
+  favourites: makeFavourites(),
 });
 
 function mapDispatchToProps(dispatch) {

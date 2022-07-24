@@ -1,12 +1,21 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { ACCEPT, DENIED } from './constants';
 import { acknowledge } from './actions';
 import { httpCall } from 'configuration/config';
 import request from 'utils/request';
+import { makeTerminalMinimized } from './selectors';
 
 export default function* init() {
   yield takeLatest(ACCEPT, accept);
   yield takeLatest(DENIED, denied);
+
+  const isMinimized = yield select(makeTerminalMinimized());
+  const el = document.getElementById('terminal');
+  if (isMinimized) {
+    el.classList.remove('terminal-window-minimized');
+  } else {
+    el.classList.add('terminal-window-minimized');
+  }
 }
 
 export function* accept() {

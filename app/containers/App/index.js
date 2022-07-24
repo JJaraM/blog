@@ -33,6 +33,10 @@ import { signOut } from 'containers/SignIn/actions';
 
 import { search, close, signIn, createPost, spy } from './actions';
 
+
+import './styles/theme/theme.scss';
+import './styles/app.scss';
+
 import './styles/variables.scss';
 import './styles/scrollbar.scss';
 import './styles/base.scss';

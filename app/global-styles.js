@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .favourite-selected {
-  color: #FCAC34;
+  color: #FCAC34 !important;
 }
 
 .console {
@@ -22,12 +22,18 @@ const GlobalStyle = createGlobalStyle`
   z-index: 1;
   top: 0.5rem;
   right: 0.5rem;
+  color: #FFF;
 
   &:hover {
    color: #FCAC34;
  }
 }
 
+@media only screen and (max-width: 959px) {
+  .favourite-blog {
+    right: 1.5rem;
+  }
+}
 
 .main-title-color {
   color: var(--main-title-color);
@@ -172,24 +178,7 @@ h3 {
   display: inherit;
 }
 
-.tag-button {
-  border: none;
-  background: transparent;
-  display: block;
-  line-height: 28px;
-  font-family: "Montserrat", Sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(0,0,0,0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
 
-  &:active, &:focus {
-    box-shadow: none !important;
-    outline: none;
-
-  }
-}
 
 
 .latest-posts {

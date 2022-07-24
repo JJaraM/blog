@@ -6,18 +6,19 @@ const getFilterList = function getFilterList(items, searchText, splitListOn) {
     .filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
 };
 
-const getItems = function(items, splitListOn) {
-  //Adding all option, this value does not exists in the data source
+const getItems = function(items, splitListOn, favourites) {
   const index = items.findIndex(x => x.id === 0);
-  if (index === -1) {
-    let favourites = JSON.parse(localStorage.getItem('favourites'));
-    if (favourites && favourites.length > 0) {
-      items.splice(splitListOn - 2, 0, { id: -1, name: 'favourites' });
-    }
-    items.splice(splitListOn - 2, 0, { id: 0, name: 'all' });
+  let newArray = [];
+  if (favourites && favourites.length > 0) {
+    newArray.push({ id: -1, name: 'favourites' })
   }
+  if (index === -1) {
+    newArray.push({ id: 0, name: 'all' });
+  }
+  const pending = items.slice(0, splitListOn - 2);
+  newArray.push(...pending);
 
-  return items.slice(0, splitListOn - 2);
+  return newArray;
 };
 
 export { getFilterList, getItems };

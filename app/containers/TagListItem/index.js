@@ -30,6 +30,7 @@ export function TagListItem({ item, tagId, onChange }) {
 
   if (item.id == tagId) {
     activeLbl = 'active';
+    localStorage.setItem("Latest-Post-Tag-Selected", tagId);
     onClick = () => {};
   }
 

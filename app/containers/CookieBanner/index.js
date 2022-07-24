@@ -8,18 +8,17 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
-import { accept, denied, verify } from './actions';
-import { acknowledge } from './selectors';
+import { accept, denied, toggle, verify } from './actions';
+import { acknowledge, makeTerminalMinimized } from './selectors';
 import { loading } from '../App/actions';
 
 export function CookieBanner({
-  onAccept,
-  onDenied,
   onLoad,
   onEnter,
   onMinimize,
   onMaximize,
   acknowledge,
+  isTerminalMinimized,
 }) {
   useEffect(() => {}, []);
   useInjectReducer({ key: 'cookieBanner', reducer });
@@ -33,41 +32,32 @@ export function CookieBanner({
     return null;
   }
 
+  const MenuOption = () => {
+    return isTerminalMinimized ? (
+      <button onClick={onMaximize}>[-]</button>
+    ) : (
+      <button onClick={onMinimize}>[+]</button>
+    );
+  };
+
   return (
     <>
-      <div id="terminal" className="cookie-banner">
+      <div id="terminal" className="terminal-window terminal-window-minimized">
         <div>
-          <button onClick={onMinimize}>[-]</button>
-          <button onClick={onMaximize}>[+]</button>
+          <MenuOption />
         </div>
 
-        <div id="console-results" className="cookie-banner-body">
-          <div id="console-header">
-            The following command line interface is created to make possible to change the
-            configuration of this application =====================================================
-            {/* <br /> */}
-            {/* | Cookies and IP addresses */}
-            {/* allow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| */}
-            {/* <br /> */}
-            {/* | to deliver and improve our web */}
-            {/* content&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br /> */}
-            {/* | and to provide you with a personalized experience |<br /> */}
-            {/* | Our website uses cookies and */}
-            {/* collects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br /> */}
-            {/* | your IP address for these */}
-            {/* purposes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| */}
-            {/* <br /> */}
-            {/* | <button onClick={onAccept}>[Y]es, I agree</button>{' '} */}
-            {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '} */}
-            {/* <button onClick={onDenied}>[N]o, I love my privacy |</button> */}
-            <br />| In order to see the available commands enter the &nbsp; | | command `help`
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | =====================================================
+        <div id="console-results" className="terminal-window-body">
+          <div id="console-header" className="terminal-output">
+
+            Accessing the terminal to see the available commands enter the command {' '}
+            <label className="root">help </label>
           </div>
-          <div id="console-prompt">
-            <label>~&nbsp;root: </label>
+          <div id="console-prompt" className="terminal">
+            <label className="root">~root</label>
+            <label className="root">@jonathan.jara.morales $ </label>
+            <label className="root">&nbsp;</label>
+            <div className="terminal-prompt" />
             <input type="text" onKeyDown={onEnter} />
           </div>
           <div id="output-commands" className="console" />
@@ -82,6 +72,7 @@ CookieBanner.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   acknowledge: acknowledge(),
+  isTerminalMinimized: makeTerminalMinimized(),
 });
 
 const onCommandEnter = (evt, dispatch) => {
@@ -91,11 +82,7 @@ const onCommandEnter = (evt, dispatch) => {
 
     switch (value) {
       case 'help':
-        result = [
-          'clear favourites: Clear the favourites from memory',
-          'infinite loading: Makes that the page load infinitive',
-          'infinite loading cancel: Cancel the infinitive loading of the page',
-        ];
+        result = ['clear favourites,' + 'infinite loading,' + 'infinite loading cancel,' + 'clear'];
         break;
       case 'infinite loading':
         dispatch(loading(true));
@@ -128,12 +115,28 @@ const onCommandEnter = (evt, dispatch) => {
       if (value === 'help') {
         const label = document.createElement('Label');
         label.setAttribute('for', '');
-        label.innerHTML = 'Commands: ';
+        label.innerHTML = 'Usage: help <';
+        label.innerHTML = label.innerHTML + 'command>';
         element.appendChild(label);
+
+        const space = document.createElement('div');
+        space.setAttribute('class', 'terminal-break-line');
+        element.appendChild(space);
+
+        const where = document.createElement('Label');
+        where.setAttribute('for', '');
+        where.innerHTML = 'Where <';
+        where.innerHTML = where.innerHTML + 'command> ';
+        where.innerHTML = where.innerHTML + 'is one of the following:';
+        element.appendChild(where);
       }
 
       result.forEach(r => {
         const p = document.createElement('p');
+        if (value === 'help') {
+          p.setAttribute('class', 'terminal-space');
+        }
+
         const node = document.createTextNode(r);
         p.appendChild(node);
         element.appendChild(p);
@@ -142,21 +145,20 @@ const onCommandEnter = (evt, dispatch) => {
 
     const label = document.createElement('Label');
     label.setAttribute('for', '');
-    label.innerHTML = '~&nbsp;root: ';
+    label.setAttribute('class', 'root');
+    label.innerHTML = '~root@jonathan.jara.morales $&nbsp;';
     element.appendChild(label);
 
     const id = _.uniqueId('console-');
     const textNode = document.createElement('input');
     textNode.setAttribute('type', 'text');
     textNode.setAttribute('id', id);
-    textNode.classList.add('full-width');
     textNode.onkeydown = function(evt1) {
       onCommandEnter(evt1, dispatch);
     };
-    element.appendChild(textNode);
     textNode.focus();
+    element.appendChild(textNode);
 
-    console.log(textNode);
   }
 };
 
@@ -165,17 +167,9 @@ function mapDispatchToProps(dispatch) {
     onLoad: () => dispatch(verify()),
     onAccept: () => dispatch(accept()),
     onDenied: () => dispatch(denied()),
-    onMinimize: () => {
-      const el = document.getElementById('terminal');
-      el.classList.add('cookie-banner-minimized');
-    },
-    onMaximize: () => {
-      const el = document.getElementById('terminal');
-      el.classList.remove('cookie-banner-minimized');
-    },
-    onEnter: evt => {
-      onCommandEnter(evt, dispatch);
-    },
+    onMinimize: () => dispatch(toggle()),
+    onMaximize: () => dispatch(toggle()),
+    onEnter: evt => onCommandEnter(evt, dispatch),
     dispatch,
   };
 }

@@ -18,7 +18,8 @@
 
 .jjara-btn-transparent {
   background:transparent;
-  border:none;color:#FFF;
+  border:none;
+  color:var(--btn-transparent-color);
   padding:15px;
   font-size:22px
 }

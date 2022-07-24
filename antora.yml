@@ -1,0 +1,10 @@
+name: blog
+title: Blog Site
+version: 1.5.6
+start_page: ROOT:getting-started.adoc
+asciidoc:
+  attributes:
+    source-language: asciidoc@
+    table-caption: false
+nav:
+  - modules/ROOT/nav.adoc

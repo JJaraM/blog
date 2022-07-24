@@ -39,6 +39,7 @@ import {
   makeIsFirstLoading,
   makeSelectedTag,
   makeNoContent,
+  makeFavourites,
 } from './selectors';
 import saga from './saga';
 import { makeInfinitiveLoading } from 'containers/App/selectors';
@@ -54,6 +55,7 @@ export function LatestPostSection({
   selectedTag,
   noContent,
   infinitiveLoading,
+  favouritesPost,
 }) {
   // Injection of the components
   useInjectReducer({ key: 'latestPostSection', reducer });
@@ -70,10 +72,9 @@ export function LatestPostSection({
   // that any user can see if there is a change in the posts
   socket('post').watchData(onRefresh);
 
-  if (selectedTag == -1 && items) {
-    let favourites = JSON.parse(localStorage.getItem('favourites'));
+  if (selectedTag == -1 && items && favouritesPost) {
     items = items.filter(
-      item => favourites.find(favourite => favourite.id == item.id) != undefined,
+      item => favouritesPost.find(favourite => favourite.id == item.id) != undefined,
     );
   }
 
@@ -130,6 +131,8 @@ const mapStateToProps = createStructuredSelector({
   noContent: makeNoContent(),
   // Indicates if the option for the infinitive loading is activated
   infinitiveLoading: makeInfinitiveLoading(),
+  //Get the favourites
+  favouritesPost: makeFavourites(),
 });
 
 // Operations that indicates that is going to make a call to an http service

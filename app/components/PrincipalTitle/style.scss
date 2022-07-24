@@ -29,7 +29,7 @@
 
 .principal-title {
     font-size: 60px;
-    font-weight: 600;
+    font-weight: var(--main-title-font-weight);
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--main-title-color);

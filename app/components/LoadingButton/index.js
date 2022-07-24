@@ -6,7 +6,7 @@ import Button from 'ui/Button';
 import { isInfitiveLoading } from '../../configuration/config';
 
 function LoadingButton(props) {
-  let button = () => <></>;
+  let LoadingButton = () => <></>;
 
   let loading = props.loading;
   let render = props.render;
@@ -17,13 +17,13 @@ function LoadingButton(props) {
     }
 
     if (loading) {
-      button = (
+      LoadingButton = () => (
         <Button onClick={props.onClick} center disable>
           <FormattedMessage {...messages.loading} />
         </Button>
       );
     } else {
-      button = (
+      LoadingButton = () => (
         <Button onClick={props.onClick} center>
           { props.children }
         </Button>
@@ -31,7 +31,7 @@ function LoadingButton(props) {
     }
   }
 
-  return button
+  return <LoadingButton />
 }
 
 LoadingButton.propTypes = {

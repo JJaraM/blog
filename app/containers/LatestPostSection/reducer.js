@@ -6,6 +6,7 @@ import {
   RETRIEVE_DONE,
   NO_CONTENT,
   LOADING_LATEST_POST,
+  FAVOURITE,
 } from './constants';
 
 /**
@@ -21,10 +22,12 @@ export const initialState = {
   loading: true,
   noContent: false,
   isFirstLoading: false,
-  tagId: 0,
   status: 0,
   message: null,
   item: null,
+  tagId:
+    (localStorage.getItem('Latest-Post-Tag-Selected') !== null) ? parseInt(localStorage.getItem('Latest-Post-Tag-Selected')) : 0,
+  favourites: JSON.parse(localStorage.getItem('favourites')),
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -72,8 +75,34 @@ const latestPostSectionReducer = (state = initialState, action) =>
 
           return {
             ...state,
-            items: [...state.items.slice(0, index), action.item, ...state.items.slice(index + 1)],
+            items: [
+              ...state.items.slice(0, index),
+              action.item,
+              ...state.items.slice(index + 1),
+            ],
           };
+        }
+        break;
+
+      case FAVOURITE:
+        let favourites = JSON.parse(localStorage.getItem('favourites'));
+        const id = action.id;
+        const el = document.getElementById(`favourite-${id}`);
+        if (favourites === null) {
+          favourites = [];
+        }
+        const indexFavourite = favourites.findIndex(object => object.id === id);
+        if (indexFavourite === -1) {
+          favourites.push({ id });
+          el.classList.add('favourite-selected');
+        } else {
+          favourites.splice(indexFavourite, 1);
+          el.classList.remove('favourite-selected');
+        }
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+        draft.favourites = JSON.parse(localStorage.getItem('favourites'));
+        if (favourites.length === 0) {
+          draft.tagId = 0;
         }
         break;
     }

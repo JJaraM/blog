@@ -20,7 +20,7 @@ import {
   ERROR,
   REFRESH,
   NO_CONTENT,
-  LOADING_LATEST_POST
+  LOADING_LATEST_POST, FAVOURITE,
 } from './constants';
 
 // Retrieve the latest post
@@ -68,5 +68,12 @@ export function noContent() {
 export function loadingLatestPost() {
   return {
     type: LOADING_LATEST_POST,
+  }
+}
+
+export function selectFavourite(id) {
+  return {
+    type: FAVOURITE,
+    id: id,
   }
 }

@@ -21,4 +21,16 @@ const commandResult = () =>
     substate => substate.commandResult,
   );
 
-export { selectCookieBannerDomain, grantedPermissions, acknowledge, commandResult };
+const makeTerminalMinimized = () =>
+  createSelector(
+    selectCookieBannerDomain,
+    substate => substate.terminalMinimized,
+  );
+
+export {
+  selectCookieBannerDomain,
+  grantedPermissions,
+  acknowledge,
+  commandResult,
+  makeTerminalMinimized,
+};

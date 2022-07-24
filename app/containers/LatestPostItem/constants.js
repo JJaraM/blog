@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/LatestPostItem/DEFAULT_ACTION';
+export const FAVOURITE = 'app/LatestPostItem/FAVOURITE';

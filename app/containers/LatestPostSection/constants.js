@@ -5,3 +5,4 @@ export const ERROR = 'app/LatestPostSection/ERROR';
 export const REFRESH = 'app/LatestPostSection/REFRESH';
 export const NO_CONTENT = 'app/LatestPostSection/NO_CONTENT';
 export const LOADING_LATEST_POST = 'app/LatestPostSection/LOADING_LATEST_POST';
+export const FAVOURITE = 'app/LatestPostSection/FAVOURITE';

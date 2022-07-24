@@ -1,3 +1,32 @@
+.tag-button {
+  border: none;
+  background: transparent;
+  display: block;
+  line-height: 28px;
+  font-family: "Montserrat", Sans-serif, serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--tag-btn-color);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  padding-left: 22px;
+  padding-right: 22px;
+
+  &:active, &:focus, &:hover {
+    box-shadow: none;
+    outline: none;
+    color: var(--tag-btn-color-hover);
+  }
+}
+
+.tag-button[aria-expanded="true"] {
+  background: var(--tag-btn-bg-color-hover);
+  border-radius: 14px;
+  &.active {
+    background: var(--tag-btn-bg-color-hover);
+  }
+}
+
 .jjara-tag-container-list {
   padding-top: 10px;
 
@@ -5,22 +34,20 @@
     display: inline-block;
     width: auto;
     height: 28px;
-    background: var(--jjara-tag-container-list-ul-li-bg-color);
+    background: var(--tag-btn-bg-color);
     border-radius: 14px;
     text-align: center;
-    padding-left: 22px;
-    padding-right: 22px;
     cursor: pointer;
     float:left;
     margin-right: 4px;
     margin-bottom: 4px;
 
     &:hover {
-      background: var(--jjara-tag-container-list-ul-li-hover-bg-color);
+      background: var(--tag-btn-bg-color-hover);
     }
 
     &.active {
-      background: var(--jjara-tag-container-list-ul-li-active-bg-color);
+      background: var(--tag-btn-bg-color-active);
       cursor: not-allowed;
 
       button {

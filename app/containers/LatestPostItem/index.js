@@ -5,21 +5,18 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import DateField from 'components/DateField';
 import { Link } from 'react-router-dom';
-import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectLatestPostItem from './selectors';
 import reducer from './reducer';
-import saga from './saga';
 import './style.scss';
 import PostTagList from 'components/PostTagList';
 import { makeTagItems, makeLoading } from '../TagContainer/selectors';
 import Img from 'components/Img';
 import Metadata from 'components/Metadata';
 import RefreshIcon from '../../ui/RefreshIcon';
+import { selectFavourite } from '../LatestPostSection/actions';
 
 export function LatestPostItem({ item, tags, loading, onFavourite }) {
   useInjectReducer({ key: 'latestPostItem', reducer });
-  useInjectSaga({ key: 'latestPostItem', saga });
 
   const { refresh } = item;
   let refreshClassName = '';
@@ -83,31 +80,13 @@ LatestPostItem.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  latestPostItem: makeSelectLatestPostItem(),
   tags: makeTagItems(),
   loading: makeLoading(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    onFavourite: id => {
-      let favourites = JSON.parse(localStorage.getItem('favourites'));
-      const el = document.getElementById(`favourite-${id}`);
-
-      if (favourites == undefined) {
-        favourites = [];
-      }
-      const index = favourites.findIndex(object => object.id === id);
-      if (index === -1) {
-        favourites.push({ id });
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-        el.classList.add('favourite-selected');
-      } else {
-        favourites.splice(index, 1);
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-        el.classList.remove('favourite-selected');
-      }
-    },
+    onFavourite: id => dispatch(selectFavourite(id)),
     dispatch,
   };
 }

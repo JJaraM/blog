@@ -1,13 +1,8 @@
-/*
- *
- * LatestPostItem actions
- *
- */
+import { FAVOURITE } from './constants';
 
-import { DEFAULT_ACTION } from './constants';
-
-export function defaultAction() {
+export function demo(id) {
   return {
-    type: DEFAULT_ACTION,
+    type: FAVOURITE,
+    id: id,
   };
 }

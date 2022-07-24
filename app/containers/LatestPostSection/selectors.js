@@ -57,6 +57,12 @@ const makeNoContent = () =>
     state => state.noContent,
   );
 
+const makeFavourites = () =>
+  createSelector(
+    selectLatestPostSectionDomain,
+    state => state.favourites,
+  );
+
 export {
   selectLatestPostSectionDomain,
   makeLatestPostPage,
@@ -68,4 +74,5 @@ export {
   makeStatus,
   makeMessage,
   makeNoContent,
+  makeFavourites,
 };

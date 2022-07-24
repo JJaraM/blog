@@ -1,7 +1,9 @@
 [data-theme='light'] {
-  --jjara-tag-container-list-ul-li-bg-color: #efefef;
-  --jjara-tag-container-list-ul-li-hover-bg-color: #adadad;
-  --jjara-tag-container-list-ul-li-active-bg-color: #fd6d75;
+
+
+  //Latest Post Loading Card
+  --primary-loading-bg-color: #dbdbdb;
+  --secondary-loading-bg-color: #e5e5e5;
 
   --jjara-nav-link: inherit;
   --jjara-icon-color: inherit;
@@ -9,8 +11,7 @@
 
   --jjara-card-body-hover: #f2f2f2;
 
-  --secondary-bg-color: #d7d7d7; //d7d7d7    f5f6f8
-  --main-bg-color: #efefef; //efefef
+
 
   --third-bg-color: #fd6d75; //fd6d75
   --fourth-bg-color: #fd8a90;
@@ -27,34 +28,33 @@
 //}
 
 [data-theme='dark'] {
+
+
+
+
+
+
+
   --jjara-card-body-hover: #353535;
-
-  --jjara-tag-container-list-ul-li-bg-color: #ededed;
-  --jjara-tag-container-list-ul-li-hover-bg-color: #fff;
-  --jjara-tag-container-list-ul-li-active-bg-color: #fd6d75;
-
   --jjara-nav-link: inherit;
   --jjara-icon-color: inherit;
   --jjara-logo-color: inherit;
 
-  --main-bg-color: #1f1f1f;
+
 
   --dark-third: #333333;
-  --secondary-bg-color: #141414;
+
   --third-bg-color: #fd6d75;
   --fourth-bg-color: #fd8a90;
-  --fifth-bg-color: #d5d5d5;
-  --sixth-bg-color: #f0f0f0;
+
   --septh-bg-color: #fd8a90;
   --eigth-bg-color: #292929;
-  --main-title-color: #fdf7f2;
-  --main-title-color-loading: #ffffff;
+
   --meta-data-color: #adadad;
   --main-text-color: #777;
   --primary-loading-bg-color: #353535;
   --secondary-loading-bg-color: #3f3f3f;
   --tb-bg-color: #272822;
-  --primary-font-family: 'Montserrat', Sans-serif;
 
   --jjara-comboBox-icon-color: #8f8f8f;
 

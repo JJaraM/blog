@@ -5,8 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the latestPostItem state domain
  */
 
-const selectLatestPostItemDomain = state =>
-  state.latestPostItem || initialState;
+const selectLatestPostItemDomain = state => state.latestPostItem || initialState;
 
 /**
  * Other specific selectors
@@ -16,11 +15,10 @@ const selectLatestPostItemDomain = state =>
  * Default selector used by LatestPostItem
  */
 
-const makeSelectLatestPostItem = () =>
+const makeSelectedFavourite = () =>
   createSelector(
     selectLatestPostItemDomain,
-    substate => substate,
+    substate => substate.id,
   );
 
-export default makeSelectLatestPostItem;
-export { selectLatestPostItemDomain };
+export { selectLatestPostItemDomain, makeSelectedFavourite };
