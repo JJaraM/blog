@@ -1,7 +1,7 @@
 name: blog
 title: Blog Site
 version: 1.5.6
-start_page: ROOT:getting-started.adoc
+start_page: ROOT:nav.adoc
 asciidoc:
   attributes:
     source-language: asciidoc@
