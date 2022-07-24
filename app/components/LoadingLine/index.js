@@ -118,17 +118,7 @@ function LoadingLine(props) {
 
 
     @media only screen and (max-width: 959px) {
-      .${id} {
-        .line {
-          background: background-color: var(--${loadingPrimaryBgColor});
-          width: 100%;
-          @keyframes loading-${id} {
-            0%     {background-color: var(--${loadingPrimaryBgColor});}
-            50.0%  {background-color: var(--${loadingPrimaryBgColor});}
-            100.0%  {background-color: var(--${loadingPrimaryBgColor});}
-          }
-        }
-      }
+      
 
       .sublist {
 

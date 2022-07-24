@@ -36,16 +36,19 @@ export default function* latestPostItemSaga() {
 export function* sagaRetrieve() {
   try {
     const id = yield select(makeId());
-    const geoLocation = yield call(request, "https://geolocation-db.com/json/");
+    // const geoLocation = yield call(request, "https://geolocation-db.com/json/");
     const requestURL = httpCall(api.post, id)
 
-    let items = yield call(request, requestURL, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Forwarded-For': geoLocation['IPv4'],
-      },
-    });
+    // let items = yield call(request, requestURL, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'X-Forwarded-For': geoLocation['IPv4'],
+    //   },
+    // }
+    // );
+
+    let items = yield call(request, requestURL);
 
     if (isInfitiveLoading()) {
       items = null;
