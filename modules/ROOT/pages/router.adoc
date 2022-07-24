@@ -1,0 +1,5 @@
+:footnote1: https://github.com/JJaraM/blog/blob/master/app/containers/App/index.js[index.js]
+
+= Routing
+
+This application makes uses of `react-router-dom` to route the navigation of the page, this logic can be found in {footnote1}

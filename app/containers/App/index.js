@@ -3,13 +3,12 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import GlobalStyle from '../../global-styles';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect'
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { default as reducer } from './reducer';
 import saga from './saga';
-
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -20,19 +19,18 @@ import PostPage from 'containers/PostPage';
 import CategoryPage from 'containers/CategoryPage';
 
 import SignIn from 'containers/SignIn';
-import SpyCode from 'containers/SpyCode'
+import SpyCode from 'containers/SpyCode';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import CaseOfStudy1 from 'containers/CaseOfStudy1';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
-import { makeRenderSearch, makeRenderSignIn, makeRenderSpy }  from './selectors';
+import { makeRenderSearch, makeRenderSignIn, makeRenderSpy } from './selectors';
 
 import { signOut } from 'containers/SignIn/actions';
 
 import { search, close, signIn, createPost, spy } from './actions';
-
 
 import './styles/theme/theme.scss';
 import './styles/app.scss';
@@ -46,7 +44,7 @@ import SearchContainer from '../SearchContainer';
 const key = 'home';
 
 function showOverflow() {
-  const element = document.getElementsByClassName("fontLoaded")[0];
+  const element = document.getElementsByClassName('fontLoaded')[0];
   if (element) {
     element.style.overflow = 'auto';
   }
@@ -60,25 +58,19 @@ export function App({
   onClose,
   onSpyCode,
   onSwitchTheme,
-  onClear,
   renderSearch,
   renderSignIn,
   renderSpyCode,
   isAuthenticated,
 }) {
-
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  let currentTheme = localStorage.getItem("theme");
-
-
+  let currentTheme = localStorage.getItem('theme');
   if (currentTheme === undefined || currentTheme == null) {
-    currentTheme = 'dark'
+    currentTheme = 'dark';
   }
-
   document.documentElement.setAttribute('data-theme', currentTheme);
-
 
   return (
     <>
@@ -87,13 +79,13 @@ export function App({
       </Helmet>
 
       <Header
-        isAuthenticated={ isAuthenticated }
-        onSearch={ onSearch }
-        onSignIn={ onSignIn }
-        onSignOut={ onSignOut }
-        onPostCreate = { onPostCreate }
-        onSwitchTheme = { onSwitchTheme }
-        />
+        isAuthenticated={isAuthenticated}
+        onSearch={onSearch}
+        onSignIn={onSignIn}
+        onSignOut={onSignOut}
+        onPostCreate={onPostCreate}
+        onSwitchTheme={onSwitchTheme}
+      />
 
       <SearchContainer render={renderSearch} close={onClose} />
       <SignIn render={renderSignIn} close={onClose} />
@@ -107,19 +99,15 @@ export function App({
         <Route path="" component={NotFoundPage} />
       </Switch>
 
+      {/*<div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>*/}
 
-        {/*<div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>*/}
-
-
-
-      <CookieBanner  />
-      <Footer onSpyCode={ onSpyCode } />
-
+      <CookieBanner />
+      <Footer onSpyCode={onSpyCode} />
 
       <GlobalStyle />
     </>
   );
-};
+}
 
 App.propTypes = {
   onSearch: PropTypes.func,
@@ -137,7 +125,7 @@ export function mapDispatchToProps(dispatch) {
     onSearch: () => dispatch(search()),
     onSpyCode: () => dispatch(spy()),
     onSignIn: () => {
-      dispatch(signIn())
+      dispatch(signIn());
     },
     onSignOut: () => {
       showOverflow();
@@ -149,25 +137,25 @@ export function mapDispatchToProps(dispatch) {
     },
     onPostCreate: () => dispatch(createPost()),
     onSwitchTheme: () => {
-      let currentTheme = localStorage.getItem("theme");
-      const themeElement = document.getElementById("theme");
+      let currentTheme = localStorage.getItem('theme');
+      const themeElement = document.getElementById('theme');
 
       if (currentTheme == 'dark') {
-        currentTheme = 'light'
+        currentTheme = 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
         if (themeElement) {
-          themeElement.classList.add("fa-moon-o");
-          themeElement.classList.remove("fa-sun-o");
+          themeElement.classList.add('fa-moon-o');
+          themeElement.classList.remove('fa-sun-o');
         }
       } else {
-        currentTheme = 'dark'
+        currentTheme = 'dark';
         document.documentElement.setAttribute('data-theme', currentTheme);
         if (themeElement) {
-          themeElement.classList.remove("fa-moon-o");
-          themeElement.classList.add("fa-sun-o");
+          themeElement.classList.remove('fa-moon-o');
+          themeElement.classList.add('fa-sun-o');
         }
       }
-      localStorage.setItem("theme", currentTheme);
+      localStorage.setItem('theme', currentTheme);
     },
 
     dispatch,

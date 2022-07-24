@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 
 function CardItem(props) {
 
-  let className = '';
+  let refresh = '';
 
   if (props.refresh) {
-    className = 'refresh';
+    refresh = 'refresh';
   }
 
   return (
     <div className="pb-30 ">
-      <div className={`jjara-card-item ${className}`}>
+      <div className={`jjara-card-item ${refresh} ${props.className}`}>
         <div className="row">
           { props.children }
         </div>
@@ -23,6 +23,7 @@ function CardItem(props) {
 
 CardItem.propTypes = {
   refresh: PropTypes.any,
+  className: PropTypes.string,
 };
 
 export default memo(CardItem);

@@ -17,3 +17,5 @@ To run the project locally is necessary to run the following command:
 ----
 npm run local
 ----
+
+Now you will be able to access the site using http://localhost:3000/

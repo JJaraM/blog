@@ -156,9 +156,8 @@ const onCommandEnter = (evt, dispatch) => {
     textNode.onkeydown = function(evt1) {
       onCommandEnter(evt1, dispatch);
     };
-    textNode.focus();
     element.appendChild(textNode);
-
+    textNode.focus();
   }
 };
 

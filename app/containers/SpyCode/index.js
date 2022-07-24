@@ -48,6 +48,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
       'overflow-x': 'none',
       'padding-left': '20px',
       'padding-right': '20px',
+      // 'width': '25rem',
       'height': '470px',
     };
 
@@ -70,7 +71,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
 
             <div className="pb-30" style={style}>
               <ContainerCenter>
-                <CardContainer>
+                <CardContainer className="card-item-spy">
                   <CardDivider>
                     <CardImage
                       href="https://github.com/JJaraM/blog-eureka-server"
@@ -90,7 +91,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
                   </CardDivider>
                 </CardContainer>
 
-                <CardContainer>
+                <CardContainer className="card-item-spy">
                   <CardDivider>
                     <CardImage
                       href="https://github.com/JJaraM/blog-microservice-api-gateway"
@@ -110,7 +111,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
                   </CardDivider>
                 </CardContainer>
 
-                <CardContainer>
+                <CardContainer className="card-item-spy">
                   <CardDivider>
                     <CardImage
                       href="https://app.redislabs.com/"
@@ -130,7 +131,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
 
               {/**/}
               <ContainerCenter>
-                <CardContainer>
+                <CardContainer className="card-item-spy">
                   <CardDivider>
                     <CardImage
                       href="https://cloud.mongodb.com/"
@@ -147,7 +148,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
                   </CardDivider>
                 </CardContainer>
 
-                <CardContainer>
+                <CardContainer className="card-item-spy">
                   <CardDivider>
                     <CardImage
                       href="https://github.com/JJaraM/blog"
@@ -164,7 +165,7 @@ export function SpyCode({ render, close, isAuthenticated }) {
                   </CardDivider>
                 </CardContainer>
 
-                <CardContainer>
+                <CardContainer className="card-item-spy">
                   <CardDivider>
                     <CardImage
                       href="https://git-scm.com/"
