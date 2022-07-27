@@ -5,9 +5,7 @@ import RenderComponent from '../RenderComponent';
 function MenuOption(props) {
   return (
     <RenderComponent render={props.render}>
-      <li className="nav-item active dropdown">
-        {props.children}
-      </li>
+      <li className="nav-item active dropdown">{props.children}</li>
     </RenderComponent>
   );
 }

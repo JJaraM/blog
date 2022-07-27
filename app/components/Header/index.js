@@ -1,10 +1,10 @@
 import React from 'react';
-import { Nav } from './Nav';
 import Logo from 'components/Logo';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import RenderComponent from 'components/RenderComponent';
+import { Nav } from './Nav';
+import messages from './messages';
 import ButtonIcon from './ButtonIcon';
 import MenuLabel from './MenuLabel';
 import MenuDropDown from './MenuDropDown';
@@ -16,7 +16,7 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
-  let theme = localStorage.getItem('theme');
+  const theme = localStorage.getItem('theme');
   let iconClass = 'fa fa-moon-o';
 
   if (theme == 'dark') {
@@ -45,7 +45,7 @@ function Header(props) {
 
           <div className="collapse navbar-collapse my-2 my-lg-0" id="navbarTogglerDemo01">
             <ul id="ul-menu" className="navbar-nav ml-auto ">
-              {/*<li className="nav-item active">
+              {/* <li className="nav-item active">
                 <Link to={`/cases-study-1`} className="nav-link">
                   <FormattedMessage {...messages.cases_of_study} />
                 </Link>
@@ -60,22 +60,21 @@ function Header(props) {
                   className="dropdown-menu dropdown-menu-right"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <Link to={`/cases-study-1`} className="dropdown-item">
+                  <Link to="/cases-study-1" className="dropdown-item">
                     <FormattedMessage {...messages.cases_of_study_cloud_services} />
                   </Link>
                 </div>
               </li>
 
-
               <MenuOption render={!props.isAuthenticated}>
-                  <MenuLabel onClick={props.onMenuClick}>Sign In</MenuLabel>
-                  <MenuDropDown>
-                    <MenuDropDownContainer>
-                      <MenuOption6Col onClick={props.onSignIn} title="Sign In With" label="User"/>
-                      <MenuOption6Col onClick={props.onSignIn} title="Sign In With" label="Gmail"/>
-                    </MenuDropDownContainer>
-                    {/*<div className="dropdown-divider"></div>*/}
-                  </MenuDropDown>
+                <MenuLabel onClick={props.onMenuClick}>Sign In</MenuLabel>
+                <MenuDropDown>
+                  <MenuDropDownContainer>
+                    <MenuOption6Col onClick={props.onSignIn} title="Sign In With" label="User" />
+                    <MenuOption6Col onClick={props.onSignIn} title="Sign In With" label="Gmail" />
+                  </MenuDropDownContainer>
+                  {/* <div className="dropdown-divider"></div> */}
+                </MenuDropDown>
               </MenuOption>
 
               <RenderComponent render={props.isAuthenticated}>
@@ -110,11 +109,11 @@ function Header(props) {
 
             <ButtonIcon className="fa fa-search" onClick={props.onSearch} />
 
-            {/*<ButtonIcon*/}
-            {/*  className="fa fa-user"*/}
-            {/*  onClick={props.onSignIn}*/}
-            {/*  render={!props.isAuthenticated}*/}
-            {/*/>*/}
+            {/* <ButtonIcon */}
+            {/*  className="fa fa-user" */}
+            {/*  onClick={props.onSignIn} */}
+            {/*  render={!props.isAuthenticated} */}
+            {/* /> */}
             <ButtonIcon id="theme" className={iconClass} onClick={props.onSwitchTheme} />
             <ButtonIcon
               className="fa fa-sign-out"

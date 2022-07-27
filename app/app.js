@@ -15,7 +15,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
-//import 'sanitize.css/sanitize.css';
+// import 'sanitize.css/sanitize.css';
 import './fonts/fonts.scss';
 
 // Import root app
@@ -81,10 +81,7 @@ if (!window.Intl) {
     resolve(import('intl'));
   })
     .then(() =>
-      Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/de.js'),
-      ]),
+      Promise.all([import('intl/locale-data/jsonp/en.js'), import('intl/locale-data/jsonp/de.js')]),
     ) // eslint-disable-line prettier/prettier
     .then(() => render(translationMessages))
     .catch(err => {
@@ -101,29 +98,28 @@ if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
 
-if (process.env.NODE_ENV !== "local") {
+if (process.env.NODE_ENV !== 'local') {
   if (window.location.protocol === 'http:') {
-    const redirect = "https:" + window.location.host + window.location.pathname;
+    const redirect = `https:${window.location.host}${window.location.pathname}`;
     window.location.replace(redirect);
   }
 }
 
-document.addEventListener("click", function (evt) {
+document.addEventListener('click', function(evt) {
+  // dropdown-menu
 
-  //dropdown-menu
-
-  const menuClose = document.getElementsByClassName("dropdown-menu dropdown-menu-right selected");
+  const menuClose = document.getElementsByClassName('dropdown-menu dropdown-menu-right selected');
   for (let i = 0; i < menuClose.length; i++) {
     const el = menuClose[i];
 
-    if (el.classList.contains("show-menu")) {
-      el.classList.remove("show");
-      el.classList.remove("show-menu");
-      el.classList.remove("selected");
+    if (el.classList.contains('show-menu')) {
+      el.classList.remove('show');
+      el.classList.remove('show-menu');
+      el.classList.remove('selected');
 
-      document.getElementById("main-container").classList.remove("menu-open")
+      document.getElementById('main-container').classList.remove('menu-open');
     } else {
-      el.classList.add("show-menu");
+      el.classList.add('show-menu');
     }
   }
   // console.log("close =>" + menuClose.length);
@@ -145,5 +141,3 @@ document.addEventListener("click", function (evt) {
 //     console.log("open =>" + menuOpen.length);
 //   }
 // });
-
-

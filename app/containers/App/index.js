@@ -1,14 +1,10 @@
 import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
-import GlobalStyle from '../../global-styles';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
-import { default as reducer } from './reducer';
-import saga from './saga';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -26,9 +22,12 @@ import Footer from 'components/Footer';
 import CaseOfStudy1 from 'containers/CaseOfStudy1';
 
 import { makeIsAuthenticated } from 'containers/SignIn/selectors';
+import { signOut } from 'containers/SignIn/actions';
 import { makeRenderSearch, makeRenderSignIn, makeRenderSpy } from './selectors';
 
-import { signOut } from 'containers/SignIn/actions';
+import saga from './saga';
+import { default as reducer } from './reducer';
+import GlobalStyle from '../../global-styles';
 
 import { search, close, signIn, createPost, spy } from './actions';
 
@@ -101,7 +100,7 @@ export function App({
         <Route path="" component={NotFoundPage} />
       </Switch>
 
-      {/*<div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div>*/}
+      {/* <div className="lmpixels-scroll-to-top"><i className="lnr lnr-chevron-up"></i></div> */}
 
       <CookieBanner />
       <Footer onSpyCode={onSpyCode} />
@@ -137,12 +136,12 @@ export function mapDispatchToProps(dispatch) {
       showOverflow();
       dispatch(close());
     },
-    onMenuClick: (e) => {
+    onMenuClick: e => {
       const sibling = e.target.nextSibling;
-      sibling.classList.add('show')
-      sibling.classList.add('selected')
-      document.getElementById("main-container").classList.add("menu-open")
-      //display: block;
+      sibling.classList.add('show');
+      sibling.classList.add('selected');
+      document.getElementById('main-container').classList.add('menu-open');
+      // display: block;
       console.log();
       console.log('menu clicked');
     },

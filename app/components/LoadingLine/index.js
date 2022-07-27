@@ -4,24 +4,31 @@ import { createGlobalStyle } from 'styled-components';
 
 function LoadingLine(props) {
   const {
-    width, height, randomWidthMin, randomWidthMax,
-    randomHeightMin, randomHeightMax, unit,
-    primaryBgColor, secondaryBgColor, widthUnit,
+    width,
+    height,
+    randomWidthMin,
+    randomWidthMax,
+    randomHeightMin,
+    randomHeightMax,
+    unit,
+    primaryBgColor,
+    secondaryBgColor,
+    widthUnit,
   } = props;
 
-  const id = _.uniqueId("prefix-");
+  const id = _.uniqueId('prefix-');
 
   let loadingWidth = width;
   let loadingHeight = height;
-  let loadingPrimaryBgColor = "primary-loading-bg-color";
-  let loadingSecondaryBgColor = "secondary-loading-bg-color";
+  let loadingPrimaryBgColor = 'primary-loading-bg-color';
+  let loadingSecondaryBgColor = 'secondary-loading-bg-color';
 
   if (randomWidthMax) {
     loadingWidth = getRandomSize(randomWidthMax, randomWidthMin);
   }
 
   if (randomHeightMax) {
-    loadingHeight = getRandomSize(randomHeightMax, randomHeightMin)
+    loadingHeight = getRandomSize(randomHeightMax, randomHeightMin);
   }
 
   if (primaryBgColor) {
@@ -152,7 +159,7 @@ function LoadingLine(props) {
       <div id={id} className={`p-line ${id}`}>
         <div className="line" />
       </div>
-      <CustomStyle/>
+      <CustomStyle />
     </>
   );
 }
