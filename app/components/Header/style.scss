@@ -12,7 +12,7 @@
 
 .navbar {
   z-index: 999;
-  background: var(--secondary-bg-color);
+  //background: var(--secondary-bg-color);
   font-size: 12px;
   text-transform: uppercase;
 
@@ -54,12 +54,12 @@
     }
   }
 
-  .dropdown-toggle {
-    &:hover:after {
-      transition: all .2s;
-      color: var(--fourth-bg-color);
-    }
-  }
+  //.dropdown-toggle {
+  //  &:hover:after {
+  //    transition: all .2s;
+  //    color: var(--fourth-bg-color);
+  //  }
+  //}
 }
 
 .dropdown > .dropdown-item:hover{

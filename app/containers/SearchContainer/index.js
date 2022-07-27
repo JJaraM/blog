@@ -111,7 +111,7 @@ export function SearchContainer({
   }
 
   return (
-    <div className="search-container-hide" />
+    <div id='main-container' className="search-container-hide" />
   )
 }
 

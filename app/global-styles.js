@@ -218,8 +218,63 @@ table {
   overflow-y: scroll;
 }
 
+.sign-in-with-user {
+  border-right: 1px solid #363638;
+}
+
+.sign-in {
+  width: 20rem;
+}
 .dropdown-menu.show {
-    left: -50px !important;
+    // left: -80px !important;
+}
+
+.menu-label {
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.show-menu {
+  display: block;
+}
+
+.menu-open {
+ background: rgba(0,0,0,0.8) !important;
+ transition: all .1s ease-out !important;
+ z-index: 2 !important;
+}
+
+.menu-background {
+  background: rgba(0,0,0,0.8);
+}
+.sign-in-with {
+  color: #aaa;
+}
+
+.menu-right-arrow {
+  content: "";
+  display: inline-block;
+  height: 4px;
+  position: relative;
+  transform: rotate(-45deg);
+  border: solid;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  //color: #ec008c;
+  color: var(--fourth-bg-color);
+  top: 5px;
+  right: -5px;
+  cursor: pointer;
+}
+.menu-container {
+  padding-left: 2rem;
+}
+
+.sign-in-container {
+    background: linear-gradient(180deg,#181818 0,#000 100%);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .jjara-diagram-container {

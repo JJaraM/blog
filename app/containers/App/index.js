@@ -58,6 +58,7 @@ export function App({
   onClose,
   onSpyCode,
   onSwitchTheme,
+  onMenuClick,
   renderSearch,
   renderSignIn,
   renderSpyCode,
@@ -85,6 +86,7 @@ export function App({
         onSignOut={onSignOut}
         onPostCreate={onPostCreate}
         onSwitchTheme={onSwitchTheme}
+        onMenuClick={onMenuClick}
       />
 
       <SearchContainer render={renderSearch} close={onClose} />
@@ -134,6 +136,15 @@ export function mapDispatchToProps(dispatch) {
     onClose: () => {
       showOverflow();
       dispatch(close());
+    },
+    onMenuClick: (e) => {
+      const sibling = e.target.nextSibling;
+      sibling.classList.add('show')
+      sibling.classList.add('selected')
+      document.getElementById("main-container").classList.add("menu-open")
+      //display: block;
+      console.log();
+      console.log('menu clicked');
     },
     onPostCreate: () => dispatch(createPost()),
     onSwitchTheme: () => {

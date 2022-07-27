@@ -108,3 +108,42 @@ if (process.env.NODE_ENV !== "local") {
   }
 }
 
+document.addEventListener("click", function (evt) {
+
+  //dropdown-menu
+
+  const menuClose = document.getElementsByClassName("dropdown-menu dropdown-menu-right selected");
+  for (let i = 0; i < menuClose.length; i++) {
+    const el = menuClose[i];
+
+    if (el.classList.contains("show-menu")) {
+      el.classList.remove("show");
+      el.classList.remove("show-menu");
+      el.classList.remove("selected");
+
+      document.getElementById("main-container").classList.remove("menu-open")
+    } else {
+      el.classList.add("show-menu");
+    }
+  }
+  // console.log("close =>" + menuClose.length);
+  //
+  // const menuOpen = document.getElementsByClassName("nav-item active dropdown show");
+  // console.log("open =>" + menuOpen.length);
+
+  // const el = document.getElementById("main-container");
+  //
+});
+
+// document.getElementById("ul-menu").addEventListener("click",function(e) {
+//   console.log('click menu')
+//   if (e.target && e.target.matches("li.item")) {
+//     const menuClose = document.getElementsByClassName("nav-item active dropdown");
+//     console.log("close =>" + menuClose.length);
+//
+//     const menuOpen = document.getElementsByClassName("nav-item active dropdown show");
+//     console.log("open =>" + menuOpen.length);
+//   }
+// });
+
+

@@ -118,7 +118,7 @@ function LoadingLine(props) {
 
 
     @media only screen and (max-width: 959px) {
-      
+
 
       .sublist {
 
